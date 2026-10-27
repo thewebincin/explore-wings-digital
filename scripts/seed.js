@@ -79,7 +79,7 @@ async function seed() {
     google_business_url: 'https://maps.google.com/?q=Explore+Wings+Digital+Technologies+Trivandrum',
     geo_latitude: '8.5241',
     geo_longitude: '76.9366',
-    default_theme: 'green',
+    default_theme: 'red',
     default_mode: 'light',
     logo_path: '/images/logo.png',
     favicon_path: '/images/logo.png',

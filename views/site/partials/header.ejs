@@ -1,82 +1,235 @@
-<!-- 2. STICKY NAVBAR -->
-<header class="site-navbar">
+<!-- SECTION 2: STICKY NAVBAR WITH MEGA-MENUS (Services, Industries, Resources) -->
+<header class="navbar">
   <div class="container navbar-inner">
-    <a href="/" class="nav-brand" aria-label="Explore Wings Home">
-      <span class="brand-chip">
-        <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="32" height="32">
+    <a href="/" class="brand-logo-link" aria-label="Explore Wings Digital Technologies Home">
+      <span class="logo-white-chip">
+        <img src="/logo.png" alt="Explore Wings Logo" />
       </span>
-      <div>
-        <span class="brand-wordmark"><%= settings.site_name || 'Explore Wings' %></span>
-        <span class="brand-tagline-sub">Digital Technologies</span>
-      </div>
+      <span class="brand-logo-text">
+        <span class="brand-logo-title"><%= (locals.settings && locals.settings.site_name) || 'Explore Wings' %></span>
+        <span class="brand-logo-sub">Digital Technologies</span>
+      </span>
     </a>
 
-    <nav class="nav-links-desktop" aria-label="Main Navigation">
-      <% if (locals.headerNav && headerNav.length) { %>
-        <% headerNav.forEach(item => { %>
-          <a href="<%= item.url %>" class="nav-link <%= (locals.currentPath === item.url || (item.url !== '/' && locals.currentPath && locals.currentPath.startsWith(item.url))) ? 'active' : '' %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>>
-            <%= item.label %>
-          </a>
-        <% }) %>
-      <% } else { %>
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <div class="nav-item">
         <a href="/" class="nav-link <%= locals.currentPath === '/' ? 'active' : '' %>">Home</a>
-        <a href="/services" class="nav-link <%= locals.currentPath === '/services' ? 'active' : '' %>">Services</a>
+      </div>
+
+      <!-- Mega-Menu 1: Services -->
+      <div class="nav-item has-mega">
+        <a href="/services" class="nav-link <%= locals.currentPath === '/services' ? 'active' : '' %>">
+          <span>Services</span> <span style="font-size:0.7rem;">▾</span>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-grid-links">
+            <a href="/services#service-websites" class="mega-service-item">
+              <div class="mega-icon">🌐</div>
+              <div>
+                <h5>Website Design</h5>
+                <p>Fast, mobile-first websites built to convert local visitors</p>
+              </div>
+            </a>
+            <a href="/services#service-branding" class="mega-service-item">
+              <div class="mega-icon">✦</div>
+              <div>
+                <h5>Branding &amp; Logos</h5>
+                <p>Logos, menus, packaging, signage &amp; brand guidelines</p>
+              </div>
+            </a>
+            <a href="/services#service-social" class="mega-service-item">
+              <div class="mega-icon">📱</div>
+              <div>
+                <h5>Social Media</h5>
+                <p>Instagram Reels, festive campaigns &amp; monthly calendars</p>
+              </div>
+            </a>
+            <a href="/services#service-production" class="mega-service-item">
+              <div class="mega-icon">🎬</div>
+              <div>
+                <h5>Photo &amp; Video</h5>
+                <p>On-location food, resort, fitness &amp; product shoots</p>
+              </div>
+            </a>
+            <a href="/services#service-marketing" class="mega-service-item">
+              <div class="mega-icon">📍</div>
+              <div>
+                <h5>Digital Marketing</h5>
+                <p>Google Maps SEO &amp; targeted local lead ads</p>
+              </div>
+            </a>
+            <a href="/services#service-business-web" class="mega-service-item">
+              <div class="mega-icon">📅</div>
+              <div>
+                <h5>Business Websites</h5>
+                <p>WhatsApp ordering, booking systems &amp; portals</p>
+              </div>
+            </a>
+          </div>
+          <div class="mega-promo-card">
+            <div>
+              <span class="mega-promo-badge">All-In-One Studio</span>
+              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Launch Your Brand in Trivandrum</h4>
+              <p style="font-size:0.82rem; opacity:0.84;">Get your logo, photography shoot, and website built under one roof.</p>
+            </div>
+            <a href="/pricing" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
+              <span>Explore Packages</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mega-Menu 2: Industries -->
+      <div class="nav-item has-mega">
+        <a href="/services" class="nav-link">
+          <span>Industries</span> <span style="font-size:0.7rem;">▾</span>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-grid-links">
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">🌴</div>
+              <div>
+                <h5>Resorts &amp; Ayurveda</h5>
+                <p>Kovalam &amp; Varkala hospitality websites with booking enquiries</p>
+              </div>
+            </a>
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">☕</div>
+              <div>
+                <h5>Cafes &amp; Restaurants</h5>
+                <p>QR code menus, food photography, and viral food reels</p>
+              </div>
+            </a>
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">🎓</div>
+              <div>
+                <h5>Education &amp; Study Abroad</h5>
+                <p>High-converting landing pages for student registrations</p>
+              </div>
+            </a>
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">🏋️</div>
+              <div>
+                <h5>Gyms &amp; Wellness</h5>
+                <p>Fitness branding, transformation showcases &amp; membership forms</p>
+              </div>
+            </a>
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">🍱</div>
+              <div>
+                <h5>Food &amp; Packaged Goods</h5>
+                <p>FSSAI-compliant packaging, labels, and shop displays</p>
+              </div>
+            </a>
+            <a href="/services" class="mega-service-item">
+              <div class="mega-icon">🛍️</div>
+              <div>
+                <h5>Retail &amp; Malls</h5>
+                <p>Footfall campaigns, festive signage, and store launches</p>
+              </div>
+            </a>
+          </div>
+          <div class="mega-promo-card">
+            <div>
+              <span class="mega-promo-badge">Local Focus</span>
+              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Made for Kerala Businesses</h4>
+              <p style="font-size:0.82rem; opacity:0.84;">We understand Malayalam cultural nuances, festive shopping peaks, and local customer behavior.</p>
+            </div>
+            <a href="/contact" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
+              <span>Talk to our Founder</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
         <a href="/pricing" class="nav-link <%= locals.currentPath === '/pricing' ? 'active' : '' %>">Pricing</a>
+      </div>
+
+      <div class="nav-item">
         <a href="/about" class="nav-link <%= locals.currentPath === '/about' ? 'active' : '' %>">About</a>
-        <a href="/contact" class="nav-link <%= locals.currentPath === '/contact' ? 'active' : '' %>">Contact</a>
-      <% } %>
+      </div>
+
+      <!-- Mega-Menu 3: Resources & Guides -->
+      <div class="nav-item has-mega">
+        <a href="/#resources-section" class="nav-link">
+          <span>Resources</span> <span style="font-size:0.7rem;">▾</span>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-grid-links">
+            <a href="/#resources-section" class="mega-service-item">
+              <div class="mega-icon">💡</div>
+              <div>
+                <h5>Free Strategy Guides</h5>
+                <p>Checklists for launching a business website in Trivandrum</p>
+              </div>
+            </a>
+            <a href="/#lulu-munch-section" class="mega-service-item">
+              <div class="mega-icon">🏷️</div>
+              <div>
+                <h5>Client Logo Inspection</h5>
+                <p>Dedicated showcase for LuLu Mall and Munch projects</p>
+              </div>
+            </a>
+            <a href="/#home-faq" class="mega-service-item">
+              <div class="mega-icon">❓</div>
+              <div>
+                <h5>Frequently Asked Questions</h5>
+                <p>Pricing, timelines, deliverables, and ownership</p>
+              </div>
+            </a>
+            <a href="/contact" class="mega-service-item">
+              <div class="mega-icon">📞</div>
+              <div>
+                <h5>Direct WhatsApp Support</h5>
+                <p>Connect with our creative director in minutes</p>
+              </div>
+            </a>
+          </div>
+          <div class="mega-promo-card">
+            <div>
+              <span class="mega-promo-badge">No Jargon</span>
+              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Clear Answers Always</h4>
+              <p style="font-size:0.82rem; opacity:0.84;">We explain domain hosting, SEO, and CMS tools in plain language.</p>
+            </div>
+            <a href="/contact" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
+              <span>Ask a Question</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
 
+    <!-- Nav Actions: Login / Contact & "Start your project" CTA -->
     <div class="nav-actions">
-      <a href="/contact" class="btn-primary">
+      <a href="/admin/login" class="nav-login-link" title="Owner Admin Portal">Admin Login</a>
+      <a href="/contact" class="btn btn-primary">
         <span>Start your project</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
+        <span class="btn-arrow">→</span>
       </a>
-      <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+      <button type="button" class="menu-toggle" aria-label="Open Mobile Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </div>
-</header>
 
-<!-- Mobile Navigation Drawer -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
-<div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-  <div class="drawer-header">
-    <div class="brand-chip">
-      <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="28" height="28">
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-links">
+        <a href="/" class="mobile-nav-link">Home</a>
+        <a href="/services" class="mobile-nav-link">Services</a>
+        <a href="/pricing" class="mobile-nav-link">Pricing</a>
+        <a href="/about" class="mobile-nav-link">About</a>
+        <a href="/#resources-section" class="mobile-nav-link">Resources</a>
+        <a href="/contact" class="mobile-nav-link">Contact</a>
+        <a href="/admin/login" class="mobile-nav-link" style="color:var(--theme-accent); font-weight:800;">Admin Dashboard</a>
+      </div>
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1);">
+        <a href="/contact" class="btn btn-primary" style="width:100%; justify-content:center;">
+          <span>Start your project</span> <span class="btn-arrow">→</span>
+        </a>
+      </div>
     </div>
-    <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
   </div>
-  <ul class="drawer-links">
-    <% if (locals.headerNav && headerNav.length) { %>
-      <% headerNav.forEach(item => { %>
-        <li><a href="<%= item.url %>" class="drawer-link"><%= item.label %></a></li>
-      <% }) %>
-    <% } else { %>
-      <li><a href="/" class="drawer-link">Home</a></li>
-      <li><a href="/services" class="drawer-link">Services</a></li>
-      <li><a href="/pricing" class="drawer-link">Pricing</a></li>
-      <li><a href="/about" class="drawer-link">About</a></li>
-      <li><a href="/contact" class="drawer-link">Contact</a></li>
-    <% } %>
-  </ul>
-  <div class="drawer-footer">
-    <a href="/contact" class="btn-primary" style="width: 100%;">Start your project</a>
-    <% if (settings.address) { %>
-      <p style="font-size: 0.8125rem; color: var(--text-muted);"><%= settings.address %></p>
-    <% } %>
-  </div>
-</div>
+</header>

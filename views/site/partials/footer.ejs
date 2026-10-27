@@ -1,102 +1,85 @@
-<!-- 3. MEGA FOOTER -->
-<footer class="mega-footer">
+<!-- SECTION 12: MEGA FOOTER WITH LINK COLUMNS & GIANT OUTLINED "EXPLORE WINGS" -->
+<footer class="footer">
   <div class="container">
     <div class="footer-top-grid">
-      <!-- Brand & Founder Column -->
       <div class="footer-brand-col">
-        <div class="brand-chip" style="width: max-content;">
-          <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="32" height="32">
-        </div>
-        <div class="malayalam-greeting">സ്വാഗതം &mdash; Welcome from Trivandrum</div>
-        <p class="footer-founder-note">
-          &ldquo;Explore Wings was founded to offer businesses in Kerala direct, unhurried digital work. You speak with the person actually building your website and designing your brand.&rdquo;
+        <a href="/" class="brand-logo-link">
+          <span class="logo-white-chip">
+            <img src="/logo.png" alt="Explore Wings Logo" />
+          </span>
+          <span class="brand-logo-text">
+            <span class="brand-logo-title" style="color:#FFFFFF;"><%= (locals.settings && locals.settings.site_name) || 'Explore Wings' %></span>
+            <span class="brand-logo-sub" style="color:var(--theme-accent);">Digital Technologies</span>
+          </span>
+        </a>
+        <p>
+          Your complete digital brand, photography, website, and marketing partner in Thiruvananthapuram (Trivandrum), Kerala.
+        </p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed! Thank you.';">
+          <input type="email" placeholder="Enter your email for growth tips" required aria-label="Email for newsletter" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/services#service-websites">Website Design</a></li>
+          <li><a href="/services#service-branding">Branding &amp; Logos</a></li>
+          <li><a href="/services#service-social">Social Media &amp; Reels</a></li>
+          <li><a href="/services#service-production">Photo &amp; Video Shoots</a></li>
+          <li><a href="/services#service-marketing">Digital Marketing</a></li>
+          <li><a href="/services#service-business-web">Business Websites</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Industries</h5>
+        <ul>
+          <li><a href="/services">Resorts &amp; Ayurvedic Spas</a></li>
+          <li><a href="/services">Cafes &amp; Restaurants</a></li>
+          <li><a href="/services">Education &amp; Study Abroad</a></li>
+          <li><a href="/services">Gyms &amp; Fitness Clubs</a></li>
+          <li><a href="/services">Food &amp; Retail Brands</a></li>
+          <li><a href="/services">Shopping Malls</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/about">About Explore Wings</a></li>
+          <li><a href="/pricing">Packages &amp; Pricing</a></li>
+          <li><a href="/#trusted-brands">Brands That Trust Us</a></li>
+          <li><a href="/contact">Book a Consultation</a></li>
+          <li><a href="/admin/login">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Trivandrum HQ</h5>
+        <p style="margin-bottom:0.75rem;">
+          <%= (locals.settings && locals.settings.contact_address) || 'Thiruvananthapuram (Trivandrum), Kerala, India' %>
+        </p>
+        <p>
+          <strong style="color:var(--theme-accent);">Phone:</strong> <a href="tel:<%= (locals.settings && locals.settings.contact_phone) || '+919000000000' %>"><%= (locals.settings && locals.settings.contact_phone) || '+91 90000 00000' %></a><br />
+          <strong style="color:var(--theme-accent);">Email:</strong> <a href="mailto:<%= (locals.settings && locals.settings.contact_email) || 'hello@explorewings.in' %>"><%= (locals.settings && locals.settings.contact_email) || 'hello@explorewings.in' %></a><br />
+          <strong style="color:var(--theme-accent);">Hours:</strong> Mon – Sat, 9:30 AM – 6:30 PM
         </p>
       </div>
-
-      <!-- Navigation Column -->
-      <div>
-        <div class="footer-col-title">Navigation</div>
-        <ul class="footer-links-list">
-          <% if (locals.footerNav && footerNav.length) { %>
-            <% footerNav.forEach(item => { %>
-              <li><a href="<%= item.url %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>><%= item.label %></a></li>
-            <% }) %>
-          <% } else { %>
-            <li><a href="/">Home</a></li>
-            <li><a href="/services">Our Services</a></li>
-            <li><a href="/pricing">Pricing &amp; Packages</a></li>
-            <li><a href="/about">About Explore Wings</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-          <% } %>
-        </ul>
-      </div>
-
-      <!-- Services Column -->
-      <div>
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links-list">
-          <% if (locals.footerServices && footerServices.length) { %>
-            <% footerServices.forEach(item => { %>
-              <li><a href="<%= item.url %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>><%= item.label %></a></li>
-            <% }) %>
-          <% } else { %>
-            <li><a href="/services#websites">Websites &amp; Web Apps</a></li>
-            <li><a href="/services#branding">Brand Identity &amp; Logo</a></li>
-            <li><a href="/services#social">Social Media Management</a></li>
-            <li><a href="/services#photo">Commercial Photography</a></li>
-            <li><a href="/services#marketing">Digital Marketing</a></li>
-            <li><a href="/services#localseo">Google Maps &amp; SEO</a></li>
-          <% } %>
-        </ul>
-      </div>
-
-      <!-- Studio Location & Contact Details Column -->
-      <div>
-        <div class="footer-col-title">Studio Location</div>
-        <div class="footer-contact-details">
-          <p><strong style="color: var(--text);"><%= settings.site_name || 'Explore Wings Digital' %></strong></p>
-          <% if (settings.address) { %>
-            <p><%= settings.address %></p>
-          <% } %>
-          <% if (settings.hours) { %>
-            <p><%= settings.hours %></p>
-          <% } %>
-          <% if (settings.email) { %>
-            <p><a href="mailto:<%= settings.email %>"><%= settings.email %></a></p>
-          <% } %>
-          <% if (settings.phone) { %>
-            <p><a href="tel:<%= settings.phone.replace(/[^0-9+]/g, '') %>"><%= settings.phone %></a></p>
-          <% } %>
-          <% if (settings.whatsapp) { %>
-            <p><a href="https://wa.me/<%= settings.whatsapp.replace(/[^0-9]/g, '') %>" target="_blank" rel="noopener" style="color: #25D366; font-weight: 500;">Chat on WhatsApp &rarr;</a></p>
-          <% } %>
-        </div>
-      </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="footer-bottom-bar">
-      <div>
-        &copy; <%= new Date().getFullYear() %> <%= settings.site_name || 'Explore Wings Digital Technologies' %>. All rights reserved.
-      </div>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <% if (settings.instagram) { %>
-          <a href="<%= settings.instagram %>" target="_blank" rel="noopener">Instagram</a>
-        <% } %>
-        <% if (settings.facebook) { %>
-          <a href="<%= settings.facebook %>" target="_blank" rel="noopener">Facebook</a>
-        <% } %>
-        <% if (settings.linkedin) { %>
-          <a href="<%= settings.linkedin %>" target="_blank" rel="noopener">LinkedIn</a>
-        <% } %>
-        <a href="/sitemap.xml" target="_blank">Sitemap</a>
-        <a href="/admin/login" style="opacity: 0.5;">Admin</a>
-      </div>
-    </div>
+    <!-- Giant Outlined "EXPLORE WINGS" Watermark (Fills with Theme Color on Hover) -->
+    <div class="footer-giant-watermark" aria-hidden="true">EXPLORE WINGS</div>
 
-    <!-- Outline Watermark -->
-    <div class="footer-watermark" aria-hidden="true">
-      EXPLORE WINGS
+    <div class="footer-bottom">
+      <span>© 2026 Explore Wings Digital Technologies. Crafted in Trivandrum, Kerala, India.</span>
+      <div class="social-links-row">
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="Instagram">IG</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="LinkedIn">IN</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="Facebook">FB</a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="YouTube">YT</a>
+      </div>
     </div>
   </div>
 </footer>

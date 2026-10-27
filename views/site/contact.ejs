@@ -1,160 +1,229 @@
-<%
-  const sec = sections || {};
-  const heroSec = sec.header || sec.hero || {};
-  const prefillService = locals.prefillService || '';
-  const prefillPackage = locals.prefillPackage || '';
-%>
+<!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content" data-reveal="up">
+          <div class="breadcrumb"><a href="/">Home</a> <span>/</span> <span>Contact &amp; Free Consultation</span></div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Visit or Message Us in Trivandrum</span></span>
+          <h1 class="display-xl">Let's Talk About Growing Your <span class="theme-shimmer">Business</span>.</h1>
+          <p>
+            Share a few details about your goals below, call us directly, or drop by our Thiruvananthapuram studio for a warm cup of coffee and an honest conversation.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<!-- PAGE HERO -->
-<section class="page-hero-editorial" aria-label="Contact Header">
-  <div class="container">
-    <div style="max-width: 800px;">
-      <span class="stamp-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <%= heroSec.badge || heroSec.subtitle || 'Direct Studio Contact' %>
-      </span>
-      <h1 class="page-headline" style="margin-top: 16px;">
-        <%- heroSec.title || heroSec.headline || 'Speak directly with our team in Trivandrum.' %>
-      </h1>
-      <p class="page-lead" style="margin-top: 16px;">
-        <%= heroSec.subtitle || heroSec.lead || 'Whether you need a full website built, a fresh brand identity, or commercial photography in Kerala, send us a note or call our studio directly.' %>
-      </p>
-    </div>
-  </div>
-</section>
+    <!-- Main Contact Grid: Left Info Cards + Right Floating-Label Form -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout-grid">
 
-<!-- CONTACT SECTION -->
-<section class="contact-page-section" style="padding: var(--space-2xl) 0;">
-  <div class="container contact-grid-2">
-    <!-- Left Column: Studio Channels (Hiding empty fields) -->
-    <div class="contact-channels-col" data-reveal="left">
-      <% if (settings.phone) { %>
-        <div class="contact-info-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <!-- Left Column: Placeholder Contact Cards -->
+          <div class="contact-info-stack" data-stagger="85">
+            <div class="contact-info-card" data-reveal="left">
+              <div class="contact-card-icon">📍</div>
+              <div>
+                <h4>Trivandrum Studio Address <span class="placeholder-tag">[Placeholder]</span></h4>
+                <p>Explore Wings Digital Technologies<br />Near Technopark / Kowdiar, Thiruvananthapuram (Trivandrum), Kerala 695003, India</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" data-reveal="left">
+              <div class="contact-card-icon">📞</div>
+              <div>
+                <h4>Phone &amp; Direct Call <span class="placeholder-tag">[Placeholder]</span></h4>
+                <p>Primary Desk: <a href="tel:+919000000000">+91 90000 00000</a><br />Studio Line: <a href="tel:+914710000000">+91 471 000 0000</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" data-reveal="left">
+              <div class="contact-card-icon">💬</div>
+              <div>
+                <h4>Instant WhatsApp Consultation <span class="placeholder-tag">[Placeholder]</span></h4>
+                <p>WhatsApp: <a href="https://wa.me/919000000000" target="_blank" rel="noopener">+91 90000 00000</a><br />Fastest way to share sample references or request a call-back.</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" data-reveal="left">
+              <div class="contact-card-icon">✉️</div>
+              <div>
+                <h4>Email &amp; Working Hours <span class="placeholder-tag">[Placeholder]</span></h4>
+                <p>Email: <a href="mailto:hello@explorewings.com">hello@explorewings.com</a><br />Hours: Monday – Saturday, 9:30 AM – 6:30 PM IST</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" data-reveal="left">
+              <div class="contact-card-icon">🌐</div>
+              <div>
+                <h4>Social Links <span class="placeholder-tag">[Placeholder]</span></h4>
+                <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
+                  <a href="#" class="footer-social-btn" aria-label="Instagram">IG</a>
+                  <a href="#" class="footer-social-btn" aria-label="LinkedIn">IN</a>
+                  <a href="#" class="footer-social-btn" aria-label="Facebook">FB</a>
+                  <a href="#" class="footer-social-btn" aria-label="YouTube">YT</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Call Slot Picker -->
+            <div class="contact-info-card" data-reveal="left" style="flex-direction:column;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h4>Pick a Preferred Call Window</h4>
+                <span class="placeholder-tag">Click to pre-fill</span>
+              </div>
+              <p>Select a convenient window below to pre-fill your enquiry form:</p>
+              <div class="slot-pills">
+                <button type="button" class="slot-pill active" data-slot="Morning (10:00 AM – 12:30 PM)">Morning (10 AM – 12:30 PM)</button>
+                <button type="button" class="slot-pill" data-slot="Afternoon (2:00 PM – 4:30 PM)">Afternoon (2 PM – 4:30 PM)</button>
+                <button type="button" class="slot-pill" data-slot="Evening (5:00 PM – 7:00 PM)">Evening (5 PM – 7 PM)</button>
+                <button type="button" class="slot-pill" data-slot="In-Person Studio Visit (Trivandrum)">In-Person Studio Visit</button>
+              </div>
+            </div>
           </div>
-          <div>
-            <strong>Direct Phone</strong>
-            <a href="tel:<%= settings.phone.replace(/[^0-9+]/g, '') %>"><%= settings.phone %></a>
+
+          <!-- Right Column: Project Enquiry Form with Floating Labels -->
+          <div class="contact-form-card" data-reveal="right">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Project Enquiry Form</span></span>
+            <h2 class="display-md" style="margin-bottom:0.4rem;">Request Your Free Growth Plan</h2>
+            <p class="body-md" style="margin-bottom:1.5rem;">
+              Fill out the fields below. Ready to connect to Formspree or EmailJS via <code>data-formspree</code> attribute.
+            </p>
+
+            <!-- Live Form Progress Bar -->
+            <div class="form-progress-wrap">
+              <div class="form-progress-label">
+                <span>Enquiry Completion</span>
+                <span id="formProgressText">15% Complete</span>
+              </div>
+              <div class="form-progress-track">
+                <div class="form-progress-fill" id="formProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Form -->
+            <form id="luxuryContactForm" data-formspree="https://formspree.io/f/your-placeholder-id" novalidate>
+              <div class="form-grid-two">
+                <div class="floating-group">
+                  <input type="text" id="clientName" name="name" class="floating-input" placeholder=" " required data-track-progress />
+                  <label for="clientName" class="floating-label">Your Full Name *</label>
+                </div>
+
+                <div class="floating-group">
+                  <input type="tel" id="clientPhone" name="phone" class="floating-input" placeholder=" " required data-track-progress />
+                  <label for="clientPhone" class="floating-label">Phone / WhatsApp Number *</label>
+                </div>
+              </div>
+
+              <div class="form-grid-two">
+                <div class="floating-group">
+                  <input type="email" id="clientEmail" name="email" class="floating-input" placeholder=" " required data-track-progress />
+                  <label for="clientEmail" class="floating-label">Email Address *</label>
+                </div>
+
+                <div class="floating-group">
+                  <select id="businessType" name="business_type" class="floating-select" required data-track-progress>
+                    <option value="Resort / Hotel / Ayurvedic Spa">Resort / Hotel / Ayurvedic Spa</option>
+                    <option value="Cafe / Restaurant / Dining">Cafe / Restaurant / Dining</option>
+                    <option value="Retail / Mall / Showroom">Retail / Mall / Showroom</option>
+                    <option value="Education / Career / Study Abroad">Education / Career / Study Abroad</option>
+                    <option value="Gym / Fitness / Wellness Studio">Gym / Fitness / Wellness Studio</option>
+                    <option value="Food / FMCG / Packaged Product">Food / FMCG / Packaged Product</option>
+                    <option value="Clinic / Healthcare / Other">Clinic / Healthcare / Other</option>
+                  </select>
+                  <label for="businessType" class="floating-label">Business Type *</label>
+                </div>
+              </div>
+
+              <div class="form-grid-two">
+                <div class="floating-group">
+                  <select id="serviceNeeded" name="service" class="floating-select" required data-track-progress>
+                    <option value="Complete Brand + Website + Marketing">Complete Brand + Website + Marketing</option>
+                    <option value="Website Design & Development">Website Design &amp; Development</option>
+                    <option value="Branding, Logo & Packaging">Branding, Logo &amp; Packaging</option>
+                    <option value="Social Media & Ad Campaigns">Social Media &amp; Ad Campaigns</option>
+                    <option value="Photo, Video & Reels Production">Photo, Video &amp; Reels Production</option>
+                    <option value="Google Maps & Local SEO">Google Maps &amp; Local SEO</option>
+                  </select>
+                  <label for="serviceNeeded" class="floating-label">Primary Service Needed *</label>
+                </div>
+
+                <div class="floating-group">
+                  <input type="text" id="preferredTime" name="preferred_time" class="floating-input" placeholder=" " value="Morning (10:00 AM – 12:30 PM)" data-track-progress />
+                  <label for="preferredTime" class="floating-label">Preferred Consultation Slot</label>
+                </div>
+              </div>
+
+              <!-- Interactive Budget Range Slider -->
+              <div class="budget-slider-box">
+                <div class="budget-slider-top">
+                  <label for="budgetRangeSlider" style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted);">Estimated Budget Range <span class="placeholder-tag">[Placeholder]</span></label>
+                  <span class="budget-val-pill" id="budgetValueDisplay">₹60,000 – ₹1,20,000 (Signature Package) [Placeholder]</span>
+                </div>
+                <input type="range" id="budgetRangeSlider" name="budget_tier" min="0" max="4" value="1" />
+              </div>
+
+              <div class="floating-group">
+                <textarea id="projectMessage" name="message" class="floating-textarea" placeholder=" " required data-track-progress></textarea>
+                <label for="projectMessage" class="floating-label">Tell us about your business, location, and goals *</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%; padding:1.05rem;">
+                <span>Send Enquiry &amp; Request Free Consultation</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </form>
+
+            <!-- Animated Thank-You State -->
+            <div class="thank-you-panel" id="contactThankYou" role="status" aria-live="polite">
+              <div class="thank-you-check">✓</div>
+              <h3 class="display-md" style="margin-bottom:0.5rem;">Thank You! We've Received Your Enquiry.</h3>
+              <p class="body-md" style="max-width:44ch; margin:0 auto 1.5rem;">
+                Our Trivandrum team will review your project details and reach out on your phone or WhatsApp within 2 working hours.
+              </p>
+              <a href="/services" class="btn btn-outline">Explore Our Client Portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Map of Trivandrum -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Our Home City</span></span>
+          <h2 class="display-lg">Visit Us in Thiruvananthapuram (Trivandrum), Kerala</h2>
+          <p class="body-lg">Conveniently accessible from Technopark, Kazhakkoottam, Kowdiar, Pattom, East Fort, and Kovalam.</p>
+        </div>
+
+        <div class="map-frame-luxury" data-reveal="zoom" style="min-height:420px;">
+          <iframe
+            title="Explore Wings Digital Technologies — Trivandrum Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126271.88635351292!2d76.8541259!3d8.5000379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbb805bbcd47%3A0x15439fab5c5c81cb!2sThiruvananthapuram%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- "Book a Free Consultation" Strip -->
+    <section class="cta-banner-section">
+      <div class="cta-banner-card" data-reveal="up">
+        <div class="cta-banner-content">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Book a Free Consultation</span></span>
+          <h2 class="display-xl">Prefer an instant chat on <span class="theme-shimmer">WhatsApp?</span></h2>
+          <p>
+            Click below to message our Thiruvananthapuram desk directly, or open the Wing Assistant chatbot at the bottom-right of your screen.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.85rem;">
+            <a href="https://wa.me/919000000000?text=Hi%20Explore%20Wings%20team%20in%20Trivandrum%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" rel="noopener" class="btn btn-accent">
+              <span>Chat on WhatsApp Now</span> <span class="btn-arrow">→</span>
+            </a>
+            <a href="tel:+919000000000" class="btn btn-outline" style="color:#FFFFFF; border-color:rgba(255,255,255,0.35);">
+              <span>Call +91 90000 00000 [Placeholder]</span>
+            </a>
           </div>
         </div>
-      <% } %>
-
-      <% if (settings.email) { %>
-        <div class="contact-info-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </div>
-          <div>
-            <strong>Email Address</strong>
-            <a href="mailto:<%= settings.email %>"><%= settings.email %></a>
-          </div>
-        </div>
-      <% } %>
-
-      <% if (settings.whatsapp) { %>
-        <div class="contact-info-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-          </div>
-          <div>
-            <strong>WhatsApp Quick Chat</strong>
-            <a href="https://wa.me/<%= settings.whatsapp.replace(/[^0-9]/g, '') %>" target="_blank" rel="noopener" style="color: #25D366; font-weight: 600;">Message us on WhatsApp &rarr;</a>
-          </div>
-        </div>
-      <% } %>
-
-      <% if (settings.address) { %>
-        <div class="contact-info-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </div>
-          <div>
-            <strong>Studio Location</strong>
-            <p><%= settings.address %></p>
-          </div>
-        </div>
-      <% } %>
-
-      <% if (settings.hours) { %>
-        <div class="contact-info-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
-          <div>
-            <strong>Office Hours</strong>
-            <p><%= settings.hours %></p>
-          </div>
-        </div>
-      <% } %>
-    </div>
-
-    <!-- Right Column: Project Enquiry Form -->
-    <div class="enquiry-card-wrapper" data-reveal="right">
-      <h2 style="font-size: 1.5rem; margin-bottom: 6px;">Send us a message</h2>
-      <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 20px;">
-        Leave your details and project outline. We reply within one business day.
-      </p>
-
-      <form class="project-enquiry-form" id="mainContactForm" action="/api/enquiry" method="POST" enctype="multipart/form-data">
-        <!-- Anti-spam Honeypot -->
-        <input type="text" name="_hp" style="display:none;" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="source_page" value="contact">
-
-        <div class="form-grid-2">
-          <div class="field-group">
-            <label for="contactName">Your Name *</label>
-            <input type="text" id="contactName" name="name" placeholder="e.g. Maya Sreedharan" required>
-          </div>
-          <div class="field-group">
-            <label for="contactPhoneEmail">Phone or Email *</label>
-            <input type="text" id="contactPhoneEmail" name="contact" placeholder="e.g. +91 94460 00000 or maya@firm.in" required>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="field-group">
-            <label for="contactCompany">Company / Business Name</label>
-            <input type="text" id="contactCompany" name="company" placeholder="e.g. Kowdiar Ayurveda Clinic">
-          </div>
-          <div class="field-group">
-            <label for="contactService">What can we help you with? *</label>
-            <select id="contactService" name="service" required>
-              <option value="" disabled <%= !prefillService && !prefillPackage ? 'selected' : '' %>>Select a primary service</option>
-              <option value="Custom Website" <%= (prefillService === 'websites' || prefillService === 'Custom Website') ? 'selected' : '' %>>Custom Website / Web App</option>
-              <option value="Brand Identity" <%= (prefillService === 'branding' || prefillService === 'Brand Identity') ? 'selected' : '' %>>Brand Identity &amp; Logo Design</option>
-              <option value="Social Media" <%= (prefillService === 'social' || prefillService === 'Social Media') ? 'selected' : '' %>>Social Media Management</option>
-              <option value="Photography & Video" <%= (prefillService === 'photo' || prefillService === 'photography' || prefillService === 'Photography & Video') ? 'selected' : '' %>>Photography &amp; Commercial Video</option>
-              <option value="Digital Marketing" <%= (prefillService === 'marketing' || prefillService === 'Digital Marketing') ? 'selected' : '' %>>Performance Digital Marketing</option>
-              <option value="Local SEO" <%= (prefillService === 'localseo' || prefillService === 'Local SEO') ? 'selected' : '' %>>Google Search &amp; Local SEO</option>
-              <option value="Essential Package" <%= prefillPackage === 'essential' ? 'selected' : '' %>>Essential Package Tier</option>
-              <option value="Signature Package" <%= prefillPackage === 'signature' ? 'selected' : '' %>>Signature Package Tier</option>
-              <option value="Growth Package" <%= prefillPackage === 'growth' ? 'selected' : '' %>>Growth Package Tier</option>
-              <option value="Complete Overhaul">Complete Digital Overhaul</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label for="contactMessage">Project Details &amp; Current Online Links</label>
-          <textarea id="contactMessage" name="details" rows="5" placeholder="Share your timeline, current website or Instagram links, and what you would like to achieve."></textarea>
-        </div>
-
-        <div class="field-group">
-          <label for="contactAttachment">Attachment / Brief (Optional, max 10MB)</label>
-          <input type="file" id="contactAttachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp">
-        </div>
-
-        <button type="submit" class="btn-primary" style="align-self: flex-start;">
-          <span>Submit project enquiry</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>

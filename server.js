@@ -193,24 +193,32 @@ try {
   console.warn('[Server] Auto-seed check warning:', e.message);
 }
 
-const server = app.listen(config.port, config.host || '0.0.0.0', () => {
-  console.log(`Explore Wings server running on http://${config.host || 'localhost'}:${config.port}`);
-  console.log(`Admin Console: http://${config.host || 'localhost'}:${config.port}/admin (Login: /admin/login)`);
-  
-  // Start autonomous 60-second uptime pinger
-  startUptimeMonitor();
-});
+let server;
+if (require.main === module) {
+  server = app.listen(config.port, config.host || '0.0.0.0', () => {
+    console.log(`Explore Wings server running on http://${config.host || 'localhost'}:${config.port}`);
+    console.log(`Admin Console: http://${config.host || 'localhost'}:${config.port}/admin (Login: /admin/login)`);
+    
+    // Start autonomous 60-second uptime pinger
+    startUptimeMonitor();
+  });
+}
 
 // Graceful Shutdown
 function handleShutdown(signal) {
   console.log(`Received ${signal}. Shutting down gracefully...`);
-  server.close(() => {
-    try {
-      db.close();
-      console.log('Database connection closed.');
-    } catch (e) {}
+  if (server) {
+    server.close(() => {
+      try {
+        db.close();
+        console.log('Database connection closed.');
+      } catch (e) {}
+      process.exit(0);
+    });
+  } else {
+    try { db.close(); } catch (e) {}
     process.exit(0);
-  });
+  }
 }
 
 process.on('SIGTERM', () => handleShutdown('SIGTERM'));

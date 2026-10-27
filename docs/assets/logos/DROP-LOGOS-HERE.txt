@@ -1,0 +1,17 @@
+Place your transparent client logo PNG files in this folder (`assets/logos/`):
+
+- lulu-mall.png
+- munch.png
+- kubaba.png
+- kochi.png
+- travancore-royal.png
+- kovalam-palace.png
+- kasavu-mahal.png
+- villa-maya.png
+- aura-aesthetics.png
+- spice-harbour.png
+- malabar-crest.png
+- trivandrum-academy.png
+
+Until a PNG file is added, the website automatically displays a styled luxury wordmark fallback for that brand.
+You can add or remove brands anytime in `script.js` under `const BRANDS_LIST`.

@@ -1,180 +1,217 @@
-<%
-  const sec = sections || {};
-  const heroSec = sec.header || sec.hero || {};
-  const storySec = sec.story || {};
-  const founderSec = sec.founder_quote || sec.founder || {};
-  const ctaSec = sec.cta || {};
-%>
-
-<!-- PAGE HERO -->
-<section class="page-hero-editorial" aria-label="About Explore Wings">
-  <div class="container">
-    <div style="max-width: 800px;">
-      <span class="stamp-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-          <path d="M2 12h20"></path>
-        </svg>
-        <%= heroSec.badge || heroSec.subtitle || 'Our Roots & Philosophy' %>
-      </span>
-      <h1 class="page-headline" style="margin-top: 16px;">
-        <%- heroSec.title || heroSec.headline || 'Built in Trivandrum for businesses who value direct, unhurried work.' %>
-      </h1>
-      <p class="page-lead" style="margin-top: 16px;">
-        <%= heroSec.subtitle || heroSec.lead || 'We are a digital studio based in Thiruvananthapuram, Kerala. We build high-speed websites, design authentic brand identities, and capture local commercial media.' %>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- STORY & FOUNDER NOTE -->
-<section style="padding: var(--space-2xl) 0; border-bottom: 1px solid var(--border);">
-  <div class="container about-story-grid">
-    <div>
-      <span class="stamp-badge"><%= storySec.subtitle || 'Why We Started' %></span>
-      <h2 style="font-size: 2rem; margin: 12px 0 20px;"><%= storySec.title || 'A direct alternative to bloated agencies and unreliable freelancers.' %></h2>
-      <% if (storySec.body) { %>
-        <% storySec.body.split('\n\n').forEach(paragraph => { %>
-          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.65; margin-bottom: 16px;"><%= paragraph.trim() %></p>
-        <% }) %>
-      <% } else { %>
-        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.65; margin-bottom: 16px;">
-          For years, business owners across Kerala faced an uncomfortable choice: hire large tech agencies that charge exorbitant fees and pass client accounts down to inexperienced interns, or hire unvetted freelancers who disappear halfway through a project.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.65; margin-bottom: 16px;">
-          Explore Wings Digital Technologies was founded in Trivandrum to offer a direct alternative. When you work with us, you speak directly with the people building your code, designing your identity, and running your ads.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.65;">
-          We understand the local Kerala market intimately. We know the rhythm of tourist seasons in Kovalam and Varkala, the commercial activity around Technopark and Kazhakkoottam, and how shoppers in Kowdiar and East Fort discover services on their phones.
-        </p>
-      <% } %>
-    </div>
-
-    <!-- Founder Note Card -->
-    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 32px; display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow-sm);" data-reveal>
-      <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
-        <div class="brand-chip">
-          <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="28" height="28">
-        </div>
-        <div>
-          <strong style="font-size: 1rem; color: var(--text);"><%= founderSec.title || 'A note from our founder' %></strong>
-          <span style="display: block; font-size: 0.75rem; color: var(--text-muted);"><%= founderSec.subtitle || settings.address || 'Trivandrum, Kerala' %></span>
+<!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content" data-reveal="up">
+          <div class="breadcrumb"><a href="/">Home</a> <span>/</span> <span>About Explore Wings</span></div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Born in Trivandrum • Built for Growth</span></span>
+          <h1 class="display-xl">Helping Kerala Businesses Look <span class="theme-shimmer">World-Class</span> Online.</h1>
+          <p>
+            Explore Wings Digital Technologies is a creative, photography, web design, and marketing studio in Thiruvananthapuram dedicated to helping real-world businesses win more customers every day.
+          </p>
         </div>
       </div>
-      <p style="font-size: 0.9375rem; color: var(--text); line-height: 1.6; font-style: italic;">
-        &ldquo;<%= founderSec.body || founderSec.note || 'When I started Explore Wings, my pledge was simple: never use canned marketing buzzwords, never invent fake numbers or testimonials, and never leave a client wondering what they paid for. Every website we build must load fast on an ordinary mobile connection, and every rupee spent on marketing must be accounted for.' %>&rdquo;
-      </p>
-      <div style="margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--primary); font-weight: 600;">
-        Explore Wings Digital Technologies &bull; Thiruvananthapuram
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- COMMITMENTS -->
-<section style="padding: var(--space-2xl) 0; border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <span class="stamp-badge">Our Commitments</span>
-    <h2 class="section-title" style="margin-top: 8px;">What you can expect from us on every project.</h2>
-    
-    <div class="about-values-grid">
-      <div class="value-box" data-reveal>
-        <span class="value-num">01</span>
-        <h3 style="font-size: 1.25rem;">Fixed Timelines &amp; Written Quotes</h3>
-        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.55;">
-          Before writing a single line of code, we give you a written milestone schedule and an itemized quote. What you sign is what you pay.
-        </p>
-      </div>
+    <!-- 1. Our Story -->
+    <section class="section">
+      <div class="container">
+        <div class="editorial-intro-grid">
+          <div class="layered-image-composition" data-reveal="left">
+            <div class="main-story-img">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=85" alt="Explore Wings studio collaboration in Trivandrum" loading="lazy" />
+            </div>
+            <div class="floating-sub-img">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80" alt="Brand packaging review" loading="lazy" />
+            </div>
+          </div>
 
-      <div class="value-box" data-reveal>
-        <span class="value-num">02</span>
-        <h3 style="font-size: 1.25rem;">Direct Developer Communication</h3>
-        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.55;">
-          No middle managers or scripted account reps. When you call or WhatsApp, you talk to the person working on your project.
-        </p>
-      </div>
-
-      <div class="value-box" data-reveal>
-        <span class="value-num">03</span>
-        <h3 style="font-size: 1.25rem;">100% Asset Ownership</h3>
-        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.55;">
-          You own all source code, graphic vectors, photos, domain names, and hosting logins. We never hold your digital assets hostage.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LOCAL LANDMARKS -->
-<section class="trivandrum-local-strip" style="padding: var(--space-2xl) 0; border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <span class="stamp-badge">Local Presence</span>
-    <h2 class="section-title" style="margin-top: 8px;">Proudly rooted in Trivandrum.</h2>
-    <p class="sub-title" style="margin-top: 8px;">
-      Our studio is in Thiruvananthapuram, Kerala's capital. We live and work alongside the businesses we serve.
-    </p>
-
-    <div class="local-landmarks-grid">
-      <div class="landmark-card" data-reveal>
-        <strong>Technopark &amp; Kazhakkoottam</strong>
-        <p>Minutes from India's pioneering IT park, serving tech firms, startups, and consulting agencies with sharp web applications.</p>
-      </div>
-      <div class="landmark-card" data-reveal>
-        <strong>Kovalam &amp; Varkala Coastal Belt</strong>
-        <p>Partnering with boutique ayurvedic resorts, beachfront retreats, and hospitality brands to drive direct guest bookings.</p>
-      </div>
-      <div class="landmark-card" data-reveal>
-        <strong>City Centre &amp; Kowdiar</strong>
-        <p>Working directly with specialty clinics, retail showrooms, restaurants, and educational consultancies across the city.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BRANDS SCROLLER -->
-<% if (locals.brands && brands.length) { %>
-<section class="brands-scroller-section" aria-label="Brands that trust us">
-  <div class="container scroller-section-header">
-    <span class="stamp-badge">Local Partners</span>
-    <h2 class="section-title" style="margin-top: 8px;">Brands that trust Explore Wings in Kerala.</h2>
-  </div>
-
-  <div class="scroller-track-container">
-    <div class="scroller-track track-row-1">
-      <% brands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
+          <div data-reveal="right">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Our Story</span></span>
+            <h2 class="display-lg" style="margin-bottom:1.15rem;">Why We Built Explore Wings in Thiruvananthapuram</h2>
+            <p class="body-lg" style="margin-bottom:1rem;">
+              Across Trivandrum and Kerala, we saw extraordinary resorts in Kovalam, vibrant cafes in Kazhakkoottam, dedicated career academies, fitness centers, and heritage food brands — yet their online presence rarely matched the care inside their doors.
+            </p>
+            <p class="body-lg" style="margin-bottom:1.5rem;">
+              Business owners told us how frustrating it was to coordinate separate freelancers for logos, photography, websites, and social media. So we brought **web design, branding, packaging, on-location photo &amp; video shoots, and local marketing** under one roof.
+            </p>
+            <div class="logo-white-chip chip-lg">
+              <img src="/logo.png" alt="Explore Wings Official Logo" />
+            </div>
+          </div>
         </div>
-      <% }) %>
-      <% brands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
+      </div>
+    </section>
 
-<!-- BOTTOM CTA BAND -->
-<section class="cta-editorial-band" style="background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: var(--space-2xl) 0;">
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
-    <div>
-      <span class="stamp-badge"><%= ctaSec.badge || 'Meet with us' %></span>
-      <h2 style="font-size: 1.75rem; margin-top: 8px;"><%= ctaSec.headline || 'Want to discuss your project in person?' %></h2>
-      <p style="color: var(--text-muted); margin-top: 6px;"><%= ctaSec.sub || 'We are happy to meet at your office in Trivandrum or host a consultation.' %></p>
-    </div>
-    <div>
-      <a href="/contact" class="btn-primary">
-        <span>Get in touch</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- 2. Mission, Vision & Values Bento Grid -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Mission, Vision &amp; Values</span></span>
+          <h2 class="display-lg">What Guides Every Project We Deliver</h2>
+        </div>
+
+        <div class="bento-grid" data-stagger="95">
+          <div class="bento-card dark-bento bento-col-7" data-reveal="left">
+            <div>
+              <span class="eyebrow">Our Mission</span>
+              <h3 class="display-md" style="margin-bottom:0.75rem;">Give Every Local Business the Creative Firepower of a Global Brand.</h3>
+              <p class="body-lg" style="color:rgba(255,255,255,0.84);">
+                We believe a family restaurant, Ayurvedic resort, or study-abroad institute in Kerala deserves the same visual polish and conversion clarity as the world's most admired brands.
+              </p>
+            </div>
+          </div>
+
+          <div class="bento-card bento-col-5" data-reveal="right">
+            <div>
+              <span class="eyebrow">Our Vision</span>
+              <h3 class="heading-lg" style="margin-bottom:0.65rem;">South India's Most Trusted Growth Partner</h3>
+              <p class="body-md">
+                To be the first team business owners in Trivandrum, Kerala, and beyond call when they are ready to launch a new brand or scale their customer enquiries.
+              </p>
+            </div>
+          </div>
+
+          <div class="bento-card bento-col-4" data-reveal="up">
+            <div>
+              <h3 class="heading-lg" style="margin-bottom:0.45rem;">01. Plain English Always</h3>
+              <p class="body-md">We never hide behind confusing tech jargon. We talk about bookings, footfall, and brand trust.</p>
+            </div>
+          </div>
+
+          <div class="bento-card bento-col-4" data-reveal="zoom">
+            <div>
+              <h3 class="heading-lg" style="margin-bottom:0.45rem;">02. Real On-Site Craft</h3>
+              <p class="body-md">Our team visits your location across Trivandrum to capture your real spaces, food, and people.</p>
+            </div>
+          </div>
+
+          <div class="bento-card bento-col-4" data-reveal="flip">
+            <div>
+              <h3 class="heading-lg" style="margin-bottom:0.45rem;">03. Full Ownership</h3>
+              <p class="body-md">You own your domain, website files, logo vectors, and raw photography from day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Our Team (Placeholder Team Cards) & Vertical Timeline -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Creative &amp; Strategy Team</span></span>
+          <h2 class="display-lg">The People Behind Explore Wings <span class="placeholder-tag">[Placeholder]</span></h2>
+          <p class="body-md" style="margin-top:0.45rem;">Designers, developers, photographers, and brand strategists based in Thiruvananthapuram.</p>
+        </div>
+
+        <div class="team-grid-4" data-stagger="90" style="margin-bottom:4.5rem;">
+          <div class="team-card" data-reveal="left">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Creative Director Placeholder" loading="lazy" />
+            </div>
+            <h3 class="heading-lg" style="font-size:1.1rem;">Brand &amp; Creative Lead</h3>
+            <p style="font-size:0.8rem; color:var(--theme-primary); font-weight:700;">Identity &amp; Packaging [Placeholder]</p>
+          </div>
+
+          <div class="team-card" data-reveal="up">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Web Architecture Lead Placeholder" loading="lazy" />
+            </div>
+            <h3 class="heading-lg" style="font-size:1.1rem;">Lead Web Architect</h3>
+            <p style="font-size:0.8rem; color:var(--theme-primary); font-weight:700;">Websites &amp; SEO [Placeholder]</p>
+          </div>
+
+          <div class="team-card" data-reveal="down">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Social Media & Campaigns Lead Placeholder" loading="lazy" />
+            </div>
+            <h3 class="heading-lg" style="font-size:1.1rem;">Head of Growth &amp; Social</h3>
+            <p style="font-size:0.8rem; color:var(--theme-primary); font-weight:700;">Reels &amp; Local Ads [Placeholder]</p>
+          </div>
+
+          <div class="team-card" data-reveal="right">
+            <div class="team-photo-wrap">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Director of Photography Placeholder" loading="lazy" />
+            </div>
+            <h3 class="heading-lg" style="font-size:1.1rem;">Production Director</h3>
+            <p style="font-size:0.8rem; color:var(--theme-primary); font-weight:700;">Food, Resort &amp; Drone Shoots [Placeholder]</p>
+          </div>
+        </div>
+
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Our Journey</span></span>
+          <h2 class="display-lg">How We Grew in Trivandrum</h2>
+        </div>
+
+        <div class="vertical-timeline">
+          <div class="v-timeline-line-track"><div class="v-timeline-line-fill"></div></div>
+
+          <div class="v-timeline-item" data-reveal="left">
+            <div class="v-timeline-dot"></div>
+            <div class="v-timeline-card">
+              <span class="v-timeline-year">Step 01 • Foundation</span>
+              <h3 class="heading-lg">Started in Thiruvananthapuram</h3>
+              <p class="body-md">Founded with a focus on helping local cafes, boutiques, and educators build clean, mobile-friendly websites and brand identities.</p>
+            </div>
+          </div>
+
+          <div class="v-timeline-item" data-reveal="right">
+            <div class="v-timeline-dot"></div>
+            <div class="v-timeline-card">
+              <span class="v-timeline-year">Step 02 • Production Crew</span>
+              <h3 class="heading-lg">Added In-House Photo, Video &amp; Reels</h3>
+              <p class="body-md">Expanded with dedicated food stylists, photographers, and drone filmmakers to shoot on location in Kovalam, Kazhakkoottam, and Kowdiar.</p>
+            </div>
+          </div>
+
+          <div class="v-timeline-item" data-reveal="left">
+            <div class="v-timeline-dot"></div>
+            <div class="v-timeline-card">
+              <span class="v-timeline-year">Step 03 • Today</span>
+              <h3 class="heading-lg">Complete Brand &amp; Digital Growth Partner</h3>
+              <p class="body-md">Supporting resorts, restaurants, study-abroad consultancies, fitness clubs, and retail brands across Kerala.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. "Proudly from Trivandrum" Map Section -->
+    <section class="section section-elevated">
+      <div class="container">
+        <div class="editorial-intro-grid">
+          <div data-reveal="left">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Local Roots</span></span>
+            <h2 class="display-lg" style="margin-bottom:0.85rem;">Proudly from Trivandrum, Kerala</h2>
+            <p class="body-lg" style="margin-bottom:1.15rem;">
+              From the IT corridor in Kazhakkoottam and Technopark to the beaches of Kovalam and the heritage avenues of Kowdiar and East Fort — Thiruvananthapuram is our home.
+            </p>
+            <p class="body-md" style="margin-bottom:1.5rem;">
+              Being on the ground in Trivandrum means we can meet you in person over coffee, visit your venue for a quick shoot, and understand the exact rhythm of Kerala's festive seasons.
+            </p>
+            <a href="/contact" class="btn btn-primary"><span>Meet Our Team in Trivandrum</span> <span class="btn-arrow">→</span></a>
+          </div>
+
+          <div class="map-frame-luxury" data-reveal="right">
+            <iframe
+              title="Trivandrum (Thiruvananthapuram), Kerala Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126271.88635351292!2d76.8541259!3d8.5000379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbb805bbcd47%3A0x15439fab5c5c81cb!2sThiruvananthapuram%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Brands That Trust Us Scroller (Required on About Page) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Trusted Across Kerala</span></span>
+          <h2 class="display-lg">Brands that trust us</h2>
+          <p class="body-md" style="margin-top:0.4rem;">Click any logo card to open its slide-in client details on the right.</p>
+        </div>
+      </div>
+      <div class="brand-marquee-wrapper" data-brand-scroller></div>
+    </section>

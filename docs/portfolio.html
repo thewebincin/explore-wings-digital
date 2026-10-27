@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="red" data-mode="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio &amp; Client Brands | Explore Wings Digital Technologies — Trivandrum</title>
+  <meta name="description" content="Explore the brands we work with across Trivandrum and Kerala, including Aadisaktthi Resorts & Spa, Terrace by Makkawao, Transorze, Edustudy International, Global Fitness, Elaf, LuLu, and Munch." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css?v=gh-pages" />
+</head>
+<body>
+
+  <!-- Preloader, Sweep & Theme Wipe -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel-left"></div>
+    <div class="preloader-panel-right"></div>
+    <div class="preloader-center">
+      <div class="logo-white-chip chip-lg"><img src="./logo.png" alt="Explore Wings Logo" /></div>
+      <div class="preloader-counter" id="preloaderCounter">0%</div>
+      <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderBarFill"></div></div>
+    </div>
+  </div>
+  <div class="page-transition-sweep" id="pageTransitionSweep" aria-hidden="true">
+    <div class="logo-white-chip chip-lg"><img src="./logo.png" alt="Explore Wings Logo" /></div>
+  </div>
+  <div class="theme-wipe-circle" id="themeWipeCircle" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Top Utility Bar -->
+  <div class="top-utility-bar" role="region" aria-label="Announcement and Site Preferences">
+    <div class="container top-utility-inner">
+      <div class="top-announcement-msg">
+        <span class="top-announcement-badge">Client Roster</span>
+        <span>Click Any Brand Card or Logo Below to Open the Right-Side Slide-In Client Profile</span>
+      </div>
+      <div class="top-controls-cluster">
+        <div class="auto-scroll-group">
+          <button type="button" class="auto-scroll-toggle-btn" aria-pressed="false">▶ Auto scroll</button>
+          <select class="auto-scroll-speed-select" aria-label="Auto scroll speed">
+            <option value="slow">Slow</option>
+            <option value="medium" selected>Medium</option>
+            <option value="fast">Fast</option>
+          </select>
+        </div>
+        <div class="theme-swatch-group">
+          <span class="theme-swatch-label">Theme:</span>
+          <button type="button" class="theme-swatch swatch-green" data-set-theme="green" aria-label="Green Theme"></button>
+          <button type="button" class="theme-swatch swatch-red active" data-set-theme="red" aria-label="Red Theme"></button>
+        </div>
+        <button type="button" class="mode-toggle-btn"><span>☀</span> <span>Light Mode</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo-link">
+        <span class="logo-white-chip"><img src="./logo.png" alt="Explore Wings Logo" /></span>
+        <span class="brand-logo-text">
+          <span class="brand-logo-title">Explore Wings</span>
+          <span class="brand-logo-sub">Digital Technologies</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+        <div class="nav-item"><a href="portfolio.html" class="nav-link active">Portfolio</a></div>
+        <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="nav-login-link">Log in / Contact</a>
+        <a href="contact.html" class="btn btn-primary"><span>Start your project</span> <span class="btn-arrow">→</span></a>
+        <button type="button" class="menu-toggle" aria-label="Open Mobile Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <a href="index.html" class="brand-logo-link"><span class="logo-white-chip"><img src="./logo.png" alt="Explore Wings Logo" /></span><span class="brand-logo-title">Explore Wings</span></a>
+        <button type="button" class="drawer-close-btn" id="closeMobileDrawerBtn">✕</button>
+      </div>
+      <div class="mobile-accordion-item"><a href="index.html" class="mobile-accordion-btn">Home</a></div>
+      <div class="mobile-accordion-item"><a href="services.html" class="mobile-accordion-btn">Services</a></div>
+      <div class="mobile-accordion-item"><a href="portfolio.html" class="mobile-accordion-btn">Portfolio</a></div>
+      <div class="mobile-accordion-item"><a href="pricing.html" class="mobile-accordion-btn">Pricing</a></div>
+      <div class="mobile-accordion-item"><a href="about.html" class="mobile-accordion-btn">About</a></div>
+      <div class="mobile-accordion-item"><a href="contact.html" class="mobile-accordion-btn">Contact</a></div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content" data-reveal="up">
+          <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Portfolio &amp; Clients</span></div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Client Showcase</span></span>
+          <h1 class="display-xl">Brands We Partner With Across <span class="theme-shimmer">Trivandrum &amp; Kerala.</span></h1>
+          <p>
+            Click any project card below to open the slide-in client profile with verified brand details. Case study results are marked <em>“Client story coming soon”</em> until real metrics are added.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Tabs & Large Rounded Client Cards -->
+    <section class="section">
+      <div class="container">
+        <div class="filter-tabs-bar" data-reveal="up">
+          <button type="button" class="filter-tab active" data-filter="all">All Brands (8)</button>
+          <button type="button" class="filter-tab" data-filter="hospitality">Resorts, Cafes &amp; Food</button>
+          <button type="button" class="filter-tab" data-filter="education">Education &amp; Study Abroad</button>
+          <button type="button" class="filter-tab" data-filter="retail">Retail, Malls &amp; Consumer</button>
+          <button type="button" class="filter-tab" data-filter="fitness">Gym &amp; Fitness</button>
+        </div>
+
+        <div class="portfolio-grid-8" data-stagger="90">
+          <!-- 1. Aadisaktthi Resorts & Spa -->
+          <article class="portfolio-item" data-category="hospitality" data-open-brand="aadisaktthi" data-reveal="left">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Resort &amp; Ayurvedic Spa</span>
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=85" alt="Aadisaktthi Resorts & Spa, Kovalam" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts & Spa logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Kovalam, Trivandrum (227/A KS Road, Vellar)</div>
+              <h3>Aadisaktthi Resorts &amp; Spa</h3>
+              <p class="body-md">Known for Ayurvedic treatments, an outdoor pool, a restaurant and a garden near Kovalam and Samudra beaches.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Terrace by Makkawao -->
+          <article class="portfolio-item" data-category="hospitality" data-open-brand="terrace-makkawao" data-reveal="right">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Cafe &amp; Restaurant</span>
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Terrace by Makkawao, Kazhakkoottam" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Kazhakkoottam, Trivandrum</div>
+              <h3>Terrace by Makkawao</h3>
+              <p class="body-md">Rooftop cafe and restaurant in Kazhakkoottam serving a veg and non-veg menu, open daily 12 pm to 12 am.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Transorze -->
+          <article class="portfolio-item" data-category="education" data-open-brand="transorze" data-reveal="left">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Skill Training &amp; Education</span>
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85" alt="Transorze Training" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/transorze.png" alt="Transorze logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">[add location and business type]</div>
+              <h3>Transorze</h3>
+              <p class="body-md">Career skill training and professional certification partner preparing graduates for industry roles.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Edustudy International -->
+          <article class="portfolio-item" data-category="education" data-open-brand="edustudy" data-reveal="right">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Education &amp; Study Abroad</span>
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=85" alt="Edustudy International" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/edustudy-international.png" alt="Edustudy International logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Education and study-abroad brand • [add location]</div>
+              <h3>Edustudy International</h3>
+              <p class="body-md">Overseas education consultancy guiding students through global university admissions and visa pathways.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Global Fitness -->
+          <article class="portfolio-item" data-category="fitness" data-open-brand="global-fitness" data-reveal="left">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Gym &amp; Fitness</span>
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85" alt="Global Fitness" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/global-fitness.png" alt="Global Fitness logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Gym and fitness • [add location]</div>
+              <h3>Global Fitness</h3>
+              <p class="body-md">Strength, conditioning, and personal training fitness club dedicated to everyday transformation.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Elaf ("Flavors that Unite") -->
+          <article class="portfolio-item" data-category="hospitality" data-open-brand="elaf" data-reveal="right">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Food Brand</span>
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85" alt="Elaf Food Brand" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/elaf.png" alt="Elaf logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Tagline: “Flavors that Unite” • [add location]</div>
+              <h3>Elaf</h3>
+              <p class="body-md">Celebrated culinary and food brand crafted around the welcoming promise “Flavors that Unite”.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. LuLu ("Where the world comes to shop") -->
+          <article class="portfolio-item" data-category="retail" data-open-brand="lulu" data-reveal="left">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Destination Shopping Mall</span>
+              <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1200&q=85" alt="LuLu Mall Trivandrum" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/lulu-mall.png" alt="LuLu logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Akkulam, Trivandrum • “Where the world comes to shop”</div>
+              <h3>LuLu</h3>
+              <p class="body-md">Premier shopping, hypermarket, dining, and family entertainment destination in Thiruvananthapuram.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. Munch (Nestlé) -->
+          <article class="portfolio-item" data-category="retail" data-open-brand="munch" data-reveal="right">
+            <div class="portfolio-card-media">
+              <span class="portfolio-cat-pill">Consumer &amp; Confectionery Brand</span>
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85" alt="Munch Confectionery Campaign" loading="lazy" />
+            </div>
+            <div class="portfolio-card-body">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.85rem;">
+                <span class="logo-white-chip"><img src="assets/logos/munch.png" alt="Nestlé Munch logo" /></span>
+                <span class="coming-soon-status-box">● Client story coming soon</span>
+              </div>
+              <div class="portfolio-card-meta">Kerala Retail &amp; Youth Activation</div>
+              <h3>Munch (Nestlé)</h3>
+              <p class="body-md">Iconic wafer confectionery brand recognised by its bold royal-purple identity and yellow 3D logotype.</p>
+              <div class="portfolio-card-footer">
+                <span class="portfolio-result-highlight">What we did: [edit]</span>
+                <span>Open Client Card →</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands That Trust Us Scroller (Required on Portfolio Page) -->
+    <section class="section section-tint" id="trusted-brands">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Client Network</span></span>
+          <h2 class="display-lg">Brands that trust us</h2>
+          <p class="body-md" style="margin-top:0.4rem;">Click any logo card to slide open its client details on the right, or open the interactive Case Study Modal below.</p>
+          <div style="margin-top:1.15rem;">
+            <button type="button" class="btn btn-outline" data-open-case-index="0">
+              <span>Browse Case Study Modal (Next / Previous)</span> <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="brand-marquee-wrapper" data-brand-scroller></div>
+    </section>
+  </main>
+
+  <!-- Portfolio Case Study Detail Modal (Challenge, Work, Result + Next/Previous) -->
+  <div class="modal-backdrop" id="portfolioCaseModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
+    <div class="modal-window">
+      <button type="button" class="modal-close-btn" id="closePortfolioModal" aria-label="Close Case Study Modal">✕</button>
+      <div class="modal-content-body">
+        <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+          <div class="logo-white-chip chip-lg">
+            <img id="caseModalLogo" src="assets/logos/aadisaktthi-resorts-spa.png" alt="Client Logo" />
+          </div>
+          <div>
+            <span class="coming-soon-status-box" id="caseModalResult">Client story coming soon</span>
+            <h3 class="display-md" id="caseModalTitle" style="margin-top:0.35rem;">Aadisaktthi Resorts &amp; Spa</h3>
+            <p style="font-size:0.86rem; font-weight:700; color:var(--theme-primary);" id="caseModalMeta">Resort and Ayurvedic Spa • Kovalam, Trivandrum</p>
+          </div>
+        </div>
+
+        <div class="modal-story-grid">
+          <div class="what-we-did-box" style="margin:0;">
+            <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--theme-primary);">01 • The Brand &amp; Context</div>
+            <p class="body-md" id="caseModalChallenge" style="margin-top:0.4rem;">
+              Known for authentic Ayurvedic treatments, an outdoor pool, a multi-cuisine restaurant, and a lush tropical garden near Kovalam and Samudra beaches.
+            </p>
+          </div>
+
+          <div class="what-we-did-box" style="margin:0;">
+            <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--theme-primary);">02 • What We Did</div>
+            <p class="body-md" id="caseModalWork" style="margin-top:0.4rem;">
+              [edit — Add specific website, photography, or marketing deliverables completed]
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-project-switcher">
+          <button type="button" class="btn btn-outline" id="modalPrevProject">← Previous Client</button>
+          <a href="contact.html" class="btn btn-primary"><span>Start a Similar Project</span> <span class="btn-arrow">→</span></a>
+          <button type="button" class="btn btn-outline" id="modalNextProject">Next Client →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right-Side Slide-In Client Detail Drawer Modal -->
+  <div class="client-drawer-backdrop" id="clientDrawerBackdrop"></div>
+  <aside class="client-drawer" id="clientDetailDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerBrandName">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="coming-soon-status-box" id="drawerBrandStatus">● Client story coming soon</span>
+        <button type="button" class="drawer-close-btn" id="closeClientDrawerBtn" aria-label="Close Client Drawer">✕</button>
+      </div>
+      <div class="drawer-logo-showcase">
+        <img id="drawerBrandLogo" src="assets/logos/aadisaktthi-resorts-spa.png" alt="Client Logo" />
+      </div>
+      <h3 class="display-md" id="drawerBrandName">Aadisaktthi Resorts &amp; Spa</h3>
+      <p style="font-size:0.9rem; font-weight:700; color:var(--theme-primary); margin-top:0.2rem;" id="drawerBrandTagline"></p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin:1.25rem 0; padding:1rem; background:var(--bg-elevated); border-radius:var(--radius-md);">
+        <div>
+          <div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); font-weight:700;">Business Type</div>
+          <div style="font-size:0.86rem; font-weight:700; margin-top:2px;" id="drawerBrandType"></div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); font-weight:700;">Location</div>
+          <div style="font-size:0.86rem; font-weight:700; margin-top:2px;" id="drawerBrandLocation"></div>
+        </div>
+      </div>
+      <h4 style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:0.35rem;">About the Brand</h4>
+      <p class="body-md" id="drawerBrandDetails"></p>
+      <div class="logo-breakdown-box" style="margin-top:1rem;">
+        <strong style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--theme-primary);">Logo &amp; Identity Notes</strong>
+        <span id="drawerBrandLogoNotes" style="font-size:0.84rem;"></span>
+      </div>
+      <div class="what-we-did-box">
+        <div style="font-size:0.74rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--theme-primary);">What We Did</div>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:0.3rem;" id="drawerBrandWhatWeDid">[edit]</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:1.15rem;" id="drawerBrandServices"></div>
+    </div>
+    <div style="padding-top:1.5rem; margin-top:1.5rem; border-top:1px solid var(--border-subtle);">
+      <a href="contact.html" class="btn btn-primary" style="width:100%;"><span>Start Your Project</span> <span class="btn-arrow">→</span></a>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="brand-logo-link">
+            <span class="logo-white-chip"><img src="./logo.png" alt="Explore Wings Logo" /></span>
+            <span class="brand-logo-text">
+              <span class="brand-logo-title" style="color:#FFFFFF;">Explore Wings</span>
+              <span class="brand-logo-sub" style="color:var(--theme-accent);">Digital Technologies</span>
+            </span>
+          </a>
+          <p>Websites, branding, photography, and digital marketing in Trivandrum, Kerala.</p>
+        </div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#service-websites">Website Design</a></li><li><a href="services.html#service-branding">Branding &amp; Logos</a></li><li><a href="services.html#service-social">Social Media</a></li><li><a href="services.html#service-production">Photo &amp; Video</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Featured Brands</h5><ul><li><a href="#trusted-brands">Aadisaktthi &amp; Terrace</a></li><li><a href="#trusted-brands">Transorze &amp; Edustudy</a></li><li><a href="#trusted-brands">Global Fitness &amp; Elaf</a></li><li><a href="#trusted-brands">LuLu &amp; Munch</a></li></ul></div>
+        <div class="footer-col"><h5>Trivandrum HQ</h5><p>Thiruvananthapuram, Kerala [Placeholder]</p><p style="margin-top:0.4rem;"><strong style="color:var(--theme-accent);">Phone:</strong> +91 90000 00000 [Placeholder]</p></div>
+      </div>
+      <div class="footer-giant-watermark" aria-hidden="true">EXPLORE WINGS</div>
+      <div class="footer-bottom"><span>© 2026 Explore Wings Digital Technologies • Trivandrum, Kerala.</span></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919000000000" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.257.59 4.46 1.71 6.404L3.2 28.8l6.565-1.693a12.74 12.74 0 0 0 6.239 1.627h.005c7.068 0 12.796-5.73 12.796-12.8 0-3.42-1.332-6.635-3.75-9.052A12.716 12.716 0 0 0 16.004 3.2z"/></svg>
+    <span class="whatsapp-tooltip">Chat With Us on WhatsApp</span>
+  </a>
+  <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="./js/script.js?v=gh-pages" defer></script>
+  <script src="./js/chatbot.js?v=gh-pages" defer></script>
+  <script src="./js/store.js"></script>
+</body>
+</html>

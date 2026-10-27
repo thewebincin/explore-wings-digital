@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T05:49:02.362Z",
+  "generated_at": "2026-10-27T07:07:33.392Z",
   "settings": {
     "site_name": "Explore Wings Digital Technologies",
     "site_tagline": "Digital Technologies in Trivandrum, Kerala",
@@ -15,7 +15,7 @@
     "google_business_url": "https://maps.google.com/?q=Explore+Wings+Digital+Technologies+Trivandrum",
     "geo_latitude": "8.5241",
     "geo_longitude": "76.9366",
-    "default_theme": "green",
+    "default_theme": "red",
     "default_mode": "light",
     "logo_path": "/images/logo.png",
     "favicon_path": "/images/logo.png",

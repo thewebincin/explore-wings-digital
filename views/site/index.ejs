@@ -1,395 +1,812 @@
-<% 
-  const sec = sections || {};
-  const heroSec = sec.hero || {};
-  const brandsSec = sec.brands || {};
-  const servicesSec = sec.services || {};
-  const processSec = sec.process_intro || sec.process || {};
-  const statementSec = sec.bold_statement || sec.statement || {};
-  const faqSec = sec.faq_intro || sec.faq || {};
-  const ctaSec = sec.enquiry || sec.cta || {};
-%>
-
-<!-- 3. HERO SECTION -->
-<section class="hero-editorial-section" aria-label="Hero Introduction">
-  <div class="container hero-grid">
-    <div class="hero-content" data-reveal="left">
-      <div class="hero-meta-row">
-        <span class="stamp-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          <%= (heroSec.extra && heroSec.extra.badge) || heroSec.badge || 'Made in Trivandrum' %>
-        </span>
-        <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;"><%= (heroSec.extra && heroSec.extra.note) || heroSec.sub_badge || 'Direct collaboration with founders' %></span>
-      </div>
-
-      <h1 class="hero-headline">
-        <%- heroSec.title || heroSec.headline || 'Websites &amp; digital branding that bring <span class="hand-highlight">real enquiries<svg class="hand-underline-svg" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14 Q 50 20 97 12" fill="none" stroke-width="3.5" stroke-linecap="round"></path></svg></span> to your business.' %>
-      </h1>
-
-      <p class="hero-lead-text">
-        <%= heroSec.subtitle || heroSec.lead || 'We work directly with founders, resorts, clinics, and local stores in Trivandrum to fix slow websites, shoot authentic media, and get found on Google.' %>
-      </p>
-
-      <form class="hero-consult-form" id="heroConsultForm" action="/api/consultation" method="POST">
-        <!-- Anti-spam Honeypot -->
-        <input type="text" name="_hp" style="display:none;" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="source_page" value="home">
-        
-        <div class="hero-input-cluster">
-          <input type="text" name="contact" placeholder="Your phone number or work email" required aria-label="Your phone number or work email">
-          <button type="submit" class="btn-primary">
-            <span><%= heroSec.button_text || heroSec.cta_button || 'Get free consultation' %></span>
-          </button>
-        </div>
-        <p class="hero-form-caption"><%= (heroSec.extra && heroSec.extra.caption) || heroSec.caption || 'No sales pressure. We will review your current online setup and reply within 24 hours.' %></p>
-      </form>
-    </div>
-
-    <div class="hero-visual-frame" data-reveal="right">
-      <div class="browser-mockup">
-        <div class="browser-top-bar">
-          <div class="browser-dots" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="browser-address">explorewings.com/work/aadisaktthi-resorts</div>
-        </div>
-        <div class="browser-viewport">
-          <div class="mock-client-header">
-            <div class="mock-brand-badge">Aadisaktthi Resorts &amp; Spa &bull; Kovalam</div>
-            <span class="mock-status-pill">Live Project</span>
-          </div>
-          <div class="mock-hero-layout">
-            <div class="mock-copy-lines">
-              <div class="mock-bar-headline"></div>
-              <div class="mock-bar-body"></div>
-              <div class="mock-bar-body short"></div>
-              <div class="mock-btn-stub"></div>
+<!-- ======================================================================
+         SECTION 3: HERO
+         (Official logo.png on White Chip, Big Headline with Letter Stagger +
+          Rotating Word + Shimmer, Email/Phone Input + "Get free consultation",
+          Trust Line, Floating Mockup Composition with Mouse Parallax)
+         ====================================================================== -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Column: Copy & Conversion Input -->
+          <div data-reveal="left">
+            <div class="hero-brand-pill">
+              <span class="logo-white-chip">
+                <img src="/logo.png" alt="Explore Wings Logo" />
+              </span>
+              <span class="hero-brand-pill-text">Explore Wings Digital Technologies • Trivandrum, Kerala</span>
             </div>
-            <div class="mock-image-stub">
-              <span>Authentic Resort Photography<br>&amp; Booking Flow</span>
+
+            <h1 class="display-xl">
+              <span class="line-mask"><span data-letter-stagger>Build a</span></span>
+              <span class="rotating-word-box" aria-live="polite">
+                <span class="rotating-word-track" id="rotatingWordTrack">
+                  <span class="rotating-word-item">brand</span>
+                  <span class="rotating-word-item">website</span>
+                  <span class="rotating-word-item">business</span>
+                  <span class="rotating-word-item">story</span>
+                </span>
+              </span>
+              <span class="line-mask"><span>customers in Kerala</span></span>
+              <span class="theme-shimmer">choose first.</span>
+            </h1>
+
+            <p class="hero-subtext">
+              From Kazhakkoottam and Kowdiar to Kovalam and across Kerala — we design your website, craft your logo &amp; packaging, shoot your photos &amp; Reels, and bring real customer enquiries to your door.
+            </p>
+
+            <!-- Email / Phone Input + "Get free consultation" Button -->
+            <form class="hero-lead-form" onsubmit="event.preventDefault(); window.location.href='contact.html';">
+              <input
+                type="text"
+                placeholder="Enter your email or WhatsApp phone number..."
+                aria-label="Enter your email or WhatsApp phone number"
+                required
+              />
+              <button type="submit" class="btn btn-primary">
+                <span>Get free consultation</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </form>
+
+            <div class="hero-trust-row">
+              <span><span class="check">✓</span> Crafted in Thiruvananthapuram</span>
+              <span><span class="check">✓</span> Plain-English guidance, zero tech jargon</span>
+              <span><span class="check">✓</span> Free 30-min consultation</span>
             </div>
           </div>
-          <div class="mock-kerala-tags">
-            <span class="mock-tag">Fast Mobile UI</span>
-            <span class="mock-tag">Direct WhatsApp Inquiries</span>
-            <span class="mock-tag">Local Trivandrum SEO</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- 4. STATIC LOGO ROW -->
-<% if (brands && brands.length) { %>
-<section class="static-brands-section" aria-label="Featured Brands">
-  <div class="container static-brands-wrapper">
-    <span class="static-brands-label"><%= brandsSec.static_label || 'Brands that work with us in Kerala:' %></span>
-    <div class="static-logos-flex">
-      <% brands.forEach(brand => { %>
-        <div class="static-logo-card">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" width="110" height="26" loading="lazy">
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
-
-<!-- 5. SERVICES AS A NUMBERED EDITORIAL LIST -->
-<% if (services && services.length) { %>
-<section class="editorial-services-section" id="services" aria-labelledby="servicesSectionHeading">
-  <div class="container">
-    <div class="section-editorial-header">
-      <div>
-        <span class="stamp-badge"><%= servicesSec.badge || '01 — What We Do' %></span>
-        <h2 class="section-title" id="servicesSectionHeading" style="margin-top: 8px;"><%= servicesSec.headline || 'Six core services built for growth.' %></h2>
-      </div>
-      <span class="editorial-counter"><%= services.length.toString().padStart(2, '0') %> Services Available</span>
-    </div>
-
-    <div class="editorial-services-list">
-      <% services.forEach((service, index) => { %>
-        <div class="service-editorial-row <%= index === 0 ? 'is-open' : '' %>">
-          <button type="button" class="service-row-header" aria-expanded="<%= index === 0 ? 'true' : 'false' %>">
-            <span class="service-row-num"><%= (index + 1).toString().padStart(2, '0') %></span>
-            <span class="service-row-title"><%= service.title %></span>
-            <span class="service-row-summary"><%= service.short_desc %></span>
-            <span class="service-row-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </span>
-          </button>
-          <div class="service-row-details">
-            <div class="service-details-grid">
+          <!-- Right Column: Floating Mockup Composition Entering Left & Right + Mouse Parallax -->
+          <div class="hero-mockup-stage" data-reveal="right">
+            <!-- Floating Card 1: 5.0 Client Rating (Enters from left) -->
+            <div class="hero-float-badge badge-rating" data-parallax-depth="-14" data-reveal="left">
+              <span style="color:#F59E0B; font-size:1.05rem;">★ ★ ★ ★ ★</span>
               <div>
-                <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
-                  <%= service.full_desc || service.short_desc %>
-                </p>
-                <% 
-                  const incList = (typeof service.included === 'string' ? service.included.split('\n') : (service.included_items || [])).map(s => s.trim()).filter(Boolean);
-                %>
-                <% if (incList && incList.length) { %>
-                  <ul class="service-features-list">
-                    <% incList.forEach(item => { %>
-                      <li>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <%= item %>
-                      </li>
-                    <% }) %>
-                  </ul>
-                <% } %>
+                <div style="font-weight:800; font-size:0.84rem;">5.0 client rating</div>
+                <div style="font-size:0.68rem; color:var(--text-muted);">Sample UI Preview</div>
               </div>
-              <div class="service-cta-side">
-                <p>Custom tailored delivery</p>
-                <a href="/contact?service=<%= encodeURIComponent(service.title) %>" class="btn-secondary">Enquire about <%= service.title.toLowerCase() %></a>
+            </div>
+
+            <!-- Main Rounded Browser Mockup -->
+            <div class="ui-browser-mockup" data-parallax-depth="10" data-reveal="zoom">
+              <div class="ui-browser-topbar">
+                <div class="ui-browser-dots"><span></span><span></span><span></span></div>
+                <div class="ui-browser-url">explorewings.in • Client Showcase Preview</div>
+                <div style="font-size:0.7rem; color:var(--theme-accent); font-weight:800;">● LIVE</div>
+              </div>
+              <div class="ui-browser-screen">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1100&q=85" alt="Restaurant and hospitality website mockup crafted in Trivandrum" />
+                <div class="ui-browser-overlay-caption">
+                  <div>
+                    <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--theme-accent); font-weight:800;">Websites • Branding • Reels</div>
+                    <div style="font-family:var(--font-display); font-size:1.15rem; font-weight:800;">Designed for Kerala's Best Businesses</div>
+                  </div>
+                  <span style="background:var(--theme-accent); color:var(--theme-accent-ink); font-size:0.74rem; font-weight:800; padding:0.38rem 0.85rem; border-radius:99px;">Explore →</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Phone Mockup (Enters from left) -->
+            <div class="hero-float-phone" data-parallax-depth="20" data-reveal="left">
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Mobile Reel and digital menu preview" />
+            </div>
+
+            <!-- Floating Card 2: +150% More Visits (Enters from right) -->
+            <div class="hero-float-badge badge-visits" data-parallax-depth="-18" data-reveal="right">
+              <div style="width:38px; height:38px; border-radius:10px; background:rgba(var(--theme-rgb),0.14); color:var(--theme-primary); display:flex; align-items:center; justify-content:center; font-weight:900;">↑</div>
+              <div>
+                <div style="font-family:var(--font-display); font-weight:800; font-size:1.05rem; color:var(--theme-primary);">+150% more visits</div>
+                <div style="font-size:0.68rem; color:var(--text-muted);">Illustrative Growth Card</div>
+              </div>
+            </div>
+
+            <!-- Floating Card 3: New Enquiry Received (Enters from right) -->
+            <div class="hero-float-badge badge-enquiry" data-parallax-depth="16" data-reveal="right">
+              <div style="width:32px; height:32px; border-radius:50%; background:var(--theme-primary); color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:800;">✓</div>
+              <div>
+                <div style="font-weight:800; font-size:0.84rem;">New enquiry received</div>
+                <div style="font-size:0.7rem; color:var(--text-muted);">Via Website &amp; WhatsApp</div>
               </div>
             </div>
           </div>
         </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
-
-<!-- 6. BRANDS THAT TRUST US (Two-Row Infinite Scroller) -->
-<% if (brands && brands.length) { %>
-<section class="brands-scroller-section" aria-label="Brands that trust us">
-  <div class="container scroller-section-header">
-    <span class="stamp-badge"><%= brandsSec.badge || '02 — Trusted Locally' %></span>
-    <h2 class="section-title" style="margin-top: 8px;"><%= brandsSec.headline || 'Brands that trust Explore Wings in Kerala.' %></h2>
-  </div>
-
-  <div class="scroller-track-container">
-    <!-- Row 1: Leftward -->
-    <div class="scroller-track track-row-1">
-      <% brands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
-        </div>
-      <% }) %>
-      <!-- Duplicate for seamless loop -->
-      <% brands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
-        </div>
-      <% }) %>
-    </div>
-
-    <!-- Row 2: Rightward -->
-    <div class="scroller-track track-row-2">
-      <% const revBrands = [...brands].reverse(); %>
-      <% revBrands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
-        </div>
-      <% }) %>
-      <!-- Duplicate for seamless loop -->
-      <% revBrands.forEach(brand => { %>
-        <div class="brand-scroll-pill">
-          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
-          <span><%= brand.name %></span>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
-
-<!-- 7. HOW WE WORK (Listen, Create, Launch, Grow) -->
-<section class="process-editorial-section" aria-labelledby="processSectionHeading">
-  <div class="container">
-    <div class="section-editorial-header">
-      <div>
-        <span class="stamp-badge"><%= processSec.subtitle || processSec.badge || '03 — Our Process' %></span>
-        <h2 class="section-title" id="processSectionHeading" style="margin-top: 8px;"><%= processSec.title || processSec.headline || 'Four simple steps from first call to live site.' %></h2>
       </div>
-      <span class="editorial-counter">Clear milestones</span>
-    </div>
+    </section>
 
-    <div class="process-steps-grid">
-      <div class="process-step-card" data-reveal>
-        <span class="step-number">01</span>
-        <h3 class="step-card-title">Listen</h3>
-        <p class="step-card-desc">
-          We sit down with you in person in Trivandrum or over a video call. We study what your business actually sells, what customers ask for, and where your current setup is falling short.
-        </p>
-        <div class="step-deliverable">Outcome: Project scope &amp; fixed quote</div>
-      </div>
-
-      <div class="process-step-card" data-reveal>
-        <span class="step-number">02</span>
-        <h3 class="step-card-title">Create</h3>
-        <p class="step-card-desc">
-          We design and build the work with weekly check-ins. If you need photography, we visit your premises with lights and cameras. You review real working screens, not static mockups.
-        </p>
-        <div class="step-deliverable">Outcome: Working staging preview</div>
-      </div>
-
-      <div class="process-step-card" data-reveal>
-        <span class="step-number">03</span>
-        <h3 class="step-card-title">Launch</h3>
-        <p class="step-card-desc">
-          We test every link, contact form, WhatsApp button, and mobile screen size across iPhone and Android devices. We configure Google Search Console and deploy on fast servers.
-        </p>
-        <div class="step-deliverable">Outcome: Live website &amp; assets handed over</div>
-      </div>
-
-      <div class="process-step-card" data-reveal>
-        <span class="step-number">04</span>
-        <h3 class="step-card-title">Grow</h3>
-        <p class="step-card-desc">
-          Going live is step one. We monitor site speed, keep Google Maps rankings active, and run targeted ads when you are ready to expand your customer reach.
-        </p>
-        <div class="step-deliverable">Outcome: Ongoing stability &amp; inquiries</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 8. ONE BOLD STATEMENT SECTION -->
-<section class="bold-statement-section" aria-label="Our commitment">
-  <div class="container bold-statement-content">
-    <div class="statement-tag"><%= statementSec.title || statementSec.tag || 'Direct Collaboration • Trivandrum Based' %></div>
-    <p class="statement-text">
-      &ldquo;<%= statementSec.body || statementSec.quote || 'Most agencies sell confusing retainer packages and hide behind account managers. We build clean websites, shoot crisp local media, and answer your phone calls directly.' %>&rdquo;
-    </p>
-    <div class="statement-footer-note">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-      </svg>
-      <span><%= (statementSec.extra && statementSec.extra.founder_note) || statementSec.author || 'From the desk of the founder • Explore Wings Digital Technologies, Trivandrum' %></span>
-    </div>
-  </div>
-</section>
-
-<!-- 9. FAQ SECTION -->
-<% if (faqs && faqs.length) { %>
-<section class="faq-editorial-section" aria-labelledby="faqSectionHeading">
-  <div class="container faq-editorial-grid">
-    <div>
-      <span class="stamp-badge"><%= faqSec.subtitle || faqSec.badge || '04 — Clarifications' %></span>
-      <h2 class="section-title" id="faqSectionHeading" style="margin-top: 8px;"><%= faqSec.title || faqSec.headline || 'Questions local business owners ask us.' %></h2>
-      <p class="sub-title" style="margin-top: 12px;">
-        <%= faqSec.body || faqSec.sub || 'Honest answers without jargon. If your question is not listed here, send us an email or message on WhatsApp.' %>
-      </p>
-      <div style="margin-top: 24px;">
-        <a href="/contact" class="btn-secondary">Ask a specific question</a>
-      </div>
-    </div>
-
-    <div class="faq-accordion-list">
-      <% faqs.forEach((faq, index) => { %>
-        <div class="faq-editorial-item <%= index === 0 ? 'is-open' : '' %>">
-          <button type="button" class="faq-question-btn" aria-expanded="<%= index === 0 ? 'true' : 'false' %>">
-            <span><%= faq.question %></span>
-            <span class="faq-toggle-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <%= faq.answer %>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
-
-<!-- 10. PROJECT ENQUIRY FORM SECTION -->
-<section class="enquiry-section" id="enquiry" aria-labelledby="enquirySectionHeading">
-  <div class="container">
-    <div class="enquiry-card-wrapper">
-      <div class="enquiry-header">
-        <span class="stamp-badge"><%= ctaSec.subtitle || ctaSec.badge || '05 — Let\'s Talk' %></span>
-        <h2 class="section-title" id="enquirySectionHeading" style="margin-top: 8px;"><%= ctaSec.title || ctaSec.headline || 'Tell us about your project.' %></h2>
-        <p class="sub-title" style="margin-top: 8px;">
-          <%= ctaSec.body || ctaSec.sub || 'Fill in the details below. We will review your current online presence and schedule a direct consultation.' %>
-        </p>
-      </div>
-
-      <form class="project-enquiry-form" id="mainContactForm" action="/api/enquiry" method="POST" enctype="multipart/form-data">
-        <!-- Anti-spam Honeypot -->
-        <input type="text" name="_hp" style="display:none;" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="source_page" value="home">
-
-        <div class="form-grid-2">
-          <div class="field-group">
-            <label for="enqName">Your Name *</label>
-            <input type="text" id="enqName" name="name" placeholder="e.g. Anand Kumar" required>
-          </div>
-
-          <div class="field-group">
-            <label for="enqContact">Phone or Email *</label>
-            <input type="text" id="enqContact" name="contact" placeholder="e.g. +91 94460 00000 or anand@company.in" required>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="field-group">
-            <label for="enqCompany">Business or Brand Name</label>
-            <input type="text" id="enqCompany" name="company" placeholder="e.g. Kovalam Beach Retreat">
-          </div>
-
-          <div class="field-group">
-            <label for="enqService">Primary Service Needed *</label>
-            <select id="enqService" name="service" required>
-              <option value="" disabled selected>Select a service</option>
-              <% if (services && services.length) { %>
-                <% services.forEach(svc => { %>
-                  <option value="<%= svc.title %>"><%= svc.title %></option>
-                <% }) %>
-              <% } else { %>
-                <option value="Custom Website">Custom Website / Web App</option>
-                <option value="Brand Identity">Brand Identity &amp; Logo Design</option>
-                <option value="Social Media">Social Media Management</option>
-                <option value="Photography & Video">Photography &amp; Commercial Video</option>
-                <option value="Digital Marketing">Performance Digital Marketing</option>
-                <option value="Local SEO">Google Search &amp; Local SEO</option>
-              <% } %>
-              <option value="Complete Overhaul">Complete Digital Overhaul</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label for="enqDetails">Project Notes or Goals</label>
-          <textarea id="enqDetails" name="details" rows="4" placeholder="Tell us about what you want to achieve, your timeline, or links to your current website/Instagram."></textarea>
-        </div>
-
-        <div class="field-group">
-          <label for="enqAttachment">Attachment / Brief (Optional, max 10MB)</label>
-          <input type="file" id="enqAttachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp">
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-          <button type="submit" class="btn-primary">
-            <span>Send project enquiry</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
-          <span style="font-size: 0.8125rem; color: var(--text-muted);">
-            We protect your privacy. No spam or cold-call harassment.
+    <!-- ======================================================================
+         SECTION 4: STATIC CLIENT LOGO ROW + BIG CLAIM NUMBERS (MARKED AS PLACEHOLDERS)
+         ====================================================================== -->
+    <section class="static-logo-strip-section">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;" data-reveal="up">
+          <span style="font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted);">
+            Partnered With Ambitious Brands Across Trivandrum &amp; Kerala (Click any logo for details)
           </span>
+          <a href="#trusted-brands" style="font-size:0.84rem; font-weight:700; color:var(--theme-primary);">
+            View Full Brand Scroller ↓
+          </a>
         </div>
-      </form>
+
+        <!-- Clean Static Logo Row (Populated from BRANDS array in script.js) -->
+        <div class="static-logo-row" id="staticBrandRow" data-stagger="80"></div>
+
+        <!-- Big Claim Numbers (Marked clearly as Placeholders) -->
+        <div class="claims-grid-4" data-stagger="100">
+          <div class="claim-card" data-reveal="up">
+            <span class="placeholder-tag">Placeholder — Edit</span>
+            <div class="claim-number" data-counter="120" data-suffix="+">120+</div>
+            <h3 class="heading-lg">Projects</h3>
+            <p class="body-md">Websites, brand identities, shoots &amp; campaigns delivered [Placeholder]</p>
+          </div>
+
+          <div class="claim-card" data-reveal="zoom">
+            <span class="placeholder-tag">Placeholder — Edit</span>
+            <div class="claim-number" data-counter="60" data-suffix="+">60+</div>
+            <h3 class="heading-lg">Clients</h3>
+            <p class="body-md">Resorts, restaurants, academies, gyms &amp; retail brands [Placeholder]</p>
+          </div>
+
+          <div class="claim-card" data-reveal="flip">
+            <span class="placeholder-tag">Placeholder — Edit</span>
+            <div class="claim-number" data-counter="6" data-suffix="+">6+</div>
+            <h3 class="heading-lg">Years</h3>
+            <p class="body-md">Serving businesses from our Thiruvananthapuram studio [Placeholder]</p>
+          </div>
+
+          <div class="claim-card" data-reveal="rotate">
+            <span class="placeholder-tag">Placeholder — Edit</span>
+            <div class="claim-number" data-counter="14" data-suffix="">14</div>
+            <h3 class="heading-lg">Districts</h3>
+            <p class="body-md">Supporting brands across Kerala &amp; beyond [Placeholder]</p>
+          </div>
+        </div>
+
+        <!-- Animated Bar Chart, Line Chart & Progress Ring Showcase -->
+        <div class="analytics-visual-grid" data-stagger="100">
+          <!-- 1. Animated Bar Chart -->
+          <div class="analytics-mini-card" data-reveal="left">
+            <div>
+              <span class="placeholder-tag">Illustrative Growth Chart</span>
+              <h4 class="heading-lg" style="margin-top:0.35rem;">Monthly Enquiry Momentum</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Consistent growth across Website, Google Maps &amp; Reels</p>
+            </div>
+            <div class="bar-chart-bars" aria-label="Illustrative bar chart showing steady growth">
+              <div class="bar-chart-col"><div class="bar-chart-fill" style="--bar-h:38%;"></div><span class="bar-chart-label">M1</span></div>
+              <div class="bar-chart-col"><div class="bar-chart-fill" style="--bar-h:54%;"></div><span class="bar-chart-label">M2</span></div>
+              <div class="bar-chart-col"><div class="bar-chart-fill" style="--bar-h:68%;"></div><span class="bar-chart-label">M3</span></div>
+              <div class="bar-chart-col"><div class="bar-chart-fill" style="--bar-h:84%;"></div><span class="bar-chart-label">M4</span></div>
+              <div class="bar-chart-col"><div class="bar-chart-fill" style="--bar-h:96%;"></div><span class="bar-chart-label">M5</span></div>
+            </div>
+          </div>
+
+          <!-- 2. Animated SVG Line Chart -->
+          <div class="analytics-mini-card" data-reveal="up">
+            <div>
+              <span class="placeholder-tag">Illustrative Visibility Curve</span>
+              <h4 class="heading-lg" style="margin-top:0.35rem;">Local Search &amp; Brand Reach</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted);">How Trivandrum customers discover your business online</p>
+            </div>
+            <svg class="line-chart-svg" viewBox="0 0 260 85" aria-label="Illustrative upward trend line">
+              <path class="line-chart-path" d="M 8 74 Q 55 66, 92 48 T 175 26 T 252 10" />
+            </svg>
+          </div>
+
+          <!-- 3. Animated Progress Ring -->
+          <div class="analytics-mini-card" data-reveal="right">
+            <div>
+              <span class="placeholder-tag">Mobile Performance Target</span>
+              <h4 class="heading-lg" style="margin-top:0.35rem;">Fast Mobile Experience</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Optimized for everyday smartphones across Kerala</p>
+            </div>
+            <div class="ring-gauge-wrap">
+              <svg class="ring-gauge-svg" viewBox="0 0 84 84" aria-hidden="true">
+                <circle class="ring-gauge-bg" cx="42" cy="42" r="34"></circle>
+                <circle class="ring-gauge-fill" cx="42" cy="42" r="34" style="--ring-offset: 18;"></circle>
+              </svg>
+              <div>
+                <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:800; color:var(--theme-primary);">95+</div>
+                <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Mobile Readiness Score</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: ALTERNATING FEATURE BLOCKS (LEFT/RIGHT REVEALS) + KINETIC MARQUEES
+         ====================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-reveal="blur">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>The Complete Growth Platform</span></span>
+          <h2 class="display-lg">Everything Your Business Needs <span class="scroll-fill-outline">Under One Roof</span></h2>
+          <p class="body-lg" style="margin-top:0.75rem;">
+            No more coordinating between separate web developers, logo designers, and photographers. Our Trivandrum team builds your entire brand experience together.
+          </p>
+        </div>
+
+        <!-- Alternating Block 1: Text from LEFT, Image from RIGHT -->
+        <div class="alt-feature-block">
+          <div class="alt-feature-copy" data-reveal="left">
+            <span class="eyebrow">01 • Websites &amp; Digital Showrooms</span>
+            <h3 class="display-md" style="margin-bottom:0.85rem;">Turn mobile searches into direct bookings, walk-ins, and WhatsApp enquiries.</h3>
+            <p class="body-lg">
+              Most customers in Trivandrum check your website on their phone before they visit your resort in Kovalam, dine at your cafe in Kazhakkoottam, or enroll at your academy.
+            </p>
+            <div class="feature-check-list">
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Custom mobile-first design that reflects your real location and hospitality</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Direct WhatsApp inquiry buttons, menus, course lists &amp; room showcases</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Search-engine friendly structure for Trivandrum &amp; Kerala keywords</span>
+              </div>
+            </div>
+            <a href="services.html#service-websites" class="btn btn-primary">
+              <span>Explore Website Design</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="alt-feature-visual" data-reveal="right">
+            <div class="alt-feature-mockup">
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=85" alt="Resort and spa website mockup" loading="lazy" />
+              <div class="alt-feature-floating-card">
+                <div>
+                  <strong style="display:block; font-size:0.92rem;">Hospitality &amp; Business Websites</strong>
+                  <span style="font-size:0.78rem; color:var(--text-muted);">Fast loading • Direct WhatsApp enquiries</span>
+                </div>
+                <span class="eyebrow" style="margin:0;">Live Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alternating Block 2: Image from LEFT, Text from RIGHT -->
+        <div class="alt-feature-block reverse">
+          <div class="alt-feature-copy" data-reveal="right">
+            <span class="eyebrow">02 • Branding, Packaging &amp; On-Site Shoots</span>
+            <h3 class="display-md" style="margin-bottom:0.85rem;">Logos, packaging, and real photography that make your brand unforgettable.</h3>
+            <p class="body-lg">
+              Stock photos never capture the true flavour of your kitchen or the atmosphere of your showroom. Our creative directors and photographers come directly to your venue.
+            </p>
+            <div class="feature-check-list">
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Distinctive logos, menus, food packaging, carry bags &amp; shop signage</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>On-location food styling, resort architecture, gym &amp; campus shoots</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Vertical Instagram Reels &amp; festive campaign films edited for high engagement</span>
+              </div>
+            </div>
+            <a href="services.html#service-branding" class="btn btn-outline">
+              <span>Explore Branding &amp; Production</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="alt-feature-visual" data-reveal="left">
+            <div class="alt-feature-mockup">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85" alt="Food photography and brand packaging" loading="lazy" />
+              <div class="alt-feature-floating-card">
+                <div>
+                  <strong style="display:block; font-size:0.92rem;">In-House Production &amp; Design</strong>
+                  <span style="font-size:0.78rem; color:var(--text-muted);">Shot on location across Trivandrum</span>
+                </div>
+                <span class="eyebrow" style="margin:0;">Studio Quality</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alternating Block 3: Text from LEFT, Image from RIGHT -->
+        <div class="alt-feature-block" style="margin-top:clamp(3.5rem, 6vw, 5.5rem);">
+          <div class="alt-feature-copy" data-reveal="left">
+            <span class="eyebrow">03 • Social Media, Reels &amp; Local Marketing</span>
+            <h3 class="display-md" style="margin-bottom:0.85rem;">Stay busy every week with festive campaigns and Google Maps visibility.</h3>
+            <p class="body-lg">
+              Whether a family is searching for a weekend cafe in Kazhakkoottam, an Ayurvedic retreat in Kovalam, or a career institute in Trivandrum, we make sure your brand shows up first.
+            </p>
+            <div class="feature-check-list">
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Monthly Instagram &amp; Facebook calendars tailored around Kerala's seasons</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Google Business Profile &amp; local map ranking for high-intent searches</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Targeted Meta &amp; Google ad campaigns focused on phone calls &amp; WhatsApp leads</span>
+              </div>
+            </div>
+            <a href="services.html#service-marketing" class="btn btn-primary">
+              <span>Explore Social &amp; Marketing</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="alt-feature-visual" data-reveal="right">
+            <div class="alt-feature-mockup">
+              <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1200&q=85" alt="Social media and local marketing campaigns in Kerala" loading="lazy" />
+              <div class="alt-feature-floating-card">
+                <div>
+                  <strong style="display:block; font-size:0.92rem;">Local Search &amp; Festive Campaigns</strong>
+                  <span style="font-size:0.78rem; color:var(--text-muted);">Steady enquiries every week</span>
+                </div>
+                <span class="eyebrow" style="margin:0;">Growth Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opposite-Direction Kinetic Marquee Text Strips -->
+    <div class="kinetic-marquee-section" aria-hidden="true">
+      <div class="kinetic-row dir-left">
+        <span class="kinetic-word filled">Websites •</span>
+        <span class="kinetic-word outlined">Branding •</span>
+        <span class="kinetic-word filled">Social media •</span>
+        <span class="kinetic-word outlined">Photo &amp; video •</span>
+        <span class="kinetic-word filled">Marketing •</span>
+        <span class="kinetic-word outlined">Websites •</span>
+        <span class="kinetic-word filled">Branding •</span>
+        <span class="kinetic-word outlined">Social media •</span>
+        <span class="kinetic-word filled">Photo &amp; video •</span>
+        <span class="kinetic-word outlined">Marketing •</span>
+      </div>
+      <div class="kinetic-row dir-right">
+        <span class="kinetic-word outlined">Trivandrum •</span>
+        <span class="kinetic-word filled">Kerala •</span>
+        <span class="kinetic-word outlined">Resorts &amp; Spas •</span>
+        <span class="kinetic-word filled">Cafes &amp; Dining •</span>
+        <span class="kinetic-word outlined">Education &amp; Fitness •</span>
+        <span class="kinetic-word filled">Trivandrum •</span>
+        <span class="kinetic-word outlined">Kerala •</span>
+        <span class="kinetic-word filled">Resorts &amp; Spas •</span>
+        <span class="kinetic-word outlined">Cafes &amp; Dining •</span>
+        <span class="kinetic-word filled">Education &amp; Fitness •</span>
+      </div>
     </div>
-  </div>
-</section>
+
+    <!-- ======================================================================
+         SECTION 6: TABBED FEATURE SHOWCASE (5 TABS + AUTO-CYCLING PROGRESS BAR)
+         ====================================================================== -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Interactive Capability Showcase</span></span>
+          <h2 class="display-lg">Five Pillars That Power Your Growth</h2>
+          <p class="body-lg" style="margin-top:0.65rem;">
+            Click any tab below — or watch it cycle automatically — to see how each service helps your business grow.
+          </p>
+        </div>
+
+        <div class="showcase-tabs-bar" role="tablist" data-reveal="up">
+          <button type="button" class="showcase-tab-btn active" data-tab-index="0">
+            <span>01. Websites</span>
+            <span class="tab-progress-line"></span>
+          </button>
+          <button type="button" class="showcase-tab-btn" data-tab-index="1">
+            <span>02. Branding</span>
+            <span class="tab-progress-line"></span>
+          </button>
+          <button type="button" class="showcase-tab-btn" data-tab-index="2">
+            <span>03. Social media</span>
+            <span class="tab-progress-line"></span>
+          </button>
+          <button type="button" class="showcase-tab-btn" data-tab-index="3">
+            <span>04. Photo &amp; video</span>
+            <span class="tab-progress-line"></span>
+          </button>
+          <button type="button" class="showcase-tab-btn" data-tab-index="4">
+            <span>05. Marketing</span>
+            <span class="tab-progress-line"></span>
+          </button>
+        </div>
+
+        <div class="showcase-stage-card" id="showcaseStageCard" data-reveal="zoom">
+          <div>
+            <span class="eyebrow" id="showcaseTag">01 • Websites</span>
+            <h3 class="display-md" id="showcaseTitle" style="margin-bottom:0.9rem;">
+              Fast, mobile-first websites that turn local searches into daily enquiries.
+            </h3>
+            <p class="body-lg" id="showcaseDesc">
+              We design clean, persuasive websites for resorts, restaurants, academies, clinics, and retail brands in Trivandrum — complete with instant WhatsApp buttons and clear calls to action.
+            </p>
+
+            <div class="feature-check-list" id="showcaseBenefits">
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Loads fast on mobile networks across Kerala</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Built-in WhatsApp chat, booking forms &amp; interactive menus/catalogues</span>
+              </div>
+              <div class="feature-check-item">
+                <span class="theme-check-icon">✓</span>
+                <span>Search-engine ready so local customers find you first on Google</span>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:0.85rem;">
+              <a href="services.html#service-websites" class="btn btn-primary" id="showcaseLink">
+                <span>Explore This Service</span> <span class="btn-arrow">→</span>
+              </a>
+              <a href="/pricing" class="btn btn-outline">
+                <span>Compare Packages</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="alt-feature-mockup">
+            <img
+              id="showcaseImage"
+              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=85"
+              alt="Service preview"
+            />
+            <div class="alt-feature-floating-card">
+              <div>
+                <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--theme-primary); font-weight:800;">Explore Wings Standard</div>
+                <strong id="showcaseBadge" style="font-size:0.95rem;">Mobile-First &amp; SEO-Ready</strong>
+              </div>
+              <a href="/contact" class="btn btn-accent" style="padding:0.5rem 1rem; font-size:0.78rem;">Get Quote →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: BRANDS THAT TRUST US
+         (Two-Row Opposite-Direction Infinite Scroller + Dedicated LuLu & Munch
+          Logo & Brand Details Section)
+         ====================================================================== -->
+    <section class="section" id="trusted-brands">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Trusted Partnerships</span></span>
+          <h2 class="display-lg">Brands that trust us</h2>
+          <p class="body-lg" style="margin-top:0.65rem;">
+            Hover over any white rounded card to view the logo in full color, or click any brand logo to slide open its client profile card on the right.
+          </p>
+        </div>
+      </div>
+
+      <!-- Two-Row Infinite Seamless Loop Scrolling in Opposite Directions -->
+      <div class="brand-marquee-wrapper" data-brand-scroller>
+        <div class="brand-marquee-row scroll-left" id="brandMarqueeRow1"></div>
+        <div class="brand-marquee-row scroll-right" id="brandMarqueeRow2"></div>
+      </div>
+
+      <!-- Dedicated LuLu & Munch Brand & Logo Inspection Section -->
+      <div class="container" id="lulu-munch-section">
+        <div style="margin-top:3.5rem;" data-reveal="up">
+          <div style="text-align:center; max-width:740px; margin:0 auto;">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Featured Logo &amp; Brand Spotlight</span></span>
+            <h3 class="display-md">Iconic Retail &amp; Consumer Logos: LuLu &amp; Munch</h3>
+            <p class="body-md" style="margin-top:0.5rem;">
+              A closer look at the official LuLu and Nestlé Munch brand marks featured in our showcase — click either card to open the slide-in client drawer.
+            </p>
+          </div>
+
+          <div class="lulu-munch-spotlight-grid">
+            <!-- Card 1: LuLu ("Where the world comes to shop") -->
+            <article class="lulu-munch-card" data-reveal="left">
+              <div>
+                <div class="lulu-munch-top">
+                  <div class="lulu-munch-logo-frame">
+                    <img src="/assets/logos/lulu-mall.png" alt="LuLu Official Logo — Where the world comes to shop" />
+                  </div>
+                  <div>
+                    <span class="coming-soon-status-box">● Featured Retail Brand</span>
+                    <h4 class="heading-lg" style="margin-top:0.45rem;">LuLu</h4>
+                    <div style="font-size:0.84rem; font-weight:700; color:var(--theme-primary);">
+                      “Where the world comes to shop” • Akkulam, Trivandrum
+                    </div>
+                  </div>
+                </div>
+
+                <p class="body-md" style="margin-top:1.15rem;">
+                  One of India's flagship shopping, hypermarket, dining, and family entertainment destinations in Thiruvananthapuram — welcoming shoppers from across Kerala.
+                </p>
+
+                <div class="logo-breakdown-box" style="margin-top:1rem;">
+                  <strong style="display:block; color:var(--text-primary); margin-bottom:0.25rem;">Logo Design &amp; Visual Details:</strong>
+                  Features the dynamic crimson-red ribbon forming a stylized <strong>“L”</strong> wrapped around a horizontally striped emerald-green globe, paired with bold green italic <strong>“LuLu®”</strong> calligraphy and the clean sans-serif promise <em>“Where the world comes to shop”</em>.
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; padding-top:1rem; border-top:1px solid var(--border-subtle);">
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">File: <code>assets/logos/lulu-mall.png</code></span>
+                <button type="button" class="btn btn-outline" style="padding:0.55rem 1.15rem; font-size:0.82rem;" data-open-brand="lulu">
+                  <span>Open LuLu Client Card</span> <span class="btn-arrow">→</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Card 2: Nestlé Munch -->
+            <article class="lulu-munch-card" data-reveal="right">
+              <div>
+                <div class="lulu-munch-top">
+                  <div class="lulu-munch-logo-frame">
+                    <img src="/assets/logos/munch.png" alt="Nestlé Munch Official Logo" />
+                  </div>
+                  <div>
+                    <span class="coming-soon-status-box">● Featured Consumer Brand</span>
+                    <h4 class="heading-lg" style="margin-top:0.45rem;">Munch (Nestlé)</h4>
+                    <div style="font-size:0.84rem; font-weight:700; color:var(--theme-primary);">
+                      Iconic Confectionery &amp; Youth Brand • Kerala Retail
+                    </div>
+                  </div>
+                </div>
+
+                <p class="body-md" style="margin-top:1.15rem;">
+                  A household favourite crunchy wafer bar across Kerala's supermarkets, college campuses, and neighbourhood stores — built on high-energy youth confidence.
+                </p>
+
+                <div class="logo-breakdown-box" style="margin-top:1rem;">
+                  <strong style="display:block; color:var(--text-primary); margin-bottom:0.25rem;">Logo Design &amp; Visual Details:</strong>
+                  Set against a rich royal-purple canvas, the mark combines the glossy red <strong>Nestlé</strong> heart-crest badge on the top-left with custom 3D-extruded bright yellow <strong>“munch”</strong> lowercase lettering outlined in crisp white and deep violet.
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; padding-top:1rem; border-top:1px solid var(--border-subtle);">
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">File: <code>assets/logos/munch.png</code></span>
+                <button type="button" class="btn btn-outline" style="padding:0.55rem 1.15rem; font-size:0.82rem;" data-open-brand="munch">
+                  <span>Open Munch Client Card</span> <span class="btn-arrow">→</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: CLIENT STORIES CAROUSEL (TALL ROUNDED CARDS FOR THE BRANDS)
+         ====================================================================== -->
+    <section class="section section-elevated">
+      <div class="container">
+        <div class="section-header-split" data-reveal="up">
+          <div>
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Client Roster &amp; Profiles</span></span>
+            <h2 class="display-lg">Brands We Work With Across Kerala</h2>
+            <p class="body-md" style="margin-top:0.5rem;">
+              Real businesses with honest profiles. Detailed case-study metrics are marked <em>“Client story coming soon”</em> until verified client results are added.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <button type="button" class="slider-circle-btn" id="storiesPrevBtn" aria-label="Scroll Left">←</button>
+            <button type="button" class="slider-circle-btn" id="storiesNextBtn" aria-label="Scroll Right">→</button>
+          </div>
+        </div>
+
+        <!-- Populated automatically from BRANDS array in script.js -->
+        <div class="stories-carousel-viewport" id="storiesCarouselViewport">
+          <div class="stories-carousel-track" id="clientStoriesTrack"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: HOW IT WORKS (4 STEPS ON A LINE THAT DRAWS ON SCROLL)
+         ====================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>How It Works</span></span>
+          <h2 class="display-lg">Four Clear Steps From Idea to Launch</h2>
+          <p class="body-lg" style="margin-top:0.65rem;">
+            We keep the process simple, transparent, and collaborative so you can stay focused on running your business.
+          </p>
+        </div>
+
+        <div class="process-grid-4" data-stagger="100">
+          <div class="process-line-track" aria-hidden="true">
+            <div class="process-line-fill"></div>
+          </div>
+
+          <div class="process-step-card" data-reveal="left">
+            <div class="process-step-badge">01</div>
+            <h3 class="heading-lg" style="margin-bottom:0.5rem;">Listen</h3>
+            <p class="body-md">
+              We meet at your venue in Trivandrum or over a call to understand your business, your customers, and what makes your brand special.
+            </p>
+          </div>
+
+          <div class="process-step-card" data-reveal="up">
+            <div class="process-step-badge">02</div>
+            <h3 class="heading-lg" style="margin-bottom:0.5rem;">Create</h3>
+            <p class="body-md">
+              Our designers, writers, and photographers craft your logo, shoot real photos &amp; videos on location, and build your website.
+            </p>
+          </div>
+
+          <div class="process-step-card" data-reveal="down">
+            <div class="process-step-badge">03</div>
+            <h3 class="heading-lg" style="margin-bottom:0.5rem;">Launch</h3>
+            <p class="body-md">
+              We test everything across mobile phones, connect your WhatsApp &amp; Google Maps profile, and take your new brand live.
+            </p>
+          </div>
+
+          <div class="process-step-card" data-reveal="right">
+            <div class="process-step-badge">04</div>
+            <h3 class="heading-lg" style="margin-bottom:0.5rem;">Grow</h3>
+            <p class="body-md">
+              We support you every month with fresh Reels, seasonal Kerala campaigns, and local marketing that brings steady enquiries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10: RESOURCES (3 PRACTICAL ARTICLE CARDS)
+         ====================================================================== -->
+    <section class="section section-tint" id="resources-section">
+      <div class="container">
+        <div class="section-header-split" data-reveal="up">
+          <div>
+            <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Resources &amp; Guides</span></span>
+            <h2 class="display-lg">Practical Guides for Kerala Business Owners</h2>
+          </div>
+          <a href="/contact" class="btn btn-outline">Request Free Brand Audit →</a>
+        </div>
+
+        <div class="articles-grid-3" data-stagger="100">
+          <article class="article-card" data-reveal="left">
+            <div class="article-img-wrap">
+              <span class="article-tag">Cafes &amp; Restaurants</span>
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe and restaurant menu photography" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">5 Min Read • Hospitality Guide</div>
+                <h3 class="heading-lg" style="margin-bottom:0.5rem;">Why Real Food Photography &amp; Mobile Menus Win More Diners in Trivandrum</h3>
+                <p class="body-md">How cafes in Kazhakkoottam and Kowdiar turn Instagram browsers into everyday guests.</p>
+              </div>
+              <a href="services.html#service-production" class="card-action-link">Explore Photo &amp; Video <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="article-card" data-reveal="up">
+            <div class="article-img-wrap">
+              <span class="article-tag">Resorts &amp; Spas</span>
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Kovalam resort and Ayurvedic spa website guide" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">4 Min Read • Hospitality Strategy</div>
+                <h3 class="heading-lg" style="margin-bottom:0.5rem;">Helping Kovalam Resorts &amp; Ayurvedic Spas Attract Direct Guest Enquiries</h3>
+                <p class="body-md">What international and domestic travellers look for before booking a stay or wellness retreat.</p>
+              </div>
+              <a href="services.html#service-websites" class="card-action-link">Explore Website Design <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="article-card" data-reveal="right">
+            <div class="article-img-wrap">
+              <span class="article-tag">Local Search &amp; Academies</span>
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Education and local business marketing in Kerala" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">6 Min Read • Growth Guide</div>
+                <h3 class="heading-lg" style="margin-bottom:0.5rem;">How Training Institutes &amp; Study-Abroad Brands Build Student Trust Online</h3>
+                <p class="body-md">Combining clear course pages, Google Maps visibility, and student counseling funnels.</p>
+              </div>
+              <a href="services.html#service-marketing" class="card-action-link">Explore Digital Marketing <span>→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 11: FAQ ACCORDION
+         ====================================================================== -->
+    <section class="section" id="home-faq">
+      <div class="container">
+        <div class="section-header" data-reveal="up">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Common Questions</span></span>
+          <h2 class="display-lg">Answers Before You Begin</h2>
+          <p class="body-lg" style="margin-top:0.5rem;">
+            Clear, plain-English answers for business owners in Trivandrum and across Kerala.
+          </p>
+        </div>
+
+        <div class="faq-list" data-reveal="up">
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              <span>How long does it take to design and launch a business website?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Most business websites in Trivandrum launch within <strong>2 to 4 weeks</strong>. If your project includes a custom logo, packaging, and an on-location photography shoot at your resort, cafe, or showroom, we coordinate the entire schedule so everything goes live smoothly.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              <span>Can your team visit our resort, cafe, or office in Trivandrum for photography and Reels?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! Because we are based right here in Thiruvananthapuram, our photographers and video crew regularly visit clients in Kovalam, Kazhakkoottam, Kowdiar, Pattom, and across Kerala to capture authentic food, architecture, and brand Reels.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              <span>Do we own our website, domain, logo files, and photographs after launch?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                100%. Once your project is completed, you receive full ownership of your domain, website code, master vector logo files, print-ready packaging artwork, and high-resolution photographs.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              <span>Can we start with a single service (like a logo or website) and add social media later?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely. Many of our clients start with an <strong>Essential</strong> or <strong>Signature</strong> one-time launch package and later transition to a monthly social media and marketing retainer once their doors are open.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 12: CLOSING CALL-TO-ACTION BAND WITH EMAIL INPUT
+         ====================================================================== -->
+    <section class="cta-banner-section">
+      <div class="cta-banner-card" data-reveal="zoom">
+        <div class="cta-banner-content">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Start Your Growth Journey in Trivandrum</span></span>
+          <h2 class="display-xl">Ready to take your business <span class="theme-shimmer">higher?</span></h2>
+          <p>
+            Enter your email or phone number below and our team in Thiruvananthapuram will reach out to schedule your free 30-minute consultation.
+          </p>
+
+          <form class="hero-lead-form" style="margin:0 auto 1.25rem;" onsubmit="event.preventDefault(); window.location.href='contact.html';">
+            <input
+              type="text"
+              placeholder="Enter your email or phone number..."
+              aria-label="Enter your email or phone number"
+              required
+            />
+            <button type="submit" class="btn btn-accent">
+              <span>Get free consultation</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </form>
+
+          <div style="font-size:0.8rem; opacity:0.8;">
+            No obligation • Plain-English advice • Serving Trivandrum, Kerala &amp; beyond
+          </div>
+        </div>
+      </div>
+    </section>

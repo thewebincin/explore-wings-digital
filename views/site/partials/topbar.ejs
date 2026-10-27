@@ -1,47 +1,47 @@
-<!-- 1. TOP UTILITY BAR -->
-<aside class="top-utility-bar">
-  <div class="container top-bar-inner">
-    <div class="top-bar-badge">
-      <span class="pulse-dot" aria-hidden="true"></span>
-      <span>Based in Trivandrum, Kerala &bull; Working with businesses across South India</span>
+<!-- SECTION 1: ANNOUNCEMENT & TOP UTILITY BAR -->
+<div class="top-utility-bar" role="region" aria-label="Announcement and Site Preferences">
+  <div class="container top-utility-inner">
+    <div class="top-announcement-msg">
+      <span class="top-announcement-badge">Trivandrum, Kerala</span>
+      <span>Free 30-Minute Brand &amp; Website Strategy Session • Serving Businesses Across Kerala &amp; Beyond</span>
     </div>
-    <div class="top-bar-controls">
-      <!-- Auto Scroll Controls -->
-      <div class="autoscroll-cluster">
-        <button type="button" class="autoscroll-btn" id="autoScrollToggle" aria-pressed="false">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          <span>Auto scroll</span>
+
+    <div class="top-controls-cluster">
+      <!-- Auto Scroll Button + Speed Selector -->
+      <div class="auto-scroll-group" role="group" aria-label="Auto Scroll Controls">
+        <button type="button" class="auto-scroll-toggle-btn" aria-pressed="false">
+          ▶ Auto scroll
         </button>
-        <select id="autoScrollSpeed" class="autoscroll-select" aria-label="Auto scroll speed">
+        <select class="auto-scroll-speed-select" aria-label="Auto scroll speed">
           <option value="slow">Slow</option>
           <option value="medium" selected>Medium</option>
           <option value="fast">Fast</option>
         </select>
       </div>
 
-      <!-- Theme Swatches (Green & Red) -->
-      <div class="theme-swatches" role="group" aria-label="Color Theme">
-        <button type="button" class="theme-swatch-btn swatch-green" data-theme-btn="green" aria-label="Green Theme" aria-pressed="true"></button>
-        <button type="button" class="theme-swatch-btn swatch-red" data-theme-btn="red" aria-label="Red Theme" aria-pressed="false"></button>
+      <!-- Red & Green Round Theme Swatches (Red active by default) -->
+      <div class="theme-swatch-group" role="group" aria-label="Color Theme Selector">
+        <span class="theme-swatch-label">Theme:</span>
+        <button
+          type="button"
+          class="theme-swatch swatch-green"
+          data-set-theme="green"
+          aria-label="Green Theme"
+          title="Switch to Green Theme (#00A36C)"
+        ></button>
+        <button
+          type="button"
+          class="theme-swatch swatch-red active"
+          data-set-theme="red"
+          aria-label="Red Theme"
+          title="Switch to Red Theme (#E11D2E)"
+        ></button>
       </div>
 
-      <!-- Light / Dark Toggle -->
-      <button type="button" class="mode-toggle-btn" data-mode-toggle aria-label="Switch to dark mode">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <span class="mode-label">Dark</span>
+      <!-- Separate Light / Dark Mode Toggle -->
+      <button type="button" class="mode-toggle-btn" aria-label="Toggle Light or Dark Mode">
+        <span>☀</span> <span>Light Mode</span>
       </button>
     </div>
   </div>
-</aside>
+</div>

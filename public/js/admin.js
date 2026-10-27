@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Theme Swatches & Mode Toggle
   const html = document.documentElement;
-  const savedTheme = localStorage.getItem('ew_admin_theme') || 'green';
+  const savedTheme = localStorage.getItem('ew_admin_theme') || 'red';
   const savedMode = localStorage.getItem('ew_admin_mode') || 'light';
   html.setAttribute('data-theme', savedTheme);
   html.setAttribute('data-mode', savedMode);

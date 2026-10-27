@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="green" data-mode="light">
+<html lang="en" data-theme="red" data-mode="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -401,6 +401,8 @@
     async function initAdmin() {
       // Check auth flag
       localStorage.setItem('ew_admin_logged_in', 'true');
+      const savedTheme = localStorage.getItem('admin_theme') || 'red';
+      document.documentElement.setAttribute('data-theme', savedTheme);
 
       try {
         const res = await fetch('../data/site-content.json');

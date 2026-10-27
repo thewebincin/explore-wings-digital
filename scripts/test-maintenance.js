@@ -12,6 +12,7 @@ const app = require('../server');
 const { Settings, Pages, Uptime } = require('../db/queries');
 
 const BASE_URL = 'http://127.0.0.1:3458';
+let serverInstance;
 
 function fetchUrl(pathname, options = {}) {
   return new Promise((resolve, reject) => {
@@ -58,6 +59,9 @@ async function runTests() {
   }
 
   try {
+    serverInstance = await new Promise((resolve) => {
+      const s = app.listen(3458, '127.0.0.1', () => resolve(s));
+    });
     // 1. Initial State: Live
     Settings.set('maintenance_mode', 'off');
     Settings.set('maintenance_bypass_token', 'ew-test-token');
@@ -216,8 +220,10 @@ async function runTests() {
     console.log(`RESULTS: ${passed} passed, ${failed} failed`);
     console.log(`======================================================`);
 
+    if (serverInstance) serverInstance.close();
     process.exit(failed > 0 ? 1 : 0);
   } catch (err) {
+    if (serverInstance) serverInstance.close();
     console.error('Test execution error:', err);
     process.exit(1);
   }

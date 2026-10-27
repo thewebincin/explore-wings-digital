@@ -1,105 +1,172 @@
-<%
-  const sec = sections || {};
-  const heroSec = sec.header || sec.hero || {};
-  const ctaSec = sec.cta || {};
-%>
-
-<!-- PAGE HERO -->
-<section class="page-hero-editorial" aria-label="Services Header">
-  <div class="container">
-    <div style="max-width: 800px;">
-      <span class="stamp-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <%= heroSec.badge || heroSec.subtitle || 'Capabilities & Deliverables' %>
-      </span>
-      <h1 class="page-headline" style="margin-top: 16px;">
-        <%- heroSec.title || heroSec.headline || 'Digital services focused on real customer inquiries.' %>
-      </h1>
-      <p class="page-lead" style="margin-top: 16px;">
-        <%= heroSec.subtitle || heroSec.lead || 'We take on a small number of businesses each month so we can build thoroughly and answer your phone calls directly. Every project is built without cookie-cutter templates.' %>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES DETAILED LIST -->
-<section class="services-detail-section" style="padding: var(--space-2xl) 0;">
-  <div class="container" style="display: flex; flex-direction: column; gap: var(--space-2xl);">
-    <% if (services && services.length) { %>
-      <% services.forEach((svc, index) => { 
-        const anchorId = svc.slug || svc.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      %>
-        <div id="<%= anchorId %>" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
-          <div class="service-detail-grid-layout">
-            <div class="service-number-col">
-              <%= (index + 1).toString().padStart(2, '0') %>
-            </div>
-            <div class="service-main-col">
-              <h2 style="font-size: 2rem; margin-bottom: 12px;"><%= svc.title %></h2>
-              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
-                <%= svc.full_desc || svc.short_desc %>
-              </p>
-              
-              <% 
-                const svcIncList = (typeof svc.included === 'string' ? svc.included.split('\n') : (svc.included_items || [])).map(s => s.trim()).filter(Boolean);
-              %>
-              <% if (svcIncList && svcIncList.length) { %>
-                <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
-                <ul class="service-features-list" style="margin-bottom: 24px;">
-                  <% svcIncList.forEach(item => { %>
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      <%= item %>
-                    </li>
-                  <% }) %>
-                </ul>
-              <% } %>
-              
-              <a href="/contact?service=<%= encodeURIComponent(svc.title) %>" class="btn-primary">
-                <span>Enquire about <%= svc.title.toLowerCase() %></span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
-            </div>
-            
-            <div class="service-side-card">
-              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
-              <p style="font-size: 0.9375rem; color: var(--text);">
-                Hotels, resorts, healthcare clinics, retail brands, gyms, and service firms seeking credible results in Kerala.
-              </p>
-              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
-                Dedicated support &bull; Trivandrum based
-              </div>
-            </div>
+<!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content" data-reveal="up">
+          <div class="breadcrumb"><a href="/">Home</a> <span>/</span> <span>Services</span></div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Six Core Capabilities</span></span>
+          <h1 class="display-xl">Everything Your Brand Needs to <span class="theme-shimmer">Stand Out</span> Online.</h1>
+          <p>
+            Plain-English, benefit-driven creative and digital services crafted in Thiruvananthapuram for resorts, cafes, academies, fitness clubs, clinics, and retail brands.
+          </p>
+          <div class="service-pill-bar">
+            <a href="#service-websites" class="service-pill-link">01. Website Design</a>
+            <a href="#service-branding" class="service-pill-link">02. Branding &amp; Logos</a>
+            <a href="#service-social" class="service-pill-link">03. Social Media</a>
+            <a href="#service-production" class="service-pill-link">04. Photo &amp; Video</a>
+            <a href="#service-marketing" class="service-pill-link">05. Digital Marketing</a>
+            <a href="#service-business-web" class="service-pill-link">06. Business Websites</a>
           </div>
         </div>
-      <% }) %>
-    <% } %>
-  </div>
-</section>
+      </div>
+    </section>
 
-<!-- BOTTOM CTA BAND -->
-<section class="cta-editorial-band" style="background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: var(--space-2xl) 0;">
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
-    <div>
-      <span class="stamp-badge"><%= ctaSec.badge || 'Ready to start?' %></span>
-      <h2 style="font-size: 1.75rem; margin-top: 8px;"><%= ctaSec.headline || 'Need a custom package for your business?' %></h2>
-      <p style="color: var(--text-muted); margin-top: 6px;"><%= ctaSec.sub || 'We can bundle web, brand design, and photography into a single milestone-based proposal.' %></p>
-    </div>
-    <div>
-      <a href="/contact" class="btn-primary">
-        <span>Request proposal</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- 6 Alternating Service Blocks with Sticky Side Navigation -->
+    <section class="section">
+      <div class="container">
+        <div class="services-with-sidebar">
+          <aside class="services-sticky-nav" aria-label="Services Jump Navigation">
+            <div class="services-sticky-title">Jump to Service</div>
+            <a href="#service-websites" class="sticky-service-link active"><span class="num">01</span> <span>Website Design</span></a>
+            <a href="#service-branding" class="sticky-service-link"><span class="num">02</span> <span>Branding &amp; Logos</span></a>
+            <a href="#service-social" class="sticky-service-link"><span class="num">03</span> <span>Social Media</span></a>
+            <a href="#service-production" class="sticky-service-link"><span class="num">04</span> <span>Photo &amp; Video</span></a>
+            <a href="#service-marketing" class="sticky-service-link"><span class="num">05</span> <span>Digital Marketing</span></a>
+            <a href="#service-business-web" class="sticky-service-link"><span class="num">06</span> <span>Business Websites</span></a>
+          </aside>
+
+          <div class="services-chapters-col">
+            <!-- 01. Website Design -->
+            <article class="service-detail-block" id="service-websites" data-reveal="left">
+              <div>
+                <span class="eyebrow">01 • Website Design</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">Fast, Mobile-First Websites That Turn Visitors Into Enquiries</h2>
+                <p class="body-md">
+                  We design modern, easy-to-navigate websites for hotels, Ayurvedic resorts, restaurants, and local businesses that look great on every phone and make contacting you effortless.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Custom responsive layout tailored to your brand story</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>One-tap WhatsApp chat, call buttons &amp; inquiry forms</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Fast loading speeds and clean Google SEO structure</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Request Website Quote</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=85" alt="Website design preview" loading="lazy" />
+              </div>
+            </article>
+
+            <!-- 02. Branding & Logos -->
+            <article class="service-detail-block reverse" id="service-branding" data-reveal="right">
+              <div>
+                <span class="eyebrow">02 • Branding &amp; Logos</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">Memorable Logos, Menus, Packaging &amp; Signage</h2>
+                <p class="body-md">
+                  Whether you are launching a new food brand, refreshing a cafe menu in Kazhakkoottam, or opening a showroom, we build visual identities customers remember and trust.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Primary logo mark, monogram, colour system &amp; font pairing</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Dine-in menus, takeaway boxes, pouches, bags &amp; labels</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Storefront signboards, staff uniforms &amp; stationery</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Start Your Brand Identity</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" alt="Branding and packaging design" loading="lazy" />
+              </div>
+            </article>
+
+            <!-- 03. Social Media -->
+            <article class="service-detail-block" id="service-social" data-reveal="left">
+              <div>
+                <span class="eyebrow">03 • Social Media</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">Scroll-Stopping Reels, Stories &amp; Festive Campaigns</h2>
+                <p class="body-md">
+                  Stay active and relevant on Instagram, Facebook, and YouTube Shorts with planned monthly calendars, vertical Reels, and festive campaigns for Onam, Vishu, and Christmas.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Monthly content calendar &amp; creative graphic posts</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>High-energy Instagram Reels scripted and edited by our team</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Festive launch campaigns &amp; community management</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Plan Your Social Media</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=85" alt="Social media and Reels" loading="lazy" />
+              </div>
+            </article>
+
+            <!-- 04. Photo & Video -->
+            <article class="service-detail-block reverse" id="service-production" data-reveal="right">
+              <div>
+                <span class="eyebrow">04 • Photo &amp; Video</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">On-Location Food, Resort, Fitness &amp; Product Shoots</h2>
+                <p class="body-md">
+                  Our Trivandrum photography and video crew travels directly to your resort in Kovalam, cafe, gym, or campus to capture authentic visuals that set you apart.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Styled food &amp; beverage photography for menus and delivery</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Resort rooms, Ayurvedic spa, pool &amp; drone aerial films</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Gym, academy, and retail walkthrough videos</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Book a Production Shoot</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=85" alt="Photo and video shoot" loading="lazy" />
+              </div>
+            </article>
+
+            <!-- 05. Digital Marketing -->
+            <article class="service-detail-block" id="service-marketing" data-reveal="left">
+              <div>
+                <span class="eyebrow">05 • Digital Marketing</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">Google Maps SEO &amp; Targeted Local Lead Campaigns</h2>
+                <p class="body-md">
+                  Make sure customers nearby find your business first when searching on Google Maps, Google Search, and Instagram — driving real phone calls and direction clicks.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Google Business Profile setup &amp; local ranking optimization</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Hyper-targeted Instagram, Facebook &amp; Google Search ads</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Clear monthly performance summaries with zero jargon</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Grow Local Visibility</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1000&q=85" alt="Digital marketing and local search" loading="lazy" />
+              </div>
+            </article>
+
+            <!-- 06. Business Websites -->
+            <article class="service-detail-block reverse" id="service-business-web" data-reveal="right">
+              <div>
+                <span class="eyebrow">06 • Business Websites</span>
+                <h2 class="display-md" style="margin-bottom:0.75rem;">Booking Portals, Study-Abroad Funnels &amp; WhatsApp Catalogues</h2>
+                <p class="body-md">
+                  For academies, consultancies, clinics, and hospitality brands that need course listings, appointment scheduling, or structured inquiry workflows.
+                </p>
+                <div class="checklist-grid">
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Course &amp; country directories for training and study-abroad brands</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Room, spa, table, and consultation booking forms</span></div>
+                  <div class="checklist-item"><span class="tick-circle">✓</span> <span>Easy-to-update content management and staff training</span></div>
+                </div>
+                <a href="/contact" class="btn btn-primary"><span>Discuss Your Business Website</span> <span class="btn-arrow">→</span></a>
+              </div>
+              <div class="service-detail-photo">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=85" alt="Business website systems" loading="lazy" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA Band -->
+    <section class="cta-banner-section">
+      <div class="cta-banner-card" data-reveal="zoom">
+        <div class="cta-banner-content">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> <span>Custom Packages Available</span></span>
+          <h2 class="display-xl">Not sure which service to <span class="theme-shimmer">start with?</span></h2>
+          <p>Let's have a quick 30-minute conversation about your goals and recommend the right plan.</p>
+          <a href="/contact" class="btn btn-accent"><span>Get free consultation</span> <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </section>
