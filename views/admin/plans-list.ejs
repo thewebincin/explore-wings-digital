@@ -9,11 +9,11 @@
 <div class="admin-grid-3" style="margin-bottom: 32px;">
   <% if (plans && plans.length) { %>
     <% plans.forEach(plan => { %>
-      <div class="admin-card <%= plan.is_featured ? 'admin-card-featured' : '' %>">
+      <div class="admin-card <%= plan.highlighted ? 'admin-card-popular' : '' %>">
         <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
           <h3 class="admin-card-title"><%= plan.name %></h3>
-          <% if (plan.is_featured) { %>
-            <span class="admin-badge status-active">Featured</span>
+          <% if (plan.highlighted) { %>
+            <span class="admin-badge status-active">Highlighted</span>
           <% } %>
         </div>
         <div class="admin-card-body">
@@ -52,8 +52,8 @@
 
             <div class="admin-form-group" style="margin-top: 12px;">
               <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
-                <input type="checkbox" name="is_featured" value="1" <%= plan.is_featured ? 'checked' : '' %>>
-                <span>Highlight as featured plan</span>
+                <input type="checkbox" name="highlighted" value="1" <%= plan.highlighted ? 'checked' : '' %>>
+                <span>Highlight as popular plan</span>
               </label>
             </div>
 

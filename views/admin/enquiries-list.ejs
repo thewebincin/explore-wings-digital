@@ -1,80 +1,376 @@
-<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
   <div>
-    <h2 style="font-size: 1.5rem; font-weight: 700;">Enquiries Inbox</h2>
-    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
-      Inquiries captured from the main contact form, hero consultation box, and Wing Assistant chatbot.
+    <h2 style="font-size: 1.5rem; font-weight: 700; margin: 0;">Enquiries Inbox</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin: 4px 0 0;">
+      Inquiries captured from the multi-step enquiry form, consultations, and Wing Assistant chatbot.
     </p>
   </div>
-  <a href="/admin/enquiries/export.csv" class="admin-btn admin-btn-outline">
-    <%- iconSvg('download') %> <span>Export CSV</span>
-  </a>
+  <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+    <!-- View Switcher -->
+    <div class="admin-view-switcher" style="display: inline-flex; background: var(--admin-bg-subtle, #f1f5f9); padding: 3px; border-radius: 8px; border: 1px solid var(--admin-border, #e2e8f0);">
+      <button type="button" id="btnViewKanban" class="admin-tab-chip active" style="padding: 6px 14px; font-size: 0.8125rem; font-weight: 600; border: none; cursor: pointer; border-radius: 6px;" onclick="switchEnquiriesView('kanban')">
+        Kanban Board
+      </button>
+      <button type="button" id="btnViewTable" class="admin-tab-chip" style="padding: 6px 14px; font-size: 0.8125rem; font-weight: 600; border: none; cursor: pointer; border-radius: 6px; background: transparent;" onclick="switchEnquiriesView('table')">
+        Table View
+      </button>
+    </div>
+
+    <a href="/admin/enquiries/export.csv" class="admin-btn admin-btn-outline" style="padding: 7px 14px; font-size: 0.8125rem;">
+      <%- iconSvg('download') %> <span>Export CSV</span>
+    </a>
+  </div>
 </div>
 
-<!-- Filter Tabs -->
-<div class="admin-filter-bar" style="margin-bottom: 16px; display: flex; gap: 8px;">
-  <a href="/admin/enquiries" class="admin-tab-chip <%= !locals.currentStatus ? 'active' : '' %>">All Leads</a>
-  <a href="/admin/enquiries?status=new" class="admin-tab-chip <%= locals.currentStatus === 'new' ? 'active' : '' %>">New / Unread</a>
-  <a href="/admin/enquiries?status=contacted" class="admin-tab-chip <%= locals.currentStatus === 'contacted' ? 'active' : '' %>">Contacted</a>
-  <a href="/admin/enquiries?status=in_progress" class="admin-tab-chip <%= locals.currentStatus === 'in_progress' ? 'active' : '' %>">In Progress</a>
-  <a href="/admin/enquiries?status=closed" class="admin-tab-chip <%= locals.currentStatus === 'closed' ? 'active' : '' %>">Closed</a>
-</div>
+<%
+  const kanbanCols = [
+    { key: 'New', label: 'New', color: '#2563EB', bg: '#EFF6FF', border: '#BFDBFE' },
+    { key: 'Contacted', label: 'Contacted', color: '#D97706', bg: '#FFFBEB', border: '#FDE68A' },
+    { key: 'Quote Sent', label: 'Quote Sent', color: '#7C3AED', bg: '#F5F3FF', border: '#DDD6FE' },
+    { key: 'Won', label: 'Won', color: '#059669', bg: '#ECFDF5', border: '#A7F3D0' },
+    { key: 'Lost', label: 'Lost', color: '#6B7280', bg: '#F3F4F6', border: '#E5E7EB' }
+  ];
 
-<div class="admin-card">
-  <div class="admin-card-body" style="padding: 0;">
-    <div class="admin-table-responsive">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name &amp; Company</th>
-            <th>Contact Details</th>
-            <th>Service</th>
-            <th>Source</th>
-            <th>Status</th>
-            <th>Received</th>
-            <th style="text-align: right;">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if (enquiries && enquiries.length) { %>
-            <% enquiries.forEach(enq => { %>
-              <tr>
-                <td style="color: var(--admin-text-muted); font-weight: 600;">#<%= enq.id %></td>
-                <td>
-                  <strong><%= enq.name %></strong>
-                  <% if (enq.company) { %>
-                    <div style="font-size: 0.75rem; color: var(--admin-text-muted);"><%= enq.company %></div>
+  const pool = (locals.allEnquiries && locals.allEnquiries.length) ? allEnquiries : (enquiries || []);
+
+  function normStatus(s) {
+    if (!s) return 'New';
+    const low = s.toLowerCase().trim();
+    if (low === 'new' || low === 'unread') return 'New';
+    if (low === 'contacted') return 'Contacted';
+    if (low === 'quote sent' || low === 'in_progress' || low === 'in progress' || low === 'quoted') return 'Quote Sent';
+    if (low === 'won' || low === 'closed' || low === 'converted') return 'Won';
+    if (low === 'lost' || low === 'rejected' || low === 'cancelled') return 'Lost';
+    return 'New';
+  }
+
+  function cleanPhoneNum(p) {
+    if (!p) return '';
+    return p.replace(/[^0-9]/g, '');
+  }
+%>
+
+<!-- ======================================================== -->
+<!-- KANBAN BOARD VIEW -->
+<!-- ======================================================== -->
+<div id="enquiriesKanbanContainer" style="display: block;">
+  <div class="admin-kanban-board" style="display: grid; grid-template-columns: repeat(5, minmax(280px, 1fr)); gap: 16px; overflow-x: auto; padding-bottom: 24px;">
+    <% kanbanCols.forEach(col => {
+      const colItems = pool.filter(e => normStatus(e.status) === col.key);
+    %>
+      <div class="admin-kanban-col" data-col-status="<%= col.key %>" style="background: var(--admin-card-bg, #ffffff); border: 1px solid var(--admin-border, #e2e8f0); border-radius: 12px; display: flex; flex-direction: column; min-height: 520px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <!-- Column Header -->
+        <div style="padding: 14px 16px; border-bottom: 1px solid var(--admin-border, #e2e8f0); display: flex; justify-content: space-between; align-items: center; background: <%= col.bg %>; border-top-left-radius: 11px; border-top-right-radius: 11px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: <%= col.color %>; display: inline-block;"></span>
+            <span style="font-weight: 700; font-size: 0.875rem; color: #1E293B;"><%= col.label %></span>
+          </div>
+          <span class="col-count-badge" style="font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: white; color: <%= col.color %>; border: 1px solid <%= col.border %>;">
+            <%= colItems.length %>
+          </span>
+        </div>
+
+        <!-- Cards Drop Container -->
+        <div class="kanban-cards-list" data-status="<%= col.key %>" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, '<%= col.key %>')" style="padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 400px; transition: background 0.2s ease;">
+          <% if (colItems.length === 0) { %>
+            <div class="kanban-empty-hint" style="text-align: center; padding: 32px 12px; color: var(--admin-text-muted, #94a3b8); font-size: 0.8125rem; border: 1px dashed var(--admin-border, #e2e8f0); border-radius: 8px;">
+              No leads in <%= col.label %>
+            </div>
+          <% } else { %>
+            <% colItems.forEach(item => {
+              const rawDigits = cleanPhoneNum(item.phone || item.contact);
+              const waNum = rawDigits.startsWith('91') ? rawDigits : ('91' + rawDigits);
+              const waText = encodeURIComponent(`Hi ${item.name || 'there'}, thank you for contacting Explore Wings Digital. Following up regarding your ${item.service || 'project'} enquiry.`);
+            %>
+              <div class="admin-kanban-card" id="kcard-<%= item.id %>" draggable="true" ondragstart="handleDragStart(event, '<%= item.id %>')" style="background: var(--admin-card-bg, #ffffff); border: 1px solid var(--admin-border, #e2e8f0); border-radius: 8px; padding: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); cursor: grab; display: flex; flex-direction: column; gap: 8px;">
+                <!-- Header with ID & Date -->
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--admin-text-muted, #64748b);">
+                  <span style="font-weight: 700;">#<%= item.id %></span>
+                  <span><%= new Date(item.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' }) %></span>
+                </div>
+
+                <!-- Client Name & Business -->
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9375rem; color: var(--admin-text, #0f172a);"><%= item.name %></div>
+                  <% if (item.business_name || item.company) { %>
+                    <div style="font-size: 0.75rem; color: var(--admin-text-muted, #64748b);"><%= item.business_name || item.company %></div>
                   <% } %>
-                </td>
-                <td style="font-size: 0.8125rem;">
-                  <div><%= enq.contact %></div>
-                </td>
-                <td style="font-size: 0.8125rem;"><%= enq.service || 'General' %></td>
-                <td>
-                  <span class="admin-badge"><%= enq.source_page || 'site' %></span>
-                </td>
-                <td>
-                  <span class="status-badge status-<%= enq.status %>"><%= enq.status %></span>
-                </td>
-                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
-                  <%= new Date(enq.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %>
-                </td>
-                <td style="text-align: right;">
-                  <a href="/admin/enquiries/<%= enq.id %>" class="admin-btn-sm admin-btn-primary">
-                    View
-                  </a>
+                </div>
+
+                <!-- Service & Budget Badges -->
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span style="font-size: 0.6875rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: #EEF2F6; color: #334155;">
+                    <%= item.service || 'General' %>
+                  </span>
+                  <% if (item.budget) { %>
+                    <span style="font-size: 0.6875rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: #ECFDF5; color: #047857;">
+                      <%= item.budget %>
+                    </span>
+                  <% } %>
+                  <% if (item.timeline) { %>
+                    <span style="font-size: 0.6875rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: #FFF7ED; color: #C2410C;">
+                      <%= item.timeline %>
+                    </span>
+                  <% } %>
+                </div>
+
+                <!-- Contact Snippet -->
+                <div style="font-size: 0.75rem; color: var(--admin-text-muted, #64748b); word-break: break-all;">
+                  <% if (item.phone) { %>
+                    <div><%= item.phone %></div>
+                  <% } else if (item.contact) { %>
+                    <div><%= item.contact %></div>
+                  <% } %>
+                  <% if (item.email) { %>
+                    <div style="opacity: 0.85;"><%= item.email %></div>
+                  <% } %>
+                </div>
+
+                <!-- Direct Actions Row -->
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; padding-top: 8px; border-top: 1px solid var(--admin-border, #f1f5f9); margin-top: 4px;">
+                  <div style="display: flex; gap: 4px;">
+                    <% if (rawDigits && rawDigits.length >= 7) { %>
+                      <a href="https://wa.me/<%= waNum %>?text=<%= waText %>" target="_blank" rel="noopener" class="admin-btn-xs" style="background: #25D366; color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;" title="Chat with lead on WhatsApp">
+                        💬 WA
+                      </a>
+                      <a href="tel:<%= item.phone || item.contact %>" class="admin-btn-xs" style="background: #0284C7; color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;" title="Call lead phone">
+                        📞 Call
+                      </a>
+                    <% } %>
+                  </div>
+
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <!-- Quick Status Dropdown -->
+                    <select onchange="updateCardStatus('<%= item.id %>', this.value)" style="font-size: 0.6875rem; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--admin-border, #cbd5e1); background: white; color: var(--admin-text, #334155);">
+                      <option value="New" <%= normStatus(item.status) === 'New' ? 'selected' : '' %>>New</option>
+                      <option value="Contacted" <%= normStatus(item.status) === 'Contacted' ? 'selected' : '' %>>Contacted</option>
+                      <option value="Quote Sent" <%= normStatus(item.status) === 'Quote Sent' ? 'selected' : '' %>>Quote Sent</option>
+                      <option value="Won" <%= normStatus(item.status) === 'Won' ? 'selected' : '' %>>Won</option>
+                      <option value="Lost" <%= normStatus(item.status) === 'Lost' ? 'selected' : '' %>>Lost</option>
+                    </select>
+
+                    <a href="/admin/enquiries/<%= item.id %>" class="admin-btn-xs" style="background: var(--admin-primary, #E11D2E); color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none;">
+                      Open
+                    </a>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TABLE VIEW -->
+<!-- ======================================================== -->
+<div id="enquiriesTableContainer" style="display: none;">
+  <!-- Filter Tabs & Search -->
+  <div class="admin-filter-bar" style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <a href="/admin/enquiries" class="admin-tab-chip <%= !locals.currentStatus || currentStatus === 'all' ? 'active' : '' %>">All Leads</a>
+      <a href="/admin/enquiries?status=new" class="admin-tab-chip <%= locals.currentStatus === 'new' ? 'active' : '' %>">New</a>
+      <a href="/admin/enquiries?status=contacted" class="admin-tab-chip <%= locals.currentStatus === 'contacted' ? 'active' : '' %>">Contacted</a>
+      <a href="/admin/enquiries?status=quoted" class="admin-tab-chip <%= locals.currentStatus === 'quoted' || locals.currentStatus === 'in_progress' ? 'active' : '' %>">Quote Sent</a>
+      <a href="/admin/enquiries?status=won" class="admin-tab-chip <%= locals.currentStatus === 'won' ? 'active' : '' %>">Won</a>
+      <a href="/admin/enquiries?status=lost" class="admin-tab-chip <%= locals.currentStatus === 'lost' ? 'active' : '' %>">Lost</a>
+    </div>
+
+    <form method="GET" action="/admin/enquiries" style="margin: 0; display: flex; gap: 6px;">
+      <input type="text" name="search" value="<%= locals.search || '' %>" placeholder="Search name, phone, message..." style="padding: 6px 12px; font-size: 0.8125rem; border-radius: 6px; border: 1px solid var(--admin-border, #cbd5e1); min-width: 220px;">
+      <button type="submit" class="admin-btn admin-btn-sm admin-btn-primary" style="padding: 6px 12px;">Search</button>
+      <% if (locals.search) { %>
+        <a href="/admin/enquiries" class="admin-btn admin-btn-sm admin-btn-outline" style="padding: 6px 10px;">Clear</a>
+      <% } %>
+    </form>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-card-body" style="padding: 0;">
+      <div class="admin-table-responsive">
+        <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 12px 16px; text-align: left;">ID</th>
+              <th style="padding: 12px 16px; text-align: left;">Client &amp; Company</th>
+              <th style="padding: 12px 16px; text-align: left;">Contact Details</th>
+              <th style="padding: 12px 16px; text-align: left;">Service</th>
+              <th style="padding: 12px 16px; text-align: left;">Status</th>
+              <th style="padding: 12px 16px; text-align: left;">Received</th>
+              <th style="padding: 12px 16px; text-align: right;">Quick Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (enquiries && enquiries.length) { %>
+              <% enquiries.forEach(enq => {
+                const rawDigits = cleanPhoneNum(enq.phone || enq.contact);
+                const waNum = rawDigits.startsWith('91') ? rawDigits : ('91' + rawDigits);
+                const waText = encodeURIComponent(`Hi ${enq.name || 'there'}, thank you for contacting Explore Wings Digital. Following up regarding your ${enq.service || 'project'} enquiry.`);
+              %>
+                <tr style="border-bottom: 1px solid var(--admin-border, #f1f5f9);">
+                  <td style="padding: 12px 16px; color: var(--admin-text-muted, #64748b); font-weight: 600;">#<%= enq.id %></td>
+                  <td style="padding: 12px 16px;">
+                    <strong><%= enq.name %></strong>
+                    <% if (enq.business_name || enq.company) { %>
+                      <div style="font-size: 0.75rem; color: var(--admin-text-muted, #64748b);"><%= enq.business_name || enq.company %></div>
+                    <% } %>
+                  </td>
+                  <td style="padding: 12px 16px; font-size: 0.8125rem;">
+                    <div><%= enq.phone || enq.contact %></div>
+                    <% if (enq.email) { %>
+                      <div style="font-size: 0.75rem; color: var(--admin-text-muted, #64748b);"><%= enq.email %></div>
+                    <% } %>
+                  </td>
+                  <td style="padding: 12px 16px; font-size: 0.8125rem;">
+                    <span style="background: #F1F5F9; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #334155;">
+                      <%= enq.service || 'General' %>
+                    </span>
+                  </td>
+                  <td style="padding: 12px 16px;">
+                    <select onchange="updateCardStatus('<%= enq.id %>', this.value)" style="font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--admin-border, #cbd5e1); background: white;">
+                      <option value="New" <%= normStatus(enq.status) === 'New' ? 'selected' : '' %>>New</option>
+                      <option value="Contacted" <%= normStatus(enq.status) === 'Contacted' ? 'selected' : '' %>>Contacted</option>
+                      <option value="Quote Sent" <%= normStatus(enq.status) === 'Quote Sent' ? 'selected' : '' %>>Quote Sent</option>
+                      <option value="Won" <%= normStatus(enq.status) === 'Won' ? 'selected' : '' %>>Won</option>
+                      <option value="Lost" <%= normStatus(enq.status) === 'Lost' ? 'selected' : '' %>>Lost</option>
+                    </select>
+                  </td>
+                  <td style="padding: 12px 16px; font-size: 0.8125rem; color: var(--admin-text-muted, #64748b);">
+                    <%= new Date(enq.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %>
+                  </td>
+                  <td style="padding: 12px 16px; text-align: right;">
+                    <div style="display: inline-flex; align-items: center; gap: 6px;">
+                      <% if (rawDigits && rawDigits.length >= 7) { %>
+                        <a href="https://wa.me/<%= waNum %>?text=<%= waText %>" target="_blank" rel="noopener" class="admin-btn-xs" style="background: #25D366; color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none;" title="Chat on WhatsApp">
+                          WhatsApp
+                        </a>
+                        <a href="tel:<%= enq.phone || enq.contact %>" class="admin-btn-xs" style="background: #0284C7; color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.75rem; font-weight: 600; text-decoration: none;" title="Call">
+                          Call
+                        </a>
+                      <% } %>
+                      <a href="/admin/enquiries/<%= enq.id %>" class="admin-btn-xs admin-btn-primary" style="padding: 4px 10px; font-size: 0.75rem; text-decoration: none;">
+                        Details
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 40px; color: var(--admin-text-muted, #64748b);">
+                  No enquiries found in this view.
                 </td>
               </tr>
-            <% }) %>
-          <% } else { %>
-            <tr>
-              <td colspan="8" style="text-align: center; padding: 40px; color: var(--admin-text-muted);">
-                No enquiries found in this view.
-              </td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Drag & Drop + View Switching Script -->
+<script>
+  let draggedCardId = null;
+
+  function switchEnquiriesView(view) {
+    const kanban = document.getElementById('enquiriesKanbanContainer');
+    const table = document.getElementById('enquiriesTableContainer');
+    const btnKanban = document.getElementById('btnViewKanban');
+    const btnTable = document.getElementById('btnViewTable');
+
+    if (view === 'table') {
+      kanban.style.display = 'none';
+      table.style.display = 'block';
+      btnTable.classList.add('active');
+      btnTable.style.background = 'white';
+      btnKanban.classList.remove('active');
+      btnKanban.style.background = 'transparent';
+      localStorage.setItem('ew_admin_enquiries_view', 'table');
+    } else {
+      kanban.style.display = 'block';
+      table.style.display = 'none';
+      btnKanban.classList.add('active');
+      btnKanban.style.background = 'white';
+      btnTable.classList.remove('active');
+      btnTable.style.background = 'transparent';
+      localStorage.setItem('ew_admin_enquiries_view', 'kanban');
+    }
+  }
+
+  // Restore stored view preference
+  document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('ew_admin_enquiries_view');
+    if (saved === 'table') {
+      switchEnquiriesView('table');
+    }
+  });
+
+  function handleDragStart(e, id) {
+    draggedCardId = id;
+    e.dataTransfer.setData('text/plain', id);
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const list = e.currentTarget;
+    list.style.background = 'var(--admin-bg-subtle, rgba(0,0,0,0.03))';
+  }
+
+  function handleDragLeave(e) {
+    e.currentTarget.style.background = '';
+  }
+
+  function handleDrop(e, targetStatus) {
+    e.preventDefault();
+    e.currentTarget.style.background = '';
+    const id = draggedCardId || e.dataTransfer.getData('text/plain');
+    if (!id) return;
+    updateCardStatus(id, targetStatus);
+  }
+
+  async function updateCardStatus(id, targetStatus) {
+    try {
+      const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+      const res = await fetch('/admin/enquiries/' + id + '/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'CSRF-Token': csrf
+        },
+        body: JSON.stringify({ status: targetStatus, _csrf: csrf })
+      });
+
+      if (res.ok) {
+        window.location.reload();
+      } else {
+        // Fallback form submission
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/admin/enquiries/' + id + '/status';
+        const st = document.createElement('input');
+        st.type = 'hidden';
+        st.name = 'status';
+        st.value = targetStatus;
+        form.appendChild(st);
+        if (csrf) {
+          const cs = document.createElement('input');
+          cs.type = 'hidden';
+          cs.name = '_csrf';
+          cs.value = csrf;
+          form.appendChild(cs);
+        }
+        document.body.appendChild(form);
+        form.submit();
+      }
+    } catch (err) {
+      console.error('Error updating status:', err);
+      window.location.reload();
+    }
+  }
+</script>

@@ -1,6 +1,6 @@
 # Explore Wings Digital Technologies — Database-Driven Web Application & Admin Console
 
-A complete, production-grade Node.js LTS web application with an embedded SQLite database (via `better-sqlite3`), server-side rendered EJS templates, first-party cookieless analytics, and a full-featured administrative console for **Explore Wings Digital Technologies**, based in Trivandrum (Thiruvananthapuram), Kerala, India.
+A complete, production-grade Node.js LTS web application with an embedded SQLite database (via `better-sqlite3`), server-side rendered EJS templates, first-party cookieless analytics, and a full administrative console for **Explore Wings Digital Technologies**, based in Trivandrum (Thiruvananthapuram), Kerala, India.
 
 ---
 
@@ -35,7 +35,7 @@ A complete, production-grade Node.js LTS web application with an embedded SQLite
   - **Services (`/admin/services`)**: Reorder, add, edit, toggle visibility.
   - **Brands (`/admin/brands`)**: Upload client logos with automatic WebP conversion, drag to reorder.
   - **FAQs (`/admin/faqs`)**: Manage questions, answers, and Google FAQ schema.
-  - **Pricing (`/admin/plans`)**: Configure pricing packages, deliverables, featured badges, and the comparison matrix.
+  - **Pricing (`/admin/plans`)**: Configure pricing packages, deliverables, highlight badges, and the comparison matrix.
   - **Chatbot Intents (`/admin/chatbot`)**: Manage intents, trigger keywords, and answers with an interactive test sandbox.
   - **Navigation (`/admin/navigation`)**: Header menu, footer link columns, and studio contact channels.
   - **Media Library (`/admin/media`)**: Gallery of uploaded assets with mandatory alt-text and size optimization.
@@ -206,7 +206,7 @@ docker run -p 3000:3000 -v $(pwd)/data:/app/data explore-wings
 ### Emergency CLI Tools
 - **Reset Admin Password**:
   ```bash
-  node scripts/reset-password.js admin@explorewings.com NewSecurePass123!
+  node scripts/reset-password.js admin@explorewings.com StrongSecurePass123!
   ```
 - **Run Manual Backup**:
   ```bash

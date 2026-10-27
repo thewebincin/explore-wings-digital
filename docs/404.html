@@ -1,135 +1,469 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="red" data-mode="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Not Found (404) | Explore Wings Digital Technologies — Trivandrum</title>
-  <meta name="description" content="Looks like this page took an unexpected flight. Return to Explore Wings Digital Technologies in Trivandrum, Kerala." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Wings Digital Technologies | Trivandrum</title>
+  <meta name="description" content="Explore Wings Digital Technologies in Trivandrum (Thiruvananthapuram), Kerala helps businesses launch, grow, and manage their brand online with websites, branding, social media, photography, and digital marketing.">
+  <link rel="canonical" href="/404">
+  
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/style.css?v=gh-pages" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Explore Wings Digital Technologies">
+  <meta property="og:description" content="Websites, branding, social media, photo &amp; video shoots, and digital marketing crafted in Trivandrum, Kerala.">
+  <meta property="og:image" content="/logo.png">
+  <meta property="og:url" content="/404">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css?v=1.0.0">
+
+  <!-- Dynamic JSON-LD Schema -->
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Explore Wings Digital Technologies",
+      "image": "/logo.png",
+      "description": "Digital agency in Trivandrum (Thiruvananthapuram), Kerala specializing in website design, branding & logos, social media, photo & video production, and digital marketing.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Thiruvananthapuram (Trivandrum)",
+        "addressRegion": "Kerala",
+        "postalCode": "695003",
+        "addressCountry": "IN"
+      },
+      "telephone": ["+91-75104-05067", "+91-62389-76168"],
+      "openingHours": "Mo-Sa 09:30-18:30"
+    }
+    </script>
+  
+
+  <!-- Google Analytics 4 (Only if configured) -->
+  
 </head>
-<body>
+<body data-page="404">
 
-  <div class="theme-wipe-circle" id="themeWipeCircle" aria-hidden="true"></div>
-  <div class="scroll-progress-bar" aria-hidden="true"></div>
+  <!-- Admin Live Preview Banner if Maintenance Mode is ON -->
+  
 
-  <!-- Top Utility Bar -->
-  <div class="top-utility-bar" role="region" aria-label="Announcement and Site Preferences">
-    <div class="container top-utility-inner">
-      <div class="top-announcement-msg">
-        <span class="top-announcement-badge">Trivandrum, Kerala</span>
-        <span>Explore Wings Digital Technologies • Websites, Branding, Social Media &amp; Shoots</span>
+  <!-- Preloader, Sweep, Wipe & Ambient Orbs -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel-left"></div>
+    <div class="preloader-panel-right"></div>
+    <div class="preloader-center">
+      <div class="logo-white-chip chip-lg">
+        <img src="/logo.png" alt="Explore Wings Logo">
       </div>
-      <div class="top-controls-cluster">
-        <div class="auto-scroll-group">
-          <button type="button" class="auto-scroll-toggle-btn" aria-pressed="false">▶ Auto scroll</button>
-          <select class="auto-scroll-speed-select" aria-label="Auto scroll speed">
-            <option value="slow">Slow</option>
-            <option value="medium" selected>Medium</option>
-            <option value="fast">Fast</option>
-          </select>
-        </div>
-        <div class="theme-swatch-group">
-          <span class="theme-swatch-label">Theme:</span>
-          <button type="button" class="theme-swatch swatch-green" data-set-theme="green" aria-label="Green Theme"></button>
-          <button type="button" class="theme-swatch swatch-red active" data-set-theme="red" aria-label="Red Theme"></button>
-        </div>
-        <button type="button" class="mode-toggle-btn"><span>☀</span> <span>Light Mode</span></button>
+      <div class="preloader-counter" id="preloaderCounter">0%</div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill" id="preloaderBarFill"></div>
+      </div>
+      <div style="font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0.8;">
+        Explore Wings Digital • Trivandrum
       </div>
     </div>
   </div>
 
+  <div class="page-transition-sweep" id="pageTransitionSweep" aria-hidden="true">
+    <div class="logo-white-chip chip-lg">
+      <img src="/logo.png" alt="Explore Wings Logo">
+    </div>
+  </div>
+
+  <div class="theme-wipe-circle" id="themeWipeCircle" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Ambient Floating Theme Orbs -->
+  <div class="ambient-orbs" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <!-- Top Utility Bar -->
+  <!-- SECTION 1: ANNOUNCEMENT & TOP UTILITY BAR -->
+<div class="top-utility-bar" role="region" aria-label="Announcement and Site Preferences">
+  <div class="container top-utility-inner">
+    <div class="top-announcement-msg">
+      <span class="top-announcement-badge">Trivandrum, Kerala</span>
+      <span>Direct Call: <a href="tel:+917510405067" style="color:inherit; font-weight:700; text-decoration:underline;">+91 75104 05067</a> / <a href="tel:+916238976168" style="color:inherit; font-weight:700; text-decoration:underline;">+91 62389 76168</a> • Free 30-Min Strategy Session</span>
+    </div>
+
+    <div class="top-controls-cluster">
+      <!-- Auto Scroll Button + Speed Selector -->
+      <div class="auto-scroll-group" role="group" aria-label="Auto Scroll Controls">
+        <button type="button" class="auto-scroll-toggle-btn" aria-pressed="false">
+          ▶ Auto scroll
+        </button>
+        <select class="auto-scroll-speed-select" aria-label="Auto scroll speed">
+          <option value="slow">Slow</option>
+          <option value="medium" selected>Medium</option>
+          <option value="fast">Fast</option>
+        </select>
+      </div>
+
+      <!-- Red & Green Round Theme Swatches (Red active by default) -->
+      <div class="theme-swatch-group" role="group" aria-label="Color Theme Selector">
+        <span class="theme-swatch-label">Theme:</span>
+        <button
+          type="button"
+          class="theme-swatch swatch-green"
+          data-set-theme="green"
+          aria-label="Green Theme"
+          title="Switch to Green Theme (#00A36C)"
+        ></button>
+        <button
+          type="button"
+          class="theme-swatch swatch-red active"
+          data-set-theme="red"
+          aria-label="Red Theme"
+          title="Switch to Red Theme (#E11D2E)"
+        ></button>
+      </div>
+
+      <!-- Separate Light / Dark Mode Toggle -->
+      <button type="button" class="mode-toggle-btn" aria-label="Toggle Light or Dark Mode">
+        <span>☀</span> <span>Light Mode</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
   <!-- Sticky Navbar -->
-  <header class="navbar">
-    <div class="container navbar-inner">
-      <a href="index.html" class="brand-logo-link">
-        <span class="logo-white-chip"><img src="./logo.png" alt="Explore Wings Logo" /></span>
-        <span class="brand-logo-text">
-          <span class="brand-logo-title">Explore Wings</span>
-          <span class="brand-logo-sub">Digital Technologies</span>
-        </span>
-      </a>
+  <!-- SECTION 2: STICKY NAVBAR WITH MEGA-MENUS (Services, Industries) -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="./index.html" class="brand-logo-link" aria-label="Explore Wings Digital Technologies Home">
+      <span class="logo-white-chip">
+        <img src="/logo.png" alt="Explore Wings Logo" />
+      </span>
+      <span class="brand-logo-text">
+        <span class="brand-logo-title">Explore Wings</span>
+        <span class="brand-logo-sub">Digital Technologies</span>
+      </span>
+    </a>
 
-      <nav class="nav-links" aria-label="Primary Navigation">
-        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
-        <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
-        <div class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></div>
-        <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
-        <div class="nav-item"><a href="about.html" class="nav-link">About</a></div>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="contact.html" class="nav-login-link">Log in / Contact</a>
-        <a href="contact.html" class="btn btn-primary"><span>Start your project</span> <span class="btn-arrow">→</span></a>
-        <button type="button" class="menu-toggle" aria-label="Open Mobile Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <div class="nav-item">
+        <a href="./index.html" class="nav-link ">Home</a>
       </div>
-    </div>
-  </header>
 
-  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
-  <aside class="mobile-drawer" id="mobileDrawer">
-    <div>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-        <a href="index.html" class="brand-logo-link"><span class="logo-white-chip"><img src="./logo.png" alt="Explore Wings Logo" /></span><span class="brand-logo-title">Explore Wings</span></a>
-        <button type="button" class="drawer-close-btn" id="closeMobileDrawerBtn">✕</button>
-      </div>
-      <div class="mobile-accordion-item"><a href="index.html" class="mobile-accordion-btn">Home</a></div>
-      <div class="mobile-accordion-item"><a href="services.html" class="mobile-accordion-btn">Services</a></div>
-      <div class="mobile-accordion-item"><a href="portfolio.html" class="mobile-accordion-btn">Portfolio</a></div>
-      <div class="mobile-accordion-item"><a href="pricing.html" class="mobile-accordion-btn">Pricing</a></div>
-      <div class="mobile-accordion-item"><a href="about.html" class="mobile-accordion-btn">About</a></div>
-      <div class="mobile-accordion-item"><a href="contact.html" class="mobile-accordion-btn">Contact</a></div>
-    </div>
-  </aside>
-
-  <main>
-    <section class="page-hero" style="padding:clamp(5rem, 10vw, 8rem) 0;">
-      <div class="container">
-        <div class="page-hero-content" style="text-align:center; margin:0 auto;" data-reveal="up">
-          <div style="display:inline-flex; margin-bottom:1.25rem;">
-            <span class="logo-white-chip chip-lg"><img src="./logo.png" alt="Explore Wings Logo" /></span>
+      <!-- Mega-Menu 1: Services -->
+      <div class="nav-item has-mega">
+        <a href="./services.html" class="nav-link ">
+          <span>Services</span> <span style="font-size:0.7rem;">▾</span>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-grid-links">
+            <a href="/services#service-websites" class="mega-service-item">
+              <div class="mega-icon">🌐</div>
+              <div>
+                <h5>Website Design</h5>
+                <p>Fast, mobile-first websites built to convert local visitors</p>
+              </div>
+            </a>
+            <a href="/services#service-branding" class="mega-service-item">
+              <div class="mega-icon">✦</div>
+              <div>
+                <h5>Branding &amp; Logos</h5>
+                <p>Logos, menus, packaging, signage &amp; brand guidelines</p>
+              </div>
+            </a>
+            <a href="/services#service-social" class="mega-service-item">
+              <div class="mega-icon">📱</div>
+              <div>
+                <h5>Social Media</h5>
+                <p>Instagram Reels, festive campaigns &amp; monthly calendars</p>
+              </div>
+            </a>
+            <a href="/services#service-production" class="mega-service-item">
+              <div class="mega-icon">🎬</div>
+              <div>
+                <h5>Photo &amp; Video</h5>
+                <p>On-location food, resort, fitness &amp; product shoots</p>
+              </div>
+            </a>
+            <a href="/services#service-marketing" class="mega-service-item">
+              <div class="mega-icon">📍</div>
+              <div>
+                <h5>Digital Marketing</h5>
+                <p>Google Maps SEO &amp; targeted local lead ads</p>
+              </div>
+            </a>
+            <a href="/services#service-business-web" class="mega-service-item">
+              <div class="mega-icon">📅</div>
+              <div>
+                <h5>Business Websites</h5>
+                <p>WhatsApp ordering, booking systems &amp; portals</p>
+              </div>
+            </a>
           </div>
-          <div style="font-family:var(--font-display); font-size:clamp(4rem, 11vw, 8.5rem); font-weight:900; line-height:0.95; color:var(--theme-primary);">
-            404
-          </div>
-          <h1 class="display-lg" style="margin:0.75rem 0 1rem;">
-            Looks Like This Page Took an <span class="theme-shimmer">Unexpected Flight</span>.
-          </h1>
-          <p class="body-lg" style="margin:0 auto 2rem; max-width:52ch;">
-            The link you clicked might have moved or been mistyped. Let's guide you back to our main pages or connect you with our Trivandrum team.
-          </p>
-          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.9rem;">
-            <a href="index.html" class="btn btn-primary"><span>Back to Home Page</span> <span class="btn-arrow">→</span></a>
-            <a href="services.html" class="btn btn-outline"><span>Explore Services</span></a>
-            <a href="portfolio.html" class="btn btn-outline"><span>View Client Portfolio</span></a>
-            <a href="contact.html" class="btn btn-outline"><span>Book Free Consultation</span></a>
+          <div class="mega-promo-card">
+            <div>
+              <span class="mega-promo-badge">All-In-One Studio</span>
+              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Launch Your Brand in Trivandrum</h4>
+              <p style="font-size:0.82rem; opacity:0.84;">Get your logo, photography shoot, and website built under one roof.</p>
+            </div>
+            <a href="./pricing.html" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
+              <span>Explore Packages</span> <span class="btn-arrow">→</span>
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-giant-watermark" aria-hidden="true">EXPLORE WINGS</div>
-      <div class="footer-bottom">
-        <span>© 2026 Explore Wings Digital Technologies • Trivandrum, Kerala.</span>
-        <a href="index.html" style="color:var(--theme-accent); font-weight:700;">Return Home →</a>
+      <!-- Mega-Menu 2: Industries -->
+      <div class="nav-item has-mega">
+        <a href="./services.html" class="nav-link">
+          <span>Industries</span> <span style="font-size:0.7rem;">▾</span>
+        </a>
+        <div class="mega-menu" role="menu">
+          <div class="mega-grid-links">
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">🌴</div>
+              <div>
+                <h5>Resorts &amp; Ayurveda</h5>
+                <p>Kovalam &amp; Varkala hospitality websites with booking enquiries</p>
+              </div>
+            </a>
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">☕</div>
+              <div>
+                <h5>Cafes &amp; Restaurants</h5>
+                <p>QR code menus, food photography, and viral food reels</p>
+              </div>
+            </a>
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">🎓</div>
+              <div>
+                <h5>Education &amp; Study Abroad</h5>
+                <p>High-converting landing pages for student registrations</p>
+              </div>
+            </a>
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">🏋️</div>
+              <div>
+                <h5>Gyms &amp; Wellness</h5>
+                <p>Fitness branding, transformation showcases &amp; membership forms</p>
+              </div>
+            </a>
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">🍱</div>
+              <div>
+                <h5>Food &amp; Packaged Goods</h5>
+                <p>FSSAI-compliant packaging, labels, and shop displays</p>
+              </div>
+            </a>
+            <a href="./services.html" class="mega-service-item">
+              <div class="mega-icon">🛍️</div>
+              <div>
+                <h5>Retail &amp; Malls</h5>
+                <p>Footfall campaigns, festive signage, and store launches</p>
+              </div>
+            </a>
+          </div>
+          <div class="mega-promo-card">
+            <div>
+              <span class="mega-promo-badge">Local Focus</span>
+              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Made for Kerala Businesses</h4>
+              <p style="font-size:0.82rem; opacity:0.84;">We understand Malayalam cultural nuances, festive shopping peaks, and local customer behavior.</p>
+            </div>
+            <a href="./contact.html" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
+              <span>Talk to our Founder</span> <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="./pricing.html" class="nav-link ">Pricing</a>
+      </div>
+
+      <div class="nav-item">
+        <a href="./about.html" class="nav-link ">About</a>
+      </div>
+
+      <div class="nav-item">
+        <a href="./contact.html" class="nav-link ">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Nav Actions: Login / Contact & "Start your project" CTA -->
+    <div class="nav-actions">
+      <a href="/admin/login" class="nav-login-link" title="Owner Admin Portal">Admin Login</a>
+      <a href="./contact.html" class="btn btn-primary">
+        <span>Start your project</span>
+        <span class="btn-arrow">→</span>
+      </a>
+      <button type="button" class="menu-toggle" aria-label="Open Mobile Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-links">
+        <a href="./index.html" class="mobile-nav-link">Home</a>
+        <a href="./services.html" class="mobile-nav-link">Services</a>
+        <a href="./pricing.html" class="mobile-nav-link">Pricing</a>
+        <a href="./about.html" class="mobile-nav-link">About</a>
+        <a href="./contact.html" class="mobile-nav-link">Contact</a>
+        <a href="/admin/login" class="mobile-nav-link" style="color:var(--theme-accent); font-weight:800;">Admin Dashboard</a>
+      </div>
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1);">
+        <a href="./contact.html" class="btn btn-primary" style="width:100%; justify-content:center;">
+          <span>Start your project</span> <span class="btn-arrow">→</span>
+        </a>
       </div>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <a href="https://wa.me/919000000000" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 32 32"><path d="M16.004 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.257.59 4.46 1.71 6.404L3.2 28.8l6.565-1.693a12.74 12.74 0 0 0 6.239 1.627h.005c7.068 0 12.796-5.73 12.796-12.8 0-3.42-1.332-6.635-3.75-9.052A12.716 12.716 0 0 0 16.004 3.2z"/></svg>
-    <span class="whatsapp-tooltip">Chat With Us on WhatsApp</span>
-  </a>
-  <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
 
-  <script src="./js/script.js?v=gh-pages" defer></script>
-  <script src="./js/chatbot.js?v=gh-pages" defer></script>
+  <!-- Page Content -->
+  <main id="main-content">
+    <section class="container error-404-container" style="padding: var(--space-3xl) var(--space-md); text-align: center; min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <div class="error-404-code" style="font-size: 6rem; font-family: var(--font-display); font-weight: 800; color: var(--primary); line-height: 1;">404</div>
+  <h1 class="section-title" style="margin-top: 16px;">This page could not be found.</h1>
+  <p class="sub-title" style="max-width: 560px; margin: 12px auto 0;">
+    The link you followed may have changed, or the address may have been typed incorrectly. Let's get you back on track.
+  </p>
+  <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; justify-content: center;">
+    <a href="./index.html" class="btn-primary">Return to Homepage</a>
+    <a href="./services.html" class="btn-secondary">View Our Services</a>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Mega Footer -->
+  <!-- SECTION 12: MEGA FOOTER WITH LINK COLUMNS & GIANT OUTLINED "EXPLORE WINGS" -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top-grid">
+      <div class="footer-brand-col">
+        <a href="./index.html" class="brand-logo-link">
+          <span class="logo-white-chip">
+            <img src="/logo.png" alt="Explore Wings Logo" />
+          </span>
+          <span class="brand-logo-text">
+            <span class="brand-logo-title" style="color:#FFFFFF;">Explore Wings</span>
+            <span class="brand-logo-sub" style="color:var(--theme-accent);">Digital Technologies</span>
+          </span>
+        </a>
+        <p>
+          Your complete digital brand, photography, website, and marketing partner in Thiruvananthapuram (Trivandrum), Kerala.
+        </p>
+        <form class="updates-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed! Thank you.';">
+          <input type="email" placeholder="Enter your email for growth tips" required aria-label="Email for updates" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/services#service-websites">Website Design</a></li>
+          <li><a href="/services#service-branding">Branding &amp; Logos</a></li>
+          <li><a href="/services#service-social">Social Media &amp; Reels</a></li>
+          <li><a href="/services#service-production">Photo &amp; Video Shoots</a></li>
+          <li><a href="/services#service-marketing">Digital Marketing</a></li>
+          <li><a href="/services#service-business-web">Business Websites</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Industries</h5>
+        <ul>
+          <li><a href="./services.html">Resorts &amp; Ayurvedic Spas</a></li>
+          <li><a href="./services.html">Cafes &amp; Restaurants</a></li>
+          <li><a href="./services.html">Education &amp; Study Abroad</a></li>
+          <li><a href="./services.html">Gyms &amp; Fitness Clubs</a></li>
+          <li><a href="./services.html">Food &amp; Retail Brands</a></li>
+          <li><a href="./services.html">Shopping Malls</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="./about.html">About Explore Wings</a></li>
+          <li><a href="./pricing.html">Packages &amp; Pricing</a></li>
+          <li><a href="/#trusted-brands">Brands That Trust Us</a></li>
+          <li><a href="./contact.html">Book a Consultation</a></li>
+          <li><a href="/admin/login">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Trivandrum HQ</h5>
+        <p style="margin-bottom:0.75rem;">
+          Trivandrum (Thiruvananthapuram), Kerala, India
+        </p>
+        <p style="line-height:1.75;">
+          <strong style="color:var(--theme-accent);">Call:</strong>
+          <a href="tel:+917510405067">+91 75104 05067</a>,
+          <a href="tel:+916238976168">+91 62389 76168</a><br />
+          <strong style="color:var(--theme-accent);">WhatsApp:</strong>
+          <a href="https://wa.me/918921309190" target="_blank" rel="noopener">+91 89213 09190</a><br />
+          <strong style="color:var(--theme-accent);">Email:</strong> <a href="mailto:hello@explorewings.in">hello@explorewings.in</a><br />
+          <strong style="color:var(--theme-accent);">Hours:</strong> Monday – Saturday: 9:30 AM – 6:30 PM IST
+        </p>
+      </div>
+    </div>
+
+    <!-- Giant Outlined "EXPLORE WINGS" Watermark (Fills with Theme Color on Hover) -->
+    <div class="footer-giant-watermark" aria-hidden="true">EXPLORE WINGS</div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Explore Wings Digital Technologies. Crafted in Trivandrum, Kerala, India.</span>
+      <div class="social-links-row">
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="Instagram">IG</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="LinkedIn">IN</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="Facebook">FB</a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="social-circle-link" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Wing Assistant Chatbot, Drawer & Floating WhatsApp -->
+  <!-- Floating WhatsApp Button (Every Page) -->
+
+<a
+  href="https://wa.me/918921309190?text=Hi%20Explore%20Wings%2C%20I&#39;d%20like%20to%20know%20more%20about%20your%20services."
+  class="whatsapp-float"
+  id="floatingWhatsappBtn"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat with Explore Wings Digital on WhatsApp"
+  onclick="fetch('/api/analytics/whatsapp-click').catch(function(){});"
+>
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+    <path d="M16.002 2.667C8.64 2.667 2.667 8.64 2.667 16c0 2.587.74 5.007 2.02 7.067L2.667 29.333l6.453-1.987A13.255 13.255 0 0016.002 29.333c7.36 0 13.333-5.973 13.333-13.333S23.362 2.667 16.002 2.667zm7.8 18.847c-.327.92-1.62 1.687-2.64 1.907-.7.147-1.613.267-4.687-1.007-3.927-1.627-6.467-5.613-6.66-5.873-.193-.26-1.587-2.113-1.587-4.027 0-1.913.993-2.86 1.347-3.247.353-.387.773-.487 1.033-.487.26 0 .52.007.747.02.24.013.56-.093.88.673.327.767 1.113 2.72 1.213 2.92.1.2.167.44.033.7-.133.267-.2.433-.4.667-.2.233-.42.52-.6.7-.2.2-.413.42-.18.82.233.4 1.04 1.713 2.233 2.773 1.533 1.367 2.827 1.793 3.227 1.993.4.2.633.167.867-.1.233-.267 1-1.167 1.267-1.567.267-.4.533-.333.9-.2.367.133 2.327 1.1 2.727 1.3.4.2.667.3.767.467.1.167.1.967-.227 1.887z"/>
+  </svg>
+  <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+</a>
+
+
+  <!-- GSAP, ScrollTrigger, Script & Chatbot -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="./js/script.js?v=1.0.0" defer></script>
+  <script src="./js/chatbot.js?v=1.0.0" defer></script>
   <script src="./js/store.js"></script>
 </body>
 </html>

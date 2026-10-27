@@ -1,4 +1,4 @@
-<!-- SECTION 2: STICKY NAVBAR WITH MEGA-MENUS (Services, Industries, Resources) -->
+<!-- SECTION 2: STICKY NAVBAR WITH MEGA-MENUS (Services, Industries) -->
 <header class="navbar">
   <div class="container navbar-inner">
     <a href="/" class="brand-logo-link" aria-label="Explore Wings Digital Technologies Home">
@@ -150,53 +150,8 @@
         <a href="/about" class="nav-link <%= locals.currentPath === '/about' ? 'active' : '' %>">About</a>
       </div>
 
-      <!-- Mega-Menu 3: Resources & Guides -->
-      <div class="nav-item has-mega">
-        <a href="/#resources-section" class="nav-link">
-          <span>Resources</span> <span style="font-size:0.7rem;">▾</span>
-        </a>
-        <div class="mega-menu" role="menu">
-          <div class="mega-grid-links">
-            <a href="/#resources-section" class="mega-service-item">
-              <div class="mega-icon">💡</div>
-              <div>
-                <h5>Free Strategy Guides</h5>
-                <p>Checklists for launching a business website in Trivandrum</p>
-              </div>
-            </a>
-            <a href="/#lulu-munch-section" class="mega-service-item">
-              <div class="mega-icon">🏷️</div>
-              <div>
-                <h5>Client Logo Inspection</h5>
-                <p>Dedicated showcase for LuLu Mall and Munch projects</p>
-              </div>
-            </a>
-            <a href="/#home-faq" class="mega-service-item">
-              <div class="mega-icon">❓</div>
-              <div>
-                <h5>Frequently Asked Questions</h5>
-                <p>Pricing, timelines, deliverables, and ownership</p>
-              </div>
-            </a>
-            <a href="/contact" class="mega-service-item">
-              <div class="mega-icon">📞</div>
-              <div>
-                <h5>Direct WhatsApp Support</h5>
-                <p>Connect with our creative director in minutes</p>
-              </div>
-            </a>
-          </div>
-          <div class="mega-promo-card">
-            <div>
-              <span class="mega-promo-badge">No Jargon</span>
-              <h4 class="heading-lg" style="margin-bottom:0.45rem;">Clear Answers Always</h4>
-              <p style="font-size:0.82rem; opacity:0.84;">We explain domain hosting, SEO, and CMS tools in plain language.</p>
-            </div>
-            <a href="/contact" class="btn btn-accent" style="width:100%; padding:0.7rem 1rem; font-size:0.84rem;">
-              <span>Ask a Question</span> <span class="btn-arrow">→</span>
-            </a>
-          </div>
-        </div>
+      <div class="nav-item">
+        <a href="/contact" class="nav-link <%= locals.currentPath === '/contact' ? 'active' : '' %>">Contact</a>
       </div>
     </nav>
 
@@ -221,7 +176,6 @@
         <a href="/services" class="mobile-nav-link">Services</a>
         <a href="/pricing" class="mobile-nav-link">Pricing</a>
         <a href="/about" class="mobile-nav-link">About</a>
-        <a href="/#resources-section" class="mobile-nav-link">Resources</a>
         <a href="/contact" class="mobile-nav-link">Contact</a>
         <a href="/admin/login" class="mobile-nav-link" style="color:var(--theme-accent); font-weight:800;">Admin Dashboard</a>
       </div>

@@ -6,11 +6,17 @@
   <title>Admin Console • Explore Wings Digital Technologies</title>
   <link rel="icon" type="image/png" href="../images/logo.png">
   <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .admin-nav-item.active { background: var(--admin-primary); color: #FFFFFF; font-weight: 600; }
     .admin-nav-item.active svg { stroke: #FFFFFF; }
+    .trend-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+    .trend-up { background: #ECFDF5; color: #059669; }
+    .trend-down { background: #FEF2F2; color: #DC2626; }
+    .kanban-col { background: var(--admin-card-bg, #ffffff); border: 1px solid var(--admin-border, #e2e8f0); border-radius: 12px; display: flex; flex-direction: column; min-height: 480px; }
+    .kanban-card { background: var(--admin-card-bg, #ffffff); border: 1px solid var(--admin-border, #e2e8f0); border-radius: 8px; padding: 12px; margin-bottom: 10px; cursor: grab; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
   </style>
 </head>
 <body class="admin-body">
@@ -62,16 +68,21 @@
           <span>Pricing Packages</span>
         </a>
 
-        <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted); padding: 12px 12px 4px; font-weight: 700;">System Controls</div>
+        <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted); padding: 12px 12px 4px; font-weight: 700;">Leads &amp; System</div>
+
+        <a href="#enquiries" class="admin-nav-item" data-tab="enquiries">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Enquiries Inbox</span>
+        </a>
+
+        <a href="#settings" class="admin-nav-item" data-tab="settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>WhatsApp &amp; Settings</span>
+        </a>
 
         <a href="#maintenance" class="admin-nav-item" data-tab="maintenance">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
           <span>Maintenance Mode</span>
-        </a>
-
-        <a href="#enquiries" class="admin-nav-item" data-tab="enquiries">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span>Leads Inbox</span>
         </a>
 
         <a href="../index.html" target="_blank" class="admin-nav-item" style="margin-top: 16px; border-top: 1px solid var(--admin-border); padding-top: 12px;">
@@ -125,28 +136,53 @@
       </div>
 
       <!-- Main Body Container -->
-      <main class="admin-content">
+      <main class="admin-content" style="padding: 24px;">
 
         <!-- ================= TAB 1: DASHBOARD ================= -->
         <div id="tab-dashboard" class="tab-content active">
-          <div class="admin-stats-row" style="margin-bottom: 24px;">
+          <!-- Personalized Greeting & Live Visitor Counter -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 id="greetingHeading" style="font-size: 1.5rem; font-weight: 800; margin: 0;">Good day, Admin</h2>
+              <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin: 4px 0 0;">Here is how Explore Wings Digital is performing today in Trivandrum.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; background: var(--admin-card-bg, #fff); border: 1px solid var(--admin-border); padding: 8px 14px; border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block; animation: pulse 2s infinite;"></span>
+              <span style="font-size: 0.8125rem; font-weight: 700; color: #10B981;">3 Visitors Online Now</span>
+            </div>
+          </div>
+
+          <!-- 4 Stat Cards with Trend Arrows -->
+          <div class="admin-stats-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px;">
             <div class="admin-stat-card">
-              <div class="stat-header"><span class="stat-title">Visitors Today</span></div>
-              <div class="stat-value">142</div>
-              <div class="stat-meta">489 total page views</div>
+              <div class="stat-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="stat-title">Visitors (7d)</span>
+                <span class="trend-pill trend-up">↑ +14.2%</span>
+              </div>
+              <div class="stat-value">1,480</div>
+              <div class="stat-meta">489 views today across pages</div>
             </div>
             <div class="admin-stat-card">
-              <div class="stat-header"><span class="stat-title">Enquiries This Week</span></div>
-              <div class="stat-value">12</div>
-              <div class="stat-meta">8.5% estimated conversion</div>
+              <div class="stat-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="stat-title">Project Enquiries</span>
+                <span class="trend-pill trend-up">↑ +22.5%</span>
+              </div>
+              <div class="stat-value" id="leadsCountValue">18</div>
+              <div class="stat-meta">8.4% conversion rate</div>
             </div>
             <div class="admin-stat-card">
-              <div class="stat-header"><span class="stat-title">Leads Captured</span></div>
-              <div class="stat-value" id="leadsCountValue" style="color: var(--admin-primary);">3</div>
-              <div class="stat-meta">From contact forms &amp; chatbot</div>
+              <div class="stat-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="stat-title">WhatsApp Clicks</span>
+                <span class="trend-pill trend-up">↑ +31.0%</span>
+              </div>
+              <div class="stat-value" id="waClicksCount">42</div>
+              <div class="stat-meta">Click-to-chat engagement</div>
             </div>
             <div class="admin-stat-card">
-              <div class="stat-header"><span class="stat-title">Site Status</span></div>
+              <div class="stat-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="stat-title">Server Uptime</span>
+                <span class="trend-pill trend-up">99.98%</span>
+              </div>
               <div class="stat-value" id="dashboardStatusVal" style="font-size: 1.5rem; text-transform: capitalize;">
                 <span class="status-indicator online"></span> Live
               </div>
@@ -154,24 +190,40 @@
             </div>
           </div>
 
+          <!-- Charts Row -->
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px;">
+            <div class="admin-card" style="padding: 20px;">
+              <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 16px;">Traffic &amp; Enquiries Over Time</h3>
+              <div style="height: 240px; position: relative;">
+                <canvas id="trafficChartCanvas"></canvas>
+              </div>
+            </div>
+            <div class="admin-card" style="padding: 20px;">
+              <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 16px;">Lead Ingestion Sources</h3>
+              <div style="height: 240px; position: relative;">
+                <canvas id="sourcesChartCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions Bar -->
           <div class="admin-card" style="margin-bottom: 24px;">
             <div class="admin-card-header"><h2 class="admin-card-title">Quick Actions</h2></div>
             <div class="admin-card-body" style="display: flex; gap: 12px; flex-wrap: wrap;">
               <button type="button" onclick="switchTab('pages')" class="admin-btn admin-btn-outline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                 <span>Edit Page Sections</span>
               </button>
               <button type="button" onclick="switchTab('services')" class="admin-btn admin-btn-outline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
                 <span>Manage 6 Services</span>
               </button>
-              <button type="button" onclick="switchTab('maintenance')" class="admin-btn admin-btn-outline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
-                <span>Maintenance Controls</span>
-              </button>
               <button type="button" onclick="switchTab('enquiries')" class="admin-btn admin-btn-outline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
-                <span>View Leads Inbox</span>
+                <span>Open Enquiries Inbox</span>
+              </button>
+              <button type="button" onclick="switchTab('settings')" class="admin-btn admin-btn-outline">
+                <span>WhatsApp Settings</span>
+              </button>
+              <button type="button" onclick="switchTab('maintenance')" class="admin-btn admin-btn-outline">
+                <span>Maintenance Controls</span>
               </button>
             </div>
           </div>
@@ -197,14 +249,13 @@
             </div>
           </div>
 
-          <!-- Section Cards Container populated by JavaScript -->
           <div id="sectionsCardList" style="display: flex; flex-direction: column; gap: 24px;"></div>
         </div>
 
         <!-- ================= TAB 3: SERVICES ================= -->
         <div id="tab-services" class="tab-content">
           <div class="admin-card">
-            <div class="admin-card-header"><h3 class="admin-card-title">Core Services (6 Featured in Trivandrum)</h3></div>
+            <div class="admin-card-header"><h3 class="admin-card-title">Core Services (6 Offered in Trivandrum)</h3></div>
             <div class="admin-card-body" style="padding: 0;">
               <table class="admin-table">
                 <thead>
@@ -221,6 +272,9 @@
           <div class="admin-card">
             <div class="admin-card-header"><h3 class="admin-card-title">Brands That Trust Us (Infinite Auto-Scroller)</h3></div>
             <div class="admin-card-body">
+              <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+                These client logos stream seamlessly across the 2-row auto-scroller. Clicking them does not open any modal or drawer.
+              </p>
               <div id="brandsGridList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;"></div>
             </div>
           </div>
@@ -252,7 +306,116 @@
           </div>
         </div>
 
-        <!-- ================= TAB 7: MAINTENANCE MODE ================= -->
+        <!-- ================= TAB 7: ENQUIRIES INBOX ================= -->
+        <div id="tab-enquiries" class="tab-content">
+          <div class="admin-page-header" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 700; margin: 0;">Enquiries Inbox</h2>
+              <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin: 4px 0 0;">
+                Track and respond to incoming leads via direct WhatsApp and phone call buttons.
+              </p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" id="standaloneBtnKanban" onclick="setStandaloneEnqView('kanban')" class="admin-btn admin-btn-sm admin-btn-primary">Kanban Board</button>
+              <button type="button" id="standaloneBtnTable" onclick="setStandaloneEnqView('table')" class="admin-btn admin-btn-sm admin-btn-outline">Table View</button>
+            </div>
+          </div>
+
+          <!-- Standalone Kanban Container -->
+          <div id="standaloneKanbanWrapper" style="display: block;">
+            <div id="standaloneKanbanCols" style="display: grid; grid-template-columns: repeat(5, minmax(260px, 1fr)); gap: 16px; overflow-x: auto; padding-bottom: 20px;">
+              <!-- Injected by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Standalone Table Container -->
+          <div id="standaloneTableWrapper" style="display: none;">
+            <div class="admin-card">
+              <div class="admin-card-body" style="padding: 0;">
+                <table class="admin-table">
+                  <thead>
+                    <tr><th>Client</th><th>Contact Details</th><th>Service</th><th>Status</th><th>Submitted</th><th style="text-align: right;">Action</th></tr>
+                  </thead>
+                  <tbody id="standaloneEnquiriesTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 8: WHATSAPP & SETTINGS ================= -->
+        <div id="tab-settings" class="tab-content">
+          <div class="admin-page-header" style="margin-bottom: 24px;">
+            <h2 style="font-size: 1.5rem; font-weight: 700;">Studio Contact &amp; WhatsApp Settings</h2>
+            <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+              Configure official phone numbers, WhatsApp Business numbers, and pre-filled greetings.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
+            <!-- Official Contact Cards -->
+            <div class="admin-card">
+              <div class="admin-card-header"><h3 class="admin-card-title">Studio Contact Details</h3></div>
+              <div class="admin-card-body">
+                <div class="admin-form-group">
+                  <label class="admin-label">Primary Phone (+91)</label>
+                  <input type="text" id="setPhone1" class="admin-input" value="+91 75104 05067">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Secondary Phone (+91)</label>
+                  <input type="text" id="setPhone2" class="admin-input" value="+91 62389 76168">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Office Address</label>
+                  <input type="text" id="setAddress" class="admin-input" value="Trivandrum (Thiruvananthapuram), Kerala, India">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Studio Working Hours</label>
+                  <input type="text" id="setHours" class="admin-input" value="Monday – Saturday: 9:30 AM – 6:30 PM IST">
+                </div>
+                <button type="button" onclick="saveContactSettings()" class="admin-btn admin-btn-primary" style="margin-top: 8px;">
+                  Save Contact Details
+                </button>
+              </div>
+            </div>
+
+            <!-- WhatsApp Business Settings -->
+            <div class="admin-card">
+              <div class="admin-card-header"><h3 class="admin-card-title">WhatsApp Business Settings</h3></div>
+              <div class="admin-card-body">
+                <div class="admin-form-group">
+                  <label class="admin-label">WhatsApp Business Number</label>
+                  <input type="text" id="setWaNumber" class="admin-input" value="+91 89213 09190">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Default Pre-filled Greeting</label>
+                  <textarea id="setWaMsg" class="admin-textarea" rows="2">Hi Explore Wings, I'd like to know more about your services.</textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Button Text</label>
+                  <input type="text" id="setWaBtnText" class="admin-input" value="Chat on WhatsApp">
+                </div>
+                <div class="admin-form-group" style="margin-top: 12px;">
+                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+                    <input type="checkbox" id="setWaShowFloat" checked>
+                    <span>Show floating WhatsApp button on all public pages</span>
+                  </label>
+                </div>
+                <div class="admin-form-group" style="margin-top: 8px;">
+                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+                    <input type="checkbox" id="setWaCloudApi">
+                    <span>WhatsApp Cloud API automatic notification (Disabled by default)</span>
+                  </label>
+                </div>
+                <button type="button" onclick="saveWaSettings()" class="admin-btn admin-btn-primary" style="margin-top: 8px;">
+                  Save WhatsApp Options
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 9: MAINTENANCE MODE ================= -->
         <div id="tab-maintenance" class="tab-content">
           <div class="admin-page-header" style="margin-bottom: 24px;">
             <h2 style="font-size: 1.5rem; font-weight: 700;">Maintenance Mode &amp; Server Health</h2>
@@ -343,21 +506,6 @@
           </div>
         </div>
 
-        <!-- ================= TAB 8: LEADS INBOX ================= -->
-        <div id="tab-enquiries" class="tab-content">
-          <div class="admin-card">
-            <div class="admin-card-header"><h3 class="admin-card-title">Project Consultation Leads</h3></div>
-            <div class="admin-card-body" style="padding: 0;">
-              <table class="admin-table">
-                <thead><tr><th>Contact / Phone / Email</th><th>Service</th><th>Submitted At</th></tr></thead>
-                <tbody id="enquiriesTableBody">
-                  <tr><td colspan="3" style="text-align: center; color: var(--admin-text-muted); padding: 24px;">No recent leads captured yet.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
       </main>
     </div>
   </div>
@@ -365,6 +513,8 @@
   <!-- Admin Interactive Store Script -->
   <script>
     let siteData = null;
+    let trafficChart = null;
+    let sourcesChart = null;
 
     // 1. Tab Navigation
     function switchTab(tabId) {
@@ -383,11 +533,16 @@
         brands: 'Brands That Trust Us',
         faqs: 'Frequently Asked Questions',
         pricing: 'Pricing Packages',
-        maintenance: 'Maintenance Mode & Server Health',
-        enquiries: 'Project Consultation Leads'
+        enquiries: 'Enquiries Inbox',
+        settings: 'WhatsApp & Studio Contact Settings',
+        maintenance: 'Maintenance Mode & Server Health'
       };
       document.getElementById('adminHeaderTitle').textContent = titleMap[tabId] || 'Admin Console';
       window.location.hash = tabId;
+
+      if (tabId === 'dashboard') {
+        renderCharts();
+      }
     }
 
     document.querySelectorAll('.admin-nav-item[data-tab]').forEach(btn => {
@@ -399,10 +554,15 @@
 
     // 2. Load Data from JSON & localStorage
     async function initAdmin() {
-      // Check auth flag
       localStorage.setItem('ew_admin_logged_in', 'true');
       const savedTheme = localStorage.getItem('admin_theme') || 'red';
       document.documentElement.setAttribute('data-theme', savedTheme);
+
+      // Set greeting
+      const hr = new Date().getHours();
+      const greeting = hr < 12 ? 'Good morning' : (hr < 18 ? 'Good afternoon' : 'Good evening');
+      const greetElem = document.getElementById('greetingHeading');
+      if (greetElem) greetElem.textContent = `${greeting}, Admin`;
 
       try {
         const res = await fetch('../data/site-content.json');
@@ -415,6 +575,9 @@
       renderDashboard();
       loadPageSections('home');
       renderCollections();
+      renderStandaloneEnquiries();
+      loadContactSettings();
+      renderCharts();
 
       // Check hash
       const hash = window.location.hash.replace('#', '');
@@ -622,24 +785,237 @@
           </tr>
         `).join('');
       }
+    }
 
-      // Enquiries
-      const enquiriesBody = document.getElementById('enquiriesTableBody');
-      const storedEnquiries = JSON.parse(localStorage.getItem('ew_enquiries') || '[]');
-      if (enquiriesBody && storedEnquiries.length) {
-        enquiriesBody.innerHTML = storedEnquiries.map(e => `
-          <tr>
-            <td><strong>${e.contact || e.email || 'Visitor'}</strong></td>
-            <td>${e.service || 'Free Consultation'}</td>
-            <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">${new Date(e.submitted_at).toLocaleString()}</td>
-          </tr>
-        `).join('');
-        document.getElementById('leadsCountValue').textContent = storedEnquiries.length + 3;
+    // 6. Standalone Enquiries Kanban & Table
+    const DEFAULT_LEADS = [
+      { id: 101, name: 'Ananya Pillai', phone: '+91 98470 12345', service: 'Full Website Design', budget: '₹50k - ₹1 Lakh', timeline: 'Within 1 Month', status: 'New', created_at: new Date(Date.now() - 3600000).toISOString() },
+      { id: 102, name: 'Rahul Nair', phone: '+91 94471 54321', service: 'Shopify Store', budget: '₹1 Lakh - ₹2.5 Lakhs', timeline: 'Immediate', status: 'Contacted', created_at: new Date(Date.now() - 14400000).toISOString() },
+      { id: 103, name: 'Sunil Kumar', phone: '+91 85900 88776', service: 'SEO & Growth Marketing', budget: '₹25k - ₹50k', timeline: 'Flexible', status: 'Quote Sent', created_at: new Date(Date.now() - 86400000).toISOString() },
+      { id: 104, name: 'Maya Menon', phone: '+91 70123 45678', service: 'Branding & Identity', budget: '₹50k - ₹1 Lakh', timeline: 'Within 2 Months', status: 'Won', created_at: new Date(Date.now() - 172800000).toISOString() }
+    ];
+
+    function getEnquiriesPool() {
+      const stored = JSON.parse(localStorage.getItem('ew_enquiries') || '[]');
+      const combined = [...stored, ...DEFAULT_LEADS];
+      return combined;
+    }
+
+    function renderStandaloneEnquiries() {
+      const leads = getEnquiriesPool();
+      const colsContainer = document.getElementById('standaloneKanbanCols');
+      const tableBody = document.getElementById('standaloneEnquiriesTableBody');
+
+      const colDefs = [
+        { key: 'New', color: '#2563EB', bg: '#EFF6FF', border: '#BFDBFE' },
+        { key: 'Contacted', color: '#D97706', bg: '#FFFBEB', border: '#FDE68A' },
+        { key: 'Quote Sent', color: '#7C3AED', bg: '#F5F3FF', border: '#DDD6FE' },
+        { key: 'Won', color: '#059669', bg: '#ECFDF5', border: '#A7F3D0' },
+        { key: 'Lost', color: '#6B7280', bg: '#F3F4F6', border: '#E5E7EB' }
+      ];
+
+      if (colsContainer) {
+        colsContainer.innerHTML = colDefs.map(col => {
+          const items = leads.filter(l => (l.status || 'New').toLowerCase() === col.key.toLowerCase());
+          const cardsHtml = items.map(l => {
+            const cleanDigits = (l.phone || '').replace(/[^0-9]/g, '');
+            const waNum = cleanDigits.startsWith('91') ? cleanDigits : ('91' + cleanDigits);
+            const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your Explore Wings enquiry.`);
+            return `
+              <div class="kanban-card">
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--admin-text-muted); margin-bottom: 4px;">
+                  <span style="font-weight: 700;">#${l.id}</span>
+                  <span>${new Date(l.created_at).toLocaleDateString()}</span>
+                </div>
+                <div style="font-weight: 700; font-size: 0.875rem;">${l.name}</div>
+                <div style="font-size: 0.75rem; color: var(--admin-primary); font-weight: 600; margin: 2px 0;">${l.service || 'General'}</div>
+                <div style="font-size: 0.75rem; color: var(--admin-text-muted);">${l.phone || ''}</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--admin-border);">
+                  <div style="display: flex; gap: 4px;">
+                    <a href="https://wa.me/${waNum}?text=${waText}" target="_blank" class="admin-btn-xs" style="background: #25D366; color: white; padding: 3px 6px; border-radius: 4px; text-decoration: none; font-size: 0.6875rem; font-weight: 700;">WA</a>
+                    <a href="tel:${l.phone}" class="admin-btn-xs" style="background: #0284C7; color: white; padding: 3px 6px; border-radius: 4px; text-decoration: none; font-size: 0.6875rem; font-weight: 700;">Call</a>
+                  </div>
+                  <select onchange="updateStandaloneLeadStatus('${l.id}', this.value)" style="font-size: 0.6875rem; padding: 2px 4px; border-radius: 4px; border: 1px solid var(--admin-border);">
+                    <option value="New" ${col.key === 'New' ? 'selected' : ''}>New</option>
+                    <option value="Contacted" ${col.key === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                    <option value="Quote Sent" ${col.key === 'Quote Sent' ? 'selected' : ''}>Quote Sent</option>
+                    <option value="Won" ${col.key === 'Won' ? 'selected' : ''}>Won</option>
+                    <option value="Lost" ${col.key === 'Lost' ? 'selected' : ''}>Lost</option>
+                  </select>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          return `
+            <div class="kanban-col">
+              <div style="padding: 12px 14px; background: ${col.bg}; border-bottom: 1px solid var(--admin-border); border-top-left-radius: 11px; border-top-right-radius: 11px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 0.8125rem; color: #1E293B;">${col.key}</span>
+                <span style="font-size: 0.75rem; font-weight: 700; background: white; color: ${col.color}; padding: 2px 7px; border-radius: 999px; border: 1px solid ${col.border};">${items.length}</span>
+              </div>
+              <div style="padding: 10px; flex: 1;">
+                ${cardsHtml || '<div style="text-align: center; color: var(--admin-text-muted); font-size: 0.75rem; padding: 24px 0;">No leads</div>'}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (tableBody) {
+        tableBody.innerHTML = leads.map(l => {
+          const cleanDigits = (l.phone || '').replace(/[^0-9]/g, '');
+          const waNum = cleanDigits.startsWith('91') ? cleanDigits : ('91' + cleanDigits);
+          const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your Explore Wings enquiry.`);
+          return `
+            <tr>
+              <td><strong>${l.name}</strong></td>
+              <td>${l.phone || l.email || ''}</td>
+              <td><span class="admin-badge">${l.service || 'General'}</span></td>
+              <td>
+                <select onchange="updateStandaloneLeadStatus('${l.id}', this.value)" style="font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--admin-border);">
+                  <option value="New" ${(l.status || 'New') === 'New' ? 'selected' : ''}>New</option>
+                  <option value="Contacted" ${(l.status || '') === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                  <option value="Quote Sent" ${(l.status || '') === 'Quote Sent' ? 'selected' : ''}>Quote Sent</option>
+                  <option value="Won" ${(l.status || '') === 'Won' ? 'selected' : ''}>Won</option>
+                  <option value="Lost" ${(l.status || '') === 'Lost' ? 'selected' : ''}>Lost</option>
+                </select>
+              </td>
+              <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">${new Date(l.created_at).toLocaleDateString()}</td>
+              <td style="text-align: right;">
+                <a href="https://wa.me/${waNum}?text=${waText}" target="_blank" class="admin-btn-xs" style="background: #25D366; color: white; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 600;">WhatsApp</a>
+                <a href="tel:${l.phone}" class="admin-btn-xs" style="background: #0284C7; color: white; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 600;">Call</a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      const totalVal = document.getElementById('leadsCountValue');
+      if (totalVal) totalVal.textContent = leads.length;
+    }
+
+    function updateStandaloneLeadStatus(leadId, targetStatus) {
+      alert(`Lead #${leadId} status changed to "${targetStatus}".`);
+      renderStandaloneEnquiries();
+    }
+
+    function setStandaloneEnqView(view) {
+      const kanban = document.getElementById('standaloneKanbanWrapper');
+      const table = document.getElementById('standaloneTableWrapper');
+      const btnK = document.getElementById('standaloneBtnKanban');
+      const btnT = document.getElementById('standaloneBtnTable');
+
+      if (view === 'table') {
+        kanban.style.display = 'none';
+        table.style.display = 'block';
+        btnT.className = 'admin-btn admin-btn-sm admin-btn-primary';
+        btnK.className = 'admin-btn admin-btn-sm admin-btn-outline';
+      } else {
+        kanban.style.display = 'block';
+        table.style.display = 'none';
+        btnK.className = 'admin-btn admin-btn-sm admin-btn-primary';
+        btnT.className = 'admin-btn admin-btn-sm admin-btn-outline';
+      }
+    }
+
+    // 7. Contact & WhatsApp Settings
+    function loadContactSettings() {
+      const customContact = JSON.parse(localStorage.getItem('ew_custom_contact') || '{}');
+      if (customContact.phone1) document.getElementById('setPhone1').value = customContact.phone1;
+      if (customContact.phone2) document.getElementById('setPhone2').value = customContact.phone2;
+      if (customContact.address) document.getElementById('setAddress').value = customContact.address;
+      if (customContact.hours) document.getElementById('setHours').value = customContact.hours;
+
+      const customWa = JSON.parse(localStorage.getItem('ew_custom_wa') || '{}');
+      if (customWa.number) document.getElementById('setWaNumber').value = customWa.number;
+      if (customWa.msg) document.getElementById('setWaMsg').value = customWa.msg;
+      if (customWa.btnText) document.getElementById('setWaBtnText').value = customWa.btnText;
+      if (customWa.showFloat !== undefined) document.getElementById('setWaShowFloat').checked = customWa.showFloat;
+      if (customWa.cloudApi !== undefined) document.getElementById('setWaCloudApi').checked = customWa.cloudApi;
+
+      const waClicks = localStorage.getItem('ew_wa_clicks_count') || '42';
+      const countElem = document.getElementById('waClicksCount');
+      if (countElem) countElem.textContent = waClicks;
+    }
+
+    function saveContactSettings() {
+      const phone1 = document.getElementById('setPhone1').value;
+      const phone2 = document.getElementById('setPhone2').value;
+      const address = document.getElementById('setAddress').value;
+      const hours = document.getElementById('setHours').value;
+      localStorage.setItem('ew_custom_contact', JSON.stringify({ phone1, phone2, address, hours }));
+      alert('Studio contact details saved successfully.');
+    }
+
+    function saveWaSettings() {
+      const number = document.getElementById('setWaNumber').value;
+      const msg = document.getElementById('setWaMsg').value;
+      const btnText = document.getElementById('setWaBtnText').value;
+      const showFloat = document.getElementById('setWaShowFloat').checked;
+      const cloudApi = document.getElementById('setWaCloudApi').checked;
+      localStorage.setItem('ew_custom_wa', JSON.stringify({ number, msg, btnText, showFloat, cloudApi }));
+      alert('WhatsApp Business options saved successfully.');
+    }
+
+    // 8. Render Charts
+    function renderCharts() {
+      if (typeof Chart === 'undefined') return;
+
+      const tCanvas = document.getElementById('trafficChartCanvas');
+      if (tCanvas && !trafficChart) {
+        trafficChart = new Chart(tCanvas, {
+          type: 'line',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [
+              {
+                label: 'Visitors',
+                data: [120, 150, 180, 190, 240, 210, 280],
+                borderColor: '#E11D2E',
+                backgroundColor: 'rgba(225, 29, 46, 0.1)',
+                fill: true,
+                tension: 0.35
+              },
+              {
+                label: 'Enquiries',
+                data: [2, 3, 5, 4, 7, 6, 8],
+                borderColor: '#059669',
+                backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                fill: true,
+                tension: 0.35
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+      }
+
+      const sCanvas = document.getElementById('sourcesChartCanvas');
+      if (sCanvas && !sourcesChart) {
+        sourcesChart = new Chart(sCanvas, {
+          type: 'doughnut',
+          data: {
+            labels: ['Direct Website Form', 'WhatsApp Chat', 'Wing Assistant', 'Direct Phone Call'],
+            datasets: [{
+              data: [45, 30, 15, 10],
+              backgroundColor: ['#E11D2E', '#25D366', '#0284C7', '#F59E0B']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } }
+          }
+        });
       }
     }
 
     function renderDashboard() {
-      // Subscribed users
       const subscribers = JSON.parse(localStorage.getItem('ew_subscribers') || '[]');
       const subBody = document.getElementById('subscribersTableBody');
       if (subBody && subscribers.length) {

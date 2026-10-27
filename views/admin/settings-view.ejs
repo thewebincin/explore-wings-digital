@@ -1,13 +1,127 @@
 <div class="admin-page-header" style="margin-bottom: 24px;">
-  <h2 style="font-size: 1.5rem; font-weight: 700;">System &amp; Email Settings</h2>
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Settings &amp; Contact Configurations</h2>
   <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
-    Configure outgoing email (SMTP) for client lead notifications, visitor auto-replies, and password security.
+    Manage company phone numbers, WhatsApp Business settings, working hours, and email notifications.
   </p>
 </div>
 
 <div class="admin-grid-layout-sidebar">
-  <!-- Left Main Column: SMTP Configuration -->
+  <!-- Left Main Column: Contact Info & WhatsApp -->
   <div style="display: flex; flex-direction: column; gap: 24px;">
+
+    <!-- 1. Contact Details Card -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">Company Contact Details</h3>
+      </div>
+      <div class="admin-card-body">
+        <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+          Displayed in the top bar, contact section, footer, and schema.org structured data.
+        </p>
+
+        <form action="/admin/settings" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+          <div class="admin-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-label">Primary Phone Number *</label>
+              <input type="text" name="phone_primary" class="admin-input" value="<%= settings.phone_primary || '+91 75104 05067' %>" required>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Secondary Phone Number *</label>
+              <input type="text" name="phone_secondary" class="admin-input" value="<%= settings.phone_secondary || '+91 62389 76168' %>" required>
+            </div>
+          </div>
+
+          <div class="admin-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-label">Studio Address *</label>
+              <input type="text" name="address" class="admin-input" value="<%= settings.address || 'Trivandrum (Thiruvananthapuram), Kerala, India' %>" required>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Working Hours *</label>
+              <input type="text" name="hours" class="admin-input" value="<%= settings.hours || 'Monday – Saturday: 9:30 AM – 6:30 PM IST' %>" required>
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-label">Public Inquiries Email</label>
+            <input type="email" name="contact_email" class="admin-input" value="<%= settings.contact_email || 'hello@explorewings.in' %>">
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary" style="margin-top: 12px;">
+            Save Contact Details
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. WhatsApp Connection Settings -->
+    <div class="admin-card">
+      <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="admin-card-title">WhatsApp Business Settings</h3>
+        <span class="admin-badge" style="background: rgba(37, 211, 102, 0.15); color: #15803D; font-weight: 700;">
+          <%= settings.whatsapp_clicks || 0 %> WhatsApp Clicks Recorded
+        </span>
+      </div>
+      <div class="admin-card-body">
+        <form action="/admin/settings" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+          <div class="admin-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-label">WhatsApp Business Number *</label>
+              <input type="text" name="whatsapp_number" class="admin-input" value="<%= settings.whatsapp_number || '+91 89213 09190' %>" required>
+              <small style="font-size: 0.72rem; color: var(--admin-text-muted);">Formatted with country code (e.g. +91 89213 09190)</small>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Button Text</label>
+              <input type="text" name="whatsapp_button_text" class="admin-input" value="<%= settings.whatsapp_button_text || 'Chat now' %>">
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-label">Default Pre-filled Message</label>
+            <input type="text" name="whatsapp_default_msg" class="admin-input" value="<%= settings.whatsapp_default_msg || 'Hi Explore Wings, I\'d like to know more about your services.' %>">
+          </div>
+
+          <div class="admin-form-group" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+              <input type="checkbox" name="whatsapp_floating_enabled" value="1" <%= (settings.whatsapp_floating_enabled !== '0') ? 'checked' : '' %>>
+              <span>Show floating WhatsApp button on all public pages</span>
+            </label>
+          </div>
+
+          <!-- Optional WhatsApp Cloud API Box -->
+          <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 16px; margin-top: 16px;">
+            <div style="font-weight: 700; font-size: 0.875rem; margin-bottom: 4px;">Optional: WhatsApp Business Cloud API</div>
+            <p style="font-size: 0.78rem; color: var(--admin-text-muted); margin-bottom: 12px;">
+              Automatically sends a WhatsApp notification to the admin on every new enquiry. Switch off by default; click-to-chat works fully without it.
+            </p>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.84rem; margin-bottom: 12px;">
+              <input type="checkbox" name="whatsapp_cloud_api_enabled" value="1" <%= (settings.whatsapp_cloud_api_enabled === '1') ? 'checked' : '' %>>
+              <span>Enable WhatsApp Cloud API alerts</span>
+            </label>
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label" style="font-size: 0.78rem;">Phone Number ID</label>
+                <input type="text" name="whatsapp_cloud_api_phone_id" class="admin-input" value="<%= settings.whatsapp_cloud_api_phone_id || '' %>" placeholder="1049284920...">
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label" style="font-size: 0.78rem;">System User Token</label>
+                <input type="password" name="whatsapp_cloud_api_token" class="admin-input" value="<%= settings.whatsapp_cloud_api_token ? '••••••••' : '' %>" placeholder="EAA...">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary" style="margin-top: 16px;">
+            Save WhatsApp Settings
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. SMTP Mail Server Settings -->
     <div class="admin-card">
       <div class="admin-card-header">
         <h3 class="admin-card-title">SMTP Mail Server Settings</h3>
@@ -19,7 +133,7 @@
           <div class="admin-grid-2">
             <div class="admin-form-group">
               <label class="admin-label">SMTP Host</label>
-              <input type="text" name="smtp_host" class="admin-input" value="<%= settings.smtp_host || '' %>" placeholder="smtp.gmail.com or smtp.mailgun.org">
+              <input type="text" name="smtp_host" class="admin-input" value="<%= settings.smtp_host || '' %>" placeholder="smtp.gmail.com">
             </div>
             <div class="admin-form-group">
               <label class="admin-label">SMTP Port</label>
@@ -30,17 +144,17 @@
           <div class="admin-grid-2">
             <div class="admin-form-group">
               <label class="admin-label">SMTP Username / Email</label>
-              <input type="text" name="smtp_user" class="admin-input" value="<%= settings.smtp_user || '' %>" placeholder="hello@explorewings.com">
+              <input type="text" name="smtp_user" class="admin-input" value="<%= settings.smtp_user || '' %>" placeholder="hello@explorewings.in">
             </div>
             <div class="admin-form-group">
-              <label class="admin-label">SMTP Password / App Password</label>
+              <label class="admin-label">SMTP Password</label>
               <input type="password" name="smtp_pass" class="admin-input" value="<%= settings.smtp_pass ? '••••••••••••' : '' %>" placeholder="••••••••••••">
             </div>
           </div>
 
           <div class="admin-form-group">
             <label class="admin-label">From Sender Address</label>
-            <input type="text" name="smtp_from" class="admin-input" value="<%= settings.smtp_from || '' %>" placeholder='"Explore Wings Digital" <hello@explorewings.com>'>
+            <input type="text" name="smtp_from" class="admin-input" value="<%= settings.smtp_from || '' %>" placeholder='"Explore Wings Digital" <hello@explorewings.in>'>
           </div>
 
           <button type="submit" class="admin-btn admin-btn-primary" style="margin-top: 12px;">
@@ -49,56 +163,53 @@
         </form>
       </div>
     </div>
+  </div>
 
-    <!-- Test Email Trigger -->
+  <!-- Right Column: Password Update & System Information -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    <!-- Change Password -->
     <div class="admin-card">
       <div class="admin-card-header">
-        <h3 class="admin-card-title">Send Test Email</h3>
+        <h3 class="admin-card-title">Change Password</h3>
       </div>
       <div class="admin-card-body">
-        <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 16px;">
-          Dispatches a diagnostic message to verify authentication and deliverability.
-        </p>
-
-        <form action="/admin/settings/smtp/test" method="POST">
+        <form action="/admin/settings/password" method="POST">
           <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
-          <div style="display: flex; gap: 8px; max-width: 480px;">
-            <input type="email" name="test_recipient" class="admin-input" placeholder="Recipient email address" required value="<%= user ? user.email : '' %>">
-            <button type="submit" class="admin-btn admin-btn-outline" style="white-space: nowrap;">Send Test</button>
+
+          <div class="admin-form-group">
+            <label class="admin-label">Current Password *</label>
+            <input type="password" name="current_password" class="admin-input" required>
           </div>
+
+          <div class="admin-form-group">
+            <label class="admin-label">New Password * (Min. 8 characters)</label>
+            <input type="password" name="new_password" class="admin-input" required minlength="8">
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-label">Confirm New Password *</label>
+            <input type="password" name="confirm_password" class="admin-input" required minlength="8">
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; margin-top: 12px;">
+            Update Password
+          </button>
         </form>
       </div>
     </div>
-  </div>
 
-  <!-- Right Column: Security & Password Update -->
-  <div class="admin-card">
-    <div class="admin-card-header">
-      <h3 class="admin-card-title">Change Password</h3>
-    </div>
-    <div class="admin-card-body">
-      <form action="/admin/settings/password" method="POST">
-        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
-
-        <div class="admin-form-group">
-          <label class="admin-label">Current Password *</label>
-          <input type="password" name="current_password" class="admin-input" required>
-        </div>
-
-        <div class="admin-form-group">
-          <label class="admin-label">New Password * (Min. 8 characters)</label>
-          <input type="password" name="new_password" class="admin-input" required minlength="8">
-        </div>
-
-        <div class="admin-form-group">
-          <label class="admin-label">Confirm New Password *</label>
-          <input type="password" name="confirm_password" class="admin-input" required minlength="8">
-        </div>
-
-        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; margin-top: 12px;">
-          Update Password
-        </button>
-      </form>
+    <!-- Quick Stats -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">System Overview</h3>
+      </div>
+      <div class="admin-card-body" style="font-size: 0.8125rem; line-height: 1.8;">
+        <div><strong>Studio Base:</strong> Trivandrum, Kerala</div>
+        <div><strong>Primary Phone:</strong> <%= settings.phone_primary || '+91 75104 05067' %></div>
+        <div><strong>WhatsApp:</strong> <%= settings.whatsapp_number || '+91 89213 09190' %></div>
+        <div><strong>Analytics Clicks:</strong> <%= settings.whatsapp_clicks || 0 %></div>
+        <div><strong>Database:</strong> SQLite 3 (WAL mode)</div>
+      </div>
     </div>
   </div>
 </div>

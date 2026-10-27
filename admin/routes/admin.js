@@ -738,11 +738,14 @@ router.get('/enquiries', requireAuth, (req, res) => {
 
   const isSpam = spam === '1';
   const enquiries = Enquiries.list({ status, search, limit, offset, is_spam: isSpam });
+  const allEnquiries = Enquiries.list({ limit: 200, is_spam: 0 });
   const total = Enquiries.count({ status, is_spam: isSpam });
   const stats = Enquiries.getStats();
 
   res.render('admin/enquiries-list', {
+    activeTab: 'enquiries',
     enquiries,
+    allEnquiries,
     total,
     stats,
     currentStatus: status || 'all',
@@ -752,6 +755,23 @@ router.get('/enquiries', requireAuth, (req, res) => {
     totalPages: Math.ceil(total / limit) || 1,
     title: isSpam ? 'Spam Enquiries' : 'Enquiries Inbox'
   });
+});
+
+router.post('/enquiries/:id/status', requireAuth, requireRole('Owner', 'Editor'), (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!status) {
+    if (req.xhr || req.headers.accept?.includes('json')) {
+      return res.status(400).json({ error: 'Status is required' });
+    }
+    return res.redirect('/admin/enquiries');
+  }
+  Enquiries.updateStatus(id, status);
+  Activity.log(req.user, 'UPDATE_STATUS', `Updated enquiry #${id} status to ${status}`, req);
+  if (req.xhr || req.headers.accept?.includes('json')) {
+    return res.json({ success: true, id, status });
+  }
+  res.redirect('/admin/enquiries');
 });
 
 router.get('/enquiries/:id', requireAuth, (req, res) => {
@@ -1061,24 +1081,41 @@ router.get('/settings', requireAuth, requireRole('Owner'), (req, res) => {
 
 router.post('/settings', requireAuth, requireRole('Owner'), (req, res) => {
   const {
-    smtp_host, smtp_port, smtp_secure, smtp_user, smtp_pass, smtp_from,
+    phone_primary, phone_secondary, whatsapp_number, whatsapp_default_msg,
+    whatsapp_button_text, whatsapp_floating_enabled, whatsapp_cloud_api_enabled,
+    whatsapp_cloud_api_phone_id, whatsapp_cloud_api_token, address, hours,
+    contact_email, smtp_host, smtp_port, smtp_secure, smtp_user, smtp_pass, smtp_from,
     notification_email, auto_reply_enabled, uptime_alert_email, analytics_retention_months
   } = req.body;
 
-  Settings.setMultiple({
-    smtp_host: cleanText(smtp_host, 200),
-    smtp_port: cleanText(smtp_port, 10),
-    smtp_secure: smtp_secure === 'true' ? 'true' : 'false',
-    smtp_user: cleanText(smtp_user, 120),
-    smtp_pass: smtp_pass || Settings.get('smtp_pass', ''),
-    smtp_from: cleanText(smtp_from, 120),
-    notification_email: cleanText(notification_email, 120),
-    auto_reply_enabled: auto_reply_enabled === '1' ? '1' : '0',
-    uptime_alert_email: cleanText(uptime_alert_email, 120),
-    analytics_retention_months: cleanText(analytics_retention_months, 10)
-  });
+  const updates = {};
+  if (phone_primary !== undefined) updates.phone_primary = cleanText(phone_primary, 50);
+  if (phone_secondary !== undefined) updates.phone_secondary = cleanText(phone_secondary, 50);
+  if (whatsapp_number !== undefined) updates.whatsapp_number = cleanText(whatsapp_number, 50);
+  if (whatsapp_default_msg !== undefined) updates.whatsapp_default_msg = cleanText(whatsapp_default_msg, 300);
+  if (whatsapp_button_text !== undefined) updates.whatsapp_button_text = cleanText(whatsapp_button_text, 50);
+  if (whatsapp_floating_enabled !== undefined) updates.whatsapp_floating_enabled = whatsapp_floating_enabled === '1' ? '1' : '0';
+  if (whatsapp_cloud_api_enabled !== undefined) updates.whatsapp_cloud_api_enabled = whatsapp_cloud_api_enabled === '1' ? '1' : '0';
+  if (whatsapp_cloud_api_phone_id !== undefined) updates.whatsapp_cloud_api_phone_id = cleanText(whatsapp_cloud_api_phone_id, 100);
+  if (whatsapp_cloud_api_token !== undefined && whatsapp_cloud_api_token.trim()) updates.whatsapp_cloud_api_token = cleanText(whatsapp_cloud_api_token, 300);
+  if (address !== undefined) updates.address = cleanText(address, 200);
+  if (hours !== undefined) updates.hours = cleanText(hours, 100);
+  if (contact_email !== undefined) updates.contact_email = cleanText(contact_email, 120);
 
-  Activity.log(req.user, 'UPDATE_SETTINGS', 'Updated system & SMTP settings', req);
+  if (smtp_host !== undefined) updates.smtp_host = cleanText(smtp_host, 200);
+  if (smtp_port !== undefined) updates.smtp_port = cleanText(smtp_port, 10);
+  if (smtp_secure !== undefined) updates.smtp_secure = smtp_secure === 'true' ? 'true' : 'false';
+  if (smtp_user !== undefined) updates.smtp_user = cleanText(smtp_user, 120);
+  if (smtp_pass) updates.smtp_pass = smtp_pass;
+  if (smtp_from !== undefined) updates.smtp_from = cleanText(smtp_from, 120);
+  if (notification_email !== undefined) updates.notification_email = cleanText(notification_email, 120);
+  if (auto_reply_enabled !== undefined) updates.auto_reply_enabled = auto_reply_enabled === '1' ? '1' : '0';
+  if (uptime_alert_email !== undefined) updates.uptime_alert_email = cleanText(uptime_alert_email, 120);
+  if (analytics_retention_months !== undefined) updates.analytics_retention_months = cleanText(analytics_retention_months, 10);
+
+  Settings.setMultiple(updates);
+
+  Activity.log(req.user, 'UPDATE_SETTINGS', 'Updated system, contact & WhatsApp settings', req);
   res.redirect('/admin/settings?saved=1');
 });
 

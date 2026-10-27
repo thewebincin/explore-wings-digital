@@ -25,110 +25,14 @@
    - Right-side slide-in client detail drawer (#clientDetailDrawer)
    ========================================================================== */
 const BRANDS = [
-  {
-    id: 'aadisaktthi',
-    name: 'Aadisaktthi Resorts & Spa',
-    tagline: 'Ayurvedic Sanctuary by the Sea',
-    logo: 'assets/logos/aadisaktthi-resorts-spa.png',
-    type: 'Resort and Ayurvedic Spa',
-    location: 'Kovalam, Trivandrum (227/A KS Road, Vellar)',
-    details: 'Known for authentic Ayurvedic treatments, an outdoor pool, a multi-cuisine restaurant, and a lush tropical garden near Kovalam and Samudra beaches.',
-    logoNotes: 'Refined lotus-and-sun emblem paired with heritage serif typography in deep forest green and warm Ayurvedic gold.',
-    services: ['Website Design', 'Photo & Video', 'Local Search Setup'],
-    whatWeDid: '[edit — Add specific website, photography, or marketing deliverables completed for Aadisaktthi Resorts & Spa]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'terrace-makkawao',
-    name: 'Terrace by Makkawao',
-    tagline: 'Signature Rooftop Cafe & Dining',
-    logo: 'assets/logos/terrace-by-makkawao.png',
-    type: 'Cafe and Restaurant',
-    location: 'Kazhakkoottam, Trivandrum',
-    details: 'Vibrant rooftop cafe and restaurant in Kazhakkoottam serving a full veg and non-veg menu, open daily from 12:00 pm to 12:00 am.',
-    logoNotes: 'Minimalist architectural arch emblem above clean white "TERRACE BY" lettering and metallic gold "MAKKAWAD" display type.',
-    services: ['Social Media', 'Photo & Video', 'Digital Menu'],
-    whatWeDid: '[edit — Add specific social media reels, food photography, or branding deliverables completed for Terrace by Makkawao]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'transorze',
-    name: 'Transorze',
-    tagline: 'Skill Development & Career Training',
-    logo: 'assets/logos/transorze.png',
-    type: '[add business type — e.g. Skill Training & EdTech Solutions]',
-    location: '[add location — e.g. Trivandrum, Kerala]',
-    details: 'Professional training and career development organization preparing students and graduates for specialized industry careers.',
-    logoNotes: 'Dynamic navy-blue and crimson-red swoosh crest above bold blue "Transorze" corporate typography.',
-    services: ['Website Design', 'Digital Marketing', 'Branding & Logos'],
-    whatWeDid: '[edit — Add specific website, student lead generation, or creative work completed for Transorze]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'edustudy',
-    name: 'Edustudy International',
-    tagline: 'Global Study-Abroad Pathways',
-    logo: 'assets/logos/edustudy-international.png',
-    type: 'Education and Study-Abroad Brand',
-    location: '[add location — e.g. Trivandrum, Kerala]',
-    details: 'Dedicated overseas education and study-abroad consultancy guiding students through international university admissions and visa processes.',
-    logoNotes: 'Academic shield and graduation cap motif in royal blue and crimson with "EDUSTUDY INTERNATIONAL" wordmark.',
-    services: ['Business Websites', 'Social Media', 'Digital Marketing'],
-    whatWeDid: '[edit — Add specific study-abroad website, campaign, or branding deliverables completed for Edustudy International]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'global-fitness',
-    name: 'Global Fitness',
-    tagline: 'Strength, Conditioning & Wellness',
-    logo: 'assets/logos/global-fitness.png',
-    type: 'Gym and Fitness',
-    location: '[add location — e.g. Trivandrum, Kerala]',
-    details: 'Modern gym and athletic training destination equipped for strength training, personal coaching, and everyday fitness transformation.',
-    logoNotes: 'High-energy athletic figure and globe emblem in vibrant yellow and red against a bold dark fitness badge.',
-    services: ['Branding & Logos', 'Social Media', 'Photo & Video'],
-    whatWeDid: '[edit — Add specific fitness campaign, reels, or identity deliverables completed for Global Fitness]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'elaf',
-    name: 'Elaf',
-    tagline: 'Flavors that Unite',
-    logo: 'assets/logos/elaf.png',
-    type: 'Food Brand',
-    location: '[add location — e.g. Trivandrum, Kerala]',
-    details: 'Signature culinary and food brand crafted around the welcoming promise "Flavors that Unite" — bringing families and food lovers together.',
-    logoNotes: 'Warm culinary crest with bold "ELAF" display lettering and the italic signature tagline "Flavors that Unite".',
-    services: ['Branding & Logos', 'Packaging Design', 'Photo & Video'],
-    whatWeDid: '[edit — Add specific packaging, branding, or food shoot deliverables completed for Elaf]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'lulu',
-    name: 'LuLu',
-    tagline: 'Where the world comes to shop',
-    logo: 'assets/logos/lulu-mall.png',
-    type: 'Destination Shopping Mall & Hypermarket',
-    location: 'Akkulam, Trivandrum, Kerala',
-    details: 'Flagship retail, hypermarket, dining, and family entertainment destination in Thiruvananthapuram, welcoming shoppers from across South Kerala.',
-    logoNotes: 'Official LuLu identity featuring the red ribbon "L" over a green striped globe, bold green italic "LuLu" script, and the tagline "Where the world comes to shop".',
-    services: ['Social Media', 'Photo & Video', 'Digital Campaigns'],
-    whatWeDid: '[edit — Add specific festive campaign, visual production, or digital promotion deliverables completed for LuLu]',
-    status: 'Client story coming soon'
-  },
-  {
-    id: 'munch',
-    name: 'Munch (Nestlé)',
-    tagline: 'Crunch into Confidence',
-    logo: 'assets/logos/munch.png',
-    type: 'Confectionery & Youth Snack Brand',
-    location: 'Kerala Regional Retail & Campus Campaigns',
-    details: 'Iconic chocolate-coated wafer bar loved across Kerala — recognised instantly by its vibrant purple backdrop, 3D yellow lettering, and red Nestlé crest.',
-    logoNotes: 'Official Nestlé Munch logo with the red Nestlé heart-crest badge and bold yellow extruded "munch" logotype on royal purple.',
-    services: ['Social Media', 'Regional Campaigns', 'Visual Creatives'],
-    whatWeDid: '[edit — Add specific regional activation, youth campaign, or creative deliverables completed for Munch]',
-    status: 'Client story coming soon'
-  }
+  { id: 'aadisaktthi', name: 'Aadisaktthi Resorts & Spa', logo: 'assets/logos/aadisaktthi-resorts-spa.png' },
+  { id: 'terrace-makkawao', name: 'Terrace by Makkawao', logo: 'assets/logos/terrace-by-makkawao.png' },
+  { id: 'transorze', name: 'Transorze', logo: 'assets/logos/transorze.png' },
+  { id: 'edustudy', name: 'Edustudy International', logo: 'assets/logos/edustudy-international.png' },
+  { id: 'global-fitness', name: 'Global Fitness', logo: 'assets/logos/global-fitness.png' },
+  { id: 'elaf', name: 'Elaf', logo: 'assets/logos/elaf.png' },
+  { id: 'lulu', name: 'LuLu', logo: 'assets/logos/lulu-mall.png' },
+  { id: 'munch', name: 'Munch (Nestlé)', logo: 'assets/logos/munch.png' }
 ];
 
 /* ==========================================================================
@@ -195,7 +99,7 @@ const SHOWCASE_TABS = [
     id: 'marketing',
     tag: '05 • Marketing',
     title: 'Google Maps ranking and targeted local ads that bring real phone calls.',
-    desc: 'We optimize your Google Business Profile and run hyper-targeted local campaigns on Instagram, Facebook, and Google Search.',
+    desc: 'We optimize your Google Business Listing and run hyper-targeted local campaigns on Instagram, Facebook, and Google Search.',
     bullets: [
       'Google Maps optimization for Trivandrum & Kerala searches',
       'Radius-targeted Instagram & Meta lead generation campaigns',
@@ -420,24 +324,17 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   function createBrandLogoCardHTML(brand) {
     return `
-      <button
-        type="button"
-        class="brand-card-white"
-        data-open-brand="${brand.id}"
-        aria-label="View client details for ${brand.name}"
-        title="${brand.name} — Click for details"
-      >
+      <div class="brand-card-white" aria-label="${brand.name}">
         <img
           src="${brand.logo}"
           alt="${brand.name} logo"
           loading="lazy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"
         />
         <span style="display:none; font-family:var(--font-display); font-weight:800; color:#0B1020; font-size:0.95rem;">
           ${brand.name}
         </span>
-        <span class="brand-card-hint">Details →</span>
-      </button>
+      </div>
     `;
   }
 
@@ -467,99 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row2.innerHTML = repeated2.map(createBrandLogoCardHTML).join('');
   });
 
-  // Populate Client Stories Carousel (#clientStoriesTrack)
-  const storiesTrack = document.getElementById('clientStoriesTrack');
-  if (storiesTrack) {
-    storiesTrack.innerHTML = BRANDS.map(brand => `
-      <article class="story-tall-card" data-reveal="up">
-        <div>
-          <div class="story-logo-chip">
-            <img src="${brand.logo}" alt="${brand.name} logo" loading="lazy" />
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.75rem;">
-            <span class="coming-soon-status-box">● ${brand.status}</span>
-          </div>
-          <h3 class="heading-lg" style="margin-bottom:0.3rem;">${brand.name}</h3>
-          <div style="font-size:0.8rem; font-weight:700; color:var(--theme-primary); margin-bottom:0.75rem;">
-            ${brand.type} • ${brand.location}
-          </div>
-          <p class="body-md" style="margin-bottom:1rem;">${brand.details}</p>
-          <div class="what-we-did-box">
-            <div style="font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--theme-primary);">
-              What We Did
-            </div>
-            <div style="font-size:0.86rem; color:var(--text-secondary); margin-top:0.25rem;">
-              ${brand.whatWeDid}
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:1.35rem; padding-top:1rem; border-top:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">${brand.tagline}</span>
-          <button type="button" class="card-action-link" style="margin-top:0;" data-open-brand="${brand.id}">
-            <span>Open Card</span> <span>→</span>
-          </button>
-        </div>
-      </article>
-    `).join('');
-  }
 
-  // Slide-In Right Client Detail Drawer Modal Controller
-  const drawerBackdrop = document.getElementById('clientDrawerBackdrop');
-  const clientDrawer = document.getElementById('clientDetailDrawer');
-  const closeClientDrawerBtn = document.getElementById('closeClientDrawerBtn');
-
-  function openClientDrawer(brandId) {
-    const brand = BRANDS.find(b => b.id === brandId) || BRANDS[0];
-    if (!brand || !clientDrawer) return;
-
-    const elLogo = document.getElementById('drawerBrandLogo');
-    const elName = document.getElementById('drawerBrandName');
-    const elTagline = document.getElementById('drawerBrandTagline');
-    const elType = document.getElementById('drawerBrandType');
-    const elLocation = document.getElementById('drawerBrandLocation');
-    const elDetails = document.getElementById('drawerBrandDetails');
-    const elLogoNotes = document.getElementById('drawerBrandLogoNotes');
-    const elWhatWeDid = document.getElementById('drawerBrandWhatWeDid');
-    const elServices = document.getElementById('drawerBrandServices');
-    const elStatus = document.getElementById('drawerBrandStatus');
-
-    if (elLogo) { elLogo.src = brand.logo; elLogo.alt = `${brand.name} logo`; }
-    if (elName) elName.textContent = brand.name;
-    if (elTagline) elTagline.textContent = brand.tagline;
-    if (elType) elType.textContent = brand.type;
-    if (elLocation) elLocation.textContent = brand.location;
-    if (elDetails) elDetails.textContent = brand.details;
-    if (elLogoNotes) elLogoNotes.textContent = brand.logoNotes;
-    if (elWhatWeDid) elWhatWeDid.textContent = brand.whatWeDid;
-    if (elStatus) elStatus.textContent = `● ${brand.status} (No invented metrics)`;
-    if (elServices) {
-      elServices.innerHTML = (brand.services || [])
-        .map(s => `<span class="eyebrow" style="margin:0; font-size:0.68rem;">${s}</span>`)
-        .join('');
-    }
-
-    clientDrawer.classList.add('open');
-    if (drawerBackdrop) drawerBackdrop.classList.add('open');
-  }
-
-  function closeClientDrawer() {
-    if (clientDrawer) clientDrawer.classList.remove('open');
-    if (drawerBackdrop) drawerBackdrop.classList.remove('open');
-  }
-
-  document.addEventListener('click', e => {
-    const trigger = e.target.closest('[data-open-brand]');
-    if (trigger) {
-      e.preventDefault();
-      openClientDrawer(trigger.getAttribute('data-open-brand'));
-    }
-  });
-
-  if (closeClientDrawerBtn) closeClientDrawerBtn.addEventListener('click', closeClientDrawer);
-  if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeClientDrawer);
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeClientDrawer();
-  });
 
   /* ==========================================================================
      6. REVEAL DIRECTIONS — MULTI-DIRECTIONAL REVEALS, STAGGER & COUNTERS
@@ -947,11 +752,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dragZone) {
         cursorRing.classList.add('is-label');
         cursorRing.classList.remove('is-hover');
-        cursorRing.textContent = 'Drag';
+        cursorRing.textContent = '';
       } else if (viewZone) {
         cursorRing.classList.add('is-label');
         cursorRing.classList.remove('is-hover');
-        cursorRing.textContent = 'View';
+        cursorRing.textContent = '';
       } else if (interactive) {
         cursorRing.classList.add('is-hover');
         cursorRing.classList.remove('is-label');
@@ -1165,4 +970,224 @@ document.addEventListener('DOMContentLoaded', () => {
       if (thankYou) thankYou.classList.add('visible');
     });
   }
+  // Multi-Step Interactive Project Enquiry Form Controller
+  const multiForm = document.getElementById('multiStepEnquiryForm');
+  if (multiForm) {
+    let currentStep = 1;
+    const totalSteps = 4;
+    const stepTitles = {
+      1: 'About you',
+      2: 'Your project',
+      3: 'Budget & timing',
+      4: 'Review & submit'
+    };
+
+    const stepNumEl = document.getElementById('enquiryCurrentStepNum');
+    const stepTitleEl = document.getElementById('enquiryStepTitle');
+    const progressFillEl = document.getElementById('enquiryStepProgressFill');
+
+    const step1Panel = document.getElementById('enquiryStep1');
+    const step2Panel = document.getElementById('enquiryStep2');
+    const step3Panel = document.getElementById('enquiryStep3');
+    const step4Panel = document.getElementById('enquiryStep4');
+    const successPanel = document.getElementById('enquirySuccessPanel');
+    const fallbackPanel = document.getElementById('enquiryFallbackPanel');
+
+    const nameInput = document.getElementById('step1Name');
+    const phoneInput = document.getElementById('step1Phone');
+    const emailInput = document.getElementById('step1Email');
+    const companyInput = document.getElementById('step1Company');
+    const messageInput = document.getElementById('step4Message');
+
+    const errName = document.getElementById('errName');
+    const errPhone = document.getElementById('errPhone');
+
+    // Phone input helper: ensure +91 prefix
+    if (phoneInput) {
+      phoneInput.addEventListener('focus', () => {
+        if (!phoneInput.value.trim()) phoneInput.value = '+91 ';
+      });
+      phoneInput.addEventListener('input', () => {
+        if (!phoneInput.value.startsWith('+91')) {
+          phoneInput.value = '+91 ' + phoneInput.value.replace(/^\+?91\s*/, '');
+        }
+        if (errPhone) errPhone.style.display = 'none';
+        phoneInput.style.borderColor = '';
+      });
+    }
+
+    if (nameInput) {
+      nameInput.addEventListener('input', () => {
+        if (errName) errName.style.display = 'none';
+        nameInput.style.borderColor = '';
+      });
+    }
+
+    function showStep(step) {
+      currentStep = step;
+      [step1Panel, step2Panel, step3Panel, step4Panel].forEach((p, idx) => {
+        if (p) p.style.display = (idx + 1 === step) ? 'block' : 'none';
+      });
+
+      if (stepNumEl) stepNumEl.textContent = step;
+      if (stepTitleEl) stepTitleEl.textContent = stepTitles[step] || '';
+      if (progressFillEl) progressFillEl.style.width = `${(step / totalSteps) * 100}%`;
+
+      if (step === 4) {
+        updateReviewSummary();
+      }
+    }
+
+    function validateStep1() {
+      let valid = true;
+      const name = (nameInput ? nameInput.value : '').trim();
+      if (!name) {
+        if (errName) errName.style.display = 'block';
+        if (nameInput) nameInput.style.borderColor = '#EF4444';
+        valid = false;
+      }
+
+      const phoneRaw = (phoneInput ? phoneInput.value : '').replace(/[^0-9]/g, '');
+      // Expect at least 10 digits
+      const digits = phoneRaw.startsWith('91') ? phoneRaw.slice(2) : phoneRaw;
+      if (digits.length < 10) {
+        if (errPhone) errPhone.style.display = 'block';
+        if (phoneInput) phoneInput.style.borderColor = '#EF4444';
+        valid = false;
+      }
+      return valid;
+    }
+
+    function getSelectedServices() {
+      const checked = multiForm.querySelectorAll('input[name="services"]:checked');
+      const list = [];
+      checked.forEach(c => list.push(c.value));
+      return list.length ? list : ['Website Design'];
+    }
+
+    function getSelectedBudget() {
+      const sel = multiForm.querySelector('input[name="budget_tier"]:checked');
+      return sel ? sel.value : '₹35,000 – ₹75,000';
+    }
+
+    function getSelectedTimeline() {
+      const sel = multiForm.querySelector('input[name="timeline"]:checked');
+      return sel ? sel.value : 'Within 1 Month';
+    }
+
+    function updateReviewSummary() {
+      const summaryBox = document.getElementById('enquiryReviewSummary');
+      if (!summaryBox) return;
+      const name = (nameInput ? nameInput.value : '').trim();
+      const phone = (phoneInput ? phoneInput.value : '').trim();
+      const email = (emailInput ? emailInput.value : '').trim();
+      const company = (companyInput ? companyInput.value : '').trim();
+      const services = getSelectedServices().join(', ');
+      const budget = getSelectedBudget();
+      const timeline = getSelectedTimeline();
+
+      summaryBox.innerHTML = `
+        <div style="margin-bottom: 6px;"><strong>Client:</strong> ${name} (${phone}${email ? ' • ' + email : ''}${company ? ' • ' + company : ''})</div>
+        <div style="margin-bottom: 6px;"><strong>Services:</strong> <span style="color: var(--theme-primary); font-weight: 700;">${services}</span></div>
+        <div><strong>Budget & Timeline:</strong> ${budget} • ${timeline}</div>
+      `;
+    }
+
+    // Step 1 Next
+    const btnStep1Next = document.getElementById('btnStep1Next');
+    if (btnStep1Next) {
+      btnStep1Next.addEventListener('click', () => {
+        if (validateStep1()) showStep(2);
+      });
+    }
+
+    // Step 2 Back & Next
+    const btnStep2Back = document.getElementById('btnStep2Back');
+    if (btnStep2Back) btnStep2Back.addEventListener('click', () => showStep(1));
+    const btnStep2Next = document.getElementById('btnStep2Next');
+    if (btnStep2Next) btnStep2Next.addEventListener('click', () => showStep(3));
+
+    // Step 3 Back & Next
+    const btnStep3Back = document.getElementById('btnStep3Back');
+    if (btnStep3Back) btnStep3Back.addEventListener('click', () => showStep(2));
+    const btnStep3Next = document.getElementById('btnStep3Next');
+    if (btnStep3Next) btnStep3Next.addEventListener('click', () => showStep(4));
+
+    // Step 4 Back
+    const btnStep4Back = document.getElementById('btnStep4Back');
+    if (btnStep4Back) btnStep4Back.addEventListener('click', () => showStep(3));
+
+    // Submit Action
+    const btnSubmit = document.getElementById('btnEnquirySubmit');
+    if (btnSubmit) {
+      btnSubmit.addEventListener('click', async () => {
+        const name = (nameInput ? nameInput.value : '').trim();
+        const phone = (phoneInput ? phoneInput.value : '').trim();
+        const email = (emailInput ? emailInput.value : '').trim();
+        const company = (companyInput ? companyInput.value : '').trim();
+        const services = getSelectedServices().join(', ');
+        const budget = getSelectedBudget();
+        const timeline = getSelectedTimeline();
+        const message = (messageInput ? messageInput.value : '').trim();
+
+        const submitTextEl = document.getElementById('btnEnquirySubmitText');
+        if (submitTextEl) submitTextEl.textContent = 'Submitting enquiry...';
+        btnSubmit.disabled = true;
+
+        const payload = {
+          name,
+          phone,
+          email,
+          contact: phone + (email ? ' / ' + email : ''),
+          company,
+          service: services,
+          budget,
+          timeline,
+          message: `Services: ${services} | Budget: ${budget} | Timeline: ${timeline} | Notes: ${message}`,
+          details: message
+        };
+
+        const waText = `Hi Explore Wings, I would like to enquire about your services.\n\nName: ${name}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}${company ? '\nBusiness: ' + company : ''}\nServices: ${services}\nBudget: ${budget}\nTimeline: ${timeline}${message ? '\nMessage: ' + message : ''}`;
+        const waUrl = `https://wa.me/918921309190?text=${encodeURIComponent(waText)}`;
+
+        try {
+          const res = await fetch('/api/enquiry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json().catch(() => ({ success: true }));
+
+          // Success State
+          multiForm.style.display = 'none';
+          if (fallbackPanel) fallbackPanel.style.display = 'none';
+          if (successPanel) {
+            successPanel.style.display = 'block';
+            const waLeadBtn = document.getElementById('whatsappLeadSuccessBtn');
+            if (waLeadBtn) waLeadBtn.href = waUrl;
+          }
+        } catch (err) {
+          // Automatic Network Failure Fallback State (never lose lead)
+          multiForm.style.display = 'none';
+          if (fallbackPanel) {
+            fallbackPanel.style.display = 'block';
+            const waFallbackBtn = document.getElementById('whatsappLeadFallbackBtn');
+            if (waFallbackBtn) waFallbackBtn.href = waUrl;
+          }
+        } finally {
+          btnSubmit.disabled = false;
+          if (submitTextEl) submitTextEl.textContent = 'Send Project Enquiry';
+        }
+      });
+    }
+
+    window.resetEnquiryForm = function () {
+      if (multiForm) multiForm.reset();
+      if (successPanel) successPanel.style.display = 'none';
+      if (fallbackPanel) fallbackPanel.style.display = 'none';
+      if (multiForm) multiForm.style.display = 'block';
+      showStep(1);
+    };
+  }
+
 });

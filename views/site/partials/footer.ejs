@@ -15,8 +15,8 @@
         <p>
           Your complete digital brand, photography, website, and marketing partner in Thiruvananthapuram (Trivandrum), Kerala.
         </p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed! Thank you.';">
-          <input type="email" placeholder="Enter your email for growth tips" required aria-label="Email for newsletter" />
+        <form class="updates-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed! Thank you.';">
+          <input type="email" placeholder="Enter your email for growth tips" required aria-label="Email for updates" />
           <button type="submit">Subscribe</button>
         </form>
       </div>
@@ -59,12 +59,16 @@
       <div class="footer-col">
         <h5>Trivandrum HQ</h5>
         <p style="margin-bottom:0.75rem;">
-          <%= (locals.settings && locals.settings.contact_address) || 'Thiruvananthapuram (Trivandrum), Kerala, India' %>
+          <%= (locals.settings && locals.settings.address) || 'Trivandrum (Thiruvananthapuram), Kerala, India' %>
         </p>
-        <p>
-          <strong style="color:var(--theme-accent);">Phone:</strong> <a href="tel:<%= (locals.settings && locals.settings.contact_phone) || '+919000000000' %>"><%= (locals.settings && locals.settings.contact_phone) || '+91 90000 00000' %></a><br />
+        <p style="line-height:1.75;">
+          <strong style="color:var(--theme-accent);">Call:</strong>
+          <a href="tel:<%= (locals.settings && locals.settings.phone_primary) || '+917510405067' %>"><%= (locals.settings && locals.settings.phone_primary) || '+91 75104 05067' %></a>,
+          <a href="tel:<%= (locals.settings && locals.settings.phone_secondary) || '+916238976168' %>"><%= (locals.settings && locals.settings.phone_secondary) || '+91 62389 76168' %></a><br />
+          <strong style="color:var(--theme-accent);">WhatsApp:</strong>
+          <a href="https://wa.me/<%= ((locals.settings && locals.settings.whatsapp_number) || '918921309190').replace(/[^0-9]/g, '') %>" target="_blank" rel="noopener"><%= (locals.settings && locals.settings.whatsapp_number) || '+91 89213 09190' %></a><br />
           <strong style="color:var(--theme-accent);">Email:</strong> <a href="mailto:<%= (locals.settings && locals.settings.contact_email) || 'hello@explorewings.in' %>"><%= (locals.settings && locals.settings.contact_email) || 'hello@explorewings.in' %></a><br />
-          <strong style="color:var(--theme-accent);">Hours:</strong> Mon – Sat, 9:30 AM – 6:30 PM
+          <strong style="color:var(--theme-accent);">Hours:</strong> <%= (locals.settings && locals.settings.hours) || 'Monday – Saturday: 9:30 AM – 6:30 PM IST' %>
         </p>
       </div>
     </div>

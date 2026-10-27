@@ -17,7 +17,7 @@
   12. Brands That Trust Us (Two-Row Infinite Scroller + LuLu & Munch Spotlight)
   13. Right-Side Slide-In Client Detail Drawer Modal
   14. Client Stories Carousel (Tall Rounded Cards + Drag Support)
-  15. How It Works (4 Steps with Scroll-Drawing Line) & Resources Cards
+  15. How It Works (4 Steps with Scroll-Drawing Line)
   16. Inner Pages (Services Sticky Nav, Pricing Toggle & Table, Portfolio, About, Contact)
   17. Closing CTA Band, Mega Footer (Giant Outlined Watermark) & Floating Widgets
    ========================================================================== */
@@ -205,8 +205,8 @@ ul {
   z-index: 10060;
 }
 
-/* Subtle Ambient Floating Particles in Theme Color */
-.ambient-particles {
+/* Subtle Ambient Floating Orbs in Theme Color */
+.ambient-orbs, .ambient-floating {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -1740,7 +1740,7 @@ ul {
   to { transform: translateX(0); }
 }
 
-/* LuLu & Munch Featured Brand & Logo Inspection Grid */
+/* Brand Spotlight Grid */
 .lulu-munch-spotlight-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1994,7 +1994,7 @@ ul {
 }
 
 /* ==========================================================================
-   15. HOW IT WORKS (4 STEPS WITH SCROLL-DRAWING LINE) & RESOURCES CARDS
+   15. HOW IT WORKS (4 STEPS WITH SCROLL-DRAWING LINE)
    ========================================================================== */
 .process-grid-4 {
   position: relative;
@@ -2051,8 +2051,8 @@ ul {
   border: 2px solid var(--theme-primary);
 }
 
-/* 3 Article Cards + General Platform Cards with Edge Border Draw & Spotlight */
-.articles-grid-3,
+/* General Platform Cards with Edge Border Draw & Spotlight */
+
 .services-grid-6,
 .packages-grid-3 {
   display: grid;
@@ -2061,7 +2061,7 @@ ul {
 }
 
 .platform-card,
-.article-card,
+.card-effect,
 .package-card,
 .bento-card {
   position: relative;
@@ -2078,7 +2078,7 @@ ul {
 }
 
 .platform-card::before,
-.article-card::before,
+.card-effect::before,
 .package-card::before,
 .bento-card::before {
   content: "";
@@ -2091,14 +2091,14 @@ ul {
 }
 
 .platform-card:hover::before,
-.article-card:hover::before,
+.card-effect:hover::before,
 .package-card:hover::before,
 .bento-card:hover::before {
   opacity: 1;
 }
 
 .platform-card:hover,
-.article-card:hover,
+.card-effect:hover,
 .package-card:hover,
 .bento-card:hover {
   transform: translateY(-6px);
@@ -2106,28 +2106,28 @@ ul {
   box-shadow: var(--shadow-hover);
 }
 
-.article-card {
+.card-effect {
   padding: 0;
 }
 
-.article-img-wrap {
+.card-img-wrap {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   position: relative;
 }
 
-.article-img-wrap img {
+.card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.55s var(--ease-out-expo);
 }
 
-.article-card:hover .article-img-wrap img {
+.card-effect:hover .card-img-wrap img {
   transform: scale(1.06);
 }
 
-.article-tag {
+.card-tag {
   position: absolute;
   top: 14px;
   left: 14px;
@@ -2140,7 +2140,7 @@ ul {
   border-radius: var(--radius-pill);
 }
 
-.article-body {
+.card-body-wrap {
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
@@ -2161,7 +2161,7 @@ ul {
 @media (max-width: 991px) {
   .process-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .process-line-track { display: none; }
-  .articles-grid-3, .services-grid-6, .packages-grid-3 { grid-template-columns: 1fr; }
+   .services-grid-6, .packages-grid-3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .process-grid-4 { grid-template-columns: 1fr; }
@@ -2390,7 +2390,7 @@ ul {
   transform: translateX(28px);
 }
 
-.package-card.featured {
+.package-card.highlight {
   background: var(--theme-deep);
   color: #FFFFFF;
   border: 2px solid var(--theme-primary);
@@ -2419,7 +2419,7 @@ ul {
   color: var(--theme-primary);
 }
 
-.package-card.featured .package-tier-name {
+.package-card.highlight .package-tier-name {
   color: var(--theme-accent);
 }
 
@@ -2431,7 +2431,7 @@ ul {
   line-height: 1;
 }
 
-.package-card.featured .package-price {
+.package-card.highlight .package-price {
   color: var(--theme-accent);
 }
 
@@ -2441,7 +2441,7 @@ ul {
   margin-bottom: 1.35rem;
 }
 
-.package-card.featured .package-price-note {
+.package-card.highlight .package-price-note {
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -2776,7 +2776,7 @@ ul {
   max-width: 36ch;
 }
 
-.newsletter-form {
+.updates-form {
   display: flex;
   gap: 0.45rem;
   background: rgba(255, 255, 255, 0.07);
@@ -2785,7 +2785,7 @@ ul {
   border-radius: var(--radius-pill);
 }
 
-.newsletter-form input {
+.updates-form input {
   flex: 1;
   padding: 0.55rem 0.95rem;
   font-size: 0.84rem;
@@ -2793,7 +2793,7 @@ ul {
   outline: none;
 }
 
-.newsletter-form button {
+.updates-form button {
   background: var(--theme-accent);
   color: var(--theme-accent-ink);
   font-weight: 800;
@@ -3046,7 +3046,7 @@ ul {
 }
 
 /* ==========================================================================
-   19. ADDITIONAL REVEALS, SCROLL-FILL OUTLINED TEXT, CHARTS & RESOURCES
+   19. ADDITIONAL REVEALS, SCROLL-FILL OUTLINED TEXT & CHARTS
    ========================================================================== */
 [data-reveal="curtain"] {
   opacity: 0;
@@ -3187,12 +3187,7 @@ ul {
   .analytics-visual-grid { grid-template-columns: 1fr; }
 }
 
-/* Resources Section (3 Article Cards) */
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-}
+
 
 .resource-card {
   background: var(--bg-surface);
@@ -3266,7 +3261,7 @@ ul {
 }
 
 @media (max-width: 960px) {
-  .resources-grid { grid-template-columns: 1fr; }
+  
 }
 
 /* ==========================================================================

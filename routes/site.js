@@ -44,6 +44,7 @@ router.get('/services.html', (req, res) => res.redirect(301, '/services'));
 router.get('/pricing.html', (req, res) => res.redirect(301, '/pricing'));
 router.get('/about.html', (req, res) => res.redirect(301, '/about'));
 router.get('/contact.html', (req, res) => res.redirect(301, '/contact'));
+router.get(['/portfolio', '/portfolio.html'], (req, res) => res.redirect(301, '/#trusted-brands'));
 
 // Custom 301/302 Redirect Manager lookup
 router.use((req, res, next) => {
@@ -144,17 +145,21 @@ router.get('/contact', (req, res) => {
 // API ENDPOINTS (Leads, Chatbot, Analytics)
 // ==========================================
 
-// Submit Main Enquiry Form
+// Submit Main Enquiry Form (Supports JSON & multipart/form-data)
 router.post('/api/enquiry', uploadAttachment.single('attachment'), async (req, res) => {
   try {
-    const { name, contact, company, service, details, source_page, _hp } = req.body;
+    const { name, company, service, source_page, _hp, budget, timeline } = req.body;
+    const contact = (req.body.contact || req.body.phone || req.body.email || '').trim();
+    const phone = (req.body.phone || '').trim();
+    const email = (req.body.email || '').trim();
+    const message = (req.body.message || req.body.details || '').trim();
 
     // Honeypot check (bot prevention)
     if (_hp) {
       return res.json({ success: true, message: 'Enquiry received.' });
     }
 
-    if (!name || !name.trim() || !contact || !contact.trim()) {
+    if (!name || !name.trim() || !contact) {
       return res.status(400).json({ success: false, error: 'Name and contact information are required.' });
     }
 
@@ -166,18 +171,24 @@ router.post('/api/enquiry', uploadAttachment.single('attachment'), async (req, r
       fileOriginalName = saved.original_name;
     }
 
-    const isEmail = contact.includes('@');
+    const isEmail = email ? true : contact.includes('@');
+    const fullMessage = [
+      message,
+      budget ? `Budget: ${budget}` : '',
+      timeline ? `Timeline: ${timeline}` : ''
+    ].filter(Boolean).join('\n');
+
     const enquiryId = Enquiries.create({
       name: name.trim(),
-      contact: contact.trim(),
-      email: isEmail ? contact.trim() : null,
-      phone: !isEmail ? contact.trim() : null,
+      contact: contact,
+      email: email || (isEmail ? contact : null),
+      phone: phone || (!isEmail ? contact : null),
       business_name: company ? company.trim() : null,
-      service: service || 'General',
-      message: details ? details.trim() : null,
+      service: Array.isArray(service) ? service.join(', ') : (service || 'General'),
+      message: fullMessage || null,
       file_path: filePath,
       file_original_name: fileOriginalName,
-      source: 'Contact Form',
+      source: 'Project Enquiry Form',
       source_page: source_page || '/contact',
       ip_hash: res.locals.analyticsSessionHash || '',
       user_agent: req.headers['user-agent'] || ''
@@ -188,12 +199,12 @@ router.post('/api/enquiry', uploadAttachment.single('attachment'), async (req, r
       id: enquiryId,
       name,
       contact,
-      email: isEmail ? contact : null,
-      phone: !isEmail ? contact : null,
+      email: email || (isEmail ? contact : null),
+      phone: phone || (!isEmail ? contact : null),
       business_name: company,
-      service,
-      message: details,
-      source: 'Contact Form',
+      service: Array.isArray(service) ? service.join(', ') : service,
+      message: fullMessage,
+      source: 'Project Enquiry Form',
       source_page
     }).catch(err => console.error('[enquiry:email:fail]', err.message));
 
@@ -202,13 +213,14 @@ router.post('/api/enquiry', uploadAttachment.single('attachment'), async (req, r
       Analytics.recordEvent({
         session_hash: res.locals.analyticsSessionHash,
         event_type: 'enquiry_submit',
-        event_label: service || 'General'
+        event_label: (Array.isArray(service) ? service.join(', ') : service) || 'General'
       });
     }
 
     res.json({
       success: true,
-      message: 'Enquiry received! We will review your details and respond within 24 hours.'
+      message: 'Enquiry received! We will review your details and respond within one working day.',
+      enquiryId
     });
   } catch (err) {
     console.error('[enquiry:error]', err);
@@ -216,6 +228,26 @@ router.post('/api/enquiry', uploadAttachment.single('attachment'), async (req, r
       success: true, // Graceful fallback
       message: 'Enquiry logged. Our team will contact you shortly.'
     });
+  }
+});
+
+// WhatsApp Click Counter API
+router.all('/api/analytics/whatsapp-click', (req, res) => {
+  try {
+    const currentClicks = parseInt(Settings.get('whatsapp_clicks') || '0', 10);
+    const updatedClicks = currentClicks + 1;
+    Settings.set('whatsapp_clicks', String(updatedClicks));
+
+    if (res.locals.analyticsSessionHash) {
+      Analytics.recordEvent({
+        session_hash: res.locals.analyticsSessionHash,
+        event_type: 'whatsapp_click',
+        event_label: 'WhatsApp Button Click'
+      });
+    }
+    res.json({ success: true, clicks: updatedClicks });
+  } catch (err) {
+    res.json({ success: true });
   }
 });
 

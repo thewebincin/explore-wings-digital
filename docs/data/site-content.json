@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-27T07:07:33.392Z",
+  "generated_at": "2026-10-27T09:14:25.810Z",
   "settings": {
     "site_name": "Explore Wings Digital Technologies",
     "site_tagline": "Digital Technologies in Trivandrum, Kerala",
     "site_url": "http://localhost:3000",
-    "phone": "+91 94460 12345",
+    "phone": "+91 75104 05067",
     "email": "hello@explorewings.com",
-    "whatsapp": "+919446012345",
-    "address": "Trivandrum, Kerala, India",
-    "hours": "Monday – Saturday: 9:00 AM – 6:30 PM IST",
+    "whatsapp": "+91 89213 09190",
+    "address": "Trivandrum (Thiruvananthapuram), Kerala, India",
+    "hours": "Monday – Saturday: 9:30 AM – 6:30 PM IST",
     "instagram": "https://instagram.com/explorewingsdigital",
     "facebook": "https://facebook.com/explorewingsdigital",
     "linkedin": "https://linkedin.com/company/explorewingsdigital",
@@ -31,7 +31,15 @@
     "ga4_id": "",
     "gsc_verification_tag": "",
     "maintenance_bypass_token": "ew-preview",
-    "maintenance_end": "Today at 6:00 PM IST"
+    "maintenance_end": "Today at 6:00 PM IST",
+    "phone_primary": "+91 75104 05067",
+    "phone_secondary": "+91 62389 76168",
+    "whatsapp_number": "+91 89213 09190",
+    "whatsapp_default_msg": "Hi Explore Wings, I'd like to know more about your services.",
+    "whatsapp_button_text": "Chat on WhatsApp",
+    "whatsapp_floating_show": "1",
+    "whatsapp_cloud_enabled": "0",
+    "whatsapp_clicks": "124"
   },
   "pages": {
     "home": {
@@ -630,6 +638,58 @@
       "visible": 0,
       "created_at": "2026-10-27 04:10:18",
       "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 12,
+      "label": "Contact Details & Office Location",
+      "keywords": "contact,phone,call,mobile,number,email,address,office,location,where,reach",
+      "action": "answer",
+      "answer": "You can reach our Trivandrum studio directly:\n\n• Phone: +91 75104 05067 or +91 62389 76168\n• WhatsApp: https://wa.me/918921309190\n• Address: Trivandrum (Thiruvananthapuram), Kerala, India\n• Hours: Monday – Saturday: 9:30 AM – 6:30 PM IST",
+      "chips": "Our Services,Pricing & Packages,Talk on WhatsApp,Book Free Call",
+      "start": 0,
+      "sort_order": 12,
+      "visible": 0,
+      "created_at": "2026-10-27 07:38:18",
+      "updated_at": "2026-10-27 07:38:18"
+    },
+    {
+      "id": 13,
+      "label": "WhatsApp Direct Chat",
+      "keywords": "whatsapp,chat,message,dm,wa,instant",
+      "action": "answer",
+      "answer": "Chat with us instantly on WhatsApp at +91 89213 09190. Tap below to start a direct chat with our creative team in Trivandrum.",
+      "chips": "Talk on WhatsApp,Book Free Call,Our Services",
+      "start": 0,
+      "sort_order": 13,
+      "visible": 0,
+      "created_at": "2026-10-27 07:38:18",
+      "updated_at": "2026-10-27 07:38:18"
+    },
+    {
+      "id": 14,
+      "label": "Services Overview",
+      "keywords": "services,offer,websites,design,branding,logo,social,media,shoots,marketing,development",
+      "action": "answer",
+      "answer": "We offer six core digital capabilities in Trivandrum:\n1. Website Design (Fast, conversion-focused mobile websites)\n2. Branding & Logos (Brand identities, packaging, shop signage)\n3. Social Media (Instagram Reels, monthly content calendars)\n4. Photo & Video Shoots (On-location commercial shoots)\n5. Digital Marketing (Local Google Maps SEO & targeted lead ads)\n6. Business Websites (WhatsApp ordering & booking portals)",
+      "chips": "Pricing & Packages,Talk on WhatsApp,Book Free Call",
+      "start": 0,
+      "sort_order": 14,
+      "visible": 0,
+      "created_at": "2026-10-27 07:38:18",
+      "updated_at": "2026-10-27 07:38:18"
+    },
+    {
+      "id": 15,
+      "label": "Pricing & Turnaround",
+      "keywords": "price,cost,packages,rates,quote,how much,timeline,turnaround",
+      "action": "answer",
+      "answer": "Our packages are structured into Essential, Signature, and Premium tiers. Most websites are delivered in 10 to 18 business days. Contact us for a detailed breakdown or chat with us on WhatsApp at +91 89213 09190.",
+      "chips": "Pricing & Packages,Talk on WhatsApp,Book Free Call",
+      "start": 0,
+      "sort_order": 15,
+      "visible": 0,
+      "created_at": "2026-10-27 07:38:18",
+      "updated_at": "2026-10-27 07:38:18"
     }
   ],
   "navigation": [

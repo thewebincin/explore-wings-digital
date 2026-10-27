@@ -13,7 +13,7 @@ const newPassword = args[1];
 
 if (!email || !newPassword) {
   console.log('Usage: node scripts/reset-password.js <email> <newPassword>');
-  console.log('Example: node scripts/reset-password.js admin@explorewings.com NewSecurePass123!');
+  console.log('Example: node scripts/reset-password.js admin@explorewings.com StrongPassword123!');
   process.exit(1);
 }
 

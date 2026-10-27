@@ -34,6 +34,20 @@ async function main() {
     const content = fs.readFileSync('docs/' + f, 'utf8');
     console.log(f, 'has data-theme=red:', content.includes('data-theme="red"'), 'length:', content.length);
   }
+
+  const https = require('https');
+  https.get('https://thewebincin.github.io/explore-wings-digital/', (res) => {
+    let data = '';
+    res.on('data', c => data += c);
+    res.on('end', () => {
+      console.log('\nOnline Live GitHub Pages URL check:');
+      console.log('Status:', res.statusCode);
+      console.log('data-theme=red:', data.includes('data-theme="red"'));
+      console.log('Has mockup:', data.includes('ui-browser-mockup'));
+      console.log('Red swatch active:', data.includes('swatch-red active'));
+      console.log('Length:', data.length);
+    });
+  }).on('error', (e) => console.log('Live fetch note:', e.message));
 }
 
 main();

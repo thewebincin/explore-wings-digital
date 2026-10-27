@@ -29,7 +29,7 @@
   const CHATBOT_CONFIG = {
     botName: 'Wing Assistant',
     logoSrc: 'logo.png',
-    whatsappNumber: '919000000000', // [Placeholder — replace with official number]
+    whatsappNumber: '918921309190',
     leadEndpoint: 'https://formspree.io/f/your-placeholder-id', // [Placeholder — Formspree/EmailJS]
     nudgeDelayMs: 6000,
     storageKey: 'ew_wing_assistant_chat_v1',
@@ -69,13 +69,13 @@
       id: 'social',
       keywords: ['social', 'instagram', 'facebook', 'reels', 'content', 'ads', 'marketing', 'google ads', 'meta ads', 'seo'],
       answer:
-        'We handle **Social Media, Reels Production & Digital Marketing** so your business stays busy every week:\n\n• Monthly Instagram & Facebook calendars\n• On-location photo & Reel shoots in Trivandrum\n• Targeted Meta & Google Ads for local footfall & enquiries\n• Google Maps profile optimization.'
+        'We handle **Social Media, Reels Production & Digital Marketing** so your business stays busy every week:\n\n• Monthly Instagram & Facebook calendars\n• On-location photo & Reel shoots in Trivandrum\n• Targeted Meta & Google Ads for local footfall & enquiries\n• Google Maps listing optimization.'
     },
     {
       id: 'pricing',
       keywords: ['price', 'pricing', 'cost', 'package', 'budget', 'rate', 'essential', 'signature', 'premium', 'how much'],
       answer:
-        'Our transparent packages (**[Placeholder pricing — customizable]**):\n\n1. **Essential**: ₹35,000 one-time (or ₹15,000/mo) — Ideal for new local shops & cafes\n2. **Signature (Most Popular)**: ₹75,000 one-time (or ₹28,000/mo) — Complete website, branding & social launch\n3. **Premium**: ₹1,45,000 one-time (or ₹52,000/mo) — Full multi-channel production & growth campaigns\n\nWould you like to **Book a consultation** for a custom quote?'
+        'Our transparent packages:\n\n1. **Essential**: ₹35,000 one-time (or ₹15,000/mo) — Ideal for new local shops & cafes\n2. **Signature (Most Popular)**: ₹75,000 one-time (or ₹28,000/mo) — Complete website, branding & social launch\n3. **Premium**: ₹1,45,000 one-time (or ₹52,000/mo) — Full multi-channel production & growth campaigns\n\nWould you like to **Book a consultation** for a custom quote?'
     },
     {
       id: 'process',
@@ -85,15 +85,15 @@
     },
     {
       id: 'clients',
-      keywords: ['client', 'portfolio', 'work', 'brands', 'trust', 'aadisaktthi', 'terrace', 'makkawao', 'transorze', 'edustudy', 'global fitness', 'elaf', 'lulu', 'munch'],
+      keywords: ['client', 'work', 'brands', 'trust', 'aadisaktthi', 'terrace', 'makkawao', 'transorze', 'edustudy', 'global fitness', 'elaf', 'lulu', 'munch'],
       answer:
-        'Brands that trust **Explore Wings Digital Technologies** include:\n\n• **Aadisaktthi Resorts & Spa** (Kovalam, Trivandrum — 227/A KS Road, Vellar)\n• **Terrace by Makkawao** (Cafe & restaurant, Kazhakkoottam, Trivandrum — open 12 pm to 12 am)\n• **Transorze**\n• **Edustudy International**\n• **Global Fitness**\n• **Elaf** ("Flavors that Unite")\n• **LuLu** & **Munch (Nestlé)**\n\nClick any logo on the page to slide open its client card!'
+        'Brands that trust **Explore Wings Digital Technologies** include:\n\n• **Aadisaktthi Resorts & Spa** (Kovalam, Trivandrum)\n• **Terrace by Makkawao** (Cafe & dining, Kazhakkoottam)\n• **Transorze**\n• **Edustudy International**\n• **Global Fitness**\n• **Elaf** ("Flavors that Unite")\n• **LuLu** & **Munch (Nestlé)**\n\nVisit our home page to see our trusted brands marquee!'
     },
     {
       id: 'location',
       keywords: ['where', 'location', 'address', 'trivandrum', 'thiruvananthapuram', 'kerala', 'office', 'hours', 'timing', 'contact', 'phone', 'email'],
       answer:
-        'We are proudly based in **Trivandrum (Thiruvananthapuram), Kerala, India**.\n\n• **Hours**: Monday – Saturday, 9:30 AM – 6:30 PM IST `[Placeholder]`\n• **Phone / WhatsApp**: +91 90000 00000 `[Placeholder]`\n• **Email**: hello@explorewings.com `[Placeholder]`\n\nType **"Book a consultation"** here to schedule a call in 30 seconds!'
+        'We are proudly based in **Trivandrum (Thiruvananthapuram), Kerala, India**.\n\n• **Hours**: Monday – Saturday: 9:30 AM – 6:30 PM IST\n• **Call**: +91 75104 05067 / +91 62389 76168\n• **WhatsApp**: +91 89213 09190\n• **Email**: hello@explorewings.in\n\nType **"Book a consultation"** here or message us on WhatsApp!'
     }
   ];
 
@@ -229,6 +229,7 @@
             target="_blank"
             rel="noopener"
             class="wing-human-link"
+            onclick="fetch('/api/analytics/whatsapp-click').catch(function(){});"
           >
             <span>💬 Talk to a human on WhatsApp</span>
           </a>
