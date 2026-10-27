@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Console • Explore Wings Digital Technologies</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .admin-nav-item.active { background: var(--admin-primary); color: #FFFFFF; font-weight: 600; }
+    .admin-nav-item.active svg { stroke: #FFFFFF; }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-header">
+        <a href="../index.html" class="admin-brand" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--admin-text);">
+          <div style="width: 36px; height: 36px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--admin-border); overflow: hidden;">
+            <img src="../images/logo.png" alt="Explore Wings" width="26" height="26">
+          </div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.9375rem; line-height: 1.2;">Explore Wings</div>
+            <div style="font-size: 0.6875rem; color: var(--admin-text-muted); text-transform: uppercase;">Admin Console</div>
+          </div>
+        </a>
+      </div>
+
+      <nav class="admin-nav" style="padding: 16px 12px; display: flex; flex-direction: column; gap: 4px;">
+        <a href="#dashboard" class="admin-nav-item active" data-tab="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+
+        <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted); padding: 12px 12px 4px; font-weight: 700;">Content Management</div>
+
+        <a href="#pages" class="admin-nav-item" data-tab="pages">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>Pages &amp; Sections</span>
+        </a>
+
+        <a href="#services" class="admin-nav-item" data-tab="services">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>Services</span>
+        </a>
+
+        <a href="#brands" class="admin-nav-item" data-tab="brands">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span>Brands &amp; Logos</span>
+        </a>
+
+        <a href="#faqs" class="admin-nav-item" data-tab="faqs">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>FAQs</span>
+        </a>
+
+        <a href="#pricing" class="admin-nav-item" data-tab="pricing">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Pricing Packages</span>
+        </a>
+
+        <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted); padding: 12px 12px 4px; font-weight: 700;">System Controls</div>
+
+        <a href="#maintenance" class="admin-nav-item" data-tab="maintenance">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+          <span>Maintenance Mode</span>
+        </a>
+
+        <a href="#enquiries" class="admin-nav-item" data-tab="enquiries">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Leads Inbox</span>
+        </a>
+
+        <a href="../index.html" target="_blank" class="admin-nav-item" style="margin-top: 16px; border-top: 1px solid var(--admin-border); padding-top: 12px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span>View Public Site &rarr;</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+      <!-- Admin Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <h1 class="admin-topbar-title" id="adminHeaderTitle">Dashboard Overview</h1>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <!-- Live Site Status Indicator -->
+          <a href="#maintenance" id="topbarStatusPill" class="admin-status-pill online" style="text-decoration: none;" title="Click to manage maintenance mode">
+            <span class="status-dot"></span> <span id="topbarStatusText">Site Live</span>
+          </a>
+
+          <!-- Link to Public Website -->
+          <a href="../index.html" target="_blank" rel="noopener" class="admin-btn-outline" id="viewLiveSiteBtn" title="Open public website in new tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>View Site</span>
+          </a>
+
+          <!-- Theme & Mode Switchers -->
+          <div class="admin-theme-swatches">
+            <button type="button" class="swatch-btn swatch-green" onclick="setAdminTheme('green')" title="Green Theme"></button>
+            <button type="button" class="swatch-btn swatch-red" onclick="setAdminTheme('red')" title="Red Theme"></button>
+          </div>
+          <button type="button" class="admin-mode-toggle" id="modeToggleBtn" onclick="toggleAdminMode()" title="Toggle Light/Dark Mode">
+            <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Persistent Maintenance Warning Banner -->
+      <div id="adminMaintenanceBanner" style="display: none; background: #FEF3C7; color: #92400E; border-bottom: 2px solid #F59E0B; padding: 12px 24px; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9375rem;">
+          <span style="font-size: 1.25rem;">⚠️</span>
+          <span><strong>Maintenance Mode Active:</strong> Public visitors are blocked and receive a 503 screen. Admins and preview tokens can view the site.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="../index.html?preview=live" target="_blank" class="admin-btn admin-btn-xs admin-btn-outline" style="border-color: #B45309; color: #92400E; background: transparent; text-decoration: none;">Preview Site</a>
+          <button type="button" onclick="toggleMaintenanceMode(false)" class="admin-btn admin-btn-xs admin-btn-primary" style="background: #D97706; border-color: #B45309; font-weight: 700; cursor: pointer;">Turn Off &amp; Go Live</button>
+        </div>
+      </div>
+
+      <!-- Main Body Container -->
+      <main class="admin-content">
+
+        <!-- ================= TAB 1: DASHBOARD ================= -->
+        <div id="tab-dashboard" class="tab-content active">
+          <div class="admin-stats-row" style="margin-bottom: 24px;">
+            <div class="admin-stat-card">
+              <div class="stat-header"><span class="stat-title">Visitors Today</span></div>
+              <div class="stat-value">142</div>
+              <div class="stat-meta">489 total page views</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-header"><span class="stat-title">Enquiries This Week</span></div>
+              <div class="stat-value">12</div>
+              <div class="stat-meta">8.5% estimated conversion</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-header"><span class="stat-title">Leads Captured</span></div>
+              <div class="stat-value" id="leadsCountValue" style="color: var(--admin-primary);">3</div>
+              <div class="stat-meta">From contact forms &amp; chatbot</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-header"><span class="stat-title">Site Status</span></div>
+              <div class="stat-value" id="dashboardStatusVal" style="font-size: 1.5rem; text-transform: capitalize;">
+                <span class="status-indicator online"></span> Live
+              </div>
+              <div class="stat-meta" id="dashboardStatusMeta">Public visitors can access all pages</div>
+            </div>
+          </div>
+
+          <div class="admin-card" style="margin-bottom: 24px;">
+            <div class="admin-card-header"><h2 class="admin-card-title">Quick Actions</h2></div>
+            <div class="admin-card-body" style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button type="button" onclick="switchTab('pages')" class="admin-btn admin-btn-outline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <span>Edit Page Sections</span>
+              </button>
+              <button type="button" onclick="switchTab('services')" class="admin-btn admin-btn-outline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                <span>Manage 6 Services</span>
+              </button>
+              <button type="button" onclick="switchTab('maintenance')" class="admin-btn admin-btn-outline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+                <span>Maintenance Controls</span>
+              </button>
+              <button type="button" onclick="switchTab('enquiries')" class="admin-btn admin-btn-outline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
+                <span>View Leads Inbox</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: PAGES & SECTIONS EDITOR ================= -->
+        <div id="tab-pages" class="tab-content">
+          <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 700;">Section-by-Section Page Content Editor</h2>
+              <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+                Select a page below to edit its headlines, badge subtitles, and paragraphs section-by-section.
+              </p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <select id="pageSelectDropdown" class="admin-select" style="font-weight: 600; padding: 8px 16px; border-radius: 6px;" onchange="loadPageSections(this.value)">
+                <option value="home">Home Page (6 sections)</option>
+                <option value="services">Services Page (Header &amp; Deliverables)</option>
+                <option value="pricing">Pricing Page (Header &amp; Packages)</option>
+                <option value="about">About Page (Roots, Story &amp; Founder Note)</option>
+                <option value="contact">Contact Page (Header &amp; Channels)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section Cards Container populated by JavaScript -->
+          <div id="sectionsCardList" style="display: flex; flex-direction: column; gap: 24px;"></div>
+        </div>
+
+        <!-- ================= TAB 3: SERVICES ================= -->
+        <div id="tab-services" class="tab-content">
+          <div class="admin-card">
+            <div class="admin-card-header"><h3 class="admin-card-title">Core Services (6 Featured in Trivandrum)</h3></div>
+            <div class="admin-card-body" style="padding: 0;">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>#</th><th>Service Title</th><th>Short Summary</th><th>Status</th></tr>
+                </thead>
+                <tbody id="servicesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: BRANDS ================= -->
+        <div id="tab-brands" class="tab-content">
+          <div class="admin-card">
+            <div class="admin-card-header"><h3 class="admin-card-title">Brands That Trust Us (Infinite Auto-Scroller)</h3></div>
+            <div class="admin-card-body">
+              <div id="brandsGridList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 5: FAQS ================= -->
+        <div id="tab-faqs" class="tab-content">
+          <div class="admin-card">
+            <div class="admin-card-header"><h3 class="admin-card-title">Frequently Asked Questions</h3></div>
+            <div class="admin-card-body" style="padding: 0;">
+              <table class="admin-table">
+                <thead><tr><th>Question</th><th>Answer Snippet</th></tr></thead>
+                <tbody id="faqsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 6: PRICING ================= -->
+        <div id="tab-pricing" class="tab-content">
+          <div class="admin-card">
+            <div class="admin-card-header"><h3 class="admin-card-title">Pricing Packages &amp; Deliverables</h3></div>
+            <div class="admin-card-body" style="padding: 0;">
+              <table class="admin-table">
+                <thead><tr><th>Plan Name</th><th>Description</th><th>Timeline</th></tr></thead>
+                <tbody id="pricingTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 7: MAINTENANCE MODE ================= -->
+        <div id="tab-maintenance" class="tab-content">
+          <div class="admin-page-header" style="margin-bottom: 24px;">
+            <h2 style="font-size: 1.5rem; font-weight: 700;">Maintenance Mode &amp; Server Health</h2>
+            <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+              When maintenance mode is active, public visitors are blocked and receive a branded 503 maintenance page. Logged-in admins and bypass tokens can always preview the live site.
+            </p>
+          </div>
+
+          <div class="admin-grid-layout-sidebar">
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              <div class="admin-card">
+                <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 class="admin-card-title">Maintenance Status</h3>
+                  <span id="maintStatusBadge" class="admin-badge status-active" style="font-weight: 700; padding: 6px 14px;">
+                    ✓ Public Site Live
+                  </span>
+                </div>
+                <div class="admin-card-body">
+                  <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: var(--admin-radius); padding: 20px; margin-bottom: 24px;">
+                    <h4 id="maintActionHeading" style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">Activate Maintenance Mode</h4>
+                    <p id="maintActionDesc" style="font-size: 0.875rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+                      Click below to immediately block all public visitors. Anyone opening the site will see the 503 maintenance screen.
+                    </p>
+                    <button type="button" id="maintToggleBtn" onclick="toggleMaintenanceMode()" class="admin-btn admin-btn-danger" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem; font-weight: 700;">
+                      Enable Maintenance Mode (Block Public Visitors)
+                    </button>
+                  </div>
+
+                  <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted);">
+                    Custom Maintenance Screen Settings
+                  </h4>
+
+                  <div class="admin-form-group">
+                    <label class="admin-label">Public Maintenance Message</label>
+                    <textarea id="maintMsgInput" class="admin-textarea" rows="3">We are performing scheduled improvements to our servers. We will be back online shortly. For urgent enquiries in Trivandrum, please call or WhatsApp our studio.</textarea>
+                  </div>
+
+                  <div class="admin-grid-2">
+                    <div class="admin-form-group">
+                      <label class="admin-label">Estimated Back Online Time</label>
+                      <input type="text" id="maintEndInput" class="admin-input" value="Today at 6:00 PM IST">
+                    </div>
+                    <div class="admin-form-group">
+                      <label class="admin-label">Secret Preview Bypass Token</label>
+                      <input type="text" id="maintBypassInput" class="admin-input" value="ew-preview">
+                    </div>
+                  </div>
+
+                  <button type="button" onclick="saveMaintSettings()" class="admin-btn admin-btn-outline" style="font-weight: 600; margin-top: 8px;">
+                    Save Maintenance Message &amp; Options
+                  </button>
+                </div>
+              </div>
+
+              <!-- Subscribers List -->
+              <div class="admin-card">
+                <div class="admin-card-header"><h3 class="admin-card-title">Visitors Waiting for Notification</h3></div>
+                <div class="admin-card-body" style="padding: 0;">
+                  <table class="admin-table">
+                    <thead><tr><th>Contact Phone / Email</th><th>Requested At</th></tr></thead>
+                    <tbody id="subscribersTableBody">
+                      <tr><td colspan="2" style="text-align: center; color: var(--admin-text-muted); padding: 24px;">No visitors currently waiting for back-online notification.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header"><h3 class="admin-card-title">Live Preview Links</h3></div>
+              <div class="admin-card-body">
+                <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+                  Use these links to preview the website even while Maintenance Mode is active:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <a href="../index.html?bypass=ew-preview" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: flex-start; text-decoration: none;">
+                    <span>Preview via Secret Token (?bypass=ew-preview)</span>
+                  </a>
+                  <a href="../index.html?preview=live" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: flex-start; text-decoration: none;">
+                    <span>Preview via Admin Session (?preview=live)</span>
+                  </a>
+                  <a href="../maintenance.html" target="_blank" class="admin-btn admin-btn-outline" style="justify-content: flex-start; text-decoration: none;">
+                    <span>View 503 Maintenance Page</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 8: LEADS INBOX ================= -->
+        <div id="tab-enquiries" class="tab-content">
+          <div class="admin-card">
+            <div class="admin-card-header"><h3 class="admin-card-title">Project Consultation Leads</h3></div>
+            <div class="admin-card-body" style="padding: 0;">
+              <table class="admin-table">
+                <thead><tr><th>Contact / Phone / Email</th><th>Service</th><th>Submitted At</th></tr></thead>
+                <tbody id="enquiriesTableBody">
+                  <tr><td colspan="3" style="text-align: center; color: var(--admin-text-muted); padding: 24px;">No recent leads captured yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Admin Interactive Store Script -->
+  <script>
+    let siteData = null;
+
+    // 1. Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.admin-nav-item').forEach(el => el.classList.remove('active'));
+      
+      const target = document.getElementById('tab-' + tabId);
+      const navItem = document.querySelector(`.admin-nav-item[data-tab="${tabId}"]`);
+      if (target) target.classList.add('active');
+      if (navItem) navItem.classList.add('active');
+
+      const titleMap = {
+        dashboard: 'Dashboard Overview',
+        pages: 'Pages & Sections Content Editor',
+        services: 'Manage Core Services',
+        brands: 'Brands That Trust Us',
+        faqs: 'Frequently Asked Questions',
+        pricing: 'Pricing Packages',
+        maintenance: 'Maintenance Mode & Server Health',
+        enquiries: 'Project Consultation Leads'
+      };
+      document.getElementById('adminHeaderTitle').textContent = titleMap[tabId] || 'Admin Console';
+      window.location.hash = tabId;
+    }
+
+    document.querySelectorAll('.admin-nav-item[data-tab]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchTab(btn.getAttribute('data-tab'));
+      });
+    });
+
+    // 2. Load Data from JSON & localStorage
+    async function initAdmin() {
+      // Check auth flag
+      localStorage.setItem('ew_admin_logged_in', 'true');
+
+      try {
+        const res = await fetch('../data/site-content.json');
+        siteData = await res.json();
+      } catch (err) {
+        console.warn('Could not load site-content.json, using defaults.');
+      }
+
+      updateMaintenanceUI();
+      renderDashboard();
+      loadPageSections('home');
+      renderCollections();
+
+      // Check hash
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('tab-' + hash)) {
+        switchTab(hash);
+      }
+    }
+
+    // 3. Maintenance Mode Management
+    function isMaintenanceActive() {
+      return localStorage.getItem('maintenance_mode') === 'on';
+    }
+
+    function updateMaintenanceUI() {
+      const active = isMaintenanceActive();
+      const statusPill = document.getElementById('topbarStatusPill');
+      const statusText = document.getElementById('topbarStatusText');
+      const banner = document.getElementById('adminMaintenanceBanner');
+      const maintBadge = document.getElementById('maintStatusBadge');
+      const maintBtn = document.getElementById('maintToggleBtn');
+      const maintHeading = document.getElementById('maintActionHeading');
+      const maintDesc = document.getElementById('maintActionDesc');
+
+      if (active) {
+        statusPill.className = 'admin-status-pill warning';
+        statusText.textContent = 'Maintenance Active (503)';
+        banner.style.display = 'flex';
+        maintBadge.className = 'admin-badge warning';
+        maintBadge.textContent = '⚠️ Maintenance Mode Active (Visitors Blocked)';
+        maintBtn.className = 'admin-btn admin-btn-primary';
+        maintBtn.textContent = 'Turn Off Maintenance & Go Live Now';
+        maintHeading.textContent = 'Turn Off Maintenance Mode';
+        maintDesc.textContent = 'Click below to immediately reopen the website to the public.';
+      } else {
+        statusPill.className = 'admin-status-pill online';
+        statusText.textContent = 'Site Live';
+        banner.style.display = 'none';
+        maintBadge.className = 'admin-badge status-active';
+        maintBadge.textContent = '✓ Public Site Live';
+        maintBtn.className = 'admin-btn admin-btn-danger';
+        maintBtn.textContent = 'Enable Maintenance Mode (Block Public Visitors)';
+        maintHeading.textContent = 'Activate Maintenance Mode';
+        maintDesc.textContent = 'Click below to block public visitors with an HTTP 503 screen.';
+      }
+
+      const dashStatusVal = document.getElementById('dashboardStatusVal');
+      if (dashStatusVal) {
+        dashStatusVal.innerHTML = active
+          ? '<span class="status-indicator warning"></span> Maintenance'
+          : '<span class="status-indicator online"></span> Live';
+      }
+    }
+
+    function toggleMaintenanceMode(forceVal) {
+      const current = isMaintenanceActive();
+      const nextVal = typeof forceVal === 'boolean' ? (forceVal ? 'on' : 'off') : (current ? 'off' : 'on');
+      localStorage.setItem('maintenance_mode', nextVal);
+      updateMaintenanceUI();
+      alert(nextVal === 'on' 
+        ? 'Maintenance Mode is now ACTIVE! Public visitors opening the site will see the 503 maintenance screen.' 
+        : 'Maintenance Mode has been DISABLED! The website is now LIVE to all visitors.');
+    }
+
+    function saveMaintSettings() {
+      const msg = document.getElementById('maintMsgInput').value;
+      const end = document.getElementById('maintEndInput').value;
+      const token = document.getElementById('maintBypassInput').value;
+      localStorage.setItem('ew_maint_msg', msg);
+      localStorage.setItem('ew_maint_end', end);
+      localStorage.setItem('ew_maint_token', token);
+      alert('Maintenance screen configuration saved successfully.');
+    }
+
+    // 4. Section-by-Section Editor
+    function loadPageSections(pageSlug) {
+      const container = document.getElementById('sectionsCardList');
+      container.innerHTML = '';
+
+      if (!siteData || !siteData.pages || !siteData.pages[pageSlug]) {
+        container.innerHTML = '<div class="admin-card"><div class="admin-card-body">Loading sections...</div></div>';
+        return;
+      }
+
+      const pageInfo = siteData.pages[pageSlug];
+      const sections = pageInfo.sections || {};
+      const customStore = JSON.parse(localStorage.getItem('ew_custom_sections') || '{}');
+
+      Object.entries(sections).forEach(([secKey, sec]) => {
+        const currentTitle = customStore[`${pageSlug}_${secKey}_title`] || sec.title || '';
+        const currentSubtitle = customStore[`${pageSlug}_${secKey}_subtitle`] || sec.subtitle || '';
+        const currentBody = customStore[`${pageSlug}_${secKey}_body`] || sec.body || '';
+        const currentBtn = customStore[`${pageSlug}_${secKey}_btn`] || sec.button_text || '';
+
+        const card = document.createElement('div');
+        card.className = 'admin-card section-card';
+        card.id = `sec-${secKey}`;
+        card.innerHTML = `
+          <div class="admin-card-header" style="background: var(--admin-bg-surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="admin-badge" style="text-transform: uppercase; font-weight: 700; background: var(--admin-primary); color: #fff;">
+                ${secKey.replace(/_/g, ' ')} SECTION
+              </span>
+              <h3 class="admin-card-title" style="margin: 0; font-size: 1.125rem;">${currentTitle || secKey}</h3>
+            </div>
+            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">Key: <code>${secKey}</code></span>
+          </div>
+          <div class="admin-card-body">
+            <div class="admin-form-group">
+              <label class="admin-label">Section Headline / Title</label>
+              <input type="text" id="input_${pageSlug}_${secKey}_title" class="admin-input" value="${escapeHtml(currentTitle)}" placeholder="Main heading">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Subtitle / Badge Tagline</label>
+              <input type="text" id="input_${pageSlug}_${secKey}_subtitle" class="admin-input" value="${escapeHtml(currentSubtitle)}" placeholder="Badge or tagline">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Main Body Text / Lead Paragraph</label>
+              <textarea id="input_${pageSlug}_${secKey}_body" class="admin-textarea" rows="4" placeholder="Paragraph copy">${escapeHtml(currentBody)}</textarea>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Button Text (Optional)</label>
+              <input type="text" id="input_${pageSlug}_${secKey}_btn" class="admin-input" value="${escapeHtml(currentBtn)}" placeholder="e.g. Get free consultation">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--admin-border); flex-wrap: wrap; gap: 10px;">
+              <button type="button" onclick="saveSection('${pageSlug}', '${secKey}')" class="admin-btn admin-btn-primary" style="font-weight: 600;">
+                Save This Section
+              </button>
+              <a href="../${pageSlug === 'home' ? 'index.html' : pageSlug + '.html'}" target="_blank" style="font-size: 0.8125rem; color: var(--admin-primary); text-decoration: none; font-weight: 600;">
+                Preview on live page &rarr;
+              </a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function saveSection(pageSlug, secKey) {
+      const title = document.getElementById(`input_${pageSlug}_${secKey}_title`).value;
+      const subtitle = document.getElementById(`input_${pageSlug}_${secKey}_subtitle`).value;
+      const body = document.getElementById(`input_${pageSlug}_${secKey}_body`).value;
+      const btn = document.getElementById(`input_${pageSlug}_${secKey}_btn`).value;
+
+      const customStore = JSON.parse(localStorage.getItem('ew_custom_sections') || '{}');
+      customStore[`${pageSlug}_${secKey}_title`] = title;
+      customStore[`${pageSlug}_${secKey}_subtitle`] = subtitle;
+      customStore[`${pageSlug}_${secKey}_body`] = body;
+      customStore[`${pageSlug}_${secKey}_btn`] = btn;
+      localStorage.setItem('ew_custom_sections', JSON.stringify(customStore));
+
+      alert(`Section "${secKey}" on ${pageSlug.toUpperCase()} page has been saved! You can now view it on the public site.`);
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/"/g, '&quot;');
+    }
+
+    // 5. Render Collections
+    function renderCollections() {
+      if (!siteData) return;
+
+      // Services
+      const svcBody = document.getElementById('servicesTableBody');
+      if (svcBody && siteData.services) {
+        svcBody.innerHTML = siteData.services.map((s, idx) => `
+          <tr>
+            <td><strong>${(idx+1).toString().padStart(2, '0')}</strong></td>
+            <td><strong>${s.title}</strong></td>
+            <td style="color: var(--admin-text-muted); font-size: 0.8125rem;">${s.short_desc}</td>
+            <td><span class="admin-badge status-active">Active</span></td>
+          </tr>
+        `).join('');
+      }
+
+      // Brands
+      const brandsGrid = document.getElementById('brandsGridList');
+      if (brandsGrid && siteData.brands) {
+        brandsGrid.innerHTML = siteData.brands.map(b => `
+          <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: var(--admin-radius); padding: 16px; text-align: center;">
+            <img src="../${b.logo.replace(/^\//, '')}" alt="${b.name}" style="height: 32px; object-fit: contain; margin-bottom: 8px;">
+            <div style="font-weight: 600; font-size: 0.875rem;">${b.name}</div>
+          </div>
+        `).join('');
+      }
+
+      // FAQs
+      const faqsBody = document.getElementById('faqsTableBody');
+      if (faqsBody && siteData.faqs) {
+        faqsBody.innerHTML = siteData.faqs.map(f => `
+          <tr>
+            <td><strong>${f.question}</strong></td>
+            <td style="color: var(--admin-text-muted); font-size: 0.8125rem;">${(f.answer || '').slice(0, 90)}...</td>
+          </tr>
+        `).join('');
+      }
+
+      // Pricing
+      const pricingBody = document.getElementById('pricingTableBody');
+      if (pricingBody && siteData.plans) {
+        pricingBody.innerHTML = siteData.plans.map(p => `
+          <tr>
+            <td><strong>${p.name}</strong></td>
+            <td style="color: var(--admin-text-muted); font-size: 0.8125rem;">${p.description}</td>
+            <td><span class="admin-badge">${p.delivery || '3-4 weeks'}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      // Enquiries
+      const enquiriesBody = document.getElementById('enquiriesTableBody');
+      const storedEnquiries = JSON.parse(localStorage.getItem('ew_enquiries') || '[]');
+      if (enquiriesBody && storedEnquiries.length) {
+        enquiriesBody.innerHTML = storedEnquiries.map(e => `
+          <tr>
+            <td><strong>${e.contact || e.email || 'Visitor'}</strong></td>
+            <td>${e.service || 'Free Consultation'}</td>
+            <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">${new Date(e.submitted_at).toLocaleString()}</td>
+          </tr>
+        `).join('');
+        document.getElementById('leadsCountValue').textContent = storedEnquiries.length + 3;
+      }
+    }
+
+    function renderDashboard() {
+      // Subscribed users
+      const subscribers = JSON.parse(localStorage.getItem('ew_subscribers') || '[]');
+      const subBody = document.getElementById('subscribersTableBody');
+      if (subBody && subscribers.length) {
+        subBody.innerHTML = subscribers.map(s => `
+          <tr>
+            <td><strong>${s.contact}</strong></td>
+            <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">${new Date(s.created_at).toLocaleString()}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    function setAdminTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('admin_theme', theme);
+    }
+
+    function toggleAdminMode() {
+      const cur = document.documentElement.getAttribute('data-mode') || 'light';
+      const next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-mode', next);
+      localStorage.setItem('admin_mode', next);
+    }
+
+    window.addEventListener('DOMContentLoaded', initAdmin);
+  </script>
+</body>
+</html>

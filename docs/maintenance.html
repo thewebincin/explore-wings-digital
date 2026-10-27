@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduled Maintenance &bull; Explore Wings Digital Technologies</title>
+  <link rel="icon" type="image/png" href="./images/logo.png">
+  <link rel="stylesheet" href="./css/style.css?v=gh-pages">
+  <style>
+    .maintenance-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+      text-align: center;
+    }
+    .maintenance-card {
+      max-width: 580px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 36px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .maintenance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      background: #FEF3C7;
+      color: #92400E;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-screen">
+    <div class="maintenance-card">
+      
+
+      <div style="margin-bottom: 20px;">
+        <div class="brand-chip" style="margin: 0 auto; width: 48px; height: 48px;">
+          <img src="./images/logo.png" alt="Explore Wings" width="36" height="36">
+        </div>
+      </div>
+      
+      <div class="maintenance-badge">
+        <span class="pulse-dot" style="background: #F59E0B;" aria-hidden="true"></span>
+        <span>Scheduled Maintenance in Progress</span>
+      </div>
+
+      <h1 style="font-size: 2rem; margin-bottom: 12px; font-family: var(--font-display);">We are tuning up our systems.</h1>
+      <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 24px;">
+        Trivandrum studio maintenance test in progress.
+      </p>
+
+      
+        <div style="font-size: 0.875rem; color: var(--text); background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 24px;">
+          Estimated back online: <strong>Today at 6:00 PM IST</strong>
+        </div>
+      
+
+      <!-- Notify Me Form -->
+      
+      <form id="notifyForm" action="/api/maintenance/notify" method="POST" style="margin-bottom: 24px;">
+        <div style="display: flex; gap: 8px; max-width: 400px; margin: 0 auto;">
+          <input type="text" name="contact" placeholder="Email or phone to notify" required style="flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.875rem; background: var(--bg); color: var(--text);">
+          <button type="submit" class="btn-primary" style="padding: 10px 18px; border: none; cursor: pointer;">Notify Me</button>
+        </div>
+        <div id="notifyMsg" style="font-size: 0.8125rem; margin-top: 8px; display: none;"></div>
+      </form>
+      
+
+      <div style="padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+        
+          <div>Direct phone: <a href="tel:+919446012345" style="color: var(--primary); font-weight: 600;">+91 94460 12345</a></div>
+        
+        
+          <div>Email: <a href="mailto:hello@explorewings.com" style="color: var(--primary);">hello@explorewings.com</a></div>
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const notifyForm = document.getElementById('notifyForm');
+    if (notifyForm) {
+      notifyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const contact = notifyForm.contact.value;
+        const msgDiv = document.getElementById('notifyMsg');
+        try {
+          const res = await fetch('/api/maintenance/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contact })
+          });
+          const json = await res.json();
+          msgDiv.style.display = 'block';
+          msgDiv.style.color = json.success ? '#10B981' : '#EF4444';
+          msgDiv.textContent = json.message || 'Thank you! We will notify you as soon as we are live.';
+          if (json.success) notifyForm.contact.value = '';
+        } catch (err) {
+          msgDiv.style.display = 'block';
+          msgDiv.style.color = '#10B981';
+          msgDiv.textContent = 'Thank you! We will notify you.';
+        }
+      });
+    }
+  </script>
+  <script src="./js/store.js"></script>
+</body>
+</html>

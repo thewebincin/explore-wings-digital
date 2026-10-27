@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login • Explore Wings Digital Technologies</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--admin-bg);
+    }
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--admin-bg-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--admin-radius-lg);
+      padding: 40px 32px;
+      box-shadow: var(--admin-shadow-md);
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="login-container">
+    <div class="login-card">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="width: 56px; height: 56px; background: #FFFFFF; border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--admin-border); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <img src="../images/logo.png" alt="Explore Wings" width="38" height="38">
+        </div>
+        <h1 style="font-size: 1.35rem; font-weight: 700;">Admin Console</h1>
+        <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-top: 4px;">
+          Explore Wings Digital Technologies &bull; Trivandrum
+        </p>
+      </div>
+
+      <form id="adminLoginForm">
+        <div class="admin-form-group">
+          <label class="admin-label" for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="admin-input" value="admin@explorewings.com" required>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label" for="loginPass">Password</label>
+          <input type="password" id="loginPass" class="admin-input" value="AdminExploreWings2026!" required>
+        </div>
+
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-weight: 700; margin-top: 8px;">
+          Sign In to Admin Console
+        </button>
+      </form>
+
+      <div style="margin-top: 24px; text-align: center; font-size: 0.8125rem; color: var(--admin-text-muted); border-top: 1px solid var(--admin-border); padding-top: 16px;">
+        <a href="../index.html" style="color: var(--admin-primary); font-weight: 600; text-decoration: none;">&larr; Return to Public Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('ew_admin_logged_in', 'true');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

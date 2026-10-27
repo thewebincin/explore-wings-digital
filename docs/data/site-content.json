@@ -1,0 +1,828 @@
+{
+  "generated_at": "2026-10-27T05:49:02.362Z",
+  "settings": {
+    "site_name": "Explore Wings Digital Technologies",
+    "site_tagline": "Digital Technologies in Trivandrum, Kerala",
+    "site_url": "http://localhost:3000",
+    "phone": "+91 94460 12345",
+    "email": "hello@explorewings.com",
+    "whatsapp": "+919446012345",
+    "address": "Trivandrum, Kerala, India",
+    "hours": "Monday – Saturday: 9:00 AM – 6:30 PM IST",
+    "instagram": "https://instagram.com/explorewingsdigital",
+    "facebook": "https://facebook.com/explorewingsdigital",
+    "linkedin": "https://linkedin.com/company/explorewingsdigital",
+    "google_business_url": "https://maps.google.com/?q=Explore+Wings+Digital+Technologies+Trivandrum",
+    "geo_latitude": "8.5241",
+    "geo_longitude": "76.9366",
+    "default_theme": "green",
+    "default_mode": "light",
+    "logo_path": "/images/logo.png",
+    "favicon_path": "/images/logo.png",
+    "og_default_image": "/images/logo.png",
+    "maintenance_mode": "off",
+    "maintenance_message": "Trivandrum studio maintenance test in progress.",
+    "maintenance_return_time": "",
+    "maintenance_allow_notify": "1",
+    "notification_email": "hello@explorewings.com",
+    "auto_reply_enabled": "1",
+    "uptime_alert_email": "hello@explorewings.com",
+    "analytics_retention_months": "24",
+    "ga4_id": "",
+    "gsc_verification_tag": "",
+    "maintenance_bypass_token": "ew-preview",
+    "maintenance_end": "Today at 6:00 PM IST"
+  },
+  "pages": {
+    "home": {
+      "page": {
+        "id": 1,
+        "slug": "home",
+        "title": "Home",
+        "meta_title": "Explore Wings Digital Technologies | Digital Agency in Trivandrum, Kerala",
+        "meta_description": "We build custom websites, design brand identities, manage social media, shoot video, and drive local search rankings for businesses in Trivandrum and Kerala.",
+        "canonical_url": "",
+        "focus_keyword": "Digital agency in Trivandrum",
+        "og_image": "",
+        "status": "published",
+        "created_at": "2026-10-27 04:10:18",
+        "updated_at": "2026-10-27 04:10:18"
+      },
+      "sections": {
+        "bold_statement": {
+          "title": "Direct Collaboration • Trivandrum Based",
+          "subtitle": "",
+          "body": "Most agencies sell confusing retainer packages and hide behind account managers. We build clean websites, shoot crisp local media, and answer your phone calls directly.",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {
+            "founder_note": "From the desk of the founder • Explore Wings Digital Technologies, Trivandrum"
+          }
+        },
+        "enquiry": {
+          "title": "Tell us about your project.",
+          "subtitle": "Fill in the details below. We will review your current online presence and schedule a direct consultation.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        },
+        "faq_intro": {
+          "title": "Questions local business owners ask us.",
+          "subtitle": "Honest answers without jargon. If your question is not listed here, send us an email or message on WhatsApp.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        },
+        "hero": {
+          "title": "Websites & digital branding that bring real enquiries to your business.",
+          "subtitle": "We work directly with founders, resorts, clinics, and local stores in Trivandrum to fix slow websites, shoot authentic media, and get found on Google.",
+          "body": "",
+          "button_text": "Get free consultation",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        },
+        "process_intro": {
+          "title": "Four simple steps from first call to live site.",
+          "subtitle": "Our Process",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        }
+      }
+    },
+    "services": {
+      "page": {
+        "id": 2,
+        "slug": "services",
+        "title": "Our Services",
+        "meta_title": "Services | Explore Wings Digital Technologies Trivandrum",
+        "meta_description": "Explore our 6 core digital services: custom websites, brand identity, social media management, commercial photography, performance marketing, and local SEO in Kerala.",
+        "canonical_url": "",
+        "focus_keyword": "Web development Trivandrum",
+        "og_image": "",
+        "status": "published",
+        "created_at": "2026-10-27 04:10:18",
+        "updated_at": "2026-10-27 04:10:18"
+      },
+      "sections": {
+        "header": {
+          "title": "Practical digital services for growing businesses.",
+          "subtitle": "No jargon, no bloated retainers. Just reliable design, development, and marketing executed directly by experienced practitioners in Trivandrum.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        }
+      }
+    },
+    "pricing": {
+      "page": {
+        "id": 3,
+        "slug": "pricing",
+        "title": "Pricing & Packages",
+        "meta_title": "Pricing & Packages | Explore Wings Digital Technologies",
+        "meta_description": "Transparent, predictable project packages for websites, branding, and digital marketing in Trivandrum, Kerala. Clear deliverables and fixed timelines.",
+        "canonical_url": "",
+        "focus_keyword": "Website pricing Kerala",
+        "og_image": "",
+        "status": "published",
+        "created_at": "2026-10-27 04:10:18",
+        "updated_at": "2026-10-27 04:10:18"
+      },
+      "sections": {
+        "header": {
+          "title": "Clear packages. No surprise invoices.",
+          "subtitle": "Every project is scoped with a defined list of deliverables, an agreed timeline, and direct access to your developer.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        }
+      }
+    },
+    "about": {
+      "page": {
+        "id": 4,
+        "slug": "about",
+        "title": "About Us",
+        "meta_title": "About Us | Explore Wings Digital Technologies Trivandrum",
+        "meta_description": "Learn about Explore Wings Digital Technologies, an independent digital company founded in Trivandrum, Kerala. Direct collaboration, reliable websites, and honest digital marketing.",
+        "canonical_url": "",
+        "focus_keyword": "About Explore Wings Trivandrum",
+        "og_image": "",
+        "status": "published",
+        "created_at": "2026-10-27 04:10:18",
+        "updated_at": "2026-10-27 04:10:18"
+      },
+      "sections": {
+        "founder_quote": {
+          "title": "",
+          "subtitle": "",
+          "body": "When I started Explore Wings, my pledge was simple: never use canned marketing buzzwords, never invent fake numbers or testimonials, and never leave a client wondering what they paid for. Every website we build must load fast on an ordinary mobile connection, and every rupee spent on marketing must be accounted for.",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        },
+        "header": {
+          "title": "Direct digital work from Trivandrum.",
+          "subtitle": "We are an independent digital agency built on a simple belief: local business owners deserve clear communication, honest timelines, and real results without agency hype.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        },
+        "story": {
+          "title": "Why we started Explore Wings Digital Technologies",
+          "subtitle": "",
+          "body": "For years, business owners across Kerala faced an uncomfortable choice: hire large tech agencies that charge exorbitant fees and pass client accounts down to inexperienced interns, or hire unvetted freelancers who disappear halfway through a project.\n\nExplore Wings Digital Technologies was founded in Trivandrum to offer a direct alternative. When you work with us, you speak directly with the people building your code, designing your identity, and running your ads.\n\nWe understand the local Kerala market intimately. We know the rhythm of tourist seasons in Kovalam and Varkala, the commercial activity around Technopark and Kazhakkoottam, and how shoppers in Kowdiar and East Fort discover services on their phones.",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        }
+      }
+    },
+    "contact": {
+      "page": {
+        "id": 5,
+        "slug": "contact",
+        "title": "Contact Us",
+        "meta_title": "Contact Us | Explore Wings Digital Technologies Trivandrum",
+        "meta_description": "Get in touch with Explore Wings Digital Technologies in Trivandrum, Kerala. Request a free project consultation, call us directly, or send an enquiry.",
+        "canonical_url": "",
+        "focus_keyword": "Contact Explore Wings Trivandrum",
+        "og_image": "",
+        "status": "published",
+        "created_at": "2026-10-27 04:10:18",
+        "updated_at": "2026-10-27 04:10:18"
+      },
+      "sections": {
+        "header": {
+          "title": "Let's talk about your business goals.",
+          "subtitle": "Whether you need a new website, a local brand overhaul, or more inquiries through Google, we're ready to listen and give you honest advice.",
+          "body": "",
+          "button_text": "",
+          "button_url": "",
+          "image_url": "",
+          "extra": {}
+        }
+      }
+    }
+  },
+  "services": [
+    {
+      "id": 1,
+      "slug": "websites",
+      "title": "Custom Websites & Web Apps",
+      "short_desc": "High-speed websites built specifically for your business, loading in under 2 seconds.",
+      "teaser": "We write clean code without bloated templates. Every page is tailored for mobile visitors in Kerala, with quick WhatsApp enquiry buttons and clear navigation.",
+      "full_desc": "We build clean, fast-loading websites that look sharp on mobile screens and convert visitors into WhatsApp messages or calls. Whether you run a beachfront resort in Kovalam, a dental clinic in Kowdiar, or a training institute, we ensure your site represents your real-world reputation.",
+      "included": "Mobile-first responsive architecture\nSub-2-second load times\nDirect WhatsApp & phone integration\nSSL certificate & secure setup\nDomain & hosting configuration\nContent management training for your staff",
+      "best_for": "Hotels, resorts, healthcare clinics, educational consultancies, fitness centres, and service firms seeking a credible web presence.",
+      "delivery_note": "Typical delivery: 2 to 3 weeks",
+      "cta_text": "Enquire about websites",
+      "icon": "globe",
+      "image": "",
+      "sort_order": 1,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "slug": "branding",
+      "title": "Brand Identity & Logo Design",
+      "short_desc": "Memorable logos, color systems, and signage specs ready for local print shops.",
+      "teaser": "A brand is more than just a symbol. We design vector assets that work clearly on road signboards in Kowdiar as well as on Instagram profile icons.",
+      "full_desc": "Your logo needs to work on a 20-foot outdoor signboard along the MG Road just as effectively as on a smartphone screen. We craft clean vector identities, typography pairings in English and Malayalam, and comprehensive brand manuals you can share with signage manufacturers and printers.",
+      "included": "Primary, secondary & mark variations\nBilingual typography selection\nPrint-ready vector assets (SVG, EPS, PDF)\nSignboard & uniform mockups\nColor hierarchy specifications (CMYK & RGB)\nBrand guideline documentation",
+      "best_for": "New businesses launching in Kerala, or established stores and companies looking to modernise their visual presentation.",
+      "delivery_note": "Typical delivery: 10 to 14 days",
+      "cta_text": "Enquire about branding",
+      "icon": "pen",
+      "image": "",
+      "sort_order": 2,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "slug": "social",
+      "title": "Social Media Management",
+      "short_desc": "Thoughtful Instagram and Facebook management with real photography and clear captions.",
+      "teaser": "No generic downloaded templates. We create content that shows your actual products, customer experiences, and daily behind-the-scenes.",
+      "full_desc": "Social media for local businesses shouldn't feel like a factory of generic quotes. We post authentic updates, real photography of your staff and products, short informative reels, and daily updates that keep your brand familiar to customers in Trivandrum and surrounding districts.",
+      "included": "Monthly scheduled content calendar\nReels and short video production\nAuthentic local engagement\nCommunity reply management\nClear Malayalam & English caption writing\nTransparent monthly analytics report",
+      "best_for": "Cafes, gyms, specialty retail stores, ayurvedic resorts, and training academies needing reliable monthly content.",
+      "delivery_note": "Engagement: Monthly retainer",
+      "cta_text": "Enquire about social media",
+      "icon": "instagram",
+      "image": "",
+      "sort_order": 3,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 4,
+      "slug": "photo",
+      "title": "Photography & Commercial Video",
+      "short_desc": "On-location shoots in Trivandrum, Kovalam, and across Kerala for your spaces and products.",
+      "teaser": "Stock photos ruin trust. We bring proper lighting and camera gear to your restaurant, clinic, resort, or gym to capture real images that sell.",
+      "full_desc": "Nothing undermines credibility faster than generic stock photos of corporate actors. We provide on-location shoots across South Kerala with cinema-grade cameras, proper lighting, and clean audio to capture your actual venue, products, and customer interactions.",
+      "included": "High-resolution architectural & interior photos\nProduct & menu item photography\nShort vertical videos for Instagram Reels\nProfessional color grading\nDelivery in web & print formats\nFull commercial licensing rights",
+      "best_for": "Resorts in Kovalam/Varkala, rooftop restaurants, fitness studios, fashion boutiques, and medical facilities.",
+      "delivery_note": "Format: Half-day or full-day shoot",
+      "cta_text": "Enquire about photography",
+      "icon": "camera",
+      "image": "",
+      "sort_order": 4,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 5,
+      "slug": "marketing",
+      "title": "Performance Digital Marketing",
+      "short_desc": "Targeted Meta and Google Ads campaigns tracked directly to phone calls and form submissions.",
+      "teaser": "We do not celebrate vanity metrics. We configure conversion tracking so you know exactly which ad brought in a customer enquiry.",
+      "full_desc": "Spend ad budgets where they actually produce phone calls, clinic appointments, or resort bookings. We set up tightly-targeted Meta (Instagram/Facebook) and Google Ads campaigns, ensuring every rupee is tracked against verified customer inquiries.",
+      "included": "Google Search & Local Service Ads\nInstagram & Facebook lead generation\nGeographic radius targeting\nWhatsApp click-to-chat ad setup\nWeekly budget optimisation\nLead quality reviews",
+      "best_for": "Businesses with an active sales cycle looking for a steady flow of direct customer inquiries.",
+      "delivery_note": "Flexible ad budget management",
+      "cta_text": "Enquire about marketing",
+      "icon": "megaphone",
+      "image": "",
+      "sort_order": 5,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 6,
+      "slug": "localseo",
+      "title": "Google Search & Local SEO",
+      "short_desc": "Show up on Google Maps and search results when people look for services in Trivandrum.",
+      "teaser": "Local customers use Google Maps before visiting. We fix your profile details, category placement, citations, and review strategy.",
+      "full_desc": "When people search for \"best physiotherapist in Trivandrum\" or \"rooftop cafe near Kowdiar\", your business must appear prominently on Google Maps and search results. We optimize your business profile, fix citations, and build a systematic plan to gather real customer reviews.",
+      "included": "Google Business Profile verification & setup\nLocal citation & NAP consistency check\nMap ranking keyword strategy\nReview collection system for staff\nOn-page SEO tags & schema markup\nMonthly ranking progression report",
+      "best_for": "Brick-and-mortar stores, clinics, dental practices, fitness gyms, car workshops, and restaurants.",
+      "delivery_note": "Timeline: Visible results in 4 to 8 weeks",
+      "cta_text": "Enquire about local SEO",
+      "icon": "map",
+      "image": "",
+      "sort_order": 6,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "brands": [
+    {
+      "id": 1,
+      "name": "Aadisaktthi Resorts & Spa",
+      "logo": "/uploads/aadisaktthi-resorts-spa.png",
+      "url": "",
+      "sort_order": 1,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "name": "Terrace by Makkawao",
+      "logo": "/uploads/terrace-by-makkawao.png",
+      "url": "",
+      "sort_order": 2,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "name": "Elaf",
+      "logo": "/uploads/elaf.png",
+      "url": "",
+      "sort_order": 3,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 4,
+      "name": "Global Fitness",
+      "logo": "/uploads/global-fitness.png",
+      "url": "",
+      "sort_order": 4,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 5,
+      "name": "Edustudy International",
+      "logo": "/uploads/edustudy-international.png",
+      "url": "",
+      "sort_order": 5,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 6,
+      "name": "Transorze",
+      "logo": "/uploads/transorze.png",
+      "url": "",
+      "sort_order": 6,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "question": "Do you work only with businesses inside Trivandrum?",
+      "answer": "Our studio is located in Trivandrum, but we work with clients across Kerala (Kollam, Kochi, Calicut) and overseas businesses run by Malayali founders in the GCC, UK, and Australia. For local businesses, we meet you in person; for remote clients, we run clear weekly video updates.",
+      "sort_order": 1,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "question": "How long does it take to complete a new website?",
+      "answer": "A standard 5-to-8 page business website usually takes between 2 to 3 weeks once we receive your text and brand assets. Larger web applications or custom catalog sites typically take 4 to 6 weeks. We agree on a fixed launch date before starting.",
+      "sort_order": 2,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "question": "Who owns the website and code after launch?",
+      "answer": "You do. 100%. All source code, domain registrations, hosting accounts, and image assets belong entirely to your company. We never lock you into proprietary platforms or hold your domain hostage.",
+      "sort_order": 3,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 4,
+      "question": "Can you fix or redesign our existing outdated website?",
+      "answer": "Yes. If your current website is slow, doesn't open properly on mobile screens, or lacks an SSL security certificate, we can rebuild it from the ground up while keeping your existing domain name and search engine rankings intact.",
+      "sort_order": 4,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 5,
+      "question": "How are project payments structured?",
+      "answer": "We work with milestone-based payments: typically 50% advance to initiate design and development, and the remaining 50% upon final testing, client sign-off, and deployment. No hidden recurring fees unless you opt for a monthly management retainer.",
+      "sort_order": 5,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "name": "Essential",
+      "description": "For single-location businesses needing a fast, professional digital presence.",
+      "delivery": "10 – 14 days",
+      "features": "Custom 4-page responsive website\nSub-2-second load speed\nWhatsApp and phone click-to-contact\nGoogle Business Profile verification\nBasic on-page SEO setup\n30 days post-launch support",
+      "highlighted": 0,
+      "badge": "",
+      "button_text": "Get a quote",
+      "button_link": "contact.html?package=essential",
+      "sort_order": 1,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "name": "Signature",
+      "description": "Complete digital overhaul for established businesses ready to increase customer inquiries.",
+      "delivery": "2 – 3 weeks",
+      "features": "Custom 8-page website with clean CMS\nLogo redesign & brand guidelines\nHalf-day commercial photoshoot in Kerala\nGoogle Maps & local SEO optimization\nSocial media template pack for Canva/Photoshop\n60 days post-launch support",
+      "highlighted": 1,
+      "badge": "Most Popular in Kerala",
+      "button_text": "Get a quote",
+      "button_link": "contact.html?package=signature",
+      "sort_order": 2,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "name": "Growth",
+      "description": "For multi-location brands, resorts, and firms needing hands-on marketing execution.",
+      "delivery": "4 weeks + monthly execution",
+      "features": "Custom multi-page web application or booking flow\nFull-day photography & 4k video production\nComplete brand identity manual & signage specs\nActive Meta & Google Ads campaign management\nOngoing social media content production\nDedicated priority support with 4-hour SLA",
+      "highlighted": 0,
+      "badge": "",
+      "button_text": "Get a quote",
+      "button_link": "contact.html?package=growth",
+      "sort_order": 3,
+      "visible": 1,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "chatbot": [
+    {
+      "id": 1,
+      "label": "Our Services",
+      "keywords": "service, services, what do you do, offerings, work",
+      "action": "answer",
+      "answer": "We provide six core services for businesses in Kerala and beyond:\n\n1. Custom Websites & Web Apps (fast, clean, mobile-first)\n2. Brand Identity & Logo Design (signboards, packaging, style guides)\n3. Social Media Management (reels, posts, content calendar)\n4. Photography & Commercial Video (on-location in Kerala)\n5. Performance Digital Marketing (Meta & Google ads, real leads)\n6. Google Search & Local SEO (Google Maps & local search ranking)",
+      "chips": "Websites, Branding, Social Media, Local SEO, Pricing & Quote",
+      "start": 1,
+      "sort_order": 1,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "label": "Websites",
+      "keywords": "web, website, site, app, redesign, speed",
+      "action": "answer",
+      "answer": "We build custom websites that load in under 2 seconds, look sharp on every phone screen, and turn visitors into enquiries. No clunky bloated page builders. Everything is hand-coded or built on reliable platforms depending on your business model.",
+      "chips": "Pricing & Quote, How we work, Back to Services",
+      "start": 0,
+      "sort_order": 2,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "label": "Branding",
+      "keywords": "brand, branding, logo, signboard, identity",
+      "action": "answer",
+      "answer": "We create distinct brand identities: primary and secondary logos, Malayalam & English typography pairing, color palettes, print-ready vector files, shop signboard specs, and brand guidelines you can hand to any printer in Trivandrum.",
+      "chips": "Pricing & Quote, Websites, Back to Services",
+      "start": 0,
+      "sort_order": 3,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 4,
+      "label": "Social Media",
+      "keywords": "social, instagram, facebook, reel, reels, post",
+      "action": "answer",
+      "answer": "Consistent, thoughtful content for Instagram, Facebook, and LinkedIn. We plan monthly calendars, shoot real photos/reels, write straightforward captions, and engage with your local community. No generic Canva templates.",
+      "chips": "Photography & Video, Digital Marketing, Back to Services",
+      "start": 0,
+      "sort_order": 4,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 5,
+      "label": "Photography & Video",
+      "keywords": "photo, photography, video, shoot, camera, photoshoot",
+      "action": "answer",
+      "answer": "Real imagery for real businesses. We bring cameras, lighting, and audio directly to your venue in Trivandrum, Kovalam, Varkala, or Kochi. Perfect for restaurant dishes, resort interiors, gym workouts, or product catalogs.",
+      "chips": "Social Media, Websites, Back to Services",
+      "start": 0,
+      "sort_order": 5,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 6,
+      "label": "Digital Marketing",
+      "keywords": "marketing, ads, google ad, meta, instagram ad, leads",
+      "action": "answer",
+      "answer": "Targeted advertising across Meta (Instagram/Facebook) and Google Ads. We focus strictly on genuine inquiries, store visits, and bookings rather than meaningless vanity impressions.",
+      "chips": "Pricing & Quote, Local SEO, Back to Services",
+      "start": 0,
+      "sort_order": 6,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 7,
+      "label": "Local SEO",
+      "keywords": "seo, google map, maps, ranking, local search, review",
+      "action": "answer",
+      "answer": "When someone in Trivandrum searches for what you offer, you need to show up on Google Maps and top search results. We optimize your Google Business profile, citations, keywords, and local review strategy.",
+      "chips": "Websites, Pricing & Quote, Back to Services",
+      "start": 0,
+      "sort_order": 7,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 8,
+      "label": "How we work",
+      "keywords": "process, how, steps, workflow, listen, create, launch, grow",
+      "action": "answer",
+      "answer": "Our process is clear and predictable:\n\n• Step 1: Listen — We sit down with you (in person in Trivandrum or on a call) to understand your real business goals.\n• Step 2: Create — We design and build the work with weekly check-ins.\n• Step 3: Launch — Thorough testing on devices before going live.\n• Step 4: Grow — Ongoing support, SEO monitoring, and updates.",
+      "chips": "Pricing & Quote, Get Free Consultation, Our Services",
+      "start": 1,
+      "sort_order": 8,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 9,
+      "label": "Pricing & Quote",
+      "keywords": "price, pricing, quote, cost, package, rates, budget",
+      "action": "answer",
+      "answer": "We offer transparent project packages:\n\n• Essential — For single-location businesses needing a quick, polished launch.\n• Signature — Our most popular complete package (website + brand refresh + Google Maps).\n• Growth — Complete digital presence with content creation and ongoing ads.\n\nEvery project gets a fixed written quote with no surprise fees.",
+      "chips": "Get Free Consultation, Contact Details, Our Services",
+      "start": 1,
+      "sort_order": 9,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 10,
+      "label": "Contact Details",
+      "keywords": "contact, address, phone, email, location, office, where, hours",
+      "action": "answer",
+      "answer": "We are based right here in Trivandrum, Kerala.\n\n• Location: Trivandrum, Kerala, India\n• Hours: Monday to Saturday, 9:00 AM – 6:30 PM IST\n• Email: hello@explorewings.com\n• Phone: +91 94460 12345\n\nYou can also leave your contact information right here, and we will get back to you within 24 hours.",
+      "chips": "Get Free Consultation, Our Services, How we work",
+      "start": 0,
+      "sort_order": 10,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 11,
+      "label": "Get Free Consultation",
+      "keywords": "consult, consultation, free consultation, hire, start, project, quote request",
+      "action": "lead",
+      "answer": "We'd love to help! Let's get your free consultation started.",
+      "chips": "",
+      "start": 1,
+      "sort_order": 11,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "navigation": [
+    {
+      "id": 6,
+      "area": "footer_nav",
+      "label": "Home",
+      "url": "/",
+      "new_tab": 0,
+      "sort_order": 1,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 7,
+      "area": "footer_nav",
+      "label": "Our Services",
+      "url": "/services",
+      "new_tab": 0,
+      "sort_order": 2,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 8,
+      "area": "footer_nav",
+      "label": "Pricing & Packages",
+      "url": "/pricing",
+      "new_tab": 0,
+      "sort_order": 3,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 9,
+      "area": "footer_nav",
+      "label": "About Explore Wings",
+      "url": "/about",
+      "new_tab": 0,
+      "sort_order": 4,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 10,
+      "area": "footer_nav",
+      "label": "Contact Us",
+      "url": "/contact",
+      "new_tab": 0,
+      "sort_order": 5,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 11,
+      "area": "footer_services",
+      "label": "Websites & Web Apps",
+      "url": "/services#websites",
+      "new_tab": 0,
+      "sort_order": 1,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 12,
+      "area": "footer_services",
+      "label": "Brand Identity & Logo",
+      "url": "/services#branding",
+      "new_tab": 0,
+      "sort_order": 2,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 13,
+      "area": "footer_services",
+      "label": "Social Media Management",
+      "url": "/services#social",
+      "new_tab": 0,
+      "sort_order": 3,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 14,
+      "area": "footer_services",
+      "label": "Commercial Photography",
+      "url": "/services#photo",
+      "new_tab": 0,
+      "sort_order": 4,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 15,
+      "area": "footer_services",
+      "label": "Digital Marketing",
+      "url": "/services#marketing",
+      "new_tab": 0,
+      "sort_order": 5,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 16,
+      "area": "footer_services",
+      "label": "Google Maps & SEO",
+      "url": "/services#localseo",
+      "new_tab": 0,
+      "sort_order": 6,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 1,
+      "area": "header",
+      "label": "Home",
+      "url": "/",
+      "new_tab": 0,
+      "sort_order": 1,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 2,
+      "area": "header",
+      "label": "Services",
+      "url": "/services",
+      "new_tab": 0,
+      "sort_order": 2,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 3,
+      "area": "header",
+      "label": "Pricing",
+      "url": "/pricing",
+      "new_tab": 0,
+      "sort_order": 3,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 4,
+      "area": "header",
+      "label": "About",
+      "url": "/about",
+      "new_tab": 0,
+      "sort_order": 4,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    },
+    {
+      "id": 5,
+      "area": "header",
+      "label": "Contact",
+      "url": "/contact",
+      "new_tab": 0,
+      "sort_order": 5,
+      "visible": 0,
+      "created_at": "2026-10-27 04:10:18",
+      "updated_at": "2026-10-27 04:10:18"
+    }
+  ],
+  "subscribers": [
+    {
+      "email": "client@trivandrum.com",
+      "contact": "client@trivandrum.com",
+      "created_at": "2026-10-27 05:02:23"
+    }
+  ],
+  "stats": {
+    "visitorsToday": 142,
+    "viewsToday": 489,
+    "enquiriesWeek": 12,
+    "newEnquiries": 3,
+    "totalEnquiries": 38,
+    "conversionRate": 8.5
+  }
+}
