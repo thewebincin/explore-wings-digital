@@ -1,0 +1,12 @@
+<div class="admin-card" style="max-width: 580px; margin: 40px auto; text-align: center; padding: 40px 24px;">
+  <div style="font-size: 3rem; color: #EF4444; margin-bottom: 16px;">
+    <% if (typeof iconSvg === 'function') { %><%- iconSvg('alert') %><% } else { %><span style="font-size: 2.5rem;">⚠️</span><% } %>
+  </div>
+  <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--admin-text);"><%= locals.errorTitle || 'An Error Occurred' %></h2>
+  <p style="color: var(--admin-text-muted); font-size: 0.9375rem; margin: 12px 0 24px;">
+    <%= locals.errorMessage || locals.message || 'The requested operation could not be completed.' %>
+  </p>
+  <a href="/admin" class="admin-btn admin-btn-primary">
+    Return to Dashboard
+  </a>
+</div>

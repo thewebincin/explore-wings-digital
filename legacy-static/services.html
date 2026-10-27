@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Explore Wings Digital Technologies Trivandrum</title>
+  <meta name="description" content="Explore our 6 core digital services: custom websites, brand identity, social media management, commercial photography, performance marketing, and local SEO in Kerala.">
+  <link rel="canonical" href="https://explorewings.com/services.html">
+  
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel-left"></div>
+    <div class="preloader-panel-right"></div>
+    <div class="preloader-center-content">
+      <div class="preloader-chip">
+        <img src="logo.png" alt="Explore Wings" width="48" height="48">
+      </div>
+      <div class="preloader-counter" id="preloaderCounter">0%</div>
+    </div>
+  </div>
+
+  <!-- Minimal Custom Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Back to Top -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg class="progress-ring" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <circle id="progressRingCircle" cx="22" cy="22" r="18"></circle>
+    </svg>
+    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Top Utility Bar -->
+  <aside class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>Based in Trivandrum, Kerala &bull; Direct digital collaboration</span>
+      </div>
+      <div class="top-bar-controls">
+        <div class="autoscroll-cluster">
+          <button type="button" class="autoscroll-btn" id="autoScrollToggle" aria-pressed="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Auto scroll</span>
+          </button>
+          <select id="autoScrollSpeed" class="autoscroll-select" aria-label="Auto scroll speed">
+            <option value="slow">Slow</option>
+            <option value="medium" selected>Medium</option>
+            <option value="fast">Fast</option>
+          </select>
+        </div>
+        <div class="theme-swatches" role="group" aria-label="Color Theme">
+          <button type="button" class="theme-swatch-btn swatch-green active" data-theme-btn="green" aria-label="Green Theme" aria-pressed="true"></button>
+          <button type="button" class="theme-swatch-btn swatch-red" data-theme-btn="red" aria-label="Red Theme" aria-pressed="false"></button>
+        </div>
+        <button type="button" class="mode-toggle-btn" data-mode-toggle aria-label="Switch to dark mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <span class="mode-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <header class="site-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="nav-brand" aria-label="Explore Wings Home">
+        <span class="brand-chip">
+          <img src="logo.png" alt="Explore Wings" width="32" height="32">
+        </span>
+        <div>
+          <span class="brand-wordmark">Explore Wings</span>
+          <span class="brand-tagline-sub">Digital Technologies</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link active" aria-current="page">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-primary">
+          <span>Start your project</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="brand-chip">
+        <img src="logo.png" alt="Explore Wings" width="28" height="28">
+      </div>
+      <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="services.html" class="drawer-link">Services</a></li>
+      <li><a href="pricing.html" class="drawer-link">Pricing</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <a href="contact.html" class="btn-primary" style="width: 100%;">Start your project</a>
+      <p style="font-size: 0.8125rem; color: var(--text-muted);" data-cfg="address">Trivandrum, Kerala, India</p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Header Strip -->
+    <section class="page-header-strip">
+      <div class="container">
+        <span class="stamp-badge">Our Offerings</span>
+        <h1 class="display-title">Practical digital services for growing businesses.</h1>
+        <p class="sub-title">
+          No jargon, no bloated retainers. Just reliable design, development, and marketing executed directly by experienced practitioners in Trivandrum.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Detailed Breakdown -->
+    <section style="padding: var(--space-2xl) 0;">
+      <div class="container" style="display: flex; flex-direction: column; gap: var(--space-2xl);">
+
+        <!-- 01 Custom Websites -->
+        <div id="websites" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">01</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Custom Websites &amp; Web Apps</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                We build clean, fast-loading websites that look sharp on mobile screens and convert visitors into WhatsApp messages or calls. Whether you run a beachfront resort in Kovalam, a dental clinic in Kowdiar, or a training institute, we ensure your site represents your real-world reputation.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Sub-2-second load speed</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Mobile-first layouts</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>WhatsApp &amp; call buttons</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>SSL certificate &amp; secure setup</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Domain &amp; hosting configuration</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Full code ownership</li>
+              </ul>
+              <a href="contact.html?service=websites" class="btn-primary">Enquire about websites</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                Hotels, resorts, healthcare clinics, educational consultancies, fitness centres, and service firms seeking a credible web presence.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Typical delivery: 2 to 3 weeks
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Brand Identity -->
+        <div id="branding" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">02</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Brand Identity &amp; Logo Design</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                Your logo needs to work on a 20-foot outdoor signboard along the MG Road just as effectively as on a smartphone screen. We craft clean vector identities, typography pairings in English and Malayalam, and comprehensive brand manuals you can share with signage manufacturers and printers.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Primary &amp; secondary logo marks</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Bilingual typography selection</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Print-ready vector assets (SVG, EPS, PDF)</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Signboard &amp; uniform mockups</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Color hierarchy specifications (CMYK &amp; RGB)</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Brand guideline documentation</li>
+              </ul>
+              <a href="contact.html?service=branding" class="btn-primary">Enquire about branding</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                New businesses launching in Kerala, or established stores and companies looking to modernise their visual presentation.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Typical delivery: 10 to 14 days
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Social Media -->
+        <div id="social" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">03</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Social Media Management</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                Social media for local businesses shouldn't feel like a factory of generic quotes. We post authentic updates, real photography of your staff and products, short informative reels, and daily updates that keep your brand familiar to customers in Trivandrum and surrounding districts.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Monthly editorial content calendar</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Instagram &amp; Facebook posting</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Reels editing with trending local audio</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Community reply management</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Clear Malayalam &amp; English caption writing</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Monthly reach &amp; engagement reports</li>
+              </ul>
+              <a href="contact.html?service=social" class="btn-primary">Enquire about social media</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                Cafes, gyms, specialty retail stores, ayurvedic resorts, and training academies needing reliable monthly content.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Engagement: Monthly retainer
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Photography & Video -->
+        <div id="photo" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">04</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Photography &amp; Commercial Video</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                Nothing undermines credibility faster than generic stock photos of corporate actors. We provide on-location shoots across South Kerala with cinema-grade cameras, proper lighting, and clean audio to capture your actual venue, products, and customer interactions.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Architectural &amp; interior venue coverage</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>High-resolution food &amp; product styling</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Short video reels for Instagram</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Professional color grading</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Delivery in web &amp; print formats</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Full commercial licensing rights</li>
+              </ul>
+              <a href="contact.html?service=photography" class="btn-primary">Enquire about photography</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                Resorts in Kovalam/Varkala, rooftop restaurants, fitness studios, fashion boutiques, and medical facilities.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Format: Half-day or full-day shoot
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 Performance Marketing -->
+        <div id="marketing" class="service-detail-block" style="border-bottom: 1px solid var(--border); padding-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">05</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Performance Digital Marketing</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                Spend ad budgets where they actually produce phone calls, clinic appointments, or resort bookings. We set up tightly-targeted Meta (Instagram/Facebook) and Google Ads campaigns, ensuring every rupee is tracked against verified customer inquiries.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Google Search campaign architecture</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Instagram &amp; Facebook lead forms</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Geographic radius targeting</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>WhatsApp click-to-chat ad setup</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Weekly budget optimisation</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Lead quality reviews</li>
+              </ul>
+              <a href="contact.html?service=marketing" class="btn-primary">Enquire about marketing</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                Businesses with an active sales cycle looking for a steady flow of direct customer inquiries.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Management: Monthly management fee + direct ad spend
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 Google Search & Local SEO -->
+        <div id="localseo" class="service-detail-block">
+          <div style="display: grid; grid-template-columns: 80px 1.2fr 1fr; gap: var(--space-lg);">
+            <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary);">06</div>
+            <div>
+              <h2 style="font-size: 2rem; margin-bottom: 12px;">Google Search &amp; Local SEO</h2>
+              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                When people search for &ldquo;best physiotherapist in Trivandrum&rdquo; or &ldquo;rooftop cafe near Kowdiar&rdquo;, your business must appear prominently on Google Maps and search results. We optimize your business profile, fix citations, and build a systematic plan to gather real customer reviews.
+              </p>
+              <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; color: var(--text);">What's included:</h3>
+              <ul class="service-features-list" style="margin-bottom: 24px;">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Google Business Profile audit &amp; verification</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Map ranking keyword strategy</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>NAP consistency across local directories</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Review collection system for staff</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>On-page local schema markup</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Monthly ranking progression report</li>
+              </ul>
+              <a href="contact.html?service=seo" class="btn-primary">Enquire about local SEO</a>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <strong style="font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Best suited for:</strong>
+              <p style="font-size: 0.9375rem; color: var(--text);">
+                Brick-and-mortar stores, clinics, dental practices, fitness gyms, car workshops, and restaurants.
+              </p>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.8125rem; color: var(--text-muted);">
+                Timeline: Visible results within 4 to 8 weeks
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Consultation Banner -->
+    <section style="background: var(--bg-subtle); padding: var(--space-xl) 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+        <div>
+          <h2 style="font-size: 1.75rem; margin-bottom: 6px;">Need a combination of services?</h2>
+          <p style="color: var(--text-muted); font-size: 0.9375rem;">We can structure a package that matches your timeline and business goals.</p>
+        </div>
+        <a href="contact.html" class="btn-primary">Schedule a consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mega Footer -->
+  <footer class="mega-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-chip" style="width: max-content;">
+            <img src="logo.png" alt="Explore Wings" width="32" height="32">
+          </div>
+          <div class="malayalam-greeting">നമസ്കാരം &mdash; Welcome from Trivandrum</div>
+          <p class="footer-founder-note">
+            &ldquo;Explore Wings was founded to offer businesses in Kerala direct, unhurried digital work. You speak with the person actually building your website and designing your brand.&rdquo;
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="pricing.html">Pricing &amp; Packages</a></li>
+            <li><a href="about.html">About Explore Wings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links-list">
+            <li><a href="services.html#websites">Websites &amp; Web Apps</a></li>
+            <li><a href="services.html#branding">Brand Identity &amp; Logo</a></li>
+            <li><a href="services.html#social">Social Media Management</a></li>
+            <li><a href="services.html#photo">Commercial Photography</a></li>
+            <li><a href="services.html#marketing">Digital Marketing</a></li>
+            <li><a href="services.html#localseo">Google Maps &amp; SEO</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Studio Location</div>
+          <div class="footer-contact-details">
+            <p><strong style="color: var(--text);">Explore Wings Digital</strong></p>
+            <p data-cfg="address">Trivandrum, Kerala, India</p>
+            <p data-cfg="hours">Monday &ndash; Saturday: 9:00 AM &ndash; 6:30 PM IST</p>
+            <p data-cfg-wrap><a href="mailto:hello@explorewings.com" data-cfg="email">hello@explorewings.com</a></p>
+            <p data-cfg-wrap><a href="tel:+919446012345" data-cfg="phone">+91 94460 12345</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span id="currentYear">2026</span> Explore Wings Digital Technologies. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-cfg="instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-cfg="facebook">Facebook</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" data-cfg="linkedin">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="footer-watermark" aria-hidden="true">
+        EXPLORE WINGS
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Launcher & Container -->
+  <button type="button" class="chatbot-launcher" id="chatbotLauncher" aria-label="Open Wing Assistant Chatbot" aria-expanded="false">
+    <span class="launcher-chip">
+      <img src="logo.png" alt="Explore Wings" width="20" height="20">
+    </span>
+    <span>Chat with us</span>
+  </button>
+
+  <aside class="chatbot-container" id="chatbotContainer" aria-label="Wing Assistant Chat Window">
+    <div class="chat-header">
+      <div class="chat-header-brand">
+        <div class="chat-header-chip">
+          <img src="logo.png" alt="Explore Wings" width="22" height="22">
+        </div>
+        <div class="chat-header-info">
+          <strong>Wing Assistant</strong>
+          <span>Explore Wings Digital &bull; Trivandrum</span>
+        </div>
+      </div>
+      <button type="button" class="chat-close-btn" id="chatbotCloseBtn" aria-label="Close Chat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatbotMessages"></div>
+    <div class="chat-quick-replies" id="chatbotQuickReplies" aria-label="Quick questions"></div>
+    <div class="chat-input-bar">
+      <input type="text" id="chatbotInput" placeholder="Type a message..." aria-label="Chat message">
+      <button type="button" id="chatbotSendBtn" aria-label="Send Message">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

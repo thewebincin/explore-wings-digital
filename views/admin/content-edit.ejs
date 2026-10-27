@@ -1,0 +1,271 @@
+<div class="admin-editor-layout">
+  <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <div>
+      <a href="/admin/pages" class="admin-link-subtle" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+        &larr; Back to all pages
+      </a>
+      <h2 style="font-size: 1.5rem; font-weight: 700;">Edit <%= page.title %> Page Sections</h2>
+      <span style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+        Route: <code><%= slug === 'home' ? '/' : '/' + slug %></code> &bull; Edit section by section or publish all at once.
+      </span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <a href="<%= slug === 'home' ? '/' : '/' + slug %>" target="_blank" rel="noopener" class="admin-btn admin-btn-outline" title="Open public page in new tab">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span>View Live Page</span>
+      </a>
+      <button type="submit" form="pageEditFormAll" class="admin-btn admin-btn-primary">
+        <%- iconSvg('save') %> <span>Publish All Page Changes</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Section Navigation Bar -->
+  <% if (sections && Object.keys(sections).length) { %>
+    <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: var(--admin-radius); padding: 12px 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; overflow-x: auto; flex-wrap: wrap;">
+      <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--admin-text-muted); letter-spacing: 0.05em;">Sections on this page:</span>
+      <% Object.keys(sections).forEach(secKey => { %>
+        <a href="#sec-<%= secKey %>" class="admin-badge" style="text-decoration: none; font-weight: 600; padding: 4px 10px; background: var(--admin-bg-card); border: 1px solid var(--admin-border); color: var(--admin-text);">
+          #<%= secKey.replace(/_/g, ' ') %>
+        </a>
+      <% }) %>
+      <a href="#add-section-card" class="admin-badge" style="text-decoration: none; font-weight: 600; padding: 4px 10px; background: var(--admin-primary); color: #FFFFFF;">
+        + Add Section
+      </a>
+    </div>
+  <% } %>
+
+  <div class="admin-grid-layout-sidebar">
+    <!-- Left Main Column: Section-by-Section Editors -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- Global Page Metadata & SEO Form -->
+      <form id="pageEditFormAll" action="/admin/pages/<%= slug %>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+        <div class="admin-card" style="margin-bottom: 24px;">
+          <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 class="admin-card-title">Page Metadata &amp; SEO</h3>
+            <span class="admin-badge">General Info</span>
+          </div>
+          <div class="admin-card-body">
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label" for="pageTitle">Page Title *</label>
+                <input type="text" id="pageTitle" name="title" class="admin-input" value="<%= page.title %>" required>
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label" for="metaTitle">SEO Meta Title</label>
+                <input type="text" id="metaTitle" name="meta_title" class="admin-input" value="<%= page.meta_title || '' %>">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label" for="metaDescription">Meta Description (shown on Google search snippets)</label>
+              <textarea id="metaDescription" name="meta_description" class="admin-textarea" rows="2"><%= page.meta_description || '' %></textarea>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label" for="canonicalUrl">Canonical URL Override (Optional)</label>
+                <input type="text" id="canonicalUrl" name="canonical_url" class="admin-input" value="<%= page.canonical_url || '' %>">
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label" for="focusKeyword">Focus Keyword</label>
+                <input type="text" id="focusKeyword" name="focus_keyword" class="admin-input" value="<%= page.focus_keyword || '' %>">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Section-by-Section Independent Cards -->
+      <% if (sections && Object.keys(sections).length) { %>
+        <% Object.entries(sections).forEach(([secKey, sec]) => { %>
+          <div class="admin-card section-card" id="sec-<%= secKey %>" style="scroll-margin-top: 80px;">
+            <div class="admin-card-header" style="background: var(--admin-bg-surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="admin-badge" style="text-transform: uppercase; font-weight: 700; background: var(--admin-primary); color: #fff;">
+                  <%= secKey.replace(/_/g, ' ') %> SECTION
+                </span>
+                <h3 class="admin-card-title" style="margin: 0; font-size: 1.125rem;"><%= sec.title || secKey %></h3>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--admin-text-muted);">
+                Key: <code><%= secKey %></code>
+              </span>
+            </div>
+
+            <div class="admin-card-body">
+              <form action="/admin/pages/<%= slug %>/section/<%= secKey %>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+                <div class="admin-form-group">
+                  <label class="admin-label">Section Headline / Title</label>
+                  <input type="text" name="title" class="admin-input" value="<%= sec.title || '' %>" placeholder="Main heading displayed in this section">
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-label">Subtitle / Badge Tagline</label>
+                  <input type="text" name="subtitle" class="admin-input" value="<%= sec.subtitle || '' %>" placeholder="Small badge or supporting tagline">
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-label">Main Body Text / Lead Paragraph</label>
+                  <textarea name="body" class="admin-textarea" rows="4" placeholder="Detailed paragraph or description for this section"><%= sec.body || '' %></textarea>
+                </div>
+
+                <div class="admin-grid-2">
+                  <div class="admin-form-group">
+                    <label class="admin-label">Button Text (Optional)</label>
+                    <input type="text" name="button_text" class="admin-input" value="<%= sec.button_text || '' %>" placeholder="e.g. Get free consultation">
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-label">Button Destination URL (Optional)</label>
+                    <input type="text" name="button_url" class="admin-input" value="<%= sec.button_url || '' %>" placeholder="e.g. /contact or #enquiry">
+                  </div>
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-label">Image or Mockup URL (Optional)</label>
+                  <input type="text" name="image_url" class="admin-input" value="<%= sec.image_url || '' %>" placeholder="e.g. /uploads/hero.jpg">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--admin-border); flex-wrap: wrap; gap: 10px;">
+                  <button type="submit" class="admin-btn admin-btn-primary" style="font-weight: 600;">
+                    <%- iconSvg('save') %> <span>Save This Section</span>
+                  </button>
+                  <form action="/admin/pages/<%= slug %>/section/<%= secKey %>/delete" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to remove the <%= secKey %> section?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm" style="color: #EF4444; background: transparent; border: 1px solid #FECACA; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+                      Delete Section
+                    </button>
+                  </form>
+                </div>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+
+      <!-- Add New Section Card -->
+      <div class="admin-card" id="add-section-card" style="border: 2px dashed var(--admin-border);">
+        <div class="admin-card-header" style="background: var(--admin-bg-surface);">
+          <h3 class="admin-card-title">+ Add a New Section to <%= page.title %> Page</h3>
+        </div>
+        <div class="admin-card-body">
+          <form action="/admin/pages/<%= slug %>/section-add" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Section Identifier Key *</label>
+                <input type="text" name="section_key" class="admin-input" placeholder="e.g. announcement, team, awards" required>
+                <span style="font-size: 0.75rem; color: var(--admin-text-muted);">Lowercase letters, numbers, and underscores only.</span>
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label">Section Title / Headline</label>
+                <input type="text" name="title" class="admin-input" placeholder="e.g. Meet our Trivandrum Studio Team">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Subtitle / Badge</label>
+              <input type="text" name="subtitle" class="admin-input" placeholder="e.g. Local Excellence">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Section Body Text</label>
+              <textarea name="body" class="admin-textarea" rows="3" placeholder="Write the content for this section..."></textarea>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Button Text (Optional)</label>
+                <input type="text" name="button_text" class="admin-input" placeholder="e.g. Learn More">
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label">Button URL (Optional)</label>
+                <input type="text" name="button_url" class="admin-input" placeholder="e.g. /contact">
+              </div>
+            </div>
+
+            <button type="submit" class="admin-btn admin-btn-outline" style="font-weight: 600; margin-top: 10px;">
+              Create Section
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Status & Navigation to other pages -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <!-- Publish Action Card -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3 class="admin-card-title">Page Status</h3>
+        </div>
+        <div class="admin-card-body">
+          <div class="admin-form-group">
+            <label class="admin-label" for="pageStatus">Status</label>
+            <select id="pageStatus" name="status" class="admin-select" form="pageEditFormAll">
+              <option value="published" <%= page.status === 'published' ? 'selected' : '' %>>Published (Live)</option>
+              <option value="draft" <%= page.status === 'draft' ? 'selected' : '' %>>Draft</option>
+            </select>
+          </div>
+          <button type="submit" form="pageEditFormAll" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-weight: 700;">
+            <%- iconSvg('save') %> <span>Publish All Changes</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Switch Page Links -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3 class="admin-card-title">All Pages</h3>
+        </div>
+        <div class="admin-card-body" style="padding: 0;">
+          <div style="display: flex; flex-direction: column;">
+            <% ['home', 'services', 'pricing', 'about', 'contact'].forEach(pSlug => { %>
+              <a href="/admin/pages/<%= pSlug %>" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--admin-border); text-decoration: none; color: var(--admin-text); font-size: 0.875rem; font-weight: <%= slug === pSlug ? '700' : '400' %>; background: <%= slug === pSlug ? 'var(--admin-bg-surface)' : 'transparent' %>;">
+                <span><%= pSlug.toUpperCase() %> Page</span>
+                <span style="color: var(--admin-text-muted);">&rarr;</span>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Version History with One-Click Restore -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3 class="admin-card-title">Version History</h3>
+        </div>
+        <div class="admin-card-body" style="padding: 0;">
+          <% if (versions && versions.length) { %>
+            <div class="admin-version-list">
+              <% versions.forEach((v, idx) => { %>
+                <div class="admin-version-item">
+                  <div>
+                    <div style="font-weight: 500; font-size: 0.8125rem;"><%= v.summary || 'Snapshot ' + (idx + 1) %></div>
+                    <div style="font-size: 0.75rem; color: var(--admin-text-muted);">
+                      <%= new Date(v.created_at).toLocaleString('en-IN') %>
+                    </div>
+                  </div>
+                  <form action="/admin/pages/<%= slug %>/restore/<%= v.id %>" method="POST" onsubmit="return confirm('Restore this version? Unsaved changes will be overwritten.');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-outline">Restore</button>
+                  </form>
+                </div>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <div style="padding: 20px; text-align: center; font-size: 0.8125rem; color: var(--admin-text-muted);">
+              Versions are automatically archived whenever you publish changes.
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

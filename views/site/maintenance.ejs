@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduled Maintenance &bull; <%= settings.site_name || 'Explore Wings Digital Technologies' %></title>
+  <link rel="icon" type="image/png" href="<%= settings.logo_path || '/images/logo.png' %>">
+  <link rel="stylesheet" href="/css/style.css?v=<%= assetVersion %>">
+  <style>
+    .maintenance-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+      text-align: center;
+    }
+    .maintenance-card {
+      max-width: 580px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 36px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .maintenance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      background: #FEF3C7;
+      color: #92400E;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-screen">
+    <div class="maintenance-card">
+      <% if (locals.isAdmin) { %>
+        <div style="background: #0F172A; color: #F8FAFC; padding: 12px 18px; border-radius: 8px; margin-bottom: 24px; font-size: 0.8125rem; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; text-align: left; border: 1px solid #334155;">
+          <div>
+            <strong style="color: #38BDF8;">🔧 Admin Logged In:</strong>
+            <span style="display: block; font-size: 0.75rem; color: #94A3B8; margin-top: 2px;">This is the real 503 screen visitors see.</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <a href="/?preview=live" style="padding: 5px 12px; font-size: 0.75rem; font-weight: 700; background: #2563EB; color: #fff; text-decoration: none; border-radius: 4px;">Preview Live Site &rarr;</a>
+            <a href="/admin/maintenance" style="padding: 5px 12px; font-size: 0.75rem; font-weight: 600; background: #334155; color: #fff; text-decoration: none; border-radius: 4px;">Admin Panel</a>
+          </div>
+        </div>
+      <% } %>
+
+      <div style="margin-bottom: 20px;">
+        <div class="brand-chip" style="margin: 0 auto; width: 48px; height: 48px;">
+          <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="36" height="36">
+        </div>
+      </div>
+      
+      <div class="maintenance-badge">
+        <span class="pulse-dot" style="background: #F59E0B;" aria-hidden="true"></span>
+        <span>Scheduled Maintenance in Progress</span>
+      </div>
+
+      <h1 style="font-size: 2rem; margin-bottom: 12px; font-family: var(--font-display);">We are tuning up our systems.</h1>
+      <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 24px;">
+        <%= maintenanceMessage || 'We are performing scheduled improvements to our servers. We will be back online shortly. For urgent enquiries in Trivandrum, please call or WhatsApp our studio.' %>
+      </p>
+
+      <% if (estimatedEnd) { %>
+        <div style="font-size: 0.875rem; color: var(--text); background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 24px;">
+          Estimated back online: <strong><%= estimatedEnd %></strong>
+        </div>
+      <% } %>
+
+      <!-- Notify Me Form -->
+      <% if (locals.allowNotify !== false) { %>
+      <form id="notifyForm" action="/api/maintenance/notify" method="POST" style="margin-bottom: 24px;">
+        <div style="display: flex; gap: 8px; max-width: 400px; margin: 0 auto;">
+          <input type="text" name="contact" placeholder="Email or phone to notify" required style="flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.875rem; background: var(--bg); color: var(--text);">
+          <button type="submit" class="btn-primary" style="padding: 10px 18px; border: none; cursor: pointer;">Notify Me</button>
+        </div>
+        <div id="notifyMsg" style="font-size: 0.8125rem; margin-top: 8px; display: none;"></div>
+      </form>
+      <% } %>
+
+      <div style="padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.875rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+        <% if (settings.phone) { %>
+          <div>Direct phone: <a href="tel:<%= settings.phone.replace(/[^0-9+]/g, '') %>" style="color: var(--primary); font-weight: 600;"><%= settings.phone %></a></div>
+        <% } %>
+        <% if (settings.email) { %>
+          <div>Email: <a href="mailto:<%= settings.email %>" style="color: var(--primary);"><%= settings.email %></a></div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const notifyForm = document.getElementById('notifyForm');
+    if (notifyForm) {
+      notifyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const contact = notifyForm.contact.value;
+        const msgDiv = document.getElementById('notifyMsg');
+        try {
+          const res = await fetch('/api/maintenance/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contact })
+          });
+          const json = await res.json();
+          msgDiv.style.display = 'block';
+          msgDiv.style.color = json.success ? '#10B981' : '#EF4444';
+          msgDiv.textContent = json.message || 'Thank you! We will notify you as soon as we are live.';
+          if (json.success) notifyForm.contact.value = '';
+        } catch (err) {
+          msgDiv.style.display = 'block';
+          msgDiv.style.color = '#10B981';
+          msgDiv.textContent = 'Thank you! We will notify you.';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

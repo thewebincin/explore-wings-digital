@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="<%= locals.csrfToken || '' %>">
+  <title><%= locals.title ? title + ' | Admin Console' : 'Admin Console | Explore Wings' %></title>
+  
+  <link rel="icon" type="image/png" href="<%= settings.logo_path || '/images/logo.png' %>">
+  <link rel="stylesheet" href="/css/admin.css?v=<%= assetVersion %>">
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <!-- Sidebar -->
+    <%- include('partials/nav') %>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+      <!-- Admin Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button type="button" class="admin-mobile-toggle" id="adminSidebarToggle" aria-label="Toggle sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <h1 class="admin-topbar-title"><%= locals.title || 'Overview' %></h1>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <!-- Prominent Edit Website Button -->
+          <a href="/admin/pages" class="admin-btn admin-btn-sm admin-btn-primary" style="padding: 6px 12px; font-weight: 600;" title="Edit Website Pages & Sections">
+            <%- iconSvg('edit') %>
+            <span>Edit Website</span>
+          </a>
+
+          <!-- Live Site Status Indicator -->
+          <% const isMaintActive = (settings.maintenance_mode === 'on' || settings.maintenance_mode === 'true' || settings.maintenance_mode === '1'); %>
+          <% if (isMaintActive) { %>
+            <a href="/admin/maintenance" class="admin-status-pill warning" title="Maintenance mode is active (Public 503)">
+              <span class="status-dot"></span> Maintenance Active (503)
+            </a>
+          <% } else { %>
+            <span class="admin-status-pill online" title="Website is live to public">
+              <span class="status-dot"></span> Site Live
+            </span>
+          <% } %>
+
+          <!-- Link to Public Website -->
+          <a href="/?bypass=<%= settings.maintenance_bypass_token || 'ew-preview' %>" target="_blank" rel="noopener" class="admin-btn-outline" title="Open live website in new tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>View Site</span>
+          </a>
+
+          <!-- Theme & Mode Switchers -->
+          <div class="admin-theme-swatches">
+            <button type="button" class="swatch-btn swatch-green" data-theme-btn="green" title="Green Palette"></button>
+            <button type="button" class="swatch-btn swatch-red" data-theme-btn="red" title="Red Palette"></button>
+          </div>
+          <button type="button" class="admin-mode-toggle" id="adminModeToggle" title="Toggle Light/Dark Mode">
+            <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Persistent Maintenance Mode Warning Banner -->
+      <% if (isMaintActive) { %>
+        <div class="admin-maintenance-banner" style="background: #FEF3C7; color: #92400E; border-bottom: 2px solid #F59E0B; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9375rem;">
+            <span style="font-size: 1.25rem;">⚠️</span>
+            <span><strong>Maintenance Mode Active:</strong> Public visitors are blocked and receive a 503 screen. Admins &amp; preview tokens can view the site.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="/admin/maintenance" class="admin-btn admin-btn-xs admin-btn-outline" style="border-color: #B45309; color: #92400E; background: transparent; text-decoration: none;">Configure</a>
+            <a href="/?bypass=<%= settings.maintenance_bypass_token || 'ew-preview' %>" target="_blank" class="admin-btn admin-btn-xs admin-btn-outline" style="border-color: #B45309; color: #92400E; background: transparent; text-decoration: none;">Preview Site</a>
+            <form action="/admin/maintenance/toggle" method="POST" style="margin: 0; display: inline;">
+              <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+              <button type="submit" class="admin-btn admin-btn-xs admin-btn-primary" style="background: #D97706; border-color: #B45309; font-weight: 700; cursor: pointer;">Turn Off &amp; Go Live</button>
+            </form>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- Alert / Flash Messages -->
+      <div class="admin-alerts-container">
+        <% if (locals.success && success.length) { %>
+          <div class="admin-alert success">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><%= success %></span>
+          </div>
+        <% } %>
+        <% if (locals.error && error.length) { %>
+          <div class="admin-alert error">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span><%= error %></span>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Main Body Container -->
+      <main class="admin-content">
+        <%- body %>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/admin.js?v=<%= assetVersion %>"></script>
+</body>
+</html>

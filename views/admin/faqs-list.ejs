@@ -1,0 +1,130 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Frequently Asked Questions</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Direct answers shown in the FAQ accordion and automatically fed into the JSON-LD FAQPage Schema for Google Rich Results.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('addFaqModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Add Question</span>
+  </button>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th style="width: 50px;">Order</th>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Visible</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="faqsSortableList">
+          <% if (faqs && faqs.length) { %>
+            <% faqs.forEach((faq, index) => { %>
+              <tr data-id="<%= faq.id %>">
+                <td style="color: var(--admin-text-muted); font-weight: 600;"><%= index + 1 %></td>
+                <td>
+                  <strong><%= faq.question %></strong>
+                </td>
+                <td style="max-width: 420px; font-size: 0.8125rem; color: var(--admin-text-muted);" class="truncate">
+                  <%= faq.answer %>
+                </td>
+                <td>
+                  <form action="/admin/faqs/<%= faq.id %>/toggle" method="POST" style="display: inline;">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-badge <%= faq.visible ? 'status-active' : 'status-draft' %>" style="cursor: pointer; border: none;">
+                      <%= faq.visible ? 'Visible' : 'Hidden' %>
+                    </button>
+                  </form>
+                </td>
+                <td style="text-align: right;">
+                  <button type="button" class="admin-btn-sm admin-btn-outline" onclick="openEditFaqModal(<%= JSON.stringify(faq) %>)">
+                    Edit
+                  </button>
+                  <form action="/admin/faqs/<%= faq.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Delete this FAQ?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-danger" style="margin-left: 6px;">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                No FAQs configured yet. Click "Add Question" above.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add FAQ Modal -->
+<div class="admin-modal-overlay" id="addFaqModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add New FAQ</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addFaqModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/faqs" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Question *</label>
+          <input type="text" name="question" class="admin-input" required placeholder="e.g. Do you provide ongoing maintenance after launch?">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Answer *</label>
+          <textarea name="answer" class="admin-textarea" rows="5" required placeholder="Write clear, plain-language answers..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addFaqModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save FAQ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit FAQ Modal -->
+<div class="admin-modal-overlay" id="editFaqModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Edit FAQ</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('editFaqModal').style.display='none'">&times;</button>
+    </div>
+    <form id="editFaqForm" action="" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Question *</label>
+          <input type="text" id="editFaqQuestion" name="question" class="admin-input" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Answer *</label>
+          <textarea id="editFaqAnswer" name="answer" class="admin-textarea" rows="5" required></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('editFaqModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openEditFaqModal(faq) {
+    document.getElementById('editFaqForm').action = '/admin/faqs/' + faq.id;
+    document.getElementById('editFaqQuestion').value = faq.question || '';
+    document.getElementById('editFaqAnswer').value = faq.answer || '';
+    document.getElementById('editFaqModal').style.display = 'flex';
+  }
+</script>

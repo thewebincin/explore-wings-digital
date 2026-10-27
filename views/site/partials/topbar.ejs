@@ -1,0 +1,47 @@
+<!-- 1. TOP UTILITY BAR -->
+<aside class="top-utility-bar">
+  <div class="container top-bar-inner">
+    <div class="top-bar-badge">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span>Based in Trivandrum, Kerala &bull; Working with businesses across South India</span>
+    </div>
+    <div class="top-bar-controls">
+      <!-- Auto Scroll Controls -->
+      <div class="autoscroll-cluster">
+        <button type="button" class="autoscroll-btn" id="autoScrollToggle" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Auto scroll</span>
+        </button>
+        <select id="autoScrollSpeed" class="autoscroll-select" aria-label="Auto scroll speed">
+          <option value="slow">Slow</option>
+          <option value="medium" selected>Medium</option>
+          <option value="fast">Fast</option>
+        </select>
+      </div>
+
+      <!-- Theme Swatches (Green & Red) -->
+      <div class="theme-swatches" role="group" aria-label="Color Theme">
+        <button type="button" class="theme-swatch-btn swatch-green" data-theme-btn="green" aria-label="Green Theme" aria-pressed="true"></button>
+        <button type="button" class="theme-swatch-btn swatch-red" data-theme-btn="red" aria-label="Red Theme" aria-pressed="false"></button>
+      </div>
+
+      <!-- Light / Dark Toggle -->
+      <button type="button" class="mode-toggle-btn" data-mode-toggle aria-label="Switch to dark mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <span class="mode-label">Dark</span>
+      </button>
+    </div>
+  </div>
+</aside>

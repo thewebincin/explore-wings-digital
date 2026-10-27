@@ -1,0 +1,102 @@
+<!-- 3. MEGA FOOTER -->
+<footer class="mega-footer">
+  <div class="container">
+    <div class="footer-top-grid">
+      <!-- Brand & Founder Column -->
+      <div class="footer-brand-col">
+        <div class="brand-chip" style="width: max-content;">
+          <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="32" height="32">
+        </div>
+        <div class="malayalam-greeting">സ്വാഗതം &mdash; Welcome from Trivandrum</div>
+        <p class="footer-founder-note">
+          &ldquo;Explore Wings was founded to offer businesses in Kerala direct, unhurried digital work. You speak with the person actually building your website and designing your brand.&rdquo;
+        </p>
+      </div>
+
+      <!-- Navigation Column -->
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links-list">
+          <% if (locals.footerNav && footerNav.length) { %>
+            <% footerNav.forEach(item => { %>
+              <li><a href="<%= item.url %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>><%= item.label %></a></li>
+            <% }) %>
+          <% } else { %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Our Services</a></li>
+            <li><a href="/pricing">Pricing &amp; Packages</a></li>
+            <li><a href="/about">About Explore Wings</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          <% } %>
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links-list">
+          <% if (locals.footerServices && footerServices.length) { %>
+            <% footerServices.forEach(item => { %>
+              <li><a href="<%= item.url %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>><%= item.label %></a></li>
+            <% }) %>
+          <% } else { %>
+            <li><a href="/services#websites">Websites &amp; Web Apps</a></li>
+            <li><a href="/services#branding">Brand Identity &amp; Logo</a></li>
+            <li><a href="/services#social">Social Media Management</a></li>
+            <li><a href="/services#photo">Commercial Photography</a></li>
+            <li><a href="/services#marketing">Digital Marketing</a></li>
+            <li><a href="/services#localseo">Google Maps &amp; SEO</a></li>
+          <% } %>
+        </ul>
+      </div>
+
+      <!-- Studio Location & Contact Details Column -->
+      <div>
+        <div class="footer-col-title">Studio Location</div>
+        <div class="footer-contact-details">
+          <p><strong style="color: var(--text);"><%= settings.site_name || 'Explore Wings Digital' %></strong></p>
+          <% if (settings.address) { %>
+            <p><%= settings.address %></p>
+          <% } %>
+          <% if (settings.hours) { %>
+            <p><%= settings.hours %></p>
+          <% } %>
+          <% if (settings.email) { %>
+            <p><a href="mailto:<%= settings.email %>"><%= settings.email %></a></p>
+          <% } %>
+          <% if (settings.phone) { %>
+            <p><a href="tel:<%= settings.phone.replace(/[^0-9+]/g, '') %>"><%= settings.phone %></a></p>
+          <% } %>
+          <% if (settings.whatsapp) { %>
+            <p><a href="https://wa.me/<%= settings.whatsapp.replace(/[^0-9]/g, '') %>" target="_blank" rel="noopener" style="color: #25D366; font-weight: 500;">Chat on WhatsApp &rarr;</a></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom-bar">
+      <div>
+        &copy; <%= new Date().getFullYear() %> <%= settings.site_name || 'Explore Wings Digital Technologies' %>. All rights reserved.
+      </div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <% if (settings.instagram) { %>
+          <a href="<%= settings.instagram %>" target="_blank" rel="noopener">Instagram</a>
+        <% } %>
+        <% if (settings.facebook) { %>
+          <a href="<%= settings.facebook %>" target="_blank" rel="noopener">Facebook</a>
+        <% } %>
+        <% if (settings.linkedin) { %>
+          <a href="<%= settings.linkedin %>" target="_blank" rel="noopener">LinkedIn</a>
+        <% } %>
+        <a href="/sitemap.xml" target="_blank">Sitemap</a>
+        <a href="/admin/login" style="opacity: 0.5;">Admin</a>
+      </div>
+    </div>
+
+    <!-- Outline Watermark -->
+    <div class="footer-watermark" aria-hidden="true">
+      EXPLORE WINGS
+    </div>
+  </div>
+</footer>

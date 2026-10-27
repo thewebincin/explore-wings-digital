@@ -1,0 +1,100 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Users &amp; Role-Based Access</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Manage administrative users and permissions (Owner, Editor, Viewer). Passwords hashed using bcrypt.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('addUserModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Invite New User</span>
+  </button>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>2FA Status</th>
+            <th>Created</th>
+            <th style="text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (users && users.length) { %>
+            <% users.forEach(u => { %>
+              <tr>
+                <td><strong><%= u.name %></strong></td>
+                <td><%= u.email %></td>
+                <td>
+                  <span class="admin-badge"><%= u.role %></span>
+                </td>
+                <td>
+                  <span class="status-badge <%= u.totp_enabled ? 'status-active' : 'status-draft' %>">
+                    <%= u.totp_enabled ? '2FA Active' : '2FA Off' %>
+                  </span>
+                </td>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                  <%= new Date(u.created_at).toLocaleDateString('en-IN') %>
+                </td>
+                <td style="text-align: right;">
+                  <% if (u.id !== user.id) { %>
+                    <form action="/admin/users/<%= u.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Remove user account?');">
+                      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                      <button type="submit" class="admin-btn-sm admin-btn-danger">Delete</button>
+                    </form>
+                  <% } else { %>
+                    <span style="font-size: 0.75rem; color: var(--admin-text-muted);">Current User</span>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="admin-modal-overlay" id="addUserModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add New Administrative User</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addUserModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/users" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Full Name *</label>
+          <input type="text" name="name" class="admin-input" required placeholder="e.g. Rahul Nair">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Email Address *</label>
+          <input type="email" name="email" class="admin-input" required placeholder="rahul@explorewings.com">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Temporary Password *</label>
+          <input type="password" name="password" class="admin-input" required minlength="8" placeholder="••••••••••••">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Role Permission *</label>
+          <select name="role" class="admin-select" required>
+            <option value="Editor">Editor (Can edit content, services, brands, FAQs)</option>
+            <option value="Viewer">Viewer (Read-only access to leads & analytics)</option>
+            <option value="Owner">Owner (Full access including users, backups, SMTP)</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addUserModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Create User</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Enquiries Inbox</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Inquiries captured from the main contact form, hero consultation box, and Wing Assistant chatbot.
+    </p>
+  </div>
+  <a href="/admin/enquiries/export.csv" class="admin-btn admin-btn-outline">
+    <%- iconSvg('download') %> <span>Export CSV</span>
+  </a>
+</div>
+
+<!-- Filter Tabs -->
+<div class="admin-filter-bar" style="margin-bottom: 16px; display: flex; gap: 8px;">
+  <a href="/admin/enquiries" class="admin-tab-chip <%= !locals.currentStatus ? 'active' : '' %>">All Leads</a>
+  <a href="/admin/enquiries?status=new" class="admin-tab-chip <%= locals.currentStatus === 'new' ? 'active' : '' %>">New / Unread</a>
+  <a href="/admin/enquiries?status=contacted" class="admin-tab-chip <%= locals.currentStatus === 'contacted' ? 'active' : '' %>">Contacted</a>
+  <a href="/admin/enquiries?status=in_progress" class="admin-tab-chip <%= locals.currentStatus === 'in_progress' ? 'active' : '' %>">In Progress</a>
+  <a href="/admin/enquiries?status=closed" class="admin-tab-chip <%= locals.currentStatus === 'closed' ? 'active' : '' %>">Closed</a>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name &amp; Company</th>
+            <th>Contact Details</th>
+            <th>Service</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Received</th>
+            <th style="text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (enquiries && enquiries.length) { %>
+            <% enquiries.forEach(enq => { %>
+              <tr>
+                <td style="color: var(--admin-text-muted); font-weight: 600;">#<%= enq.id %></td>
+                <td>
+                  <strong><%= enq.name %></strong>
+                  <% if (enq.company) { %>
+                    <div style="font-size: 0.75rem; color: var(--admin-text-muted);"><%= enq.company %></div>
+                  <% } %>
+                </td>
+                <td style="font-size: 0.8125rem;">
+                  <div><%= enq.contact %></div>
+                </td>
+                <td style="font-size: 0.8125rem;"><%= enq.service || 'General' %></td>
+                <td>
+                  <span class="admin-badge"><%= enq.source_page || 'site' %></span>
+                </td>
+                <td>
+                  <span class="status-badge status-<%= enq.status %>"><%= enq.status %></span>
+                </td>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                  <%= new Date(enq.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %>
+                </td>
+                <td style="text-align: right;">
+                  <a href="/admin/enquiries/<%= enq.id %>" class="admin-btn-sm admin-btn-primary">
+                    View
+                  </a>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 40px; color: var(--admin-text-muted);">
+                No enquiries found in this view.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

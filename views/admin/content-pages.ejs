@@ -1,0 +1,50 @@
+<div class="admin-card">
+  <div class="admin-card-header">
+    <div>
+      <h2 class="admin-card-title">Manage Website Pages</h2>
+      <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+        Click any page to edit its headlines, lead text, callouts, and meta tags. All changes are stored in the database.
+      </p>
+    </div>
+  </div>
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Page Title</th>
+            <th>Slug &amp; URL</th>
+            <th>SEO Description</th>
+            <th>Last Updated</th>
+            <th style="text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (pages && pages.length) { %>
+            <% pages.forEach(p => { %>
+              <tr>
+                <td>
+                  <strong><%= p.title %></strong>
+                </td>
+                <td>
+                  <code><%= p.slug === 'home' ? '/' : '/' + p.slug %></code>
+                </td>
+                <td style="max-width: 320px; font-size: 0.8125rem; color: var(--admin-text-muted);" class="truncate">
+                  <%= p.meta_description || '—' %>
+                </td>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                  <%= p.updated_at ? new Date(p.updated_at).toLocaleDateString('en-IN') : 'Default' %>
+                </td>
+                <td style="text-align: right;">
+                  <a href="/admin/pages/<%= p.slug %>" class="admin-btn admin-btn-sm admin-btn-primary">
+                    <%- iconSvg('edit') %> <span>Edit Sections</span>
+                  </a>
+                </td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

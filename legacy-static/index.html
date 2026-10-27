@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Wings Digital Technologies | Digital Agency in Trivandrum, Kerala</title>
+  <meta name="description" content="Explore Wings Digital Technologies is a digital company based in Trivandrum, Kerala. We build custom websites, design brand identities, manage social media, shoot video, and drive local search rankings.">
+  <link rel="canonical" href="https://explorewings.com/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Explore Wings Digital Technologies | Trivandrum, Kerala">
+  <meta property="og:description" content="Websites, brand identity, social media, and commercial photography for businesses in Trivandrum and Kerala.">
+  <meta property="og:image" content="logo.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Explore Wings Digital Technologies",
+    "image": "logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Trivandrum",
+      "addressRegion": "Kerala",
+      "addressCountry": "India"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "8.5241",
+      "longitude": "76.9366"
+    },
+    "url": "https://explorewings.com",
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel-left"></div>
+    <div class="preloader-panel-right"></div>
+    <div class="preloader-center-content">
+      <div class="preloader-chip">
+        <img src="logo.png" alt="Explore Wings Logo" width="48" height="48">
+      </div>
+      <div class="preloader-counter" id="preloaderCounter">0%</div>
+    </div>
+  </div>
+
+  <!-- Minimal Custom Cursor (Desktop only) -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg class="progress-ring" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <circle id="progressRingCircle" cx="22" cy="22" r="18"></circle>
+    </svg>
+    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- 1. TOP UTILITY BAR -->
+  <aside class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>Based in Trivandrum, Kerala &bull; Working with businesses across South India</span>
+      </div>
+      <div class="top-bar-controls">
+        <!-- Auto Scroll -->
+        <div class="autoscroll-cluster">
+          <button type="button" class="autoscroll-btn" id="autoScrollToggle" aria-pressed="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Auto scroll</span>
+          </button>
+          <select id="autoScrollSpeed" class="autoscroll-select" aria-label="Auto scroll speed">
+            <option value="slow">Slow</option>
+            <option value="medium" selected>Medium</option>
+            <option value="fast">Fast</option>
+          </select>
+        </div>
+
+        <!-- Theme Swatches (Green & Red) -->
+        <div class="theme-swatches" role="group" aria-label="Color Theme">
+          <button type="button" class="theme-swatch-btn swatch-green active" data-theme-btn="green" aria-label="Green Theme" aria-pressed="true"></button>
+          <button type="button" class="theme-swatch-btn swatch-red" data-theme-btn="red" aria-label="Red Theme" aria-pressed="false"></button>
+        </div>
+
+        <!-- Light / Dark Toggle -->
+        <button type="button" class="mode-toggle-btn" data-mode-toggle aria-label="Switch to dark mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <span class="mode-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. STICKY NAVBAR -->
+  <header class="site-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="nav-brand" aria-label="Explore Wings Home">
+        <span class="brand-chip">
+          <img src="logo.png" alt="Explore Wings" width="32" height="32">
+        </span>
+        <div>
+          <span class="brand-wordmark">Explore Wings</span>
+          <span class="brand-tagline-sub">Digital Technologies</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-primary">
+          <span>Start your project</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="brand-chip">
+        <img src="logo.png" alt="Explore Wings" width="28" height="28">
+      </div>
+      <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="services.html" class="drawer-link">Services</a></li>
+      <li><a href="pricing.html" class="drawer-link">Pricing</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <a href="contact.html" class="btn-primary" style="width: 100%;">Start your project</a>
+      <p style="font-size: 0.8125rem; color: var(--text-muted);" data-cfg="address">Trivandrum, Kerala, India</p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- 3. HERO SECTION -->
+    <section class="hero-editorial-section" aria-label="Hero Introduction">
+      <div class="container hero-grid">
+        <div class="hero-content" data-reveal="left">
+          <div class="hero-meta-row">
+            <span class="stamp-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Made in Trivandrum
+            </span>
+            <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">Direct collaboration with founders</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Websites &amp; digital branding that bring 
+            <span class="hand-highlight">
+              real enquiries
+              <svg class="hand-underline-svg" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M3 14 Q 50 20 97 12" fill="none" stroke-width="3.5" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            to your business.
+          </h1>
+
+          <p class="hero-lead-text">
+            We work directly with founders, resorts, clinics, and local stores in Trivandrum to fix slow websites, shoot authentic media, and get found on Google.
+          </p>
+
+          <form class="hero-consult-form" id="heroConsultForm">
+            <div class="hero-input-cluster">
+              <input type="text" name="contact" placeholder="Your phone number or work email" required aria-label="Your phone number or work email">
+              <button type="submit" class="btn-primary">
+                <span>Get free consultation</span>
+              </button>
+            </div>
+            <p class="hero-form-caption">No sales pressure. We will review your current online setup and reply within 24 hours.</p>
+          </form>
+        </div>
+
+        <div class="hero-visual-frame" data-reveal="right">
+          <!-- Real Website Mockup (Authentic layout, zero fake 3D or neon) -->
+          <div class="browser-mockup">
+            <div class="browser-top-bar">
+              <div class="browser-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="browser-address">explorewings.com/work/aadisaktthi-resorts</div>
+            </div>
+            <div class="browser-viewport">
+              <div class="mock-client-header">
+                <div class="mock-brand-badge">Aadisaktthi Resorts &amp; Spa &bull; Kovalam</div>
+                <span class="mock-status-pill">Live Project</span>
+              </div>
+              <div class="mock-hero-layout">
+                <div class="mock-copy-lines">
+                  <div class="mock-bar-headline"></div>
+                  <div class="mock-bar-body"></div>
+                  <div class="mock-bar-body short"></div>
+                  <div class="mock-btn-stub"></div>
+                </div>
+                <div class="mock-image-stub">
+                  <span>Authentic Resort Photography<br>&amp; Booking Flow</span>
+                </div>
+              </div>
+              <div class="mock-kerala-tags">
+                <span class="mock-tag">Fast Mobile UI</span>
+                <span class="mock-tag">Direct WhatsApp Inquiries</span>
+                <span class="mock-tag">Local Trivandrum SEO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STATIC LOGO ROW -->
+    <section class="static-brands-section" aria-label="Featured Brands">
+      <div class="container static-brands-wrapper">
+        <span class="static-brands-label">Brands that work with us in Kerala:</span>
+        <div class="static-logos-flex">
+          <div class="static-logo-card">
+            <img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts &amp; Spa" width="110" height="26" loading="lazy">
+          </div>
+          <div class="static-logo-card">
+            <img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao" width="110" height="26" loading="lazy">
+          </div>
+          <div class="static-logo-card">
+            <img src="assets/logos/elaf.png" alt="Elaf" width="90" height="26" loading="lazy">
+          </div>
+          <div class="static-logo-card">
+            <img src="assets/logos/global-fitness.png" alt="Global Fitness" width="110" height="26" loading="lazy">
+          </div>
+          <div class="static-logo-card">
+            <img src="assets/logos/edustudy-international.png" alt="Edustudy International" width="110" height="26" loading="lazy">
+          </div>
+          <div class="static-logo-card">
+            <img src="assets/logos/transorze.png" alt="Transorze" width="110" height="26" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SERVICES AS A NUMBERED EDITORIAL LIST (01 to 06) -->
+    <section class="editorial-services-section" id="services" aria-labelledby="servicesSectionHeading">
+      <div class="container">
+        <div class="section-editorial-header">
+          <div>
+            <span class="stamp-badge">01 &mdash; What We Do</span>
+            <h2 class="section-title" id="servicesSectionHeading" style="margin-top: 8px;">Six core services built for growth.</h2>
+          </div>
+          <span class="editorial-counter">06 Services Available</span>
+        </div>
+
+        <div class="editorial-services-list">
+          <!-- Row 01 -->
+          <div class="service-editorial-row is-open">
+            <button type="button" class="service-row-header" aria-expanded="true">
+              <span class="service-row-num">01</span>
+              <span class="service-row-title">Custom Websites &amp; Web Apps</span>
+              <span class="service-row-summary">High-speed websites built specifically for your business, loading in under 2 seconds.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    We write clean code without bloated templates. Every page is tailored for mobile visitors in Kerala, with quick WhatsApp enquiry buttons and clear navigation.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Mobile-first responsive architecture
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Sub-2-second load times
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Direct WhatsApp &amp; phone integration
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Content management training for your staff
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Typical delivery: 2 to 3 weeks</p>
+                  <a href="contact.html?service=websites" class="btn-secondary">Enquire about websites</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 02 -->
+          <div class="service-editorial-row">
+            <button type="button" class="service-row-header" aria-expanded="false">
+              <span class="service-row-num">02</span>
+              <span class="service-row-title">Brand Identity &amp; Logo Design</span>
+              <span class="service-row-summary">Memorable logos, color systems, and signage specs ready for local print shops.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    A brand is more than just a symbol. We design vector assets that work clearly on road signboards in Kowdiar as well as on Instagram profile icons.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Primary, secondary &amp; mark variations
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Malayalam &amp; English typography pairing
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Print-ready vector files (SVG, PDF, EPS)
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Clear brand guidelines manual
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Typical delivery: 10 to 14 days</p>
+                  <a href="contact.html?service=branding" class="btn-secondary">Enquire about branding</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 03 -->
+          <div class="service-editorial-row">
+            <button type="button" class="service-row-header" aria-expanded="false">
+              <span class="service-row-num">03</span>
+              <span class="service-row-title">Social Media Management</span>
+              <span class="service-row-summary">Thoughtful Instagram and Facebook management with real photography and clear captions.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    No generic downloaded templates. We create content that shows your actual products, customer experiences, and daily behind-the-scenes.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Monthly scheduled content calendar
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Reels and short video production
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Authentic local engagement
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Transparent monthly analytics report
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Retainer: Monthly engagement</p>
+                  <a href="contact.html?service=social" class="btn-secondary">Enquire about social media</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 04 -->
+          <div class="service-editorial-row">
+            <button type="button" class="service-row-header" aria-expanded="false">
+              <span class="service-row-num">04</span>
+              <span class="service-row-title">Photography &amp; Commercial Video</span>
+              <span class="service-row-summary">On-location shoots in Trivandrum, Kovalam, and across Kerala for your spaces and products.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    Stock photos ruin trust. We bring proper lighting and camera gear to your restaurant, clinic, resort, or gym to capture real images that sell.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      High-resolution architectural &amp; interior photos
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Product &amp; menu item photography
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Short vertical videos for Instagram Reels
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Full usage rights included
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Flexible half-day or full-day shoot</p>
+                  <a href="contact.html?service=photography" class="btn-secondary">Enquire about photography</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 05 -->
+          <div class="service-editorial-row">
+            <button type="button" class="service-row-header" aria-expanded="false">
+              <span class="service-row-num">05</span>
+              <span class="service-row-title">Performance Digital Marketing</span>
+              <span class="service-row-summary">Targeted Meta and Google Ads campaigns tracked directly to phone calls and form submissions.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    We do not celebrate vanity metrics. We configure conversion tracking so you know exactly which ad brought in a customer enquiry.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Google Search &amp; Local Service Ads
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Instagram &amp; Facebook lead generation
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Landing page conversion audit
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Bi-weekly spending reviews
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Flexible ad budget management</p>
+                  <a href="contact.html?service=marketing" class="btn-secondary">Enquire about marketing</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 06 -->
+          <div class="service-editorial-row">
+            <button type="button" class="service-row-header" aria-expanded="false">
+              <span class="service-row-num">06</span>
+              <span class="service-row-title">Google Search &amp; Local SEO</span>
+              <span class="service-row-summary">Show up on Google Maps and search results when people look for services in Trivandrum.</span>
+              <span class="service-row-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="service-row-details">
+              <div class="service-details-grid">
+                <div>
+                  <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                    Local customers use Google Maps before visiting. We fix your profile details, category placement, citations, and review strategy.
+                  </p>
+                  <ul class="service-features-list">
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Google Business Profile verification &amp; setup
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Local citation &amp; NAP consistency check
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      On-page SEO tags &amp; schema markup
+                    </li>
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      Customer review generation strategy
+                    </li>
+                  </ul>
+                </div>
+                <div class="service-cta-side">
+                  <p>Results visible in 4 to 8 weeks</p>
+                  <a href="contact.html?service=seo" class="btn-secondary">Enquire about local SEO</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. BRANDS THAT TRUST US (Two-Row Infinite Scroller) -->
+    <section class="brands-scroller-section" aria-label="Brands that trust us">
+      <div class="container scroller-section-header">
+        <span class="stamp-badge">02 &mdash; Trusted Locally</span>
+        <h2 class="section-title" style="margin-top: 8px;">Brands that trust Explore Wings in Kerala.</h2>
+      </div>
+
+      <div class="scroller-track-container">
+        <!-- Row 1: Leftward infinite track -->
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts &amp; Spa" loading="lazy">
+            <span>Aadisaktthi Resorts &amp; Spa</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao" loading="lazy">
+            <span>Terrace by Makkawao</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/elaf.png" alt="Elaf" loading="lazy">
+            <span>Elaf</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/global-fitness.png" alt="Global Fitness" loading="lazy">
+            <span>Global Fitness</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/edustudy-international.png" alt="Edustudy International" loading="lazy">
+            <span>Edustudy International</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/transorze.png" alt="Transorze" loading="lazy">
+            <span>Transorze</span>
+          </div>
+
+          <!-- Duplicate for infinite track -->
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts &amp; Spa" loading="lazy">
+            <span>Aadisaktthi Resorts &amp; Spa</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao" loading="lazy">
+            <span>Terrace by Makkawao</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/elaf.png" alt="Elaf" loading="lazy">
+            <span>Elaf</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/global-fitness.png" alt="Global Fitness" loading="lazy">
+            <span>Global Fitness</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/edustudy-international.png" alt="Edustudy International" loading="lazy">
+            <span>Edustudy International</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/transorze.png" alt="Transorze" loading="lazy">
+            <span>Transorze</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Rightward -->
+        <div class="scroller-track track-row-2">
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/transorze.png" alt="Transorze" loading="lazy">
+            <span>Transorze</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/edustudy-international.png" alt="Edustudy International" loading="lazy">
+            <span>Edustudy International</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/global-fitness.png" alt="Global Fitness" loading="lazy">
+            <span>Global Fitness</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/elaf.png" alt="Elaf" loading="lazy">
+            <span>Elaf</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao" loading="lazy">
+            <span>Terrace by Makkawao</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts &amp; Spa" loading="lazy">
+            <span>Aadisaktthi Resorts &amp; Spa</span>
+          </div>
+
+          <!-- Duplicate -->
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/transorze.png" alt="Transorze" loading="lazy">
+            <span>Transorze</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/edustudy-international.png" alt="Edustudy International" loading="lazy">
+            <span>Edustudy International</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/global-fitness.png" alt="Global Fitness" loading="lazy">
+            <span>Global Fitness</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/elaf.png" alt="Elaf" loading="lazy">
+            <span>Elaf</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/terrace-by-makkawao.png" alt="Terrace by Makkawao" loading="lazy">
+            <span>Terrace by Makkawao</span>
+          </div>
+          <div class="brand-scroll-pill">
+            <img src="assets/logos/aadisaktthi-resorts-spa.png" alt="Aadisaktthi Resorts &amp; Spa" loading="lazy">
+            <span>Aadisaktthi Resorts &amp; Spa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HOW WE WORK (Listen, Create, Launch, Grow) -->
+    <section class="process-editorial-section" aria-labelledby="processSectionHeading">
+      <div class="container">
+        <div class="section-editorial-header">
+          <div>
+            <span class="stamp-badge">03 &mdash; Our Process</span>
+            <h2 class="section-title" id="processSectionHeading" style="margin-top: 8px;">Four simple steps from first call to live site.</h2>
+          </div>
+          <span class="editorial-counter">Clear milestones</span>
+        </div>
+
+        <div class="process-steps-grid">
+          <div class="process-step-card" data-reveal>
+            <span class="step-number">01</span>
+            <h3 class="step-card-title">Listen</h3>
+            <p class="step-card-desc">
+              We sit down with you in person in Trivandrum or over a video call. We study what your business actually sells, what customers ask for, and where your current setup is falling short.
+            </p>
+            <div class="step-deliverable">Outcome: Project scope &amp; fixed quote</div>
+          </div>
+
+          <div class="process-step-card" data-reveal>
+            <span class="step-number">02</span>
+            <h3 class="step-card-title">Create</h3>
+            <p class="step-card-desc">
+              We design and build the work with weekly check-ins. If you need photography, we visit your premises with lights and cameras. You review real working screens, not static mockups.
+            </p>
+            <div class="step-deliverable">Outcome: Working staging preview</div>
+          </div>
+
+          <div class="process-step-card" data-reveal>
+            <span class="step-number">03</span>
+            <h3 class="step-card-title">Launch</h3>
+            <p class="step-card-desc">
+              We test every link, contact form, WhatsApp button, and mobile screen size across iPhone and Android devices. We configure Google Search Console and deploy on fast servers.
+            </p>
+            <div class="step-deliverable">Outcome: Live website &amp; assets handed over</div>
+          </div>
+
+          <div class="process-step-card" data-reveal>
+            <span class="step-number">04</span>
+            <h3 class="step-card-title">Grow</h3>
+            <p class="step-card-desc">
+              Going live is step one. We monitor site speed, keep Google Maps rankings active, and run targeted ads when you are ready to expand your customer reach.
+            </p>
+            <div class="step-deliverable">Outcome: Ongoing stability &amp; inquiries</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ONE BOLD STATEMENT SECTION -->
+    <section class="bold-statement-section" aria-label="Our commitment">
+      <div class="container bold-statement-content">
+        <div class="statement-tag">Direct Collaboration &bull; Trivandrum Based</div>
+        <p class="statement-text">
+          &ldquo;Most agencies sell confusing retainer packages and hide behind account managers. We build clean websites, shoot crisp local media, and answer your phone calls directly.&rdquo;
+        </p>
+        <div class="statement-footer-note">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>From the desk of the founder &bull; Explore Wings Digital Technologies, Trivandrum</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ SECTION -->
+    <section class="faq-editorial-section" aria-labelledby="faqSectionHeading">
+      <div class="container faq-editorial-grid">
+        <div>
+          <span class="stamp-badge">04 &mdash; Clarifications</span>
+          <h2 class="section-title" id="faqSectionHeading" style="margin-top: 8px;">Questions local business owners ask us.</h2>
+          <p class="sub-title" style="margin-top: 12px;">
+            Honest answers without jargon. If your question is not listed here, send us an email or message on WhatsApp.
+          </p>
+          <div style="margin-top: 24px;">
+            <a href="contact.html" class="btn-secondary">Ask a specific question</a>
+          </div>
+        </div>
+
+        <div class="faq-accordion-list">
+          <div class="faq-editorial-item is-open">
+            <button type="button" class="faq-question-btn" aria-expanded="true">
+              <span>Do you work only with businesses inside Trivandrum?</span>
+              <span class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              Our studio is located in Trivandrum, but we work with clients across Kerala (Kollam, Kochi, Calicut) and overseas businesses run by Malayali founders in the GCC, UK, and Australia. For local businesses, we meet you in person; for remote clients, we run clear weekly video updates.
+            </div>
+          </div>
+
+          <div class="faq-editorial-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>How long does it take to complete a new website?</span>
+              <span class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              A standard 5-to-8 page business website usually takes between 2 to 3 weeks once we receive your text and brand assets. Larger web applications or custom catalog sites typically take 4 to 6 weeks. We agree on a fixed launch date before starting.
+            </div>
+          </div>
+
+          <div class="faq-editorial-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Who owns the website and code after launch?</span>
+              <span class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              You do. 100%. All source code, domain registrations, hosting accounts, and image assets belong entirely to your company. We never lock you into proprietary platforms or hold your domain hostage.
+            </div>
+          </div>
+
+          <div class="faq-editorial-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Can you fix or redesign our existing outdated website?</span>
+              <span class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              Yes. If your current website is slow, doesn't open properly on mobile screens, or lacks an SSL security certificate, we can rebuild it from the ground up while keeping your existing domain name and search engine rankings intact.
+            </div>
+          </div>
+
+          <div class="faq-editorial-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>How are project payments structured?</span>
+              <span class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              We work with milestone-based payments: typically 50% advance to initiate design and development, and the remaining 50% upon final testing, client sign-off, and deployment. No hidden recurring fees unless you opt for a monthly management retainer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. PROJECT ENQUIRY FORM SECTION -->
+    <section class="enquiry-section" id="enquiry" aria-labelledby="enquirySectionHeading">
+      <div class="container">
+        <div class="enquiry-card-wrapper">
+          <div class="enquiry-header">
+            <span class="stamp-badge">05 &mdash; Let's Talk</span>
+            <h2 class="section-title" id="enquirySectionHeading" style="margin-top: 8px;">Tell us about your project.</h2>
+            <p class="sub-title" style="margin-top: 8px;">
+              Fill in the details below. We will review your current online presence and schedule a direct consultation.
+            </p>
+          </div>
+
+          <form class="project-enquiry-form" id="mainContactForm">
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="enqName">Your Name *</label>
+                <input type="text" id="enqName" name="name" placeholder="e.g. Anand Kumar" required>
+              </div>
+
+              <div class="field-group">
+                <label for="enqContact">Phone or Email *</label>
+                <input type="text" id="enqContact" name="contact" placeholder="e.g. +91 94460 00000 or anand@company.in" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="enqCompany">Business or Brand Name</label>
+                <input type="text" id="enqCompany" name="company" placeholder="e.g. Kovalam Beach Retreat">
+              </div>
+
+              <div class="field-group">
+                <label for="enqService">Primary Service Needed *</label>
+                <select id="enqService" name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="Custom Website">Custom Website / Web App</option>
+                  <option value="Brand Identity">Brand Identity &amp; Logo Design</option>
+                  <option value="Social Media">Social Media Management</option>
+                  <option value="Photography & Video">Photography &amp; Commercial Video</option>
+                  <option value="Digital Marketing">Performance Digital Marketing</option>
+                  <option value="Local SEO">Google Search &amp; Local SEO</option>
+                  <option value="Full Package">Complete Digital Overhaul</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="enqDetails">Project Notes or Goals</label>
+              <textarea id="enqDetails" name="details" rows="4" placeholder="Tell us about what you want to achieve, your timeline, or links to your current website/Instagram."></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <button type="submit" class="btn-primary">
+                <span>Send project enquiry</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <span style="font-size: 0.8125rem; color: var(--text-muted);">
+                We protect your privacy. No spam or cold-call harassment.
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 11. MEGA FOOTER -->
+  <footer class="mega-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-chip" style="width: max-content;">
+            <img src="logo.png" alt="Explore Wings" width="32" height="32">
+          </div>
+          <div class="malayalam-greeting">നമസ്കാരം &mdash; Welcome from Trivandrum</div>
+          <p class="footer-founder-note">
+            &ldquo;Explore Wings was founded to offer businesses in Kerala direct, unhurried digital work. You speak with the person actually building your website and designing your brand.&rdquo;
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="pricing.html">Pricing &amp; Packages</a></li>
+            <li><a href="about.html">About Explore Wings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links-list">
+            <li><a href="services.html#websites">Websites &amp; Web Apps</a></li>
+            <li><a href="services.html#branding">Brand Identity &amp; Logo</a></li>
+            <li><a href="services.html#social">Social Media Management</a></li>
+            <li><a href="services.html#photo">Commercial Photography</a></li>
+            <li><a href="services.html#marketing">Digital Marketing</a></li>
+            <li><a href="services.html#localseo">Google Maps &amp; SEO</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Studio Location</div>
+          <div class="footer-contact-details">
+            <p><strong style="color: var(--text);">Explore Wings Digital</strong></p>
+            <p data-cfg="address">Trivandrum, Kerala, India</p>
+            <p data-cfg="hours">Monday &ndash; Saturday: 9:00 AM &ndash; 6:30 PM IST</p>
+            <p data-cfg-wrap><a href="mailto:hello@explorewings.com" data-cfg="email">hello@explorewings.com</a></p>
+            <p data-cfg-wrap><a href="tel:+919446012345" data-cfg="phone">+91 94460 12345</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span id="currentYear">2026</span> Explore Wings Digital Technologies. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-cfg="instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-cfg="facebook">Facebook</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" data-cfg="linkedin">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="footer-watermark" aria-hidden="true">
+        EXPLORE WINGS
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Launcher & Container -->
+  <button type="button" class="chatbot-launcher" id="chatbotLauncher" aria-label="Open Wing Assistant Chatbot" aria-expanded="false">
+    <span class="launcher-chip">
+      <img src="logo.png" alt="Explore Wings" width="20" height="20">
+    </span>
+    <span>Chat with us</span>
+  </button>
+
+  <aside class="chatbot-container" id="chatbotContainer" aria-label="Wing Assistant Chat Window">
+    <div class="chat-header">
+      <div class="chat-header-brand">
+        <div class="chat-header-chip">
+          <img src="logo.png" alt="Explore Wings" width="22" height="22">
+        </div>
+        <div class="chat-header-info">
+          <strong>Wing Assistant</strong>
+          <span>Explore Wings Digital &bull; Trivandrum</span>
+        </div>
+      </div>
+      <button type="button" class="chat-close-btn" id="chatbotCloseBtn" aria-label="Close Chat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chat-messages" id="chatbotMessages">
+      <!-- Chat messages dynamically rendered -->
+    </div>
+
+    <div class="chat-quick-replies" id="chatbotQuickReplies" aria-label="Quick questions">
+      <!-- Quick chips rendered -->
+    </div>
+
+    <div class="chat-input-bar">
+      <input type="text" id="chatbotInput" placeholder="Type a message or choose an option..." aria-label="Chat message">
+      <button type="button" id="chatbotSendBtn" aria-label="Send Message">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

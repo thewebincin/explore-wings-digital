@@ -1,0 +1,73 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Database Backups &amp; Snapshots</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Lock-free online SQLite snapshots. Backups are retained with a 14-day rolling rotation policy.
+    </p>
+  </div>
+  <form action="/admin/backups/create" method="POST" style="display: inline;">
+    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+    <button type="submit" class="admin-btn admin-btn-primary">
+      <%- iconSvg('backups') %> <span>Create Snapshot Now</span>
+    </button>
+  </form>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 class="admin-card-title">Available Snapshots (<%= backups ? backups.length : 0 %>)</h3>
+    <% if (lastBackup) { %>
+      <span style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+        Most recent: <%= new Date(lastBackup.created_at).toLocaleString('en-IN') %>
+      </span>
+    <% } %>
+  </div>
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Filename</th>
+            <th>Size</th>
+            <th>Created At</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (backups && backups.length) { %>
+            <% backups.forEach(b => { %>
+              <tr>
+                <td>
+                  <code><%= b.filename %></code>
+                </td>
+                <td><%= Math.round(b.size / 1024) %> KB</td>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                  <%= new Date(b.created_at).toLocaleString('en-IN') %>
+                </td>
+                <td style="text-align: right;">
+                  <a href="/admin/backups/<%= b.filename %>" class="admin-btn-sm admin-btn-outline" download>
+                    Download
+                  </a>
+                  <form action="/admin/backups/<%= b.filename %>/restore" method="POST" style="display: inline; margin-left: 6px;" onsubmit="return confirm('WARNING: Restoring this snapshot will overwrite current data. A pre-restore safety snapshot will be taken automatically. Proceed?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-outline">Restore</button>
+                  </form>
+                  <form action="/admin/backups/<%= b.filename %>/delete" method="POST" style="display: inline; margin-left: 6px;" onsubmit="return confirm('Delete this backup snapshot permanently?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-danger">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="4" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                No snapshots saved yet. Click "Create Snapshot Now" above.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

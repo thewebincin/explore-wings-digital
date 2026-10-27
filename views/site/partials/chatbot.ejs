@@ -1,0 +1,45 @@
+<!-- 4. CHATBOT WIDGET -->
+<button type="button" class="chatbot-launcher" id="chatbotLauncher" aria-label="Open Wing Assistant Chatbot" aria-expanded="false">
+  <span class="launcher-chip">
+    <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="20" height="20">
+  </span>
+  <span>Chat with us</span>
+</button>
+
+<aside class="chatbot-container" id="chatbotContainer" aria-label="Wing Assistant Chat Window">
+  <div class="chat-header">
+    <div class="chat-header-brand">
+      <div class="chat-header-chip">
+        <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="22" height="22">
+      </div>
+      <div class="chat-header-info">
+        <strong>Wing Assistant</strong>
+        <span><%= settings.site_name || 'Explore Wings' %> &bull; Trivandrum</span>
+      </div>
+    </div>
+    <button type="button" class="chat-close-btn" id="chatbotCloseBtn" aria-label="Close Chat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="chat-messages" id="chatbotMessages" role="log" aria-live="polite">
+    <!-- Chat messages dynamically rendered -->
+  </div>
+
+  <div class="chat-quick-replies" id="chatbotQuickReplies" aria-label="Quick questions">
+    <!-- Quick reply buttons rendered here -->
+  </div>
+
+  <div class="chat-input-bar">
+    <input type="text" id="chatbotInput" placeholder="Type a message or choose an option..." aria-label="Chat message">
+    <button type="button" id="chatbotSendBtn" aria-label="Send Message">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</aside>

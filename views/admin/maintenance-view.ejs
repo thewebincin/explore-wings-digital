@@ -1,0 +1,166 @@
+<% const isMaintActive = (settings.maintenance_mode === 'on' || settings.maintenance_mode === 'true' || settings.maintenance_mode === '1'); %>
+
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Maintenance Mode &amp; Server Health</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px; max-width: 720px;">
+      When maintenance mode is active, public visitors are blocked and receive a branded 503 maintenance page with direct studio contacts and optional back-online notifications. Logged-in admins and bypass tokens can always preview the live site.
+    </p>
+  </div>
+  <div style="display: flex; gap: 10px;">
+    <a href="/?bypass=<%= settings.maintenance_bypass_token || 'ew-preview' %>" target="_blank" class="admin-btn admin-btn-outline" title="Preview live site using secret bypass token">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <span>Preview Live Site (Bypass)</span>
+    </a>
+  </div>
+</div>
+
+<div class="admin-grid-layout-sidebar">
+  <!-- Left Main Column: Maintenance Settings -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    <div class="admin-card">
+      <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="admin-card-title">Maintenance Status</h3>
+        <span class="admin-badge <%= isMaintActive ? 'warning' : 'status-active' %>" style="font-weight: 700; padding: 6px 14px;">
+          <%= isMaintActive ? '⚠️ Maintenance Mode Active (Visitors Blocked)' : '✓ Public Site Live' %>
+        </span>
+      </div>
+      <div class="admin-card-body">
+        <!-- 1-Click Master Toggle -->
+        <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: var(--admin-radius); padding: 20px; margin-bottom: 24px;">
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">
+            <%= isMaintActive ? 'Turn Off Maintenance Mode' : 'Activate Maintenance Mode' %>
+          </h4>
+          <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-bottom: 16px; line-height: 1.5;">
+            <%= isMaintActive 
+              ? 'Click below to immediately open the website to the public. Normal visitors will be able to browse all pages again.' 
+              : 'Click below to immediately block all public visitors. Anyone opening the site will see the 503 maintenance screen until you turn it off.' %>
+          </p>
+
+          <form action="/admin/maintenance/toggle" method="POST" style="margin: 0;">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+            <button type="submit" class="admin-btn <%= isMaintActive ? 'admin-btn-primary' : 'admin-btn-danger' %>" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem; font-weight: 700;">
+              <%- iconSvg('maintenance') %>
+              <span><%= isMaintActive ? 'Turn Off Maintenance & Go Live Now' : 'Enable Maintenance Mode (Block Public Visitors)' %></span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Detailed Configuration Form -->
+        <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--admin-text-muted);">
+          Custom Maintenance Screen Settings
+        </h4>
+
+        <form action="/admin/maintenance/save" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+          <div class="admin-form-group">
+            <label class="admin-label">Public Maintenance Message</label>
+            <textarea name="maintenance_message" class="admin-textarea" rows="3" placeholder="Explain what work is taking place"><%= settings.maintenance_message || 'We are performing scheduled improvements to our servers. We will be back online shortly.' %></textarea>
+            <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 4px;">
+              Displayed prominently in the center of the 503 maintenance card to all visitors.
+            </div>
+          </div>
+
+          <div class="admin-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-label">Estimated Back Online Time</label>
+              <input type="text" name="maintenance_end" class="admin-input" value="<%= settings.maintenance_end || settings.maintenance_return_time || '' %>" placeholder="e.g. Today at 6:00 PM IST">
+              <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 4px;">
+                Optional estimated return time shown to visitors.
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">Secret Preview Bypass Token</label>
+              <input type="text" name="maintenance_bypass_token" class="admin-input" value="<%= settings.maintenance_bypass_token || 'ew-preview' %>">
+              <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 4px;">
+                Append <code>?bypass=<%= settings.maintenance_bypass_token || 'ew-preview' %></code> to preview without logging into admin.
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-form-group" style="margin-top: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+              <input type="checkbox" name="maintenance_allow_notify" value="1" <%= settings.maintenance_allow_notify !== '0' ? 'checked' : '' %>>
+              <span>Enable "Notify Me When Back Online" visitor subscription form</span>
+            </label>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <button type="submit" class="admin-btn admin-btn-outline" style="font-weight: 600;">
+              Save Maintenance Message &amp; Options
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Subscriber Notification List -->
+    <div class="admin-card">
+      <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="admin-card-title">Visitors Waiting for Notification (<%= subscribers ? subscribers.length : 0 %>)</h3>
+      </div>
+      <div class="admin-card-body" style="padding: 0;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Contact Phone / Email</th>
+              <th>Requested At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (subscribers && subscribers.length) { %>
+              <% subscribers.forEach(sub => { %>
+                <tr>
+                  <td><strong><%= sub.contact || sub.email %></strong></td>
+                  <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                    <%= new Date(sub.created_at).toLocaleString('en-IN') %>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr><td colspan="2" style="text-align: center; color: var(--admin-text-muted); padding: 24px;">No visitors currently waiting for back-online notification.</td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Internal 60-Second Uptime Pinger -->
+  <div class="admin-card">
+    <div class="admin-card-header">
+      <h3 class="admin-card-title">Internal Uptime Monitor</h3>
+    </div>
+    <div class="admin-card-body">
+      <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 16px; line-height: 1.5;">
+        An autonomous internal pinger monitors local HTTP health every 60 seconds. If unavailable for &gt; 2 minutes, alerts are dispatched to the admin email.
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600;">Monitor Status</div>
+        <div style="font-size: 1.125rem; font-weight: 700; color: var(--admin-primary); margin-top: 4px; display: flex; align-items: center; gap: 8px;">
+          <span class="status-indicator online"></span> Active &bull; 60s Interval
+        </div>
+      </div>
+
+      <% if (uptimeLogs && uptimeLogs.length) { %>
+        <div style="max-height: 300px; overflow-y: auto; font-size: 0.75rem; font-family: monospace; background: var(--admin-bg-surface); padding: 12px; border-radius: 6px; border: 1px solid var(--admin-border);">
+          <% uptimeLogs.slice(0, 15).forEach(log => { %>
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--admin-border);">
+              <span style="color: <%= log.status_code === 200 ? 'var(--admin-primary)' : '#EF4444' %>;">HTTP <%= log.status_code %> (<%= log.response_time_ms %>ms)</span>
+              <span style="color: var(--admin-text-muted);"><%= new Date(log.created_at).toLocaleTimeString('en-IN') %></span>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+          Monitor logs will appear as checks complete.
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

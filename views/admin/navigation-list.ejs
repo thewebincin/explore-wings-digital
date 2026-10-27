@@ -1,0 +1,162 @@
+<div class="admin-page-header" style="margin-bottom: 24px;">
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Navigation Links &amp; Studio Details</h2>
+  <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+    Update header menu items, footer link columns, and studio contact channels. Empty contact fields are automatically hidden across the public site.
+  </p>
+</div>
+
+<div class="admin-grid-layout-sidebar">
+  <!-- Left Main Column: Navigation Links -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    <div class="admin-card">
+      <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="admin-card-title">Site Navigation Links</h3>
+        <button type="button" class="admin-btn admin-btn-sm admin-btn-primary" onclick="document.getElementById('addNavModal').style.display='flex'">
+          <%- iconSvg('plus') %> <span>Add Nav Link</span>
+        </button>
+      </div>
+      <div class="admin-card-body" style="padding: 0;">
+        <div class="admin-table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Label</th>
+                <th>Target URL</th>
+                <th>New Tab</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (navItems && navItems.length) { %>
+                <% navItems.forEach(item => { %>
+                  <tr>
+                    <td>
+                      <span class="admin-badge" style="text-transform: capitalize;"><%= item.area.replace('_', ' ') %></span>
+                    </td>
+                    <td><strong><%= item.label %></strong></td>
+                    <td><code><%= item.url %></code></td>
+                    <td><%= item.new_tab ? 'Yes' : 'No' %></td>
+                    <td style="text-align: right;">
+                      <form action="/admin/navigation/<%= item.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Remove this link?');">
+                        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                        <button type="submit" class="admin-btn-sm admin-btn-danger">Remove</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                    No custom links configured.
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Studio Contact Info (Hides empty fields automatically) -->
+  <div class="admin-card">
+    <div class="admin-card-header">
+      <h3 class="admin-card-title">Studio Contact Channels</h3>
+    </div>
+    <div class="admin-card-body">
+      <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 16px;">
+        Any field left empty will be completely hidden from the footer, contact page, and header without broken links.
+      </p>
+
+      <form action="/admin/settings/contact" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+        <div class="admin-form-group">
+          <label class="admin-label">Direct Phone</label>
+          <input type="text" name="phone" class="admin-input" value="<%= settings.phone || '' %>" placeholder="+91 94460 12345">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Email Address</label>
+          <input type="email" name="email" class="admin-input" value="<%= settings.email || '' %>" placeholder="hello@explorewings.com">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">WhatsApp Number (with country code)</label>
+          <input type="text" name="whatsapp" class="admin-input" value="<%= settings.whatsapp || '' %>" placeholder="+91 94460 12345">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Studio Address</label>
+          <input type="text" name="address" class="admin-input" value="<%= settings.address || '' %>" placeholder="Trivandrum, Kerala, India">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Working Hours</label>
+          <input type="text" name="hours" class="admin-input" value="<%= settings.hours || '' %>" placeholder="Monday - Saturday: 9:00 AM - 6:30 PM IST">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Instagram Profile URL</label>
+          <input type="url" name="instagram" class="admin-input" value="<%= settings.instagram || '' %>" placeholder="https://instagram.com/...">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Facebook Page URL</label>
+          <input type="url" name="facebook" class="admin-input" value="<%= settings.facebook || '' %>" placeholder="https://facebook.com/...">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">LinkedIn Page URL</label>
+          <input type="url" name="linkedin" class="admin-input" value="<%= settings.linkedin || '' %>" placeholder="https://linkedin.com/company/...">
+        </div>
+
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; margin-top: 12px;">
+          Save Studio Details
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add Nav Link Modal -->
+<div class="admin-modal-overlay" id="addNavModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add Navigation Link</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addNavModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/navigation" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Area *</label>
+          <select name="area" class="admin-select" required>
+            <option value="header">Header Navbar</option>
+            <option value="footer_nav">Footer: Navigation Column</option>
+            <option value="footer_services">Footer: Services Column</option>
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Link Label *</label>
+          <input type="text" name="label" class="admin-input" required placeholder="e.g. Services">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Target URL *</label>
+          <input type="text" name="url" class="admin-input" required placeholder="e.g. /services or /services#websites">
+        </div>
+        <div class="admin-form-group">
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+            <input type="checkbox" name="new_tab" value="1">
+            <span>Open in new tab</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addNavModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Add Link</button>
+      </div>
+    </form>
+  </div>
+</div>

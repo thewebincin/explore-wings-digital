@@ -1,0 +1,51 @@
+<div class="admin-page-header" style="margin-bottom: 24px;">
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Activity Audit Log</h2>
+  <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+    Chronological trail of administrative actions, edits, logins, and status toggles for compliance and accountability.
+  </p>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Admin User</th>
+            <th>Action Type</th>
+            <th>Description &amp; Context</th>
+            <th>IP Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (logs && logs.length) { %>
+            <% logs.forEach(l => { %>
+              <tr>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted); white-space: nowrap;">
+                  <%= new Date(l.created_at).toLocaleString('en-IN') %>
+                </td>
+                <td>
+                  <strong><%= l.user_name || 'System' %></strong>
+                </td>
+                <td>
+                  <span class="admin-badge"><%= l.action %></span>
+                </td>
+                <td style="font-size: 0.875rem;"><%= l.details || '—' %></td>
+                <td style="font-size: 0.75rem; color: var(--admin-text-muted); font-family: monospace;">
+                  <%= l.ip_address || '—' %>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                No activity logs recorded yet.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div style="margin-bottom: 20px;">
+  <a href="/admin/enquiries" class="admin-link-subtle" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+    &larr; Back to all enquiries
+  </a>
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Enquiry #<%= enquiry.id %> &mdash; <%= enquiry.name %></h2>
+  <span style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+    Received on <%= new Date(enquiry.created_at).toLocaleString('en-IN') %> &bull; Source: <%= enquiry.source_page || 'Website' %>
+  </span>
+</div>
+
+<div class="admin-grid-layout-sidebar">
+  <!-- Left Main Column: Lead Details & Message -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">Client Details</h3>
+      </div>
+      <div class="admin-card-body">
+        <div class="admin-grid-2" style="margin-bottom: 16px;">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600;">Client Name</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--admin-text); margin-top: 4px;"><%= enquiry.name %></div>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600;">Contact Phone / Email</div>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--admin-primary); margin-top: 4px;">
+              <% if (enquiry.contact.includes('@')) { %>
+                <a href="mailto:<%= enquiry.contact %>"><%= enquiry.contact %></a>
+              <% } else { %>
+                <a href="tel:<%= enquiry.contact.replace(/[^0-9+]/g, '') %>"><%= enquiry.contact %></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-grid-2" style="margin-bottom: 20px;">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600;">Business / Brand</div>
+            <div style="font-size: 0.9375rem; color: var(--admin-text); margin-top: 4px;"><%= enquiry.company || 'Not specified' %></div>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600;">Service Required</div>
+            <div style="font-size: 0.9375rem; color: var(--admin-text); margin-top: 4px;"><%= enquiry.service || 'General enquiry' %></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--admin-text-muted); font-weight: 600; margin-bottom: 6px;">Message / Project Brief</div>
+          <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 16px; font-size: 0.9375rem; line-height: 1.6; white-space: pre-wrap;">
+            <%= enquiry.details || 'No additional details provided with this submission.' %>
+          </div>
+        </div>
+
+        <% if (enquiry.attachment_path) { %>
+          <div style="margin-top: 20px; padding: 12px 16px; background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <strong>Uploaded Brief Attachment:</strong>
+              <span style="font-size: 0.8125rem; color: var(--admin-text-muted); display: block;"><%= enquiry.attachment_name || 'Client file' %></span>
+            </div>
+            <a href="/admin/enquiries/<%= enquiry.id %>/attachment" class="admin-btn-sm admin-btn-outline" target="_blank">Download File</a>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Notes & Follow-up History -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">Internal Studio Notes</h3>
+      </div>
+      <div class="admin-card-body">
+        <form action="/admin/enquiries/<%= enquiry.id %>/note" method="POST" style="margin-bottom: 20px;">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+          <div class="admin-form-group">
+            <textarea name="note" class="admin-textarea" rows="3" placeholder="Add private note regarding client phone call, quote discussion, or milestone..." required></textarea>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-primary admin-btn-sm">Add Note</button>
+        </form>
+
+        <% if (enquiry.notes && enquiry.notes.length) { %>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <% enquiry.notes.forEach(n => { %>
+              <div style="padding: 12px; background: var(--admin-bg-surface); border-radius: 6px; border-left: 3px solid var(--admin-primary);">
+                <div style="font-size: 0.875rem;"><%= n.text %></div>
+                <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 4px;">
+                  <%= n.author || 'Team' %> &bull; <%= new Date(n.created_at).toLocaleString('en-IN') %>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Lead Status Management -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">Manage Status</h3>
+      </div>
+      <div class="admin-card-body">
+        <form action="/admin/enquiries/<%= enquiry.id %>/status" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+          <div class="admin-form-group">
+            <label class="admin-label">Lead Status</label>
+            <select name="status" class="admin-select">
+              <option value="new" <%= enquiry.status === 'new' ? 'selected' : '' %>>New / Uncontacted</option>
+              <option value="contacted" <%= enquiry.status === 'contacted' ? 'selected' : '' %>>Contacted</option>
+              <option value="in_progress" <%= enquiry.status === 'in_progress' ? 'selected' : '' %>>In Discussion / Quote Sent</option>
+              <option value="closed" <%= enquiry.status === 'closed' ? 'selected' : '' %>>Closed / Converted</option>
+              <option value="archived" <%= enquiry.status === 'archived' ? 'selected' : '' %>>Archived</option>
+            </select>
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center;">
+            Update Status
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Brands That Trust Us</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Logos are displayed in the static strip and the two auto-scrolling marquee tracks. Changes apply instantly.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('addBrandModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Add Brand Logo</span>
+  </button>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th style="width: 50px;">Order</th>
+            <th style="width: 140px;">Logo Preview</th>
+            <th>Brand / Client Name</th>
+            <th>Website / Location</th>
+            <th>Visibility</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="brandsSortableList">
+          <% if (brands && brands.length) { %>
+            <% brands.forEach((brand, index) => { %>
+              <tr data-id="<%= brand.id %>">
+                <td style="color: var(--admin-text-muted); font-weight: 600;"><%= index + 1 %></td>
+                <td>
+                  <div style="background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: 6px; padding: 6px 12px; display: inline-flex; align-items: center; justify-content: center; min-height: 40px;">
+                    <img src="<%= brand.logo_url %>" alt="<%= brand.name %>" style="max-height: 28px; max-width: 100px; object-fit: contain;">
+                  </div>
+                </td>
+                <td>
+                  <strong><%= brand.name %></strong>
+                </td>
+                <td style="font-size: 0.8125rem; color: var(--admin-text-muted);">
+                  <% if (brand.website_url) { %>
+                    <a href="<%= brand.website_url %>" target="_blank" rel="noopener" class="admin-link-subtle"><%= brand.website_url %></a>
+                  <% } else { %>
+                    <span>Kerala Client</span>
+                  <% } %>
+                </td>
+                <td>
+                  <form action="/admin/brands/<%= brand.id %>/toggle" method="POST" style="display: inline;">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-badge <%= brand.visible ? 'status-active' : 'status-draft' %>" style="cursor: pointer; border: none;">
+                      <%= brand.visible ? 'Visible' : 'Hidden' %>
+                    </button>
+                  </form>
+                </td>
+                <td style="text-align: right;">
+                  <button type="button" class="admin-btn-sm admin-btn-outline" onclick="openEditBrandModal(<%= JSON.stringify(brand) %>)">
+                    Edit
+                  </button>
+                  <form action="/admin/brands/<%= brand.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Remove this brand logo?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-danger" style="margin-left: 6px;">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                No brand logos configured yet. Click "Add Brand Logo" above.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add Brand Modal -->
+<div class="admin-modal-overlay" id="addBrandModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add Brand Logo</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addBrandModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/brands" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Brand Name *</label>
+          <input type="text" name="name" class="admin-input" required placeholder="e.g. Aadisaktthi Resorts & Spa">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Website URL (Optional)</label>
+          <input type="url" name="website_url" class="admin-input" placeholder="https://example.com">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Logo File * (PNG, JPG, SVG, WebP)</label>
+          <input type="file" name="logo" class="admin-input" accept=".png,.jpg,.jpeg,.svg,.webp" required>
+          <p style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 4px;">Transparent PNG or SVG with horizontal proportion looks best.</p>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addBrandModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Upload &amp; Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Brand Modal -->
+<div class="admin-modal-overlay" id="editBrandModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Edit Brand</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('editBrandModal').style.display='none'">&times;</button>
+    </div>
+    <form id="editBrandForm" action="" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Brand Name *</label>
+          <input type="text" id="editBrandName" name="name" class="admin-input" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Website URL</label>
+          <input type="url" id="editBrandWebsite" name="website_url" class="admin-input">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Replace Logo (Leave empty to keep existing)</label>
+          <input type="file" name="logo" class="admin-input" accept=".png,.jpg,.jpeg,.svg,.webp">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('editBrandModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openEditBrandModal(brand) {
+    document.getElementById('editBrandForm').action = '/admin/brands/' + brand.id;
+    document.getElementById('editBrandName').value = brand.name || '';
+    document.getElementById('editBrandWebsite').value = brand.website_url || '';
+    document.getElementById('editBrandModal').style.display = 'flex';
+  }
+</script>

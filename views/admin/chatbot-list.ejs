@@ -1,0 +1,200 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Wing Assistant Chatbot</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Manage the intents, keywords, quick-reply chips, and answers served to website visitors.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('addIntentModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Add New Intent</span>
+  </button>
+</div>
+
+<div class="admin-grid-layout-sidebar">
+  <!-- Left Main Column: Intents Table -->
+  <div class="admin-card">
+    <div class="admin-card-header">
+      <h3 class="admin-card-title">Configured Intents</h3>
+    </div>
+    <div class="admin-card-body" style="padding: 0;">
+      <div class="admin-table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Quick Chip / Trigger</th>
+              <th>Keywords</th>
+              <th>Response</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (intents && intents.length) { %>
+              <% intents.forEach(item => { %>
+                <tr>
+                  <td>
+                    <strong><%= item.quick_reply || item.intent_key %></strong>
+                    <div style="font-size: 0.75rem; color: var(--admin-text-muted);">Key: <%= item.intent_key %></div>
+                  </td>
+                  <td style="font-size: 0.8125rem; color: var(--admin-text-muted); max-width: 180px;" class="truncate">
+                    <%= Array.isArray(item.keywords) ? item.keywords.join(', ') : item.keywords %>
+                  </td>
+                  <td style="font-size: 0.8125rem; color: var(--admin-text); max-width: 260px;" class="truncate">
+                    <%= item.answer %>
+                  </td>
+                  <td style="text-align: right;">
+                    <button type="button" class="admin-btn-sm admin-btn-outline" onclick="openEditIntentModal(<%= JSON.stringify(item) %>)">
+                      Edit
+                    </button>
+                    <form action="/admin/chatbot/<%= item.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Delete this intent?');">
+                      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                      <button type="submit" class="admin-btn-sm admin-btn-danger" style="margin-left: 6px;">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="4" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                  No chatbot intents defined yet.
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Interactive Test Sandbox -->
+  <div class="admin-card">
+    <div class="admin-card-header">
+      <h3 class="admin-card-title">Chatbot Test Sandbox</h3>
+    </div>
+    <div class="admin-card-body">
+      <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-bottom: 12px;">
+        Type any query to test matching accuracy against live database intents.
+      </p>
+      
+      <div id="testChatLog" style="height: 260px; overflow-y: auto; background: var(--admin-bg-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 12px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.8125rem;">
+        <div style="background: var(--admin-card-bg); padding: 8px 10px; border-radius: 6px; border: 1px solid var(--admin-border); max-width: 85%;">
+          👋 Hello! I am the test sandbox. Ask me about services, pricing, or location.
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="testQuery" class="admin-input" placeholder="e.g. how much for a website?" style="flex: 1;">
+        <button type="button" id="testSendBtn" class="admin-btn admin-btn-primary" onclick="sendTestChat()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Intent Modal -->
+<div class="admin-modal-overlay" id="addIntentModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add Chatbot Intent</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addIntentModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/chatbot" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Intent Key * (Internal Identifier)</label>
+          <input type="text" name="intent_key" class="admin-input" required placeholder="e.g. pricing_websites">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Quick Reply Button Label</label>
+          <input type="text" name="quick_reply" class="admin-input" placeholder="e.g. Website Pricing">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Matching Keywords (Comma separated)</label>
+          <input type="text" name="keywords" class="admin-input" placeholder="e.g. price, cost, rate, quote, website">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Response Answer *</label>
+          <textarea name="answer" class="admin-textarea" rows="4" required placeholder="Write a direct, helpful response..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addIntentModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save Intent</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Intent Modal -->
+<div class="admin-modal-overlay" id="editIntentModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Edit Chatbot Intent</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('editIntentModal').style.display='none'">&times;</button>
+    </div>
+    <form id="editIntentForm" action="" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Intent Key *</label>
+          <input type="text" id="editIntentKey" name="intent_key" class="admin-input" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Quick Reply Button Label</label>
+          <input type="text" id="editIntentQuick" name="quick_reply" class="admin-input">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Keywords (Comma separated)</label>
+          <input type="text" id="editIntentKeywords" name="keywords" class="admin-input">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Response Answer *</label>
+          <textarea id="editIntentAnswer" name="answer" class="admin-textarea" rows="4" required></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('editIntentModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openEditIntentModal(item) {
+    document.getElementById('editIntentForm').action = '/admin/chatbot/' + item.id;
+    document.getElementById('editIntentKey').value = item.intent_key || '';
+    document.getElementById('editIntentQuick').value = item.quick_reply || '';
+    document.getElementById('editIntentKeywords').value = Array.isArray(item.keywords) ? item.keywords.join(', ') : (item.keywords || '');
+    document.getElementById('editIntentAnswer').value = item.answer || '';
+    document.getElementById('editIntentModal').style.display = 'flex';
+  }
+
+  async function sendTestChat() {
+    const input = document.getElementById('testQuery');
+    const q = input.value.trim();
+    if (!q) return;
+
+    const log = document.getElementById('testChatLog');
+    const uBubble = document.createElement('div');
+    uBubble.style.cssText = 'background: var(--admin-primary); color: white; padding: 8px 10px; border-radius: 6px; align-self: flex-end; max-width: 85%;';
+    uBubble.textContent = q;
+    log.appendChild(uBubble);
+    input.value = '';
+
+    try {
+      const res = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: q })
+      });
+      const data = await res.json();
+      const bBubble = document.createElement('div');
+      bBubble.style.cssText = 'background: var(--admin-card-bg); padding: 8px 10px; border-radius: 6px; border: 1px solid var(--admin-border); max-width: 85%;';
+      bBubble.innerHTML = (data.reply || 'No direct match found.') + '<br><small style="color: var(--admin-text-muted);">[Matched: ' + (data.intent || 'default') + ']</small>';
+      log.appendChild(bBubble);
+      log.scrollTop = log.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+</script>

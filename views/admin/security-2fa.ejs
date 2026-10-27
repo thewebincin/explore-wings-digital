@@ -1,0 +1,61 @@
+<div class="admin-page-header" style="margin-bottom: 24px;">
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Two-Factor Authentication (2FA)</h2>
+  <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+    Add an extra layer of security to your admin account using Time-based One-Time Passwords (TOTP) supported by Google Authenticator, 1Password, or Authy.
+  </p>
+</div>
+
+<div class="admin-card" style="max-width: 620px;">
+  <div class="admin-card-header">
+    <h3 class="admin-card-title">TOTP Authenticator Setup</h3>
+  </div>
+  <div class="admin-card-body">
+    <% if (enabled) { %>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; margin-bottom: 24px;">
+        <span class="status-indicator online"></span>
+        <div>
+          <strong style="color: #065F46; font-size: 0.9375rem;">Two-Factor Authentication is Active</strong>
+          <p style="font-size: 0.8125rem; color: #047857; margin-top: 2px;">Your account is secured. A 6-digit verification code will be requested upon each sign-in.</p>
+        </div>
+      </div>
+
+      <form action="/admin/security/2fa/disable" method="POST" onsubmit="return confirm('Disable two-factor authentication? Your account will only be protected by password.');">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+        <button type="submit" class="admin-btn admin-btn-danger">Disable 2FA</button>
+      </form>
+    <% } else { %>
+      <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-bottom: 20px;">
+        1. Open Google Authenticator or your password manager on your phone.<br>
+        2. Scan the QR code below or enter the manual secret key.<br>
+        3. Enter the 6-digit confirmation token to activate.
+      </p>
+
+      <% if (qrCodeUrl) { %>
+        <div style="text-align: center; margin-bottom: 20px; padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--admin-border); display: inline-block;">
+          <img src="<%= qrCodeUrl %>" alt="2FA QR Code" width="180" height="180">
+        </div>
+      <% } %>
+
+      <% if (secret) { %>
+        <div class="admin-form-group">
+          <label class="admin-label">Manual Secret Key</label>
+          <input type="text" class="admin-input" readonly value="<%= secret %>" style="font-family: monospace;">
+        </div>
+      <% } %>
+
+      <form action="/admin/security/2fa/verify" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+        <input type="hidden" name="secret" value="<%= secret %>">
+
+        <div class="admin-form-group">
+          <label class="admin-label" for="token">Verification Code *</label>
+          <input type="text" id="token" name="token" class="admin-input" required placeholder="6-digit code" pattern="[0-9]{6}" autocomplete="one-time-code">
+        </div>
+
+        <button type="submit" class="admin-btn admin-btn-primary" style="margin-top: 12px;">
+          Verify &amp; Enable 2FA
+        </button>
+      </form>
+    <% } %>
+  </div>
+</div>

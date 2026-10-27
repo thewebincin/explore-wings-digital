@@ -1,0 +1,395 @@
+<% 
+  const sec = sections || {};
+  const heroSec = sec.hero || {};
+  const brandsSec = sec.brands || {};
+  const servicesSec = sec.services || {};
+  const processSec = sec.process_intro || sec.process || {};
+  const statementSec = sec.bold_statement || sec.statement || {};
+  const faqSec = sec.faq_intro || sec.faq || {};
+  const ctaSec = sec.enquiry || sec.cta || {};
+%>
+
+<!-- 3. HERO SECTION -->
+<section class="hero-editorial-section" aria-label="Hero Introduction">
+  <div class="container hero-grid">
+    <div class="hero-content" data-reveal="left">
+      <div class="hero-meta-row">
+        <span class="stamp-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <%= (heroSec.extra && heroSec.extra.badge) || heroSec.badge || 'Made in Trivandrum' %>
+        </span>
+        <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;"><%= (heroSec.extra && heroSec.extra.note) || heroSec.sub_badge || 'Direct collaboration with founders' %></span>
+      </div>
+
+      <h1 class="hero-headline">
+        <%- heroSec.title || heroSec.headline || 'Websites &amp; digital branding that bring <span class="hand-highlight">real enquiries<svg class="hand-underline-svg" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14 Q 50 20 97 12" fill="none" stroke-width="3.5" stroke-linecap="round"></path></svg></span> to your business.' %>
+      </h1>
+
+      <p class="hero-lead-text">
+        <%= heroSec.subtitle || heroSec.lead || 'We work directly with founders, resorts, clinics, and local stores in Trivandrum to fix slow websites, shoot authentic media, and get found on Google.' %>
+      </p>
+
+      <form class="hero-consult-form" id="heroConsultForm" action="/api/consultation" method="POST">
+        <!-- Anti-spam Honeypot -->
+        <input type="text" name="_hp" style="display:none;" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="source_page" value="home">
+        
+        <div class="hero-input-cluster">
+          <input type="text" name="contact" placeholder="Your phone number or work email" required aria-label="Your phone number or work email">
+          <button type="submit" class="btn-primary">
+            <span><%= heroSec.button_text || heroSec.cta_button || 'Get free consultation' %></span>
+          </button>
+        </div>
+        <p class="hero-form-caption"><%= (heroSec.extra && heroSec.extra.caption) || heroSec.caption || 'No sales pressure. We will review your current online setup and reply within 24 hours.' %></p>
+      </form>
+    </div>
+
+    <div class="hero-visual-frame" data-reveal="right">
+      <div class="browser-mockup">
+        <div class="browser-top-bar">
+          <div class="browser-dots" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="browser-address">explorewings.com/work/aadisaktthi-resorts</div>
+        </div>
+        <div class="browser-viewport">
+          <div class="mock-client-header">
+            <div class="mock-brand-badge">Aadisaktthi Resorts &amp; Spa &bull; Kovalam</div>
+            <span class="mock-status-pill">Live Project</span>
+          </div>
+          <div class="mock-hero-layout">
+            <div class="mock-copy-lines">
+              <div class="mock-bar-headline"></div>
+              <div class="mock-bar-body"></div>
+              <div class="mock-bar-body short"></div>
+              <div class="mock-btn-stub"></div>
+            </div>
+            <div class="mock-image-stub">
+              <span>Authentic Resort Photography<br>&amp; Booking Flow</span>
+            </div>
+          </div>
+          <div class="mock-kerala-tags">
+            <span class="mock-tag">Fast Mobile UI</span>
+            <span class="mock-tag">Direct WhatsApp Inquiries</span>
+            <span class="mock-tag">Local Trivandrum SEO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. STATIC LOGO ROW -->
+<% if (brands && brands.length) { %>
+<section class="static-brands-section" aria-label="Featured Brands">
+  <div class="container static-brands-wrapper">
+    <span class="static-brands-label"><%= brandsSec.static_label || 'Brands that work with us in Kerala:' %></span>
+    <div class="static-logos-flex">
+      <% brands.forEach(brand => { %>
+        <div class="static-logo-card">
+          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" width="110" height="26" loading="lazy">
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 5. SERVICES AS A NUMBERED EDITORIAL LIST -->
+<% if (services && services.length) { %>
+<section class="editorial-services-section" id="services" aria-labelledby="servicesSectionHeading">
+  <div class="container">
+    <div class="section-editorial-header">
+      <div>
+        <span class="stamp-badge"><%= servicesSec.badge || '01 — What We Do' %></span>
+        <h2 class="section-title" id="servicesSectionHeading" style="margin-top: 8px;"><%= servicesSec.headline || 'Six core services built for growth.' %></h2>
+      </div>
+      <span class="editorial-counter"><%= services.length.toString().padStart(2, '0') %> Services Available</span>
+    </div>
+
+    <div class="editorial-services-list">
+      <% services.forEach((service, index) => { %>
+        <div class="service-editorial-row <%= index === 0 ? 'is-open' : '' %>">
+          <button type="button" class="service-row-header" aria-expanded="<%= index === 0 ? 'true' : 'false' %>">
+            <span class="service-row-num"><%= (index + 1).toString().padStart(2, '0') %></span>
+            <span class="service-row-title"><%= service.title %></span>
+            <span class="service-row-summary"><%= service.short_desc %></span>
+            <span class="service-row-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="service-row-details">
+            <div class="service-details-grid">
+              <div>
+                <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.9375rem;">
+                  <%= service.full_desc || service.short_desc %>
+                </p>
+                <% 
+                  const incList = (typeof service.included === 'string' ? service.included.split('\n') : (service.included_items || [])).map(s => s.trim()).filter(Boolean);
+                %>
+                <% if (incList && incList.length) { %>
+                  <ul class="service-features-list">
+                    <% incList.forEach(item => { %>
+                      <li>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <%= item %>
+                      </li>
+                    <% }) %>
+                  </ul>
+                <% } %>
+              </div>
+              <div class="service-cta-side">
+                <p>Custom tailored delivery</p>
+                <a href="/contact?service=<%= encodeURIComponent(service.title) %>" class="btn-secondary">Enquire about <%= service.title.toLowerCase() %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 6. BRANDS THAT TRUST US (Two-Row Infinite Scroller) -->
+<% if (brands && brands.length) { %>
+<section class="brands-scroller-section" aria-label="Brands that trust us">
+  <div class="container scroller-section-header">
+    <span class="stamp-badge"><%= brandsSec.badge || '02 — Trusted Locally' %></span>
+    <h2 class="section-title" style="margin-top: 8px;"><%= brandsSec.headline || 'Brands that trust Explore Wings in Kerala.' %></h2>
+  </div>
+
+  <div class="scroller-track-container">
+    <!-- Row 1: Leftward -->
+    <div class="scroller-track track-row-1">
+      <% brands.forEach(brand => { %>
+        <div class="brand-scroll-pill">
+          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
+          <span><%= brand.name %></span>
+        </div>
+      <% }) %>
+      <!-- Duplicate for seamless loop -->
+      <% brands.forEach(brand => { %>
+        <div class="brand-scroll-pill">
+          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
+          <span><%= brand.name %></span>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Row 2: Rightward -->
+    <div class="scroller-track track-row-2">
+      <% const revBrands = [...brands].reverse(); %>
+      <% revBrands.forEach(brand => { %>
+        <div class="brand-scroll-pill">
+          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
+          <span><%= brand.name %></span>
+        </div>
+      <% }) %>
+      <!-- Duplicate for seamless loop -->
+      <% revBrands.forEach(brand => { %>
+        <div class="brand-scroll-pill">
+          <img src="<%= brand.logo || brand.logo_url %>" alt="<%= brand.name %>" loading="lazy">
+          <span><%= brand.name %></span>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 7. HOW WE WORK (Listen, Create, Launch, Grow) -->
+<section class="process-editorial-section" aria-labelledby="processSectionHeading">
+  <div class="container">
+    <div class="section-editorial-header">
+      <div>
+        <span class="stamp-badge"><%= processSec.subtitle || processSec.badge || '03 — Our Process' %></span>
+        <h2 class="section-title" id="processSectionHeading" style="margin-top: 8px;"><%= processSec.title || processSec.headline || 'Four simple steps from first call to live site.' %></h2>
+      </div>
+      <span class="editorial-counter">Clear milestones</span>
+    </div>
+
+    <div class="process-steps-grid">
+      <div class="process-step-card" data-reveal>
+        <span class="step-number">01</span>
+        <h3 class="step-card-title">Listen</h3>
+        <p class="step-card-desc">
+          We sit down with you in person in Trivandrum or over a video call. We study what your business actually sells, what customers ask for, and where your current setup is falling short.
+        </p>
+        <div class="step-deliverable">Outcome: Project scope &amp; fixed quote</div>
+      </div>
+
+      <div class="process-step-card" data-reveal>
+        <span class="step-number">02</span>
+        <h3 class="step-card-title">Create</h3>
+        <p class="step-card-desc">
+          We design and build the work with weekly check-ins. If you need photography, we visit your premises with lights and cameras. You review real working screens, not static mockups.
+        </p>
+        <div class="step-deliverable">Outcome: Working staging preview</div>
+      </div>
+
+      <div class="process-step-card" data-reveal>
+        <span class="step-number">03</span>
+        <h3 class="step-card-title">Launch</h3>
+        <p class="step-card-desc">
+          We test every link, contact form, WhatsApp button, and mobile screen size across iPhone and Android devices. We configure Google Search Console and deploy on fast servers.
+        </p>
+        <div class="step-deliverable">Outcome: Live website &amp; assets handed over</div>
+      </div>
+
+      <div class="process-step-card" data-reveal>
+        <span class="step-number">04</span>
+        <h3 class="step-card-title">Grow</h3>
+        <p class="step-card-desc">
+          Going live is step one. We monitor site speed, keep Google Maps rankings active, and run targeted ads when you are ready to expand your customer reach.
+        </p>
+        <div class="step-deliverable">Outcome: Ongoing stability &amp; inquiries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ONE BOLD STATEMENT SECTION -->
+<section class="bold-statement-section" aria-label="Our commitment">
+  <div class="container bold-statement-content">
+    <div class="statement-tag"><%= statementSec.title || statementSec.tag || 'Direct Collaboration • Trivandrum Based' %></div>
+    <p class="statement-text">
+      &ldquo;<%= statementSec.body || statementSec.quote || 'Most agencies sell confusing retainer packages and hide behind account managers. We build clean websites, shoot crisp local media, and answer your phone calls directly.' %>&rdquo;
+    </p>
+    <div class="statement-footer-note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span><%= (statementSec.extra && statementSec.extra.founder_note) || statementSec.author || 'From the desk of the founder • Explore Wings Digital Technologies, Trivandrum' %></span>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ SECTION -->
+<% if (faqs && faqs.length) { %>
+<section class="faq-editorial-section" aria-labelledby="faqSectionHeading">
+  <div class="container faq-editorial-grid">
+    <div>
+      <span class="stamp-badge"><%= faqSec.subtitle || faqSec.badge || '04 — Clarifications' %></span>
+      <h2 class="section-title" id="faqSectionHeading" style="margin-top: 8px;"><%= faqSec.title || faqSec.headline || 'Questions local business owners ask us.' %></h2>
+      <p class="sub-title" style="margin-top: 12px;">
+        <%= faqSec.body || faqSec.sub || 'Honest answers without jargon. If your question is not listed here, send us an email or message on WhatsApp.' %>
+      </p>
+      <div style="margin-top: 24px;">
+        <a href="/contact" class="btn-secondary">Ask a specific question</a>
+      </div>
+    </div>
+
+    <div class="faq-accordion-list">
+      <% faqs.forEach((faq, index) => { %>
+        <div class="faq-editorial-item <%= index === 0 ? 'is-open' : '' %>">
+          <button type="button" class="faq-question-btn" aria-expanded="<%= index === 0 ? 'true' : 'false' %>">
+            <span><%= faq.question %></span>
+            <span class="faq-toggle-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <%= faq.answer %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 10. PROJECT ENQUIRY FORM SECTION -->
+<section class="enquiry-section" id="enquiry" aria-labelledby="enquirySectionHeading">
+  <div class="container">
+    <div class="enquiry-card-wrapper">
+      <div class="enquiry-header">
+        <span class="stamp-badge"><%= ctaSec.subtitle || ctaSec.badge || '05 — Let\'s Talk' %></span>
+        <h2 class="section-title" id="enquirySectionHeading" style="margin-top: 8px;"><%= ctaSec.title || ctaSec.headline || 'Tell us about your project.' %></h2>
+        <p class="sub-title" style="margin-top: 8px;">
+          <%= ctaSec.body || ctaSec.sub || 'Fill in the details below. We will review your current online presence and schedule a direct consultation.' %>
+        </p>
+      </div>
+
+      <form class="project-enquiry-form" id="mainContactForm" action="/api/enquiry" method="POST" enctype="multipart/form-data">
+        <!-- Anti-spam Honeypot -->
+        <input type="text" name="_hp" style="display:none;" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="source_page" value="home">
+
+        <div class="form-grid-2">
+          <div class="field-group">
+            <label for="enqName">Your Name *</label>
+            <input type="text" id="enqName" name="name" placeholder="e.g. Anand Kumar" required>
+          </div>
+
+          <div class="field-group">
+            <label for="enqContact">Phone or Email *</label>
+            <input type="text" id="enqContact" name="contact" placeholder="e.g. +91 94460 00000 or anand@company.in" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field-group">
+            <label for="enqCompany">Business or Brand Name</label>
+            <input type="text" id="enqCompany" name="company" placeholder="e.g. Kovalam Beach Retreat">
+          </div>
+
+          <div class="field-group">
+            <label for="enqService">Primary Service Needed *</label>
+            <select id="enqService" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <% if (services && services.length) { %>
+                <% services.forEach(svc => { %>
+                  <option value="<%= svc.title %>"><%= svc.title %></option>
+                <% }) %>
+              <% } else { %>
+                <option value="Custom Website">Custom Website / Web App</option>
+                <option value="Brand Identity">Brand Identity &amp; Logo Design</option>
+                <option value="Social Media">Social Media Management</option>
+                <option value="Photography & Video">Photography &amp; Commercial Video</option>
+                <option value="Digital Marketing">Performance Digital Marketing</option>
+                <option value="Local SEO">Google Search &amp; Local SEO</option>
+              <% } %>
+              <option value="Complete Overhaul">Complete Digital Overhaul</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="enqDetails">Project Notes or Goals</label>
+          <textarea id="enqDetails" name="details" rows="4" placeholder="Tell us about what you want to achieve, your timeline, or links to your current website/Instagram."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="enqAttachment">Attachment / Brief (Optional, max 10MB)</label>
+          <input type="file" id="enqAttachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp">
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <button type="submit" class="btn-primary">
+            <span>Send project enquiry</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <span style="font-size: 0.8125rem; color: var(--text-muted);">
+            We protect your privacy. No spam or cold-call harassment.
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

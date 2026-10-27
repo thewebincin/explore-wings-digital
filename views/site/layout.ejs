@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= page && page.title ? page.title : (settings.site_name ? settings.site_name + ' | Digital Agency in Trivandrum, Kerala' : 'Explore Wings Digital Technologies | Trivandrum') %></title>
+  <meta name="description" content="<%= page && page.meta_description ? page.meta_description : 'Explore Wings Digital Technologies is a digital company based in Trivandrum, Kerala. We build custom websites, design brand identities, manage social media, shoot video, and drive local search rankings.' %>">
+  <link rel="canonical" href="<%= siteUrl %><%= locals.currentPath === '/' ? '' : locals.currentPath %>">
+  
+  <!-- Preload Self-Hosted Fonts -->
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="<%= settings.logo_path || '/images/logo.png' %>">
+  <link rel="apple-touch-icon" href="<%= settings.logo_path || '/images/logo.png' %>">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= page && page.title ? page.title : (settings.site_name || 'Explore Wings Digital Technologies') %>">
+  <meta property="og:description" content="<%= page && page.meta_description ? page.meta_description : 'Websites, brand identity, social media, and commercial photography for businesses in Trivandrum and Kerala.' %>">
+  <meta property="og:image" content="<%= siteUrl %><%= settings.logo_path || '/images/logo.png' %>">
+  <meta property="og:url" content="<%= siteUrl %><%= locals.currentPath === '/' ? '' : locals.currentPath %>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css?v=<%= assetVersion %>">
+
+  <!-- Dynamic JSON-LD Schema -->
+  <% if (locals.jsonLd) { %>
+    <%- jsonLd %>
+  <% } %>
+
+  <!-- Google Analytics 4 (Only if configured in settings) -->
+  <% if (settings.ga4_id) { %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= settings.ga4_id %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<%= settings.ga4_id %>');
+    </script>
+  <% } %>
+</head>
+<body data-page="<%= locals.currentPath === '/' ? 'home' : (locals.currentPath || '').replace(/^\//, '') %>">
+
+  <% if (locals.isMaintenanceActive && locals.maintenanceBypass) { %>
+    <aside class="admin-preview-floating-bar" style="position: sticky; top: 0; z-index: 99999; background: #D97706; color: #FFFFFF; padding: 10px 20px; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.25); flex-wrap: wrap; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.1rem;">⚠️</span>
+        <span><strong>Live Preview Active:</strong> Maintenance Mode is ON. Public visitors are blocked and see the 503 Maintenance Page.</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="/?preview=off" style="color: #FFFFFF; text-decoration: underline; font-weight: 700;">View 503 Maintenance Screen</a>
+        <a href="/admin/maintenance" style="background: #FFFFFF; color: #92400E; padding: 4px 12px; border-radius: 4px; text-decoration: none; font-weight: 700;">Admin Settings</a>
+      </div>
+    </aside>
+  <% } %>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Top Utility Bar -->
+  <%- include('partials/topbar') %>
+
+  <!-- Sticky Navbar -->
+  <%- include('partials/header') %>
+
+  <!-- Page Content -->
+  <main id="main-content">
+    <%- body %>
+  </main>
+
+  <!-- Mega Footer -->
+  <%- include('partials/footer') %>
+
+  <!-- Wing Assistant Chatbot -->
+  <%- include('partials/chatbot') %>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Client-side Scripts -->
+  <script src="/js/script.js?v=<%= assetVersion %>"></script>
+  <script src="/js/chatbot.js?v=<%= assetVersion %>"></script>
+  <script src="/js/analytics.js?v=<%= assetVersion %>" defer></script>
+</body>
+</html>

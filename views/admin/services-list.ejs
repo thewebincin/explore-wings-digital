@@ -1,0 +1,161 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Services Portfolio</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Manage the core capabilities displayed on the homepage and services page. Drag to reorder.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('addServiceModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Add New Service</span>
+  </button>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th style="width: 40px;">#</th>
+            <th>Service Title</th>
+            <th>Short Summary</th>
+            <th>Slug / Anchor</th>
+            <th>Visible</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="servicesSortableList">
+          <% if (services && services.length) { %>
+            <% services.forEach((svc, index) => { %>
+              <tr data-id="<%= svc.id %>">
+                <td style="color: var(--admin-text-muted); font-weight: 600;"><%= index + 1 %></td>
+                <td>
+                  <strong><%= svc.title %></strong>
+                </td>
+                <td style="max-width: 320px; font-size: 0.8125rem; color: var(--admin-text-muted);" class="truncate">
+                  <%= svc.short_desc %>
+                </td>
+                <td>
+                  <code>#<%= svc.slug || svc.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') %></code>
+                </td>
+                <td>
+                  <form action="/admin/services/<%= svc.id %>/toggle" method="POST" style="display: inline;">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-badge <%= svc.visible ? 'status-active' : 'status-draft' %>" style="cursor: pointer; border: none;">
+                      <%= svc.visible ? 'Visible' : 'Hidden' %>
+                    </button>
+                  </form>
+                </td>
+                <td style="text-align: right;">
+                  <button type="button" class="admin-btn-sm admin-btn-outline" onclick="openEditServiceModal(<%= JSON.stringify(svc) %>)">
+                    Edit
+                  </button>
+                  <form action="/admin/services/<%= svc.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Delete this service?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-danger" style="margin-left: 6px;">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 32px; color: var(--admin-text-muted);">
+                No services defined yet. Click "Add New Service" above.
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add Service Modal -->
+<div class="admin-modal-overlay" id="addServiceModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add New Service</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addServiceModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/services" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Service Title *</label>
+          <input type="text" name="title" class="admin-input" required placeholder="e.g. Commercial Photography">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Anchor Slug (Optional)</label>
+          <input type="text" name="slug" class="admin-input" placeholder="e.g. photo">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Short Summary (Homepage row) *</label>
+          <input type="text" name="short_desc" class="admin-input" required placeholder="Sub-2-second load times tailored for Kerala mobile users.">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Full Description (Services page)</label>
+          <textarea name="full_desc" class="admin-textarea" rows="3" placeholder="Detailed explanation of what this service solves..."></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Included Deliverables (One per line)</label>
+          <textarea name="included_items" class="admin-textarea" rows="4" placeholder="Sub-2-second load speed&#10;Mobile-first responsive layouts&#10;WhatsApp inquiry buttons"></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addServiceModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Save Service</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Service Modal -->
+<div class="admin-modal-overlay" id="editServiceModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Edit Service</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('editServiceModal').style.display='none'">&times;</button>
+    </div>
+    <form id="editServiceForm" action="" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Service Title *</label>
+          <input type="text" id="editSvcTitle" name="title" class="admin-input" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Anchor Slug</label>
+          <input type="text" id="editSvcSlug" name="slug" class="admin-input">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Short Summary *</label>
+          <input type="text" id="editSvcShortDesc" name="short_desc" class="admin-input" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Full Description</label>
+          <textarea id="editSvcFullDesc" name="full_desc" class="admin-textarea" rows="3"></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Included Deliverables (One per line)</label>
+          <textarea id="editSvcIncluded" name="included_items" class="admin-textarea" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('editServiceModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Update Service</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openEditServiceModal(svc) {
+    document.getElementById('editServiceForm').action = '/admin/services/' + svc.id;
+    document.getElementById('editSvcTitle').value = svc.title || '';
+    document.getElementById('editSvcSlug').value = svc.slug || '';
+    document.getElementById('editSvcShortDesc').value = svc.short_desc || '';
+    document.getElementById('editSvcFullDesc').value = svc.full_desc || '';
+    document.getElementById('editSvcIncluded').value = Array.isArray(svc.included_items) ? svc.included_items.join('\n') : (svc.included_items || '');
+    document.getElementById('editServiceModal').style.display = 'flex';
+  }
+</script>

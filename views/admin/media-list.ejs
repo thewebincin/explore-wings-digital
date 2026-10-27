@@ -1,0 +1,89 @@
+<div class="admin-page-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <h2 style="font-size: 1.5rem; font-weight: 700;">Media Library</h2>
+    <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+      Images are automatically converted to optimized WebP format upon upload. Alt text is mandatory for accessibility and SEO.
+    </p>
+  </div>
+  <button type="button" class="admin-btn admin-btn-primary" onclick="document.getElementById('uploadMediaModal').style.display='flex'">
+    <%- iconSvg('plus') %> <span>Upload Image</span>
+  </button>
+</div>
+
+<div class="admin-card">
+  <div class="admin-card-body">
+    <% if (items && items.length) { %>
+      <div class="admin-media-grid">
+        <% items.forEach(item => { %>
+          <div class="admin-media-card">
+            <div class="media-preview-box">
+              <img src="<%= item.file_path %>" alt="<%= item.alt_text || 'Media asset' %>" loading="lazy">
+            </div>
+            <div class="media-info-box">
+              <div class="media-filename" title="<%= item.original_name %>"><%= item.original_name %></div>
+              <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin: 4px 0;">
+                <%= Math.round((item.file_size || 0) / 1024) %> KB &bull; WebP
+              </div>
+
+              <!-- Update Alt Text Form -->
+              <form action="/admin/media/<%= item.id %>/alt" method="POST" style="margin-top: 8px;">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                <input type="text" name="alt_text" class="admin-input-sm" value="<%= item.alt_text || '' %>" placeholder="Alt description" required style="margin-bottom: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <button type="submit" class="admin-btn-xs admin-btn-outline">Save Alt</button>
+                  <button type="button" class="admin-btn-xs admin-btn-outline" onclick="copyPath('<%= item.file_path %>')">Copy URL</button>
+                </div>
+              </form>
+
+              <!-- Delete Form -->
+              <form action="/admin/media/<%= item.id %>/delete" method="POST" style="margin-top: 8px;" onsubmit="return confirm('Delete this media file?');">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                <button type="submit" class="admin-btn-xs admin-btn-danger" style="width: 100%;">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div style="text-align: center; padding: 48px; color: var(--admin-text-muted);">
+        <%- iconSvg('media') %>
+        <p style="margin-top: 12px;">No uploaded media items yet. Click "Upload Image" to add files.</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Upload Media Modal -->
+<div class="admin-modal-overlay" id="uploadMediaModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Upload Image to Library</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('uploadMediaModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/media/upload" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Choose File * (PNG, JPG, JPEG, WebP)</label>
+          <input type="file" name="image" class="admin-input" accept=".png,.jpg,.jpeg,.webp" required>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Alt Text Description * (for SEO &amp; Screen Readers)</label>
+          <input type="text" name="alt_text" class="admin-input" required placeholder="e.g. Aadisaktthi resort seafront view in Kovalam">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('uploadMediaModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Upload &amp; Optimize</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function copyPath(path) {
+    navigator.clipboard.writeText(path).then(() => {
+      alert('Copied URL to clipboard: ' + path);
+    });
+  }
+</script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In &bull; Admin Console</title>
+  <link rel="icon" type="image/png" href="<%= settings.logo_path || '/images/logo.png' %>">
+  <link rel="stylesheet" href="/css/admin.css?v=<%= assetVersion %>">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--admin-bg);
+    }
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--admin-card-bg);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="login-container">
+    <div class="login-card">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div class="brand-chip" style="width: 48px; height: 48px; margin: 0 auto 12px; background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+          <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="36" height="36">
+        </div>
+        <h1 style="font-size: 1.5rem; font-weight: 700; color: var(--admin-text);"><%= settings.site_name || 'Explore Wings' %></h1>
+        <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">Sign in to your administrative dashboard</p>
+      </div>
+
+      <% if (locals.error && error.length) { %>
+        <div class="admin-alert error" style="margin-bottom: 20px;">
+          <span><%= error %></span>
+        </div>
+      <% } %>
+
+      <% if (locals.locked) { %>
+        <div class="admin-alert warning" style="margin-bottom: 20px;">
+          <span>Security lockout active. Please wait 15 minutes before attempting again.</span>
+        </div>
+      <% } %>
+
+      <form action="/admin/login" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+
+        <% if (locals.require2fa) { %>
+          <div style="margin-bottom: 20px;">
+            <label class="admin-label" for="token2fa">Two-Factor Authentication Code</label>
+            <input type="text" id="token2fa" name="token2fa" class="admin-input" placeholder="6-digit code from authenticator" required autofocus pattern="[0-9]{6}" autocomplete="one-time-code">
+            <p style="font-size: 0.8125rem; color: var(--admin-text-muted); margin-top: 6px;">Open your Google Authenticator or 2FA app to enter the active verification token.</p>
+          </div>
+          <input type="hidden" name="email" value="<%= locals.email || '' %>">
+          <input type="hidden" name="password" value="<%= locals.password || '' %>">
+        <% } else { %>
+          <div style="margin-bottom: 16px;">
+            <label class="admin-label" for="adminEmail">Email Address</label>
+            <input type="email" id="adminEmail" name="email" class="admin-input" placeholder="admin@explorewings.com" required autofocus value="<%= locals.email || '' %>">
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="admin-label" for="adminPassword" style="margin-bottom: 0;">Password</label>
+            </div>
+            <input type="password" id="adminPassword" name="password" class="admin-input" placeholder="••••••••••••" required>
+          </div>
+        <% } %>
+
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; padding: 12px;" <%= locals.locked ? 'disabled' : '' %>>
+          <span><%= locals.require2fa ? 'Verify Token & Sign In' : 'Sign In to Admin' %></span>
+        </button>
+      </form>
+
+      <div style="margin-top: 24px; text-align: center; border-top: 1px solid var(--admin-border); padding-top: 16px;">
+        <a href="/" style="font-size: 0.8125rem; color: var(--admin-text-muted); text-decoration: none;">&larr; Return to Explore Wings website</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

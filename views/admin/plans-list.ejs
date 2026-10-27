@@ -1,0 +1,146 @@
+<div class="admin-page-header" style="margin-bottom: 24px;">
+  <h2 style="font-size: 1.5rem; font-weight: 700;">Pricing Plans &amp; Comparison Matrix</h2>
+  <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+    Manage the 3 pricing tiers (Essential, Signature, Growth) and the detailed feature comparison table.
+  </p>
+</div>
+
+<!-- Plans Grid -->
+<div class="admin-grid-3" style="margin-bottom: 32px;">
+  <% if (plans && plans.length) { %>
+    <% plans.forEach(plan => { %>
+      <div class="admin-card <%= plan.is_featured ? 'admin-card-featured' : '' %>">
+        <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="admin-card-title"><%= plan.name %></h3>
+          <% if (plan.is_featured) { %>
+            <span class="admin-badge status-active">Featured</span>
+          <% } %>
+        </div>
+        <div class="admin-card-body">
+          <form action="/admin/plans/<%= plan.id %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+            
+            <div class="admin-form-group">
+              <label class="admin-label">Plan Name</label>
+              <input type="text" name="name" class="admin-input" value="<%= plan.name %>" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Description</label>
+              <textarea name="description" class="admin-textarea" rows="2"><%= plan.description %></textarea>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Timeline / Delivery</label>
+              <input type="text" name="timeline" class="admin-input" value="<%= plan.timeline || '' %>">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Badge Tag (e.g. Most Popular)</label>
+              <input type="text" name="badge" class="admin-input" value="<%= plan.badge || '' %>">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Button Text</label>
+              <input type="text" name="cta_text" class="admin-input" value="<%= plan.cta_text || 'Get a quote' %>">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Features Included (One per line)</label>
+              <textarea name="features" class="admin-textarea" rows="6"><%= Array.isArray(plan.features) ? plan.features.join('\n') : (plan.features || '') %></textarea>
+            </div>
+
+            <div class="admin-form-group" style="margin-top: 12px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.875rem;">
+                <input type="checkbox" name="is_featured" value="1" <%= plan.is_featured ? 'checked' : '' %>>
+                <span>Highlight as featured plan</span>
+              </label>
+            </div>
+
+            <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center; margin-top: 16px;">
+              Save Plan
+            </button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<!-- Comparison Matrix Table -->
+<div class="admin-card">
+  <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 class="admin-card-title">Comparison Matrix Rows</h3>
+    <button type="button" class="admin-btn admin-btn-sm admin-btn-primary" onclick="document.getElementById('addRowModal').style.display='flex'">
+      <%- iconSvg('plus') %> <span>Add Comparison Row</span>
+    </button>
+  </div>
+  <div class="admin-card-body" style="padding: 0;">
+    <div class="admin-table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Feature / Deliverable</th>
+            <th>Essential</th>
+            <th>Signature</th>
+            <th>Growth</th>
+            <th style="text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (rows && rows.length) { %>
+            <% rows.forEach(row => { %>
+              <tr>
+                <td><strong><%= row.feature_name %></strong></td>
+                <td><%= row.tier_essential || '—' %></td>
+                <td><%= row.tier_signature || '—' %></td>
+                <td><%= row.tier_growth || '—' %></td>
+                <td style="text-align: right;">
+                  <form action="/admin/plans/rows/<%= row.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Delete this comparison row?');">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                    <button type="submit" class="admin-btn-sm admin-btn-danger">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add Comparison Row Modal -->
+<div class="admin-modal-overlay" id="addRowModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add Comparison Row</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addRowModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/plans/rows" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">Feature Name *</label>
+          <input type="text" name="feature_name" class="admin-input" required placeholder="e.g. Page Load Performance">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Essential Plan Value</label>
+          <input type="text" name="tier_essential" class="admin-input" placeholder="e.g. Sub-2 seconds">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Signature Plan Value</label>
+          <input type="text" name="tier_signature" class="admin-input" placeholder="e.g. Sub-1.5 seconds">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Growth Plan Value</label>
+          <input type="text" name="tier_growth" class="admin-input" placeholder="e.g. Sub-1 second">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addRowModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Add Row</button>
+      </div>
+    </form>
+  </div>
+</div>

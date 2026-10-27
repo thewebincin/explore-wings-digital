@@ -1,0 +1,82 @@
+<!-- 2. STICKY NAVBAR -->
+<header class="site-navbar">
+  <div class="container navbar-inner">
+    <a href="/" class="nav-brand" aria-label="Explore Wings Home">
+      <span class="brand-chip">
+        <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="32" height="32">
+      </span>
+      <div>
+        <span class="brand-wordmark"><%= settings.site_name || 'Explore Wings' %></span>
+        <span class="brand-tagline-sub">Digital Technologies</span>
+      </div>
+    </a>
+
+    <nav class="nav-links-desktop" aria-label="Main Navigation">
+      <% if (locals.headerNav && headerNav.length) { %>
+        <% headerNav.forEach(item => { %>
+          <a href="<%= item.url %>" class="nav-link <%= (locals.currentPath === item.url || (item.url !== '/' && locals.currentPath && locals.currentPath.startsWith(item.url))) ? 'active' : '' %>" <%= item.new_tab ? 'target="_blank" rel="noopener"' : '' %>>
+            <%= item.label %>
+          </a>
+        <% }) %>
+      <% } else { %>
+        <a href="/" class="nav-link <%= locals.currentPath === '/' ? 'active' : '' %>">Home</a>
+        <a href="/services" class="nav-link <%= locals.currentPath === '/services' ? 'active' : '' %>">Services</a>
+        <a href="/pricing" class="nav-link <%= locals.currentPath === '/pricing' ? 'active' : '' %>">Pricing</a>
+        <a href="/about" class="nav-link <%= locals.currentPath === '/about' ? 'active' : '' %>">About</a>
+        <a href="/contact" class="nav-link <%= locals.currentPath === '/contact' ? 'active' : '' %>">Contact</a>
+      <% } %>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="/contact" class="btn-primary">
+        <span>Start your project</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+<div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+  <div class="drawer-header">
+    <div class="brand-chip">
+      <img src="<%= settings.logo_path || '/images/logo.png' %>" alt="Explore Wings" width="28" height="28">
+    </div>
+    <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <ul class="drawer-links">
+    <% if (locals.headerNav && headerNav.length) { %>
+      <% headerNav.forEach(item => { %>
+        <li><a href="<%= item.url %>" class="drawer-link"><%= item.label %></a></li>
+      <% }) %>
+    <% } else { %>
+      <li><a href="/" class="drawer-link">Home</a></li>
+      <li><a href="/services" class="drawer-link">Services</a></li>
+      <li><a href="/pricing" class="drawer-link">Pricing</a></li>
+      <li><a href="/about" class="drawer-link">About</a></li>
+      <li><a href="/contact" class="drawer-link">Contact</a></li>
+    <% } %>
+  </ul>
+  <div class="drawer-footer">
+    <a href="/contact" class="btn-primary" style="width: 100%;">Start your project</a>
+    <% if (settings.address) { %>
+      <p style="font-size: 0.8125rem; color: var(--text-muted);"><%= settings.address %></p>
+    <% } %>
+  </div>
+</div>

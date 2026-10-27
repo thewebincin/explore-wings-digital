@@ -1,0 +1,137 @@
+<%
+  const sec = sections || {};
+  const heroSec = sec.header || sec.hero || {};
+  const ctaSec = sec.cta || {};
+%>
+
+<!-- PAGE HERO -->
+<section class="page-hero-editorial" aria-label="Pricing Header">
+  <div class="container">
+    <div style="max-width: 800px;">
+      <span class="stamp-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <%= heroSec.badge || heroSec.subtitle || 'Transparent Scope & Milestones' %>
+      </span>
+      <h1 class="page-headline" style="margin-top: 16px;">
+        <%- heroSec.title || heroSec.headline || 'Clear project packages. No hidden recurring fees.' %>
+      </h1>
+      <p class="page-lead" style="margin-top: 16px;">
+        <%= heroSec.subtitle || heroSec.lead || 'We quote fixed milestones based on exactly what your company needs. You receive full ownership of your code, assets, and accounts from day one.' %>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TIERS -->
+<section class="pricing-cards-section" style="padding: var(--space-2xl) 0;">
+  <div class="container">
+    <div class="pricing-grid-3">
+      <% if (plans && plans.length) { %>
+        <% plans.forEach(plan => { %>
+          <div class="pricing-card <%= plan.is_featured ? 'is-featured' : '' %>" data-reveal>
+            <% if (plan.badge) { %>
+              <div class="pricing-card-badge"><%= plan.badge %></div>
+            <% } %>
+            <h2 class="pricing-plan-name"><%= plan.name %></h2>
+            <p class="pricing-plan-desc"><%= plan.description %></p>
+            
+            <% if (plan.timeline) { %>
+              <div class="pricing-timeline-tag" <%- plan.is_featured ? 'style="background: var(--theme-highlight); color: var(--primary);"' : '' %>>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Delivery: <%= plan.timeline %>
+              </div>
+            <% } %>
+
+            <% 
+              const featureList = Array.isArray(plan.features) ? plan.features : (plan.features || '').split('\n').map(s => s.trim()).filter(Boolean);
+            %>
+            <% if (featureList && featureList.length) { %>
+              <ul class="pricing-features-list">
+                <% featureList.forEach(feat => { %>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <%= feat %>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+
+            <div class="pricing-cta-wrap">
+              <a href="/contact?package=<%= encodeURIComponent(plan.name.toLowerCase()) %>" class="<%= plan.is_featured ? 'btn-primary' : 'btn-secondary' %>" style="width: 100%;">
+                <%= plan.cta_text || 'Get a quote' %>
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON MATRIX -->
+<% if (comparisonRows && comparisonRows.length) { %>
+<section class="pricing-compare-section" style="padding-bottom: var(--space-2xl);">
+  <div class="container">
+    <h2 style="font-size: 1.75rem; margin-bottom: 8px;">Detailed Package Comparison</h2>
+    <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 24px;">See exactly what is included across each project tier.</p>
+    
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="width: 40%;">Feature / Deliverable</th>
+            <% if (plans && plans.length) { %>
+              <% plans.forEach(plan => { %>
+                <th style="width: <%= Math.floor(60 / plans.length) %>%;"><%= plan.name %></th>
+              <% }) %>
+            <% } else { %>
+              <th style="width: 20%;">Essential</th>
+              <th style="width: 20%;">Signature</th>
+              <th style="width: 20%;">Growth</th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <% comparisonRows.forEach(row => { %>
+            <tr>
+              <td><strong><%= row.feature_name %></strong></td>
+              <td><%= row.tier_essential || '—' %></td>
+              <td><%= row.tier_signature || '—' %></td>
+              <td><%= row.tier_growth || '—' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- BOTTOM CTA BAND -->
+<section class="cta-editorial-band" style="background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: var(--space-2xl) 0;">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+    <div>
+      <span class="stamp-badge"><%= ctaSec.badge || 'Custom Scopes' %></span>
+      <h2 style="font-size: 1.75rem; margin-top: 8px;"><%= ctaSec.headline || 'Have specific requirements or a phased roadmap?' %></h2>
+      <p style="color: var(--text-muted); margin-top: 6px;"><%= ctaSec.sub || 'We are happy to prepare a modular scope of work suited to your budget and timelines.' %></p>
+    </div>
+    <div>
+      <a href="/contact" class="btn-primary">
+        <span>Discuss custom scope</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

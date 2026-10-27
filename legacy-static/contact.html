@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="green" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Explore Wings Digital Technologies Trivandrum</title>
+  <meta name="description" content="Get in touch with Explore Wings Digital Technologies in Trivandrum, Kerala. Request a free project consultation, call us directly, or send an enquiry.">
+  <link rel="canonical" href="https://explorewings.com/contact.html">
+  
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel-left"></div>
+    <div class="preloader-panel-right"></div>
+    <div class="preloader-center-content">
+      <div class="preloader-chip">
+        <img src="logo.png" alt="Explore Wings" width="48" height="48">
+      </div>
+      <div class="preloader-counter" id="preloaderCounter">0%</div>
+    </div>
+  </div>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <svg class="progress-ring" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <circle id="progressRingCircle" cx="22" cy="22" r="18"></circle>
+    </svg>
+    <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Top Utility Bar -->
+  <aside class="top-utility-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>Studio in Trivandrum, Kerala &bull; Direct consultation</span>
+      </div>
+      <div class="top-bar-controls">
+        <div class="autoscroll-cluster">
+          <button type="button" class="autoscroll-btn" id="autoScrollToggle" aria-pressed="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Auto scroll</span>
+          </button>
+          <select id="autoScrollSpeed" class="autoscroll-select" aria-label="Auto scroll speed">
+            <option value="slow">Slow</option>
+            <option value="medium" selected>Medium</option>
+            <option value="fast">Fast</option>
+          </select>
+        </div>
+        <div class="theme-swatches" role="group" aria-label="Color Theme">
+          <button type="button" class="theme-swatch-btn swatch-green active" data-theme-btn="green" aria-label="Green Theme" aria-pressed="true"></button>
+          <button type="button" class="theme-swatch-btn swatch-red" data-theme-btn="red" aria-label="Red Theme" aria-pressed="false"></button>
+        </div>
+        <button type="button" class="mode-toggle-btn" data-mode-toggle aria-label="Switch to dark mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <span class="mode-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <header class="site-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="nav-brand" aria-label="Explore Wings Home">
+        <span class="brand-chip">
+          <img src="logo.png" alt="Explore Wings" width="32" height="32">
+        </span>
+        <div>
+          <span class="brand-wordmark">Explore Wings</span>
+          <span class="brand-tagline-sub">Digital Technologies</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active" aria-current="page">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-primary">
+          <span>Start your project</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open mobile menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="brand-chip">
+        <img src="logo.png" alt="Explore Wings" width="28" height="28">
+      </div>
+      <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="services.html" class="drawer-link">Services</a></li>
+      <li><a href="pricing.html" class="drawer-link">Pricing</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <a href="contact.html" class="btn-primary" style="width: 100%;">Start your project</a>
+      <p style="font-size: 0.8125rem; color: var(--text-muted);" data-cfg="address">Trivandrum, Kerala, India</p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="page-header-strip">
+      <div class="container">
+        <span class="stamp-badge">Direct Communication</span>
+        <h1 class="display-title">Let's talk about your business goals.</h1>
+        <p class="sub-title">
+          Whether you need a new website, a local brand overhaul, or more inquiries through Google, we're ready to listen and give you honest advice.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Grid -->
+    <section class="container contact-layout-grid">
+      <!-- Contact Info Cards -->
+      <div class="contact-channels-column" data-reveal="left">
+        <div class="contact-info-card" data-cfg-wrap>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <strong>Direct Phone</strong>
+            <a href="tel:+919446012345" data-cfg="phone">+91 94460 12345</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card" data-cfg-wrap>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <strong>Email Address</strong>
+            <a href="mailto:hello@explorewings.com" data-cfg="email">hello@explorewings.com</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card" data-cfg-wrap>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          </div>
+          <div>
+            <strong>WhatsApp Quick Chat</strong>
+            <a href="https://wa.me/919446012345" target="_blank" rel="noopener" data-cfg="whatsapp">Message us on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div>
+            <strong>Studio Location</strong>
+            <p data-cfg="address">Trivandrum, Kerala, India</p>
+          </div>
+        </div>
+
+        <div class="contact-info-card" data-cfg-wrap>
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div>
+            <strong>Office Hours</strong>
+            <p data-cfg="hours">Monday &ndash; Saturday: 9:00 AM &ndash; 6:30 PM IST</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <div class="enquiry-card-wrapper" data-reveal="right">
+        <h2 style="font-size: 1.5rem; margin-bottom: 6px;">Send us a message</h2>
+        <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 20px;">
+          Leave your details and project outline. We reply within one business day.
+        </p>
+
+        <form class="project-enquiry-form" id="mainContactForm">
+          <div class="form-grid-2">
+            <div class="field-group">
+              <label for="contactName">Your Name *</label>
+              <input type="text" id="contactName" name="name" placeholder="e.g. Maya Sreedharan" required>
+            </div>
+            <div class="field-group">
+              <label for="contactPhoneEmail">Phone or Email *</label>
+              <input type="text" id="contactPhoneEmail" name="contact" placeholder="e.g. +91 94460 00000 or maya@firm.in" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field-group">
+              <label for="contactCompany">Company / Business Name</label>
+              <input type="text" id="contactCompany" name="company" placeholder="e.g. Kowdiar Ayurveda Clinic">
+            </div>
+            <div class="field-group">
+              <label for="contactService">What can we help you with? *</label>
+              <select id="contactService" name="service" required>
+                <option value="" disabled selected>Select a primary service</option>
+                <option value="Custom Website">Custom Website / Web App</option>
+                <option value="Brand Identity">Brand Identity &amp; Logo Design</option>
+                <option value="Social Media">Social Media Management</option>
+                <option value="Photography & Video">Photography &amp; Commercial Video</option>
+                <option value="Digital Marketing">Performance Digital Marketing</option>
+                <option value="Local SEO">Google Search &amp; Local SEO</option>
+                <option value="Complete Package">Complete Digital Overhaul</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="contactMessage">Project Details &amp; Current Online Links</label>
+            <textarea id="contactMessage" name="details" rows="5" placeholder="Share your timeline, current website or Instagram links, and what you would like to achieve."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="align-self: flex-start;">
+            <span>Submit project enquiry</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mega Footer -->
+  <footer class="mega-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-chip" style="width: max-content;">
+            <img src="logo.png" alt="Explore Wings" width="32" height="32">
+          </div>
+          <div class="malayalam-greeting">നമസ്കാരം &mdash; Welcome from Trivandrum</div>
+          <p class="footer-founder-note">
+            &ldquo;Explore Wings was founded to offer businesses in Kerala direct, unhurried digital work. You speak with the person actually building your website and designing your brand.&rdquo;
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="pricing.html">Pricing &amp; Packages</a></li>
+            <li><a href="about.html">About Explore Wings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links-list">
+            <li><a href="services.html#websites">Websites &amp; Web Apps</a></li>
+            <li><a href="services.html#branding">Brand Identity &amp; Logo</a></li>
+            <li><a href="services.html#social">Social Media Management</a></li>
+            <li><a href="services.html#photo">Commercial Photography</a></li>
+            <li><a href="services.html#marketing">Digital Marketing</a></li>
+            <li><a href="services.html#localseo">Google Maps &amp; SEO</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Studio Location</div>
+          <div class="footer-contact-details">
+            <p><strong style="color: var(--text);">Explore Wings Digital</strong></p>
+            <p data-cfg="address">Trivandrum, Kerala, India</p>
+            <p data-cfg="hours">Monday &ndash; Saturday: 9:00 AM &ndash; 6:30 PM IST</p>
+            <p data-cfg-wrap><a href="mailto:hello@explorewings.com" data-cfg="email">hello@explorewings.com</a></p>
+            <p data-cfg-wrap><a href="tel:+919446012345" data-cfg="phone">+91 94460 12345</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span id="currentYear">2026</span> Explore Wings Digital Technologies. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="https://instagram.com" target="_blank" rel="noopener" data-cfg="instagram">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" data-cfg="facebook">Facebook</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" data-cfg="linkedin">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="footer-watermark" aria-hidden="true">
+        EXPLORE WINGS
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Launcher & Container -->
+  <button type="button" class="chatbot-launcher" id="chatbotLauncher" aria-label="Open Wing Assistant Chatbot" aria-expanded="false">
+    <span class="launcher-chip">
+      <img src="logo.png" alt="Explore Wings" width="20" height="20">
+    </span>
+    <span>Chat with us</span>
+  </button>
+
+  <aside class="chatbot-container" id="chatbotContainer" aria-label="Wing Assistant Chat Window">
+    <div class="chat-header">
+      <div class="chat-header-brand">
+        <div class="chat-header-chip">
+          <img src="logo.png" alt="Explore Wings" width="22" height="22">
+        </div>
+        <div class="chat-header-info">
+          <strong>Wing Assistant</strong>
+          <span>Explore Wings Digital &bull; Trivandrum</span>
+        </div>
+      </div>
+      <button type="button" class="chat-close-btn" id="chatbotCloseBtn" aria-label="Close Chat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatbotMessages"></div>
+    <div class="chat-quick-replies" id="chatbotQuickReplies" aria-label="Quick questions"></div>
+    <div class="chat-input-bar">
+      <input type="text" id="chatbotInput" placeholder="Type a message..." aria-label="Chat message">
+      <button type="button" id="chatbotSendBtn" aria-label="Send Message">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<div class="admin-page-header" style="margin-bottom: 24px;">
+  <h2 style="font-size: 1.5rem; font-weight: 700;">SEO &amp; Redirects Manager</h2>
+  <p style="font-size: 0.875rem; color: var(--admin-text-muted); margin-top: 4px;">
+    Dynamic XML sitemap, robots.txt, schema markup validation, 301/302 redirect rules, and 404 error monitor.
+  </p>
+</div>
+
+<!-- SEO Health Score -->
+<div class="admin-card" style="margin-bottom: 24px;">
+  <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h3 class="admin-card-title">Search Engine Health Audit</h3>
+      <span style="font-size: 0.8125rem; color: var(--admin-text-muted);">Evaluates meta tags, schema markup, mobile viewport, and canonical setup.</span>
+    </div>
+    <div style="font-size: 2rem; font-weight: 800; color: <%= audit && audit.score >= 90 ? 'var(--admin-primary)' : '#F59E0B' %>;">
+      <%= audit ? audit.score : 98 %>/100
+    </div>
+  </div>
+  <div class="admin-card-body">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-indicator online"></span>
+        <span style="font-size: 0.875rem;">Dynamic XML Sitemap (<a href="/sitemap.xml" target="_blank" class="admin-link-subtle">/sitemap.xml</a>)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-indicator online"></span>
+        <span style="font-size: 0.875rem;">Robots.txt Engine (<a href="/robots.txt" target="_blank" class="admin-link-subtle">/robots.txt</a>)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-indicator online"></span>
+        <span style="font-size: 0.875rem;">Schema.org LocalBusiness &amp; FAQ</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-indicator online"></span>
+        <span style="font-size: 0.875rem;">Canonical URLs Configured</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Redirects Management -->
+<div class="admin-grid-layout-sidebar">
+  <div class="admin-card">
+    <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <h3 class="admin-card-title">301 / 302 URL Redirects</h3>
+      <button type="button" class="admin-btn admin-btn-sm admin-btn-primary" onclick="document.getElementById('addRedirectModal').style.display='flex'">
+        <%- iconSvg('plus') %> <span>Add Redirect Rule</span>
+      </button>
+    </div>
+    <div class="admin-card-body" style="padding: 0;">
+      <div class="admin-table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>From Path</th>
+              <th>To Destination</th>
+              <th>Status</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (redirects && redirects.length) { %>
+              <% redirects.forEach(r => { %>
+                <tr>
+                  <td><code><%= r.from_path %></code></td>
+                  <td><code><%= r.to_path %></code></td>
+                  <td><span class="admin-badge"><%= r.status_code || 301 %></span></td>
+                  <td style="text-align: right;">
+                    <form action="/admin/seo/redirects/<%= r.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('Remove redirect rule?');">
+                      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+                      <button type="submit" class="admin-btn-sm admin-btn-danger">Remove</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="4" style="text-align: center; padding: 24px; color: var(--admin-text-muted);">
+                  Legacy static paths (.html) are automatically redirected to clean URLs by default.
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 404 Error Log with 1-Click Redirect -->
+  <div class="admin-card">
+    <div class="admin-card-header">
+      <h3 class="admin-card-title">Recent 404 Not Found URLs</h3>
+    </div>
+    <div class="admin-card-body" style="padding: 0;">
+      <% if (logs404 && logs404.length) { %>
+        <div class="admin-table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Missing URL</th>
+                <th>Hits</th>
+                <th>Quick Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% logs404.forEach(l => { %>
+                <tr>
+                  <td><code><%= l.path %></code></td>
+                  <td><%= l.count %></td>
+                  <td>
+                    <button type="button" class="admin-btn-xs admin-btn-outline" onclick="openAddRedirect('<%= l.path %>')">
+                      Redirect
+                    </button>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } else { %>
+        <div style="padding: 24px; text-align: center; color: var(--admin-text-muted); font-size: 0.8125rem;">
+          No broken 404 hits logged. Your site links are clean.
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Add Redirect Modal -->
+<div class="admin-modal-overlay" id="addRedirectModal" style="display: none;">
+  <div class="admin-modal-card">
+    <div class="admin-modal-header">
+      <h3 class="admin-card-title">Add URL Redirect Rule</h3>
+      <button type="button" class="admin-modal-close" onclick="document.getElementById('addRedirectModal').style.display='none'">&times;</button>
+    </div>
+    <form action="/admin/seo/redirects" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken || '' %>">
+      <div class="admin-modal-body">
+        <div class="admin-form-group">
+          <label class="admin-label">From Path *</label>
+          <input type="text" id="redirectFrom" name="from_path" class="admin-input" required placeholder="/old-link">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">Destination URL *</label>
+          <input type="text" name="to_path" class="admin-input" required placeholder="/services">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-label">HTTP Status Code</label>
+          <select name="status_code" class="admin-select">
+            <option value="301" selected>301 - Permanent Redirect (Recommended)</option>
+            <option value="302">302 - Temporary Redirect</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-btn admin-btn-outline" onclick="document.getElementById('addRedirectModal').style.display='none'">Cancel</button>
+        <button type="submit" class="admin-btn admin-btn-primary">Create Redirect</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openAddRedirect(fromPath) {
+    document.getElementById('redirectFrom').value = fromPath;
+    document.getElementById('addRedirectModal').style.display = 'flex';
+  }
+</script>
